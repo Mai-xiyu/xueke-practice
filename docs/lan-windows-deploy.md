@@ -35,6 +35,8 @@
 - `deploy_dir`: `C:\xueke-practice`
 - `session_data_dir`: `C:\xueke-practice\session-data`
 
+部署使用的 Compose 模板在 `deploy/docker-compose.lan.yml`，环境变量示例在 `deploy/env.example`。
+
 部署后局域网访问：
 
 `http://服务器IP:8088/`
