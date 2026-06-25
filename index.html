@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>学科练习系统</title>
+  <link rel="stylesheet" href="assets/common.css">
+  <script src="assets/session-sync.js" defer></script>
+</head>
+<body>
+  <header class="portal-hero">
+    <div class="portal-hero-inner">
+      <p class="portal-eyebrow">校园内网练习平台</p>
+      <h1>学科练习系统</h1>
+      <p>选择课程进入练习。系统保留学习模式、模拟考试、题库浏览和错题复盘，进度会在当前访问环境中自动保存。</p>
+      <div class="portal-metrics" aria-label="平台状态">
+        <span id="subjectCount">科目加载中</span>
+        <span>学习 / 模拟 / 题库</span>
+        <span>校园局域网访问</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <section class="subject-grid" id="subjectGrid" aria-label="课程入口"></section>
+
+    <section class="card portal-note">
+      <strong>新增科目</strong>
+      <p>复制 <code>templates/subject_practice_template.html</code> 生成新的科目页面，再把入口写入 <code>subjects.json</code>。需要让 AI 处理试卷时，直接使用 <code>prompts/add-subject-prompt.md</code>。</p>
+    </section>
+  </main>
+
+  <script>
+    const fallbackSubjects = [
+      {
+        id: "route-switching",
+        title: "路由交换",
+        mark: "RS",
+        href: "network_practice.html",
+        accent: "route",
+        description: "路由基础、RIP、OSPF、BGP、ACL、NAT、VLAN、STP、VRRP，以及去年考试题。"
+      },
+      {
+        id: "network-security",
+        title: "网络安全",
+        mark: "NS",
+        href: "network_info_security_practice.html",
+        accent: "security",
+        description: "密码学、认证、PKI、防火墙、IDS/IPS 和实验题复盘，支持模拟考试。"
+      },
+      {
+        id: "data-collection",
+        title: "数据采集",
+        mark: "DC",
+        href: "network_data_collection_practice.html",
+        accent: "data",
+        description: "网络数据采集题库练习，支持搜索、错题记录和本地进度保存。"
+      },
+      {
+        id: "data-structure",
+        title: "数据结构",
+        mark: "DS",
+        href: "data_structure_practice.html",
+        accent: "structure",
+        description: "数据结构题库练习、题库浏览、错题复盘和模拟测试。"
+      }
+    ];
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function renderSubjects(subjects) {
+      const grid = document.getElementById("subjectGrid");
+      const list = [...subjects].sort((a, b) => (a.order || 0) - (b.order || 0));
+      document.getElementById("subjectCount").textContent = `${list.length} 个科目入口`;
+      grid.innerHTML = list.map(subject => `
+        <a class="card subject-card subject-${escapeHtml(subject.accent || subject.id)}" href="${escapeHtml(subject.href)}">
+          <span class="subject-mark">${escapeHtml(subject.mark || subject.title.slice(0, 2))}</span>
+          <h2>${escapeHtml(subject.title)}</h2>
+          <p>${escapeHtml(subject.description || "")}</p>
+          <span class="subject-action">进入练习</span>
+        </a>
+      `).join("");
+    }
+
+    async function loadSubjects() {
+      try {
+        const response = await fetch("subjects.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`subjects.json ${response.status}`);
+        const data = await response.json();
+        if (!Array.isArray(data.subjects)) throw new Error("subjects.json 缺少 subjects 数组");
+        renderSubjects(data.subjects);
+      } catch (error) {
+        console.warn("使用内置科目清单", error);
+        renderSubjects(fallbackSubjects);
+      }
+    }
+
+    loadSubjects();
+  </script>
+</body>
+</html>

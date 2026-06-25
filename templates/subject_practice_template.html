@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUBJECT_TITLE 练习系统</title>
+  <link rel="stylesheet" href="assets/common.css">
+  <script src="assets/session-sync.js" defer></script>
+  <style>
+    body{margin:0;background:#f5f7fb;color:#0f172a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif}
+    .app{max-width:1180px;margin:0 auto;padding:24px}
+    .toolbar,.card{background:#fff;border:1px solid #d9e2ef;border-radius:8px;padding:16px;margin-bottom:14px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    button,select,input{border:1px solid #cbd5e1;border-radius:8px;padding:9px 12px;background:#fff;color:#0f172a}
+    button.primary{background:#2563eb;border-color:#2563eb;color:#fff}
+    .option{display:block;width:100%;text-align:left;margin:8px 0;padding:12px;border:1px solid #d9e2ef;border-radius:8px;background:#f8fafc}
+    .option.correct{border-color:#22c55e;background:#f0fdf4}
+    .option.wrong{border-color:#ef4444;background:#fef2f2}
+    .muted{color:#64748b}.hidden{display:none}.analysis{margin-top:12px;padding:12px;background:#f8fafc;border-left:4px solid #2563eb}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="card">
+    <h1>SUBJECT_TITLE 练习系统</h1>
+    <p class="muted">复制本模板后替换 `QUESTIONS`，并把入口加入 `subjects.json`。</p>
+  </header>
+
+  <section class="toolbar">
+    <div class="row">
+      <select id="chapterFilter"></select>
+      <select id="typeFilter"></select>
+      <input id="searchBox" placeholder="搜索题干/解析">
+      <button id="shuffleBtn">随机一题</button>
+      <button id="resetBtn">重置本题</button>
+    </div>
+  </section>
+
+  <section id="questionPanel"></section>
+</main>
+
+<script>
+const STORAGE_KEY = "subject_template_state_v1";
+const QUESTIONS = [
+  {
+    id: "SAMPLE-1",
+    source: "示例",
+    chapter: "第一章",
+    type: "single",
+    stem: "这是一个示例单选题，正确答案是？",
+    options: { A: "A 选项", B: "B 选项", C: "C 选项", D: "D 选项" },
+    correct: ["A"],
+    analysis: "示例解析。"
+  }
+];
+
+const TYPE_NAME = { single: "单选", multiple: "多选", fill: "填空", judge: "判断", short: "简答", code: "代码" };
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"answers":{},"wrong":{}}');
+let current = 0;
+
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function chapters(){ return [...new Set(QUESTIONS.map(q => q.chapter || "未分章"))]; }
+function filtered(){
+  const ch = chapterFilter.value;
+  const ty = typeFilter.value;
+  const kw = searchBox.value.trim().toLowerCase();
+  return QUESTIONS.filter(q => (!ch || q.chapter === ch) && (!ty || q.type === ty) && (!kw || JSON.stringify(q).toLowerCase().includes(kw)));
+}
+function answerText(q){
+  if (q.type === "fill") return (q.answers || []).join(" / ");
+  if (q.type === "short" || q.type === "code") return q.answer || "";
+  return (q.correct || []).join("");
+}
+function render(){
+  const list = filtered();
+  if (!list.length) {
+    questionPanel.innerHTML = '<div class="card">没有匹配题目。</div>';
+    return;
+  }
+  current = Math.max(0, Math.min(current, list.length - 1));
+  const q = list[current];
+  const saved = state.answers[q.id];
+  let body = "";
+  if (q.type === "single" || q.type === "judge") {
+    body = Object.entries(q.options || {}).map(([k,v]) => `<button class="option" data-answer="${esc(k)}"><b>${esc(k)}.</b> ${esc(v)}</button>`).join("");
+  } else if (q.type === "multiple") {
+    body = Object.entries(q.options || {}).map(([k,v]) => `<label class="option"><input type="checkbox" value="${esc(k)}"> <b>${esc(k)}.</b> ${esc(v)}</label>`).join("");
+  } else {
+    body = `<textarea id="textAnswer" style="width:100%;min-height:130px">${esc(saved || "")}</textarea>`;
+  }
+  questionPanel.innerHTML = `<article class="card">
+    <p class="muted">${current + 1}/${list.length} · ${esc(q.source)} · ${esc(q.chapter)} · ${esc(TYPE_NAME[q.type] || q.type)}</p>
+    <h2>${esc(q.stem)}</h2>
+    ${body}
+    <div class="row"><button class="primary" id="showBtn">提交/查看解析</button><button id="prevBtn">上一题</button><button id="nextBtn">下一题</button></div>
+    <div id="analysis" class="analysis hidden"></div>
+  </article>`;
+  questionPanel.querySelectorAll("[data-answer]").forEach(btn => btn.onclick = () => choose(q, btn.dataset.answer));
+  showBtn.onclick = () => show(q, null);
+  prevBtn.onclick = () => { current -= 1; render(); };
+  nextBtn.onclick = () => { current += 1; render(); };
+}
+function choose(q, value){
+  state.answers[q.id] = value;
+  const ok = (q.correct || []).includes(value);
+  if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = value;
+  save();
+  show(q, value);
+}
+function show(q, value){
+  const box = document.getElementById("analysis");
+  box.classList.remove("hidden");
+  box.innerHTML = `<b>参考答案：${esc(answerText(q))}</b><p>${esc(q.analysis || "")}</p>`;
+  document.querySelectorAll(".option").forEach(el => {
+    const value = el.dataset.answer;
+    if ((q.correct || []).includes(value)) el.classList.add("correct");
+    else el.classList.add("wrong");
+  });
+}
+function init(){
+  chapterFilter.innerHTML = '<option value="">全部章节</option>' + chapters().map(x => `<option>${esc(x)}</option>`).join("");
+  typeFilter.innerHTML = '<option value="">全部题型</option>' + Object.entries(TYPE_NAME).map(([k,v]) => `<option value="${k}">${v}</option>`).join("");
+  [chapterFilter,typeFilter,searchBox].forEach(el => el.addEventListener("input", () => { current = 0; render(); }));
+  shuffleBtn.onclick = () => { const list = filtered(); current = Math.floor(Math.random() * list.length); render(); };
+  resetBtn.onclick = () => { const q = filtered()[current]; if (q) delete state.answers[q.id]; save(); render(); };
+  render();
+}
+init();
+</script>
+</body>
+</html>
