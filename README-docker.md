@@ -76,6 +76,33 @@ session-data/<client-ip>.json
 
 推送到 `main` 或创建 `v*.*.*` tag 后会自动构建并上传 Docker Hub。
 
+默认会推送两个运行镜像：
+
+```text
+<DOCKERHUB_USERNAME>/xueke-practice:latest
+<DOCKERHUB_USERNAME>/xueke-practice:session-api-latest
+```
+
+## 局域网 Windows 服务器部署
+
+推荐在局域网 Windows Docker 主机上安装 GitHub Actions self-hosted runner，并给 runner 增加 `xueke-lan` 标签。之后可以在 GitHub 页面手动触发：
+
+```text
+Actions -> Deploy to LAN Windows server -> Run workflow
+```
+
+部署工作流文件：
+
+```text
+.github/workflows/deploy-lan.yml
+```
+
+详细步骤见：
+
+```text
+docs/lan-windows-deploy.md
+```
+
 ## 停止
 
 ```powershell

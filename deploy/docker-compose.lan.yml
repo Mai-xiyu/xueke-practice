@@ -1,0 +1,21 @@
+name: xueke-practice
+
+services:
+  web:
+    image: ${DOCKERHUB_IMAGE:?Set DOCKERHUB_IMAGE}:latest
+    container_name: xueke-practice-web
+    ports:
+      - "${WEB_PORT:-8088}:80"
+    depends_on:
+      - session-api
+    restart: unless-stopped
+
+  session-api:
+    image: ${DOCKERHUB_IMAGE:?Set DOCKERHUB_IMAGE}:session-api-latest
+    container_name: xueke-practice-session-api
+    environment:
+      PORT: "3000"
+      SESSION_DATA_DIR: "/data"
+    volumes:
+      - "${SESSION_DATA_DIR:-C:/xueke-practice/session-data}:/data"
+    restart: unless-stopped
