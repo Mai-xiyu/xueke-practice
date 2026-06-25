@@ -52,6 +52,29 @@ cd deploy
 
 该脚本会复制 `docker-compose.lan.yml` 到 `C:\xueke-practice`，拉取最新镜像并重启容器。
 
+## Docker Hub 不通时
+
+如果服务器访问 `registry-1.docker.io` 超时，远程 `docker pull` 和远程本地构建都会失败。此时使用：
+
+```text
+Actions -> Package Docker image tarballs -> Run workflow
+```
+
+该 workflow 会在 GitHub 云端构建两个 tar 包：
+
+```text
+xueke-practice-web:local
+xueke-practice-session-api:local
+```
+
+下载 artifact 后上传到服务器，执行：
+
+```powershell
+docker load -i xueke-practice-web.tar
+docker load -i xueke-practice-session-api.tar
+docker compose up -d --no-build --remove-orphans
+```
+
 ## 安全边界
 
 - 不要把 Docker API、Windows 远程桌面或 PowerShell Remoting 暴露到公网。

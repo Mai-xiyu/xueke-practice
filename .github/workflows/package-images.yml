@@ -1,0 +1,47 @@
+name: Package Docker image tarballs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Validate subject registry and question banks
+        run: node tools/validate-site.js
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build web image tarball
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./Dockerfile
+          tags: xueke-practice-web:local
+          outputs: type=docker,dest=/tmp/xueke-practice-web.tar
+
+      - name: Build session API image tarball
+        uses: docker/build-push-action@v7
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          tags: xueke-practice-session-api:local
+          outputs: type=docker,dest=/tmp/xueke-practice-session-api.tar
+
+      - name: Upload image tarballs
+        uses: actions/upload-artifact@v4
+        with:
+          name: xueke-practice-images
+          path: |
+            /tmp/xueke-practice-web.tar
+            /tmp/xueke-practice-session-api.tar
+          compression-level: 0
+          retention-days: 3
