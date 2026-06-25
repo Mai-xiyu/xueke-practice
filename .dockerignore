@@ -4,6 +4,7 @@ work/
 .git/
 .github/
 docs/
+deploy/
 prompts/
 templates/
 tools/

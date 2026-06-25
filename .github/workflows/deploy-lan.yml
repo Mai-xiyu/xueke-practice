@@ -1,0 +1,106 @@
+name: Deploy to LAN Windows server
+
+on:
+  workflow_dispatch:
+    inputs:
+      web_port:
+        description: "LAN HTTP port exposed by the Windows Docker host"
+        required: true
+        default: "8088"
+      deploy_dir:
+        description: "Directory used on the Windows Docker host"
+        required: true
+        default: 'C:\xueke-practice'
+      session_data_dir:
+        description: "Persistent session JSON directory on the Windows Docker host"
+        required: true
+        default: 'C:\xueke-practice\session-data'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, windows, x64, xueke-lan]
+
+    steps:
+      - name: Checkout deployment files
+        uses: actions/checkout@v6
+
+      - name: Check Docker CLI
+        shell: powershell
+        run: |
+          docker version
+          docker compose version
+
+      - name: Resolve deployment settings
+        shell: powershell
+        env:
+          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME || secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_IMAGE: ${{ vars.DOCKERHUB_IMAGE }}
+          WEB_PORT_INPUT: ${{ inputs.web_port }}
+          DEPLOY_DIR_INPUT: ${{ inputs.deploy_dir }}
+          SESSION_DATA_DIR_INPUT: ${{ inputs.session_data_dir }}
+        run: |
+          $image = $env:DOCKERHUB_IMAGE
+          if (-not $image -and $env:DOCKERHUB_USERNAME) {
+            $image = "$env:DOCKERHUB_USERNAME/xueke-practice"
+          }
+          if (-not $image) {
+            throw "Set repository variable DOCKERHUB_IMAGE or DOCKERHUB_USERNAME, or set secret DOCKERHUB_USERNAME."
+          }
+
+          $sessionDataDir = $env:SESSION_DATA_DIR_INPUT.Replace('\', '/')
+          "DOCKERHUB_IMAGE=$image" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "WEB_PORT=$env:WEB_PORT_INPUT" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "DEPLOY_DIR=$env:DEPLOY_DIR_INPUT" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "SESSION_DATA_DIR=$sessionDataDir" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Log in to Docker Hub
+        shell: powershell
+        env:
+          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME || secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          if (-not $env:DOCKERHUB_USERNAME -or -not $env:DOCKERHUB_TOKEN) {
+            throw "Set Docker Hub credentials: DOCKERHUB_USERNAME and DOCKERHUB_TOKEN."
+          }
+          $env:DOCKERHUB_TOKEN | docker login --username $env:DOCKERHUB_USERNAME --password-stdin
+
+      - name: Install compose file
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path $env:DEPLOY_DIR | Out-Null
+          New-Item -ItemType Directory -Force -Path $env:SESSION_DATA_DIR | Out-Null
+          Copy-Item -LiteralPath "deploy\docker-compose.lan.yml" -Destination (Join-Path $env:DEPLOY_DIR "docker-compose.yml") -Force
+
+      - name: Pull and restart containers
+        shell: powershell
+        run: |
+          Push-Location $env:DEPLOY_DIR
+          try {
+            docker compose pull
+            docker compose up -d --remove-orphans
+            docker image prune -f
+            docker compose ps
+          } finally {
+            Pop-Location
+          }
+
+      - name: Health check
+        shell: powershell
+        run: |
+          $uri = "http://127.0.0.1:$env:WEB_PORT/"
+          for ($i = 1; $i -le 10; $i++) {
+            try {
+              $res = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 -Uri $uri
+              if ($res.StatusCode -ge 200 -and $res.StatusCode -lt 500) {
+                Write-Host "Health check passed: $uri"
+                exit 0
+              }
+            } catch {
+              Write-Host "Waiting for $uri ..."
+              Start-Sleep -Seconds 2
+            }
+          }
+          throw "Health check failed: $uri"
