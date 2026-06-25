@@ -1,0 +1,13 @@
+session-data/
+work/
+*.log
+.git/
+.github/
+docs/
+prompts/
+templates/
+tools/
+package*.json
+README-docker.md
+.DS_Store
+Thumbs.db

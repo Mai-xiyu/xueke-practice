@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: xueke-practice-web:local
+    container_name: xueke-practice-web
+    ports:
+      - "8088:80"
+    depends_on:
+      - session-api
+    restart: unless-stopped
+
+  session-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: xueke-practice-session-api:local
+    container_name: xueke-practice-session-api
+    environment:
+      PORT: "3000"
+      SESSION_DATA_DIR: "/data"
+    volumes:
+      - ./session-data:/data
+    restart: unless-stopped

@@ -1,0 +1,40 @@
+{
+  "subjects": [
+    {
+      "id": "route-switching",
+      "title": "路由交换",
+      "mark": "RS",
+      "href": "network_practice.html",
+      "accent": "route",
+      "description": "路由基础、RIP、OSPF、BGP、ACL、NAT、VLAN、STP、VRRP，以及去年考试题。",
+      "order": 10
+    },
+    {
+      "id": "network-security",
+      "title": "网络安全",
+      "mark": "NS",
+      "href": "network_info_security_practice.html",
+      "accent": "security",
+      "description": "密码学、认证、PKI、防火墙、IDS/IPS 和实验题复盘，支持模拟考试。",
+      "order": 20
+    },
+    {
+      "id": "data-collection",
+      "title": "数据采集",
+      "mark": "DC",
+      "href": "network_data_collection_practice.html",
+      "accent": "data",
+      "description": "网络数据采集题库练习，支持搜索、错题记录和本地进度保存。",
+      "order": 30
+    },
+    {
+      "id": "data-structure",
+      "title": "数据结构",
+      "mark": "DS",
+      "href": "data_structure_practice.html",
+      "accent": "structure",
+      "description": "数据结构题库练习、题库浏览、错题复盘和模拟测试。",
+      "order": 40
+    }
+  ]
+}
