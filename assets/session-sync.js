@@ -50,15 +50,36 @@
     return location.protocol === "http:" || location.protocol === "https:";
   }
 
+  const clientKey = "study_hub_client_id";
+
+  function ensureClientId() {
+    let id = localStorage.getItem(clientKey);
+    if (!id) {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") {
+        id = window.crypto.randomUUID();
+      } else {
+        id = `client-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      }
+      localStorage.setItem(clientKey, id);
+    }
+    return id;
+  }
+
   const app = pageName();
+  const clientId = ensureClientId();
   let timer = null;
   let disabled = !apiAvailable();
+
+  function sessionUrl() {
+    return `/api/session?app=${encodeURIComponent(app)}&client=${encodeURIComponent(clientId)}`;
+  }
 
   async function loadRemote() {
     if (disabled) return;
     try {
-      const res = await fetch(`/api/session?app=${encodeURIComponent(app)}`, {
-        credentials: "same-origin"
+      const res = await fetch(sessionUrl(), {
+        credentials: "same-origin",
+        headers: { "X-Study-Client": clientId }
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
@@ -87,13 +108,14 @@
         meta: {
           title: document.title,
           path: location.pathname,
+          clientId,
           userAgent: navigator.userAgent,
           savedAt: new Date().toISOString()
         }
       };
-      const res = await fetch(`/api/session?app=${encodeURIComponent(app)}`, {
+      const res = await fetch(sessionUrl(), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-Study-Client": clientId },
         credentials: "same-origin",
         body: JSON.stringify(payload)
       });
@@ -136,9 +158,9 @@
       const payload = JSON.stringify({
         app,
         localStorage: storageSnapshot(),
-        meta: { title: document.title, savedAt: new Date().toISOString() }
+        meta: { title: document.title, clientId, savedAt: new Date().toISOString() }
       });
-      navigator.sendBeacon(`/api/session?app=${encodeURIComponent(app)}`, new Blob([payload], { type: "application/json" }));
+      navigator.sendBeacon(sessionUrl(), new Blob([payload], { type: "application/json" }));
     }
   });
 
