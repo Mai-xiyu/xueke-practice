@@ -38,6 +38,16 @@ function safeName(ip) {
   return ip.replace(/[^0-9A-Za-z_.-]/g, "_") || "unknown";
 }
 
+function clientIdentity(req, url, ip) {
+  const header = req.headers["x-study-client"];
+  const raw = Array.isArray(header) ? header[0] : header || url.searchParams.get("client") || "";
+  const value = safeName(String(raw).trim()).slice(0, 120);
+  if (value && value !== "unknown") {
+    return { id: value, type: "client" };
+  }
+  return { id: safeName(ip), type: "ip" };
+}
+
 function safeApp(app) {
   const value = String(app || "default").trim();
   return value.replace(/[^0-9A-Za-z_.-]/g, "_").slice(0, 120) || "default";
@@ -85,12 +95,14 @@ async function writeSession(file, data) {
 async function handleSession(req, res, url) {
   const ip = clientIp(req);
   const app = safeApp(url.searchParams.get("app"));
-  const file = path.join(DATA_DIR, `${safeName(ip)}.json`);
+  const identity = clientIdentity(req, url, ip);
+  const file = path.join(DATA_DIR, `${identity.id}.json`);
   const session = await readSession(file);
 
   if (req.method === "GET") {
     return json(res, 200, {
       ip,
+      identity,
       app: session.apps[app] || null,
       apps: Object.keys(session.apps || {}),
       updatedAt: session.updatedAt || null
@@ -101,6 +113,7 @@ async function handleSession(req, res, url) {
     const body = await readBody(req);
     session.updatedAt = new Date().toISOString();
     session.ip = ip;
+    session.identity = identity;
     session.apps ||= {};
     session.apps[app] = {
       updatedAt: session.updatedAt,
@@ -109,7 +122,7 @@ async function handleSession(req, res, url) {
       meta: body.meta && typeof body.meta === "object" ? body.meta : {}
     };
     await writeSession(file, session);
-    return json(res, 200, { ok: true, ip, app, file: path.basename(file), updatedAt: session.updatedAt });
+    return json(res, 200, { ok: true, ip, identity, app, file: path.basename(file), updatedAt: session.updatedAt });
   }
 
   return text(res, 405, "method not allowed\n");
