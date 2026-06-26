@@ -65,7 +65,8 @@ input[type="search"], input[type="number"] { min-width:180px; }
 <link rel="stylesheet" href="assets/common.css">
 <script src="assets/session-sync.js" defer></script>
 </head>
-<body>
+<body data-practice-shell="routing-switching">
+<aside id="practiceAnswerCard" class="practice-question-nav" aria-label="答题卡" hidden></aside>
 <header><div class="header-inner"><div><h1>路由交换题库模拟练习 <span class="badge" id="totalBadge">300题</span></h1><div class="meta">学习模式：每题作答后立即显示答案、红绿标注和逐项解析。考试模式：交卷后统计正确数与错题。</div></div><div class="row"><button class="ghost" id="btnExport">导出进度</button><button class="ghost" id="btnImport">导入进度</button><button class="warn" id="btnReset">清空进度</button></div></div></header>
 <main>
   <div class="tabs"><button class="tab active" data-mode="study">学习模式</button><button class="tab" data-mode="exam">模拟考试</button><button class="tab" data-mode="bank">题库浏览</button></div>
@@ -212,10 +213,6 @@ function renderStudy() {
   const rand=el('button','ghost','随机一题'); rand.onclick=()=>{studyIndex=Math.floor(Math.random()*studyList.length); state.studyIndex=studyIndex; saveState(); renderStudy(); window.scrollTo(0,0);};
   const reset=el('button','ghost','重做本题'); reset.onclick=()=>{ if(state.progress?.[q.id]) { delete state.progress[q.id].studySelected; delete state.progress[q.id].studyRevealed; } saveState(); renderStudy(); };
   nav.append(prev,next,rand,reset); card.appendChild(nav); root.appendChild(card);
-  const gridCard=el('div','card'); gridCard.appendChild(el('h3','', '题号导航'));
-  const grid=el('div','grid');
-  studyList.forEach((id,i)=>{ const q2=getQ(id); const p=state.progress?.[id]; const pill=el('div','pill',`${q2.doc}-${q2.num}`); if(i===studyIndex) pill.classList.add('current'); if(p?.studyRevealed) pill.classList.add('done'); if(p?.lastCorrect===false) pill.classList.add('wrongMini'); pill.onclick=()=>{studyIndex=i; state.studyIndex=i; saveState(); renderStudy(); window.scrollTo(0,0);}; grid.appendChild(pill); });
-  gridCard.appendChild(grid); root.appendChild(gridCard);
 }
 function renderExam() {
   const root=document.getElementById('exam'); root.innerHTML='';
@@ -260,6 +257,40 @@ function renderBank() {
   const doSearch=()=>{ const kw=search.value.trim().toLowerCase(); result.innerHTML=''; QUESTIONS.filter(q=>(src.value==='all'||String(q.doc)===src.value) && (!kw || (q.stem+' '+Object.values(q.options || {}).join(' ')+' '+effectiveAnswer(q)+' '+(q.explanation || '')).toLowerCase().includes(kw))).forEach(q=>{ const item=el('div','explain'); item.appendChild(el('h3','', isSubjective(q) ? `${q.id} 主观题` : `${q.id} 正确：${effectiveAnswer(q)}. ${q.options?.[effectiveAnswer(q)] || ''}`)); item.appendChild(el('div','meta',q.stem)); const actions=renderAnswerEditor(q); const open=el('button','ghost','进入学习'); open.onclick=()=>{ studyList=QUESTIONS.map(x=>x.id); studyIndex=QUESTIONS.findIndex(x=>x.id===q.id); switchMode('study'); renderStudy(); window.scrollTo(0,0); }; actions.appendChild(open); item.appendChild(actions); result.appendChild(item); }); };
   btn.onclick=doSearch; search.onkeydown=(e)=>{if(e.key==='Enter')doSearch();}; doSearch();
 }
+function practiceQuestionType(q) {
+  if (q.type === 'true_false') return 'judge';
+  if (isSubjective(q)) return 'short';
+  return 'choice';
+}
+window.studyHubPracticeNav = () => {
+  const activeMode = document.querySelector('.tab.active')?.dataset.mode;
+  if (activeMode !== 'study' || !studyList.length) return null;
+  return {
+    mode: 'study',
+    title: '答题卡',
+    current: studyIndex + 1,
+    items: studyList.map((id, index) => {
+      const q = getQ(id);
+      const rec = state.progress?.[id] || {};
+      return {
+        id,
+        index: index + 1,
+        label: String(index + 1),
+        type: practiceQuestionType(q),
+        done: Boolean(rec.studyRevealed),
+        wrong: rec.lastCorrect === false,
+        marked: Boolean(state.marked?.[id])
+      };
+    }),
+    jump(index) {
+      studyIndex = Math.max(0, Math.min(index - 1, studyList.length - 1));
+      state.studyIndex = studyIndex;
+      saveState();
+      renderStudy();
+      window.scrollTo(0, 0);
+    }
+  };
+};
 function switchMode(m) { document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.mode===m)); document.querySelectorAll('.mode-section').forEach(s=>s.classList.add('hidden')); document.getElementById(m).classList.remove('hidden'); }
 function renderAll() { renderStudy(); renderExam(); renderBank(); document.getElementById('totalBadge').textContent=`${QUESTIONS.length}题`; }
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{switchMode(t.dataset.mode); if(t.dataset.mode==='exam'){ renderExam(); if(!examSet.length) startExam(); } if(t.dataset.mode==='bank')renderBank();});

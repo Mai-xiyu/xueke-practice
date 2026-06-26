@@ -35,7 +35,8 @@ button,select,input,textarea{font:inherit} button{border:0;border-radius:10px;ba
 <link rel="stylesheet" href="assets/common.css">
 <script src="assets/session-sync.js" defer></script>
 </head>
-<body>
+<body data-practice-shell="data-structure">
+<aside id="practiceAnswerCard" class="practice-question-nav" aria-label="答题卡" hidden></aside>
 <header><div class="header-inner"><div><h1>数据结构练习系统</h1><div class="sub">绪论 / 线性表 / 栈与队列 / 稀疏矩阵与广义表｜原题 + 简答题 + 判断题自动生成</div></div><div class="sub" id="saveState">本地进度自动保存</div></div></header>
 <main>
 <aside class="sidebar">
@@ -189,6 +190,13 @@ document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.que
 shuffleBtn.onclick=()=>{shuffled=!shuffled; render();};
 resetWrongBtn.onclick=()=>{state.wrong=[]; save(); render();};
 exportBtn.onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ds-practice-progress.json'; a.click();};
+function practiceQuestionType(q){return q.type}
+window.studyHubPracticeNav=()=>{
+  if(mode!=='study')return null;
+  const list=filteredQuestions();
+  if(!list.length)return null;
+  return {mode:'study',title:'答题卡',current:null,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:state.wrong.includes(q.id)})),jump(index){const q=list[index-1];if(!q)return;const card=[...document.querySelectorAll('.q-card')].find(el=>el.dataset.id===q.id);if(card)card.scrollIntoView({behavior:'auto',block:'start'});}};
+};
 render();
 </script>
 </body></html>

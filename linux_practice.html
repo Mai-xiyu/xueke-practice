@@ -19,7 +19,8 @@
     .muted{color:#64748b}.hidden{display:none}.analysis{margin-top:12px;padding:12px;background:#f8fafc;border-left:4px solid #2563eb}
   </style>
 </head>
-<body>
+<body data-practice-shell="linux">
+<aside id="practiceAnswerCard" class="practice-question-nav" aria-label="答题卡" hidden></aside>
 <main class="app">
   <header class="card">
     <h1>Linux课程 练习系统</h1>
@@ -4744,6 +4745,12 @@ function init(){
   resetBtn.onclick = () => { const q = filtered()[current]; if (q) delete state.answers[q.id]; save(); render(); };
   render();
 }
+function practiceQuestionType(q){return q.type}
+window.studyHubPracticeNav=()=>{
+  const list=filtered();
+  if(!list.length)return null;
+  return {mode:'study',title:'答题卡',current:current+1,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:Boolean(state.wrong[q.id])})),jump(index){current=Math.max(0,Math.min(index-1,list.length-1));render();window.scrollTo(0,0);}};
+};
 init();
 </script>
 </body>
