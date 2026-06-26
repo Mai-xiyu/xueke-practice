@@ -154,6 +154,234 @@
     };
   }
 
+  function installPracticeShell() {
+    if (pageName() === "index.html") return;
+    const main = document.querySelector("main, .app, .wrap");
+    if (!main) return;
+
+    document.body.classList.add("practice-page");
+
+    let nav = null;
+    let grid = null;
+    let lastTotal = 0;
+    let updateTimer = null;
+
+    function isVisible(el) {
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      const style = getComputedStyle(el);
+      return rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && style.display !== "none";
+    }
+
+    function normalizePracticeFields() {
+      document.querySelectorAll(".panel > .grid > .side").forEach((side) => {
+        if (side.dataset.practiceFields === "wrapped") return;
+        Array.from(side.children).forEach((child) => {
+          const next = child.nextElementSibling;
+          if (
+            child.tagName === "LABEL" &&
+            next &&
+            /^(SELECT|INPUT|TEXTAREA)$/.test(next.tagName)
+          ) {
+            const field = document.createElement("div");
+            field.className = "practice-field";
+            side.insertBefore(field, child);
+            field.append(child, next);
+          }
+        });
+        side.dataset.practiceFields = "wrapped";
+      });
+    }
+
+    function scopedText(selector, limit) {
+      const el = document.querySelector(selector);
+      return el ? (el.innerText || "").slice(0, limit || 2000) : "";
+    }
+
+    function parseProgress() {
+      const chunks = [
+        scopedText("#questionPanel", 1000),
+        scopedText("#learn:not(.hidden)", 1400),
+        scopedText("#exam:not(.hidden)", 1400),
+        scopedText("#study:not(.hidden)", 1000),
+        scopedText("#panel", 1000),
+        scopedText("#learnInfo", 400),
+        scopedText("main", 1800),
+        scopedText(".app", 2200),
+        scopedText(".wrap", 2200)
+      ];
+      for (const text of chunks) {
+        const match = text.match(/(?:当前\s*)?(\d+)\s*\/\s*(\d+)/);
+        if (match) {
+          return {
+            current: Number(match[1]),
+            total: Number(match[2])
+          };
+        }
+      }
+      return { current: null, total: null };
+    }
+
+    function cardList() {
+      return Array.from(document.querySelectorAll(".q-card")).filter(isVisible);
+    }
+
+    function currentFromCards() {
+      const cards = cardList();
+      if (cards.length < 2) return null;
+      let bestIndex = 0;
+      let bestDistance = Infinity;
+      cards.forEach((card, index) => {
+        const top = card.getBoundingClientRect().top;
+        const distance = Math.abs(top - 92);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIndex = index;
+        }
+      });
+      return bestIndex + 1;
+    }
+
+    function detectTotal() {
+      const candidates = [];
+      const progress = parseProgress();
+      if (progress.total) return progress.total;
+
+      const totalCount = Number((document.getElementById("totalCount") || {}).innerText || 0);
+      if (totalCount > 1) candidates.push(totalCount);
+
+      const cards = cardList().length;
+      if (cards > 1) candidates.push(cards);
+
+      const text = [
+        scopedText("header", 1500),
+        scopedText("#learn:not(.hidden)", 1800),
+        scopedText("#exam:not(.hidden)", 1800),
+        scopedText("#learnInfo", 400),
+        scopedText("#totalPill", 300),
+        scopedText("#stats", 1000),
+        scopedText("main", 2600),
+        scopedText(".app", 3200),
+        scopedText(".wrap", 3200)
+      ].join("\n");
+
+      const patterns = [
+        /总题(?:库)?\s*(\d+)\s*题/g,
+        /共\s*(\d+)\s*(?:题|道)/g,
+        /(\d+)\s*题/g
+      ];
+      patterns.forEach((pattern) => {
+        for (const match of text.matchAll(pattern)) {
+          const value = Number(match[1]);
+          if (value > 1 && value <= 1000) candidates.push(value);
+        }
+      });
+
+      return candidates.length ? Math.max(...candidates) : 0;
+    }
+
+    function findStepButton(direction) {
+      const labels = direction > 0 ? ["下一题", "下一道", "下一个"] : ["上一题", "上一道", "上一个"];
+      return Array.from(document.querySelectorAll("button")).find((button) => {
+        if (!isVisible(button) || button.disabled) return false;
+        const text = (button.textContent || "").trim();
+        return labels.some((label) => text.includes(label));
+      });
+    }
+
+    function jumpByStepButtons(targetIndex) {
+      const progress = parseProgress();
+      const current = progress.current || currentFromCards() || 1;
+      const delta = targetIndex - current;
+      const direction = delta > 0 ? 1 : -1;
+      for (let i = 0; i < Math.abs(delta); i += 1) {
+        const button = findStepButton(direction);
+        if (!button) break;
+        button.click();
+      }
+    }
+
+    function jumpToQuestion(index) {
+      const cards = cardList();
+      if (cards.length > 1 && cards[index - 1]) {
+        cards[index - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(updateActive, 180);
+        return;
+      }
+      jumpByStepButtons(index);
+      scheduleUpdate();
+    }
+
+    function currentIndex() {
+      const progress = parseProgress();
+      return progress.current || currentFromCards() || 1;
+    }
+
+    function updateActive() {
+      if (!grid) return;
+      const active = currentIndex();
+      grid.querySelectorAll(".practice-nav-btn").forEach((button) => {
+        button.classList.toggle("active", Number(button.dataset.index) === active);
+      });
+    }
+
+    function renderNav(total) {
+      if (!total || total < 2) return;
+      if (!nav) {
+        nav = document.createElement("aside");
+        nav.className = "practice-question-nav";
+        nav.setAttribute("aria-label", "题号导航");
+        document.body.appendChild(nav);
+      }
+
+      nav.innerHTML = "";
+      const title = document.createElement("h2");
+      title.textContent = "一、答题卡";
+      const meta = document.createElement("div");
+      meta.className = "practice-nav-meta";
+      meta.textContent = `共 ${total} 题`;
+      grid = document.createElement("div");
+      grid.className = "practice-nav-grid";
+
+      for (let i = 1; i <= total; i += 1) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "practice-nav-btn";
+        button.dataset.index = String(i);
+        button.textContent = String(i);
+        button.addEventListener("click", () => jumpToQuestion(i));
+        grid.appendChild(button);
+      }
+
+      nav.append(title, meta, grid);
+      lastTotal = total;
+      updateActive();
+    }
+
+    function scheduleUpdate() {
+      clearTimeout(updateTimer);
+      updateTimer = setTimeout(() => {
+        normalizePracticeFields();
+        const total = detectTotal();
+        if (total && total !== lastTotal) {
+          renderNav(total);
+        } else {
+          updateActive();
+        }
+      }, 80);
+    }
+
+    normalizePracticeFields();
+    renderNav(detectTotal());
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    new MutationObserver(scheduleUpdate).observe(main, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  }
+
   window.addEventListener("storage", scheduleSave);
   window.addEventListener("beforeunload", () => {
     if (!disabled && navigator.sendBeacon) {
@@ -169,6 +397,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     ensureNav();
     patchLocalStorage();
+    installPracticeShell();
     loadRemote().then(() => setTimeout(saveRemote, 1200));
   });
 })();
