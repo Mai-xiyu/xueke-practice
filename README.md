@@ -1,6 +1,6 @@
 # 学科练习系统
 
-面向校园局域网的题库练习系统。当前仓库包含四个科目入口、统一前端样式、按浏览器 client id 持久化进度的后端、Docker/Nginx 部署配置，以及 GitHub Actions 自动打包流程。
+面向校园局域网的题库练习系统。当前仓库包含多个科目入口、统一前端样式、按浏览器 client id 持久化进度的后端、Docker/Nginx 部署配置，以及 GitHub Actions 自动打包流程。
 
 当前科目：
 
@@ -9,8 +9,7 @@
 - 数据采集
 - 数据结构
 - Linux课程
-
-
+- 中国近代史
 
 ## 快速使用
 
@@ -45,6 +44,7 @@ index.html                                  总入口，读取 subjects.json
 subjects.json                               科目注册表
 *_practice.html                             各科目题库页面
 linux_practice.html                         Linux 课程题库页面
+modern_history_practice.html                中国近代史题库页面
 assets/common.css                           统一样式
 assets/session-sync.js                      顶部导航和进度同步
 backend/server.js                           会话 JSON 后端
@@ -80,8 +80,8 @@ README-docker.md                            Docker 部署补充说明
 题库约束：
 
 - 不使用 `衍生题` 作为来源。
-- 判断题可以从选择题改写生成。
-- 简答题必须有参考答案。
+- 判断题可以从选择题改写生成，但前提是原选择题答案可确认；答案未知时不要硬编判断题。
+- 简答题、论述题正式使用时应有参考答案；截图没有给出答案时先标记为 `待补参考答案`。
 - 来源字段应写真实来源，例如 `A卷真题`、`课堂简答题`、`实验题`。
 - 从在线作业页抓取的新科目，如果页面没有明确显示标准答案，不要猜答案；先标记为 `待补答案`。
 

@@ -402,6 +402,7 @@ code {
 .subject-data { --subject-accent: #0f766e; }
 .subject-structure { --subject-accent: #7c3aed; }
 .subject-linux { --subject-accent: #475569; }
+.subject-history { --subject-accent: #b91c1c; }
 
 .portal-note {
   margin-top: 18px;
