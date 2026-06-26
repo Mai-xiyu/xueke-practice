@@ -86,6 +86,8 @@ def normalize_modern_category(question: dict) -> None:
         question["chapter"] = "2023 B卷"
     elif source == "学习通截图详解" or chapter.startswith("截图"):
         question["chapter"] = "截图详解"
+    elif source == "近代史最新模拟格式":
+        question["chapter"] = "最新模拟卷"
 
 
 def read_questions(path: Path) -> tuple[str, list[dict], str]:
@@ -372,6 +374,45 @@ def parse_user_screenshots() -> list[dict]:
     return questions
 
 
+def manual_modern_subjective_questions() -> list[dict]:
+    items = [
+        {
+            "id": "mh-latest-short-001",
+            "source": "近代史最新模拟格式",
+            "chapter": "最新模拟卷",
+            "type": "short",
+            "stem": "中国共产党领导中国革命取得胜利的基本经验是什么？",
+            "answer": "通常应围绕三点展开：第一，建立广泛的统一战线；第二，坚持革命的武装斗争；第三，加强中国共产党自身建设。三者相互联系，是中国革命取得胜利的重要经验。",
+            "analysis": "简答题按 15 分主观题处理，答题时应分点说明并适当展开。",
+            "examTags": ["modern-history-latest"],
+            "latestMockOrder": 56,
+        },
+        {
+            "id": "mh-latest-short-002",
+            "source": "近代史最新模拟格式",
+            "chapter": "最新模拟卷",
+            "type": "short",
+            "stem": "中国共产党成立的历史意义是什么？",
+            "answer": "中国共产党的成立，是中华民族发展史上开天辟地的大事变。它使中国革命有了坚强领导核心、有了科学指导思想、有了新的革命道路和奋斗目标，中国人民从精神上由被动转为主动，中国革命面貌从此焕然一新。",
+            "analysis": "简答题按 15 分主观题处理，重点写清“领导核心、指导思想、革命方向、革命面貌”等关键词。",
+            "examTags": ["modern-history-latest"],
+            "latestMockOrder": 57,
+        },
+        {
+            "id": "mh-latest-essay-001",
+            "source": "近代史最新模拟格式",
+            "chapter": "最新模拟卷",
+            "type": "essay",
+            "stem": "结合对这门课的学习，谈谈你对“历史是最好的教科书”的理解。",
+            "answer": "可从历史认识、现实启示和青年责任三个层面展开：历史记录民族兴衰和社会变革，能够帮助我们理解近代中国从沉沦到奋起的逻辑；学习历史可以总结经验教训，认识中国共产党领导和中国特色社会主义道路形成的历史必然性；面向现实，应以史为鉴，增强历史主动精神，把个人发展同国家民族前途联系起来。",
+            "analysis": "论述题按 15 分主观题处理，建议采用“观点 + 历史依据 + 现实联系”的结构。",
+            "examTags": ["modern-history-latest"],
+            "latestMockOrder": 58,
+        },
+    ]
+    return items
+
+
 def merge_modern_history() -> dict:
     path = ROOT / "modern_history_practice.html"
     prefix, questions, tail = read_questions(path)
@@ -379,8 +420,8 @@ def merge_modern_history() -> dict:
     questions = [
         q
         for q in questions
-        if not str(q.get("id", "")).startswith(("mh-book118-", "mh-mock-docx-", "mh-2023b-", "mh-user-shot-"))
-        and q.get("source") not in {"Book118公开摘要", "中国近代史模拟试卷.docx", "2023 b卷.docx", "学习通截图详解"}
+        if not str(q.get("id", "")).startswith(("mh-book118-", "mh-mock-docx-", "mh-2023b-", "mh-user-shot-", "mh-latest-"))
+        and q.get("source") not in {"Book118公开摘要", "中国近代史模拟试卷.docx", "2023 b卷.docx", "学习通截图详解", "近代史最新模拟格式"}
         and "modern-history-book118" not in (q.get("examTags") or [])
     ]
     for question in questions:
@@ -402,6 +443,12 @@ def merge_modern_history() -> dict:
                 tags = set(target.get("examTags") or [])
                 tags.update(q.get("examTags") or [])
                 target["examTags"] = sorted(tags)
+                if "modern-history-latest" in (q.get("examTags") or []):
+                    target["source"] = q.get("source", target.get("source"))
+                    target["chapter"] = q.get("chapter", target.get("chapter"))
+                    target["type"] = q.get("type", target.get("type"))
+                    target["analysis"] = q.get("analysis", target.get("analysis"))
+                    target["latestMockOrder"] = q.get("latestMockOrder", target.get("latestMockOrder"))
                 if not target.get("correct") and q.get("correct"):
                     target["correct"] = q["correct"]
                 if not target.get("answer") and q.get("answer"):
@@ -417,11 +464,24 @@ def merge_modern_history() -> dict:
 
     docx_added, docx_duplicates = merge_batch(parse_docx_mock())
     b_added, b_duplicates = merge_batch(parse_2023_b_docx())
+    latest_added, latest_duplicates = merge_batch(manual_modern_subjective_questions())
     shot_added, shot_duplicates = merge_batch(parse_user_screenshots())
+    latest_index = {norm_stem(q["stem"]): q for q in manual_modern_subjective_questions()}
+    for question in questions:
+        latest = latest_index.get(norm_stem(question.get("stem") or question.get("title")))
+        if not latest:
+            continue
+        question["source"] = latest["source"]
+        question["chapter"] = latest["chapter"]
+        question["type"] = latest["type"]
+        question["answer"] = latest["answer"]
+        question["analysis"] = latest["analysis"]
+        question["latestMockOrder"] = latest["latestMockOrder"]
+        question["examTags"] = sorted(set(question.get("examTags") or []) | set(latest.get("examTags") or []))
     prefix = replace_toolbar(
         prefix,
         "modern",
-        "截图题库、学习通章节测验、2023 B 卷与模拟试卷题源；模拟考试采用 2023 B 卷结构：15 单选、10 多选、10 判断、6 简答、2 材料分析、1 论述。",
+        "截图题库、学习通章节测验、2023 B 卷与模拟试卷题源；模拟考试采用最新格式：30 单选、15 多选、10 判断、2 简答、1 论述。",
     )
     write_questions(path, prefix, questions, modern_tail())
     return {
@@ -431,6 +491,8 @@ def merge_modern_history() -> dict:
         "modern_docx_duplicates": docx_duplicates,
         "modern_2023b_added": b_added,
         "modern_2023b_duplicates": b_duplicates,
+        "modern_latest_added": latest_added,
+        "modern_latest_duplicates": latest_duplicates,
         "modern_screenshot_added": shot_added,
         "modern_screenshot_duplicates": shot_duplicates,
     }
@@ -664,12 +726,21 @@ let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{{"answers":{{}},"w
 let current = 0;
 let examMode = false;
 let examQuestions = [];
+const chapterFilter = document.getElementById("chapterFilter");
+const typeFilter = document.getElementById("typeFilter");
+const searchBox = document.getElementById("searchBox");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const resetBtn = document.getElementById("resetBtn");
+const examBtn = document.getElementById("examBtn");
+const exitExamBtn = document.getElementById("exitExamBtn");
+const examInfo = document.getElementById("examInfo");
+const questionPanel = document.getElementById("questionPanel");
 
 function save(){{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }}
 function esc(s){{ return String(s ?? "").replace(/[&<>"']/g, c => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[c])); }}
 function stemOf(q){{ return q.stem || q.title || ""; }}
 function chapters(){{
-  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "截图详解"];
+  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "最新模拟卷", "截图详解"];
   const seen = new Set(QUESTIONS.map(q => q.chapter || "未分章"));
   return [...preferred.filter(x => seen.has(x)), ...[...seen].filter(x => !preferred.includes(x))];
 }}
@@ -686,7 +757,7 @@ function filtered(){{
 function activeList(){{ return examMode ? examQuestions : filtered(); }}
 function answerText(q){{
   if (q.type === "fill") return (q.answers || (Array.isArray(q.answer) ? q.answer : [q.answer]).filter(Boolean)).join(" / ");
-  if (q.type === "short" || q.type === "code" || q.type === "comprehensive") return q.answer || "";
+  if (q.type === "short" || q.type === "essay" || q.type === "code" || q.type === "comprehensive") return q.answer || "";
   const opts = q.options || {{}};
   return (q.correct || []).map(k => opts[k] ? `${{k}}. ${{opts[k]}}` : k).join(" / ");
 }}
@@ -701,19 +772,18 @@ function shuffleCopy(arr){{
 }}
 function pick(pool, count){{ return shuffleCopy(pool).slice(0, count); }}
 function buildModernExam(){{
-  const bPaper = QUESTIONS
-    .filter(q => (q.examTags || []).includes("modern-history-2023-b"))
-    .sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
-  if (bPaper.length >= 44) return bPaper;
   const tagged = QUESTIONS.filter(q => (q.examTags || []).some(tag => String(tag).startsWith("modern-history-")) && hasKnownAnswer(q));
-  const pool = tagged.length >= 44 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
+  const pool = tagged.length >= 58 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
   const byType = type => pool.filter(q => q.type === type);
+  const latestByType = type => QUESTIONS
+    .filter(q => q.type === type && (q.examTags || []).includes("modern-history-latest") && hasKnownAnswer(q))
+    .sort((a,b) => (a.latestMockOrder || 9999) - (b.latestMockOrder || 9999));
   return [
-    ...pick(byType("single"), 15),
-    ...pick(byType("multiple"), 10),
+    ...pick(byType("single"), 30),
+    ...pick(byType("multiple"), 15),
     ...pick(byType("judge"), 10),
-    ...pick(byType("short"), 7),
-    ...pick(byType("comprehensive"), 2)
+    ...(latestByType("short").length >= 2 ? latestByType("short").slice(0, 2) : pick(byType("short"), 2)),
+    ...(latestByType("essay").length >= 1 ? latestByType("essay").slice(0, 1) : pick(byType("essay"), 1))
   ];
 }}
 function buildLinuxExam(){{
@@ -843,6 +913,7 @@ function practiceQuestionType(q){{
   if(q.type === "single" || q.type === "multiple") return "choice";
   if(q.type === "judge") return "judge";
   if(q.type === "short") return "short";
+  if(q.type === "essay") return "essay";
   if(q.type === "fill") return "fill";
   if(q.type === "code") return "code";
   if(q.type === "comprehensive") return "comprehensive";
@@ -868,6 +939,7 @@ def modern_tail() -> str:
             "fill": "填空题",
             "judge": "判断题",
             "short": "简答题",
+            "essay": "论述题",
             "code": "代码题",
             "comprehensive": "综合应用题",
         },
@@ -884,6 +956,7 @@ def linux_tail() -> str:
             "fill": "填空题",
             "judge": "判断题",
             "short": "简答题",
+            "essay": "论述题",
             "code": "代码题",
             "comprehensive": "综合应用题",
         },
@@ -901,8 +974,15 @@ def update_session_sync() -> None:
             'if (["short", "subjective", "essay"].includes(value)) return "short";\n'
             '      if (["comprehensive", "application", "case"].includes(value)) return "comprehensive";',
         )
+    if '["essay", "论述题"]' not in text:
+        text = text.replace('["short", "简答题"],\n      ["code", "代码题"],', '["short", "简答题"],\n      ["essay", "论述题"],\n      ["code", "代码题"],')
     if '["comprehensive", "综合应用题"]' not in text:
         text = text.replace('["code", "代码题"],\n      ["other", "其他"]', '["code", "代码题"],\n      ["comprehensive", "综合应用题"],\n      ["other", "其他"]')
+    text = text.replace(
+        'if (["short", "subjective", "essay"].includes(value)) return "short";',
+        'if (["essay", "argument"].includes(value)) return "essay";\n'
+        '      if (["short", "subjective"].includes(value)) return "short";',
+    )
     text = text.replace(
         '["choice", "选择题"],\n      ["judge", "判断题"],\n      ["fill", "填空题"],',
         '["choice", "选择题"],\n      ["fill", "填空题"],\n      ["judge", "判断题"],',
