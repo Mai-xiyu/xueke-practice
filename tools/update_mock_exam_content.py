@@ -5,6 +5,8 @@ import json
 import random
 import re
 from pathlib import Path
+from zipfile import ZipFile
+import xml.etree.ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +18,59 @@ def norm_stem(text: str) -> str:
     text = re.sub(r"\s+", "", text)
     text = text.replace("（", "(").replace("）", ")")
     return re.sub(r"[，。、“”‘’\"'`·:：；;,.!?？（）()《》<>【】\[\]]", "", text).lower()
+
+
+def split_options(text: str) -> dict[str, str]:
+    text = re.sub(r"\s+", " ", str(text or "").strip())
+    text = text.replace("．", ".")
+    matches = list(re.finditer(r"([A-D])(?:[.、])?", text))
+    if not matches:
+        return {}
+    options: dict[str, str] = {}
+    for index, match in enumerate(matches):
+        key = match.group(1)
+        if key in options:
+            continue
+        start = match.end()
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
+        value = text[start:end].strip()
+        if value:
+            options[key] = value
+    return options
+
+
+def normalize_options(question: dict) -> None:
+    options = question.get("options") or {}
+    if not isinstance(options, dict) or not options:
+        return
+    joined = " ".join(f"{key}.{value}" for key, value in sorted(options.items()))
+    parsed = split_options(joined)
+    if len(parsed) > len(options):
+        question["options"] = parsed
+
+
+def read_docx_paragraphs(path: Path) -> list[str]:
+    namespace = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+    with ZipFile(path) as archive:
+        root = ET.fromstring(archive.read("word/document.xml"))
+    paragraphs: list[str] = []
+    for paragraph in root.findall(".//w:p", namespace):
+        text = "".join(node.text or "" for node in paragraph.findall(".//w:t", namespace))
+        text = re.sub(r"\s+", " ", text).strip()
+        if text:
+            paragraphs.append(text)
+    return paragraphs
+
+
+def load_2023_b_paragraphs() -> list[str]:
+    artifact = ARTIFACTS / "modern_history_2023_b_docx.json"
+    if artifact.exists():
+        return json.loads(artifact.read_text(encoding="utf-8")).get("paragraphs", [])
+    downloads = Path.home() / "Downloads"
+    matches = sorted(downloads.glob("2023 b*.docx"))
+    if not matches:
+        return []
+    return read_docx_paragraphs(matches[0])
 
 
 def read_questions(path: Path) -> tuple[str, list[dict], str]:
@@ -127,99 +182,245 @@ def parse_docx_mock() -> list[dict]:
     return questions
 
 
-def parse_book118_description() -> list[dict]:
-    path = ARTIFACTS / "book118_description.txt"
+def parse_2023_b_docx() -> list[dict]:
+    paragraphs = load_2023_b_paragraphs()
+    if not paragraphs:
+        return []
+
+    try:
+        answer_start = paragraphs.index("参考答案")
+    except ValueError:
+        answer_start = len(paragraphs)
+
+    answer_map: dict[int, dict] = {}
+    current_answer_no: int | None = None
+    current_answer_type: str | None = None
+    current_section = None
+
+    def flush_answer() -> None:
+        nonlocal current_answer_no, current_answer_type
+        current_answer_no = None
+        current_answer_type = None
+
+    for raw in paragraphs[answer_start + 1 :]:
+        line = re.sub(r"\s+", " ", raw.strip())
+        if not line or line == "复制":
+            continue
+        if line.startswith("一、"):
+            flush_answer()
+            current_section = "single"
+            continue
+        if line.startswith("二、"):
+            flush_answer()
+            current_section = "multiple"
+            continue
+        if line.startswith("三、"):
+            flush_answer()
+            current_section = "judge"
+            continue
+        if line.startswith("四、"):
+            flush_answer()
+            current_section = "short"
+            continue
+        if line.startswith("五、"):
+            flush_answer()
+            current_section = "comprehensive"
+            continue
+        if line.startswith("六、"):
+            flush_answer()
+            current_section = "short"
+            continue
+
+        objective = re.match(r"^(\d+)[、.]\s*([A-D√×]+)$", line)
+        if objective and current_section in {"single", "multiple", "judge"}:
+            no = int(objective.group(1))
+            value = objective.group(2)
+            if current_section == "judge":
+                correct = ["A"] if value == "√" else ["B"]
+            else:
+                correct = list(value)
+            answer_map[no] = {"correct": correct}
+            continue
+
+        answer_match = re.match(r"^(\d+)[、.]\s*(?:答|【参考答案】)[:：]?\s*(.*)$", line)
+        if answer_match:
+            no = int(answer_match.group(1))
+            answer_map[no] = {"answer": answer_match.group(2).strip()}
+            current_answer_no = no
+            current_answer_type = "text"
+            continue
+        if current_answer_no and current_answer_type == "text":
+            answer_map[current_answer_no]["answer"] += "\n" + line
+
+    current_type = None
+    questions: list[dict] = []
+    current: dict | None = None
+
+    def flush() -> None:
+        nonlocal current
+        if not current:
+            return
+        no = current["originNo"]
+        answer = answer_map.get(no, {})
+        if current["type"] in {"single", "multiple", "judge"}:
+            current["correct"] = answer.get("correct", [])
+        else:
+            current["answer"] = answer.get("answer", "")
+        if current["type"] == "judge":
+            current["options"] = {"A": "对", "B": "错"}
+        normalize_options(current)
+        questions.append(current)
+        current = None
+
+    for raw in paragraphs[:answer_start]:
+        line = re.sub(r"\s+", " ", raw.strip())
+        if not line:
+            continue
+        if line.startswith("一、"):
+            flush()
+            current_type = "single"
+            continue
+        if line.startswith("二、"):
+            flush()
+            current_type = "multiple"
+            continue
+        if line.startswith("三、"):
+            flush()
+            current_type = "judge"
+            continue
+        if line.startswith("四、"):
+            flush()
+            current_type = "short"
+            continue
+        if line.startswith("五、"):
+            flush()
+            current_type = "comprehensive"
+            continue
+        if line.startswith("六、"):
+            flush()
+            current_type = "short"
+            continue
+
+        match_q = re.match(r"^(\d+)[、.]\s*(.+)", line)
+        if match_q and current_type:
+            flush()
+            order = int(match_q.group(1))
+            chapter = {
+                "single": "2023 B卷单选题",
+                "multiple": "2023 B卷多选题",
+                "judge": "2023 B卷判断题",
+                "short": "2023 B卷主观题",
+                "comprehensive": "2023 B卷材料分析题",
+            }[current_type]
+            current = {
+                "id": f"mh-2023b-{order:03d}",
+                "source": "2023 b卷.docx",
+                "chapter": chapter,
+                "type": current_type,
+                "stem": match_q.group(2).strip(),
+                "options": {},
+                "correct": [],
+                "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+                "examTags": ["modern-history-2023-b"],
+                "mockOrder": order,
+                "originNo": order,
+            }
+            continue
+
+        if current:
+            opts = split_options(line)
+            if opts and current["type"] in {"single", "multiple"}:
+                current["options"].update(opts)
+            else:
+                current["stem"] += "\n" + line
+    flush()
+    return questions
+
+
+def parse_user_screenshots() -> list[dict]:
+    path = ARTIFACTS / "modern_history_user_screenshots" / "parsed_questions.json"
     if not path.exists():
         return []
-    text = html.unescape(path.read_text(encoding="utf-8"))
-    if "单项选择题" not in text:
-        return []
-    text = text.split("一、单项选择题", 1)[1]
-    parts = re.split(r"\s(?=\d+、)", text)
-    items: list[dict] = []
-    for part in parts:
-        match = re.match(r"(\d+)、(.+)", part.strip(), re.S)
-        if not match:
-            continue
-        order = int(match.group(1))
-        body = re.sub(r"\s+", " ", match.group(2)).strip()
-        opt_a = body.find(" A.")
-        if opt_a < 0:
-            opt_a = body.find("A.")
-        if opt_a < 0:
-            continue
-        stem = body[:opt_a].strip()
-        opt_text = body[opt_a:].strip()
-        opts = {}
-        matches = list(re.finditer(r"([A-D])\.", opt_text))
-        if len(matches) < 4:
-            continue
-        for i, m in enumerate(matches):
-            start = m.end()
-            end = matches[i + 1].start() if i + 1 < len(matches) else len(opt_text)
-            opts[m.group(1)] = opt_text[start:end].strip()
-        if len(opts) == 4:
-            items.append(
-                {
-                    "id": f"mh-book118-{order:03d}",
-                    "source": "Book118公开摘要",
-                    "chapter": "Book118模拟卷",
-                    "type": "single",
-                    "stem": stem,
-                    "options": opts,
-                    "correct": [],
-                    "analysis": "来源：https://max.book118.com/html/2024/0104/8072025041006023.shtm 公开 HTML 摘要；标准答案待人工补充。",
-                    "examTags": ["modern-history-book118"],
-                }
-            )
-    return items
+    questions = json.loads(path.read_text(encoding="utf-8"))
+    manual_answers = {
+        "mh-user-shot-023": ["A", "B", "C"],
+        "mh-user-shot-036": ["D"],
+        "mh-user-shot-039": ["C"],
+        "mh-user-shot-042": ["D"],
+        "mh-user-shot-043": ["D"],
+        "mh-user-shot-046": ["C"],
+        "mh-user-shot-047": ["D"],
+        "mh-user-shot-048": ["D"],
+        "mh-user-shot-051": ["C"],
+        "mh-user-shot-057": ["D"],
+    }
+    for question in questions:
+        question["examTags"] = sorted(set(question.get("examTags") or []) | {"modern-history-screenshot-detail"})
+        if question.get("id") in manual_answers and not question.get("correct"):
+            question["correct"] = manual_answers[question["id"]]
+            question["analysis"] += " OCR 漏识的答案已按题目上下文补齐。"
+        normalize_options(question)
+    return questions
 
 
 def merge_modern_history() -> dict:
     path = ROOT / "modern_history_practice.html"
     prefix, questions, tail = read_questions(path)
+    before = len(questions)
+    questions = [
+        q
+        for q in questions
+        if not str(q.get("id", "")).startswith(("mh-book118-", "mh-mock-docx-", "mh-2023b-", "mh-user-shot-"))
+        and q.get("source") not in {"Book118公开摘要", "中国近代史模拟试卷.docx", "2023 b卷.docx", "学习通截图详解"}
+        and "modern-history-book118" not in (q.get("examTags") or [])
+    ]
     seen = {norm_stem(q.get("stem") or q.get("title")): q for q in questions}
-    added = 0
-    duplicates = 0
-    for q in parse_docx_mock():
-        key = norm_stem(q["stem"])
-        if key in seen:
-            target = seen[key]
-            tags = set(target.get("examTags") or [])
-            tags.update(q.get("examTags") or [])
-            target["examTags"] = sorted(tags)
-            target.setdefault("mockOrder", q.get("mockOrder"))
-            duplicates += 1
-        else:
-            questions.append(q)
-            seen[key] = q
-            added += 1
-    book_added = 0
-    book_duplicates = 0
-    for q in parse_book118_description():
-        key = norm_stem(q["stem"])
-        if key in seen:
-            target = seen[key]
-            tags = set(target.get("examTags") or [])
-            tags.update(q.get("examTags") or [])
-            target["examTags"] = sorted(tags)
-            book_duplicates += 1
-        else:
-            questions.append(q)
-            seen[key] = q
-            book_added += 1
+    removed_managed = before - len(questions)
+
+    def merge_batch(batch: list[dict]) -> tuple[int, int]:
+        added = 0
+        duplicates = 0
+        for q in batch:
+            key = norm_stem(q.get("stem") or q.get("title"))
+            if not key:
+                continue
+            normalize_options(q)
+            if key in seen:
+                target = seen[key]
+                tags = set(target.get("examTags") or [])
+                tags.update(q.get("examTags") or [])
+                target["examTags"] = sorted(tags)
+                if not target.get("correct") and q.get("correct"):
+                    target["correct"] = q["correct"]
+                if not target.get("answer") and q.get("answer"):
+                    target["answer"] = q["answer"]
+                if q.get("mockOrder") and not target.get("mockOrder"):
+                    target["mockOrder"] = q["mockOrder"]
+                duplicates += 1
+            else:
+                questions.append(q)
+                seen[key] = q
+                added += 1
+        return added, duplicates
+
+    docx_added, docx_duplicates = merge_batch(parse_docx_mock())
+    b_added, b_duplicates = merge_batch(parse_2023_b_docx())
+    shot_added, shot_duplicates = merge_batch(parse_user_screenshots())
     prefix = replace_toolbar(
         prefix,
         "modern",
-        "截图题库、学习通章节测验与模拟试卷题源；模拟考试按 30 单选、15 多选、10 判断组卷，重复题干只保留一份。",
+        "截图题库、学习通章节测验、2023 B 卷与模拟试卷题源；模拟考试按 30 单选、15 多选、10 判断组卷，重复题干只保留一份。",
     )
     write_questions(path, prefix, questions, modern_tail())
     return {
         "modern_total": len(questions),
-        "modern_docx_added": added,
-        "modern_docx_duplicates": duplicates,
-        "modern_book118_added": book_added,
-        "modern_book118_duplicates": book_duplicates,
+        "modern_managed_removed": removed_managed,
+        "modern_docx_added": docx_added,
+        "modern_docx_duplicates": docx_duplicates,
+        "modern_2023b_added": b_added,
+        "modern_2023b_duplicates": b_duplicates,
+        "modern_screenshot_added": shot_added,
+        "modern_screenshot_duplicates": shot_duplicates,
     }
 
 
@@ -242,11 +443,13 @@ def linux_extra_questions() -> list[dict]:
         ("linux-fill-001", "显示当前工作目录的命令是____。", ["pwd"], "pwd 输出当前目录。"),
         ("linux-fill-002", "切换当前目录的命令是____。", ["cd"], "cd 用于切换目录。"),
         ("linux-fill-003", "修改文件权限常用命令是____。", ["chmod"], "chmod 修改权限位。"),
-        ("linux-fill-004", "Linux 超级用户用户名通常是____。", ["root"], "root 是超级用户。"),
-        ("linux-fill-005", "Shell 脚本中表示位置参数个数的变量是____。", ["$#"], "$# 表示参数个数。"),
+        ("linux-fill-004", "查看当前登录用户名常用____命令。", ["whoami"], "whoami 输出当前有效用户名。"),
+        ("linux-fill-005", "列出目录内容常用____命令。", ["ls"], "ls 用于列出目录内容。"),
         ("linux-fill-006", "查看文本前 10 行常用____命令。", ["head"], "head 默认显示前 10 行。"),
         ("linux-fill-007", "按模式搜索文本常用____命令。", ["grep"], "grep 用于文本匹配检索。"),
         ("linux-fill-008", "创建目录常用____命令。", ["mkdir"], "mkdir 创建目录。"),
+        ("linux-fill-009", "打包或解包归档文件常用____命令。", ["tar"], "tar 常用于归档、压缩包处理。"),
+        ("linux-fill-010", "管理 systemd 服务常用____命令。", ["systemctl"], "systemctl 用于启动、停止、查看 systemd 服务。"),
     ]
     extras: list[dict] = []
     for qid, stem, correct, analysis in judge:
@@ -369,10 +572,26 @@ done"""),
     )
 
     comprehensive = [
-        ("linux-comp-001", "Linux网络实战（一）- DNS配置", "说明 BIND/named 服务安装、主配置文件与区域文件配置、正反向解析记录编写、服务启动以及 nslookup/dig 验证过程。"),
-        ("linux-comp-002", "Linux网络实战（二）- Samba服务器搭建", "说明 Samba 安装、共享目录创建、smb.conf 配置、用户映射/密码设置、服务启动、防火墙放行和客户端访问验证。"),
-        ("linux-comp-003", "Linux网络实战（三）- WWW服务器搭建", "说明 Apache/Nginx 安装、站点根目录与首页配置、虚拟主机/端口配置、服务启动、防火墙放行和浏览器/curl 验证。"),
-        ("linux-comp-004", "Linux网络实战（四）- FTP服务器搭建", "说明 vsftpd 安装、匿名或本地用户访问配置、上传目录权限、服务启动、防火墙/SELinux 注意点和 ftp/lftp 验证。"),
+        (
+            "linux-comp-001",
+            "Linux网络实战（一）- DNS配置",
+            "初始化：apt-get update；apt-get install host。\n配置目标：在 BIND 中添加 test.com 区域，并把 test.com 解析到 10.40.211.244。\n关键步骤：在 named/bind 主配置中声明 zone \"test.com\"；创建正向区域文件，补齐 SOA、NS 和 A 记录；重启 bind9/named 服务；用 host/nslookup/dig 验证 test.com 是否返回 10.40.211.244。",
+        ),
+        (
+            "linux-comp-002",
+            "Linux网络实战（二）- WWW服务器搭建",
+            "初始化：mkdir /var/www/html/test；cp /var/www/html/index.html /var/www/html/test。\n配置目标：把默认访问端口 80 改为 8011；新增监听端口 8012，并把站点根目录设为 /var/www/html/test。\n关键步骤：修改 Apache2 ports.conf 和站点配置中的 Listen/VirtualHost；确保 8012 对应 DocumentRoot /var/www/html/test；重启 apache2；用浏览器或 curl 访问 8011、8012 验证。",
+        ),
+        (
+            "linux-comp-003",
+            "Linux网络实战（三）- Samba服务器搭建",
+            "初始化：mkdir /testDir；chmod 777 /testDir；useradd testUser；smbpasswd -a testUser；touch testFile。\n配置目标：新增共享 TestShare，目录为 /testDir，可浏览、可写，create mask=0644，directory mask=0755。\n关键步骤：在 smb.conf 中添加 [TestShare] 段；重启 smbd/nmbd；用 smbclient 以 testUser 连接本机 TestShare；在远程共享中新建 Dir；把 /root/testFile 上传到 Dir 并重命名为 upLoadFile。",
+        ),
+        (
+            "linux-comp-004",
+            "Linux网络实战（四）- FTP服务器搭建",
+            "初始化：useradd -m newUser；passwd newUser 并设置 123456；touch testFile；将 vsftpd 配置项 pam_service_name 改为 ftp。\n配置目标：使用 newUser 连接本地 FTP 服务，并上传 /root/testFile 到远程当前目录，重命名为 upLoadFile。\n关键步骤：在 vsftpd.conf 中启用本地用户登录和写权限；重启 vsftpd；ftp localhost 后用 newUser 登录；执行 put /root/testFile upLoadFile；ls 验证远程文件存在。",
+        ),
     ]
     for qid, title, answer in comprehensive:
         extras.append(
@@ -384,7 +603,7 @@ done"""),
                 "stem": f"{title}：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
                 "options": {},
                 "answer": answer,
-                "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。",
+                "analysis": "来源：Educoder Linux组网技术实训页面；已按 Chrome 登录态抓取到的最后一关“编程要求/测试说明”整理。",
             }
         )
     return extras
@@ -394,7 +613,14 @@ def merge_linux() -> dict:
     path = ROOT / "linux_practice.html"
     prefix, questions, _tail = read_questions(path)
     before = len(questions)
-    questions = [q for q in questions if q.get("source") != "????"]
+    managed_prefixes = ("linux-judge-", "linux-fill-", "linux-triangle-", "linux-short-", "linux-comp-")
+    questions = [
+        q
+        for q in questions
+        if q.get("source") != "????"
+        and q.get("source") not in {"Linux模拟考试补充", "Educoder实训截图/链接"}
+        and not str(q.get("id", "")).startswith(managed_prefixes)
+    ]
     removed_bad = before - len(questions)
     seen_ids = {q.get("id") for q in questions}
     seen = {norm_stem(q.get("stem") or q.get("title")) for q in questions}
@@ -459,12 +685,13 @@ function shuffleCopy(arr){{
 }}
 function pick(pool, count){{ return shuffleCopy(pool).slice(0, count); }}
 function buildModernExam(){{
-  const tagged = QUESTIONS.filter(q => (q.examTags || []).includes("modern-history-mock"));
-  if (tagged.length >= 50) return tagged.slice().sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
+  const tagged = QUESTIONS.filter(q => (q.examTags || []).some(tag => String(tag).startsWith("modern-history-")) && hasKnownAnswer(q));
+  const pool = tagged.length >= 55 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
+  const byType = type => pool.filter(q => q.type === type);
   return [
-    ...pick(QUESTIONS.filter(q => q.type === "single"), 30),
-    ...pick(QUESTIONS.filter(q => q.type === "multiple"), 15),
-    ...pick(QUESTIONS.filter(q => q.type === "judge"), 10)
+    ...pick(byType("single"), 30),
+    ...pick(byType("multiple"), 15),
+    ...pick(byType("judge"), 10)
   ];
 }}
 function buildLinuxExam(){{

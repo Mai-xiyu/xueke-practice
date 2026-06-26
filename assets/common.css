@@ -816,6 +816,15 @@ body.practice-page .analysis {
 }
 
 @media (min-width: 1100px) {
+  body.practice-page.has-practice-nav > main,
+  body.practice-page.has-practice-nav .app,
+  body.practice-page.has-practice-nav .wrap {
+    width: min(calc(100vw - 360px), 860px) !important;
+    max-width: 860px !important;
+    margin-left: max(20px, calc((100vw - 1180px) / 2)) !important;
+    margin-right: auto !important;
+  }
+
   .practice-question-nav {
     position: fixed;
     top: 152px;

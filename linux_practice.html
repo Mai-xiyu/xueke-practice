@@ -4775,24 +4775,24 @@ const QUESTIONS = [
     "source": "Linux模拟考试补充",
     "chapter": "Linux基础填空",
     "type": "fill",
-    "stem": "Linux 超级用户用户名通常是____。",
+    "stem": "查看当前登录用户名常用____命令。",
     "options": {},
     "answers": [
-      "root"
+      "whoami"
     ],
-    "analysis": "root 是超级用户。"
+    "analysis": "whoami 输出当前有效用户名。"
   },
   {
     "id": "linux-fill-005",
     "source": "Linux模拟考试补充",
     "chapter": "Linux基础填空",
     "type": "fill",
-    "stem": "Shell 脚本中表示位置参数个数的变量是____。",
+    "stem": "列出目录内容常用____命令。",
     "options": {},
     "answers": [
-      "$#"
+      "ls"
     ],
-    "analysis": "$# 表示参数个数。"
+    "analysis": "ls 用于列出目录内容。"
   },
   {
     "id": "linux-fill-006",
@@ -4829,6 +4829,30 @@ const QUESTIONS = [
       "mkdir"
     ],
     "analysis": "mkdir 创建目录。"
+  },
+  {
+    "id": "linux-fill-009",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "打包或解包归档文件常用____命令。",
+    "options": {},
+    "answers": [
+      "tar"
+    ],
+    "analysis": "tar 常用于归档、压缩包处理。"
+  },
+  {
+    "id": "linux-fill-010",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "管理 systemd 服务常用____命令。",
+    "options": {},
+    "answers": [
+      "systemctl"
+    ],
+    "analysis": "systemctl 用于启动、停止、查看 systemd 服务。"
   },
   {
     "id": "linux-triangle-001",
@@ -4935,28 +4959,28 @@ const QUESTIONS = [
     "type": "comprehensive",
     "stem": "Linux网络实战（一）- DNS配置：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
     "options": {},
-    "answer": "说明 BIND/named 服务安装、主配置文件与区域文件配置、正反向解析记录编写、服务启动以及 nslookup/dig 验证过程。",
-    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
+    "answer": "初始化：apt-get update；apt-get install host。\n配置目标：在 BIND 中添加 test.com 区域，并把 test.com 解析到 10.40.211.244。\n关键步骤：在 named/bind 主配置中声明 zone \"test.com\"；创建正向区域文件，补齐 SOA、NS 和 A 记录；重启 bind9/named 服务；用 host/nslookup/dig 验证 test.com 是否返回 10.40.211.244。",
+    "analysis": "来源：Educoder Linux组网技术实训页面；已按 Chrome 登录态抓取到的最后一关“编程要求/测试说明”整理。"
   },
   {
     "id": "linux-comp-002",
     "source": "Educoder实训截图/链接",
     "chapter": "Linux网络实战",
     "type": "comprehensive",
-    "stem": "Linux网络实战（二）- Samba服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
+    "stem": "Linux网络实战（二）- WWW服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
     "options": {},
-    "answer": "说明 Samba 安装、共享目录创建、smb.conf 配置、用户映射/密码设置、服务启动、防火墙放行和客户端访问验证。",
-    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
+    "answer": "初始化：mkdir /var/www/html/test；cp /var/www/html/index.html /var/www/html/test。\n配置目标：把默认访问端口 80 改为 8011；新增监听端口 8012，并把站点根目录设为 /var/www/html/test。\n关键步骤：修改 Apache2 ports.conf 和站点配置中的 Listen/VirtualHost；确保 8012 对应 DocumentRoot /var/www/html/test；重启 apache2；用浏览器或 curl 访问 8011、8012 验证。",
+    "analysis": "来源：Educoder Linux组网技术实训页面；已按 Chrome 登录态抓取到的最后一关“编程要求/测试说明”整理。"
   },
   {
     "id": "linux-comp-003",
     "source": "Educoder实训截图/链接",
     "chapter": "Linux网络实战",
     "type": "comprehensive",
-    "stem": "Linux网络实战（三）- WWW服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
+    "stem": "Linux网络实战（三）- Samba服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
     "options": {},
-    "answer": "说明 Apache/Nginx 安装、站点根目录与首页配置、虚拟主机/端口配置、服务启动、防火墙放行和浏览器/curl 验证。",
-    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
+    "answer": "初始化：mkdir /testDir；chmod 777 /testDir；useradd testUser；smbpasswd -a testUser；touch testFile。\n配置目标：新增共享 TestShare，目录为 /testDir，可浏览、可写，create mask=0644，directory mask=0755。\n关键步骤：在 smb.conf 中添加 [TestShare] 段；重启 smbd/nmbd；用 smbclient 以 testUser 连接本机 TestShare；在远程共享中新建 Dir；把 /root/testFile 上传到 Dir 并重命名为 upLoadFile。",
+    "analysis": "来源：Educoder Linux组网技术实训页面；已按 Chrome 登录态抓取到的最后一关“编程要求/测试说明”整理。"
   },
   {
     "id": "linux-comp-004",
@@ -4965,8 +4989,8 @@ const QUESTIONS = [
     "type": "comprehensive",
     "stem": "Linux网络实战（四）- FTP服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
     "options": {},
-    "answer": "说明 vsftpd 安装、匿名或本地用户访问配置、上传目录权限、服务启动、防火墙/SELinux 注意点和 ftp/lftp 验证。",
-    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
+    "answer": "初始化：useradd -m newUser；passwd newUser 并设置 123456；touch testFile；将 vsftpd 配置项 pam_service_name 改为 ftp。\n配置目标：使用 newUser 连接本地 FTP 服务，并上传 /root/testFile 到远程当前目录，重命名为 upLoadFile。\n关键步骤：在 vsftpd.conf 中启用本地用户登录和写权限；重启 vsftpd；ftp localhost 后用 newUser 登录；执行 put /root/testFile upLoadFile；ls 验证远程文件存在。",
+    "analysis": "来源：Educoder Linux组网技术实训页面；已按 Chrome 登录态抓取到的最后一关“编程要求/测试说明”整理。"
   }
 ];
 
@@ -5009,12 +5033,13 @@ function shuffleCopy(arr){
 }
 function pick(pool, count){ return shuffleCopy(pool).slice(0, count); }
 function buildModernExam(){
-  const tagged = QUESTIONS.filter(q => (q.examTags || []).includes("modern-history-mock"));
-  if (tagged.length >= 50) return tagged.slice().sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
+  const tagged = QUESTIONS.filter(q => (q.examTags || []).some(tag => String(tag).startsWith("modern-history-")) && hasKnownAnswer(q));
+  const pool = tagged.length >= 55 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
+  const byType = type => pool.filter(q => q.type === type);
   return [
-    ...pick(QUESTIONS.filter(q => q.type === "single"), 30),
-    ...pick(QUESTIONS.filter(q => q.type === "multiple"), 15),
-    ...pick(QUESTIONS.filter(q => q.type === "judge"), 10)
+    ...pick(byType("single"), 30),
+    ...pick(byType("multiple"), 15),
+    ...pick(byType("judge"), 10)
   ];
 }
 function buildLinuxExam(){
