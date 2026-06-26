@@ -11,8 +11,6 @@
 
 
 
-不要把 SSH 密码、Docker Hub token、GitHub token 或其他凭据写进仓库。
-
 ## 快速使用
 
 本地 Docker 运行：
