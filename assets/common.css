@@ -401,6 +401,7 @@ code {
 .subject-security { --subject-accent: #b45309; }
 .subject-data { --subject-accent: #0f766e; }
 .subject-structure { --subject-accent: #7c3aed; }
+.subject-linux { --subject-accent: #475569; }
 
 .portal-note {
   margin-top: 18px;

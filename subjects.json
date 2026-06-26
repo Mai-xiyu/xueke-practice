@@ -35,6 +35,15 @@
       "accent": "structure",
       "description": "数据结构题库练习、题库浏览、错题复盘和模拟测试。",
       "order": 40
+    },
+    {
+      "id": "linux-course",
+      "title": "Linux课程",
+      "mark": "LX",
+      "href": "linux_practice.html",
+      "accent": "linux",
+      "description": "超星 Linux 课程作业题库，覆盖目录结构、命令、权限、进程、Shell 与系统管理。",
+      "order": 50
     }
   ]
 }
