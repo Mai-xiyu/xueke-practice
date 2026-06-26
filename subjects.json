@@ -42,7 +42,7 @@
       "mark": "LX",
       "href": "linux_practice.html",
       "accent": "linux",
-      "description": "超星 Linux 课程作业题库，覆盖目录结构、命令、权限、进程、Shell 与系统管理。",
+      "description": "超星 Linux 课程题库与模拟考试，覆盖命令、权限、Shell、服务配置和网络实战。",
       "order": 50
     },
     {
@@ -51,7 +51,7 @@
       "mark": "MH",
       "href": "modern_history_practice.html",
       "accent": "history",
-      "description": "中国近现代史纲要截图题库与学习通章节测验，包含单选、多选、判断和主观题。",
+      "description": "中国近现代史纲要题库、章节测验和模拟试卷，支持单选、多选、判断组卷。",
       "order": 60
     }
   ]
