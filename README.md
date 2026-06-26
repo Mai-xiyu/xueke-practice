@@ -8,6 +8,7 @@
 - 网络安全
 - 数据采集
 - 数据结构
+- Linux课程
 
 
 
@@ -43,6 +44,7 @@ docker compose down
 index.html                                  总入口，读取 subjects.json
 subjects.json                               科目注册表
 *_practice.html                             各科目题库页面
+linux_practice.html                         Linux 课程题库页面
 assets/common.css                           统一样式
 assets/session-sync.js                      顶部导航和进度同步
 backend/server.js                           会话 JSON 后端
@@ -81,6 +83,7 @@ README-docker.md                            Docker 部署补充说明
 - 判断题可以从选择题改写生成。
 - 简答题必须有参考答案。
 - 来源字段应写真实来源，例如 `A卷真题`、`课堂简答题`、`实验题`。
+- 从在线作业页抓取的新科目，如果页面没有明确显示标准答案，不要猜答案；先标记为 `待补答案`。
 
 ## 进度保存
 

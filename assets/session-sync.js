@@ -4,7 +4,8 @@
     ["network_practice.html", "路由交换"],
     ["network_info_security_practice.html", "网络安全"],
     ["network_data_collection_practice.html", "数据采集"],
-    ["data_structure_practice.html", "数据结构"]
+    ["data_structure_practice.html", "数据结构"],
+    ["linux_practice.html", "Linux课程"]
   ];
 
   function pageName() {

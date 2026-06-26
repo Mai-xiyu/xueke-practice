@@ -6,6 +6,7 @@
 - 网络安全
 - 数据采集
 - 数据结构
+- Linux课程
 
 页面进度默认保存到浏览器 `localStorage`。Docker Compose 部署时，会通过后端 API 按访问 IP 持久化会话 JSON。
 
