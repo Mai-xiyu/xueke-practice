@@ -25,7 +25,7 @@
 <main class="app">
   <header class="card">
     <h1>中国近代史 练习系统</h1>
-    <p class="muted">截图题库、学习通章节测验与模拟试卷题源；模拟考试按 30 单选、15 多选、10 判断组卷，重复题干只保留一份。</p>
+    <p class="muted">截图题库、学习通章节测验、2023 B 卷与模拟试卷题源；模拟考试按 30 单选、15 多选、10 判断组卷，重复题干只保留一份。</p>
   </header>
 
   <section class="toolbar">
@@ -148,7 +148,8 @@ const QUESTIONS = [
     ],
     "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
     "examTags": [
-      "modern-history-mock"
+      "modern-history-mock",
+      "modern-history-screenshot-detail"
     ],
     "mockOrder": 5
   },
@@ -691,7 +692,8 @@ const QUESTIONS = [
     ],
     "analysis": "参考答案：AD。题目来自近代史截图 OCR 后人工校正。",
     "examTags": [
-      "modern-history-mock"
+      "modern-history-mock",
+      "modern-history-screenshot-detail"
     ],
     "mockOrder": 31
   },
@@ -3456,9 +3458,14 @@ const QUESTIONS = [
       "true": "对",
       "false": "错"
     },
-    "correct": [],
+    "correct": [
+      "B"
+    ],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
-    "originId": "214729228"
+    "originId": "214729228",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
   },
   {
     "id": "mh-chaoxing-171",
@@ -3820,9 +3827,14 @@ const QUESTIONS = [
       "true": "对",
       "false": "错"
     },
-    "correct": [],
+    "correct": [
+      "B"
+    ],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
-    "originId": "214729447"
+    "originId": "214729447",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
   },
   {
     "id": "mh-chaoxing-196",
@@ -3834,9 +3846,14 @@ const QUESTIONS = [
       "true": "对",
       "false": "错"
     },
-    "correct": [],
+    "correct": [
+      "A"
+    ],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
-    "originId": "214729448"
+    "originId": "214729448",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
   },
   {
     "id": "mh-chaoxing-197",
@@ -4474,10 +4491,15 @@ const QUESTIONS = [
       "C": "官僚资本主义",
       "D": "民族资本主义"
     },
-    "correct": [],
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
     "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
     "examTags": [
-      "modern-history-mock"
+      "modern-history-mock",
+      "modern-history-screenshot-detail"
     ],
     "mockOrder": 45
   },
@@ -4491,17 +4513,20 @@ const QUESTIONS = [
       "A": "对",
       "B": "错"
     },
-    "correct": [],
+    "correct": [
+      "A"
+    ],
     "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
     "examTags": [
-      "modern-history-mock"
+      "modern-history-mock",
+      "modern-history-screenshot-detail"
     ],
     "mockOrder": 53
   },
   {
-    "id": "mh-book118-001",
-    "source": "Book118公开摘要",
-    "chapter": "Book118模拟卷",
+    "id": "mh-2023b-001",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
     "type": "single",
     "stem": "1946年，中共中央决定将减租减息政策改变为实现“耕者有其田”政策的重要文件是（ ）",
     "options": {
@@ -4510,16 +4535,20 @@ const QUESTIONS = [
       "C": "《在晋绥干部会议上的讲话》",
       "D": "《关于清算减租及土地问题的指示》"
     },
-    "correct": [],
-    "analysis": "来源：https://max.book118.com/html/2024/0104/8072025041006023.shtm 公开 HTML 摘要；标准答案待人工补充。",
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
     "examTags": [
-      "modern-history-book118"
-    ]
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 1,
+    "originNo": 1
   },
   {
-    "id": "mh-book118-002",
-    "source": "Book118公开摘要",
-    "chapter": "Book118模拟卷",
+    "id": "mh-2023b-002",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
     "type": "single",
     "stem": "洋务运动其间,建成的海军有福建水师.广东水师.南洋水师.北洋水师，其中（ ）是清政府的海军主力。",
     "options": {
@@ -4528,10 +4557,2291 @@ const QUESTIONS = [
       "C": "广东水师",
       "D": "北洋水师"
     },
-    "correct": [],
-    "analysis": "来源：https://max.book118.com/html/2024/0104/8072025041006023.shtm 公开 HTML 摘要；标准答案待人工补充。",
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
     "examTags": [
-      "modern-history-book118"
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 2,
+    "originNo": 2
+  },
+  {
+    "id": "mh-2023b-003",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "洋务运动时期，主要培养翻译人才的学校是（ ）",
+    "options": {
+      "A": "京师大学堂",
+      "B": "工艺学堂",
+      "C": "船政学堂",
+      "D": "京师同文馆"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 3,
+    "originNo": 3
+  },
+  {
+    "id": "mh-2023b-004",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "我国对资本主义工商业进行社会主义改造所采取的主要形式是（ ）",
+    "options": {
+      "A": "和平赎买",
+      "B": "国家资本主义",
+      "C": "利用、限制、改造",
+      "D": "互助合作"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 4,
+    "originNo": 4
+  },
+  {
+    "id": "mh-2023b-005",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "建国之初，新中国同苏联订立的中苏同盟条约是（ ）",
+    "options": {
+      "A": "《中苏北京条约》",
+      "B": "《中苏莫斯科条约》",
+      "C": "《中苏军事协议书》",
+      "D": "《中苏友好同盟互助条约》"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 5,
+    "originNo": 5
+  },
+  {
+    "id": "mh-2023b-006",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "《南京条约》的签订标志着()",
+    "options": {
+      "A": "中国社会半殖民地半封建化进一步加深",
+      "B": "中国完全沦为半殖民地半封建社会",
+      "C": "中国开始沦为半殖民地半封建社会",
+      "D": "中国半殖民地半封建社会基本形成"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 6,
+    "originNo": 6
+  },
+  {
+    "id": "mh-2023b-007",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "在中国最早设立租界国家是（ ）",
+    "options": {
+      "A": "美国",
+      "B": "英国",
+      "C": "德国",
+      "D": "法国"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 7,
+    "originNo": 7
+  },
+  {
+    "id": "mh-2023b-008",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "从1930年到1931年，红一方面军在三次反“围剿”斗争胜利的基础上开辟了（ ）",
+    "options": {
+      "A": "鄂豫皖革命根据地",
+      "B": "左右江革命根据地",
+      "C": "湘鄂西革命根据地",
+      "D": "中央革命根据地"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 8,
+    "originNo": 8
+  },
+  {
+    "id": "mh-2023b-009",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "中共八七会议在大革命失败的危急关头确定的方针是（ ）",
+    "options": {
+      "A": "推翻北洋军阀黑暗统治",
+      "B": "开辟农村革命根据地",
+      "C": "开展土地革命和武装斗争",
+      "D": "建立工农民主统一战线"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 9,
+    "originNo": 9
+  },
+  {
+    "id": "mh-2023b-010",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "新文化运动时期很有影响的小说《狂人日记》是谁写的：（ ）",
+    "options": {
+      "A": "胡适",
+      "B": "陈独秀",
+      "C": "鲁迅",
+      "D": "瞿秋白"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 10,
+    "originNo": 10
+  },
+  {
+    "id": "mh-2023b-011",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "在新文化运动中诞生的第一篇白话文小说是（ ）",
+    "options": {
+      "A": "《孔乙己》",
+      "B": "《阿Q正传》",
+      "C": "《狂人日记》",
+      "D": "《呐喊》"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 11,
+    "originNo": 11
+  },
+  {
+    "id": "mh-2023b-012",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "初步描绘出中国还不曾有过的资产阶级共和国方案的是：（ ）",
+    "options": {
+      "A": "《资政新篇》",
+      "B": "三民主义",
+      "C": "《海国图志》",
+      "D": "《新青年》"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 12,
+    "originNo": 12
+  },
+  {
+    "id": "mh-2023b-013",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "1912年1月1日，中华民国在()成立。",
+    "options": {
+      "A": "南京",
+      "B": "北京",
+      "C": "上海",
+      "D": "武汉"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 13,
+    "originNo": 13
+  },
+  {
+    "id": "mh-2023b-014",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "日本占领中国东北后，随即开始入侵中国哪一地区？（ ）",
+    "options": {
+      "A": "西北地区",
+      "B": "西南地区",
+      "C": "华东地区",
+      "D": "华北地区"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 14,
+    "originNo": 14
+  },
+  {
+    "id": "mh-2023b-015",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷单选题",
+    "type": "single",
+    "stem": "卢沟桥事变发生的时间（ ）",
+    "options": {
+      "A": "1936年8月",
+      "B": "1937年7月",
+      "C": "1937年5月",
+      "D": "1945年1月"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 15,
+    "originNo": 15
+  },
+  {
+    "id": "mh-2023b-016",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "1920年秋后在长沙成立的共产党早期组织的主要成员有（ ）",
+    "options": {
+      "A": "毛泽东",
+      "B": "何叔衡",
+      "C": "董必武",
+      "D": "谭平山"
+    },
+    "correct": [
+      "A",
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 16,
+    "originNo": 16
+  },
+  {
+    "id": "mh-2023b-017",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "在1919年至1949年新中国成立以前，压在中国人民身上的“三座大山”是（ ）",
+    "options": {
+      "A": "帝国主义",
+      "B": "封建主义",
+      "C": "官僚资本主义",
+      "D": "民族资本主义"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 17,
+    "originNo": 17
+  },
+  {
+    "id": "mh-2023b-018",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "下列口号和洋务运动有关的是（ ）",
+    "options": {
+      "A": "物竞天择，适者生存",
+      "B": "中学为体，西学为用",
+      "C": "自强求富",
+      "D": "变者天下之公理"
+    },
+    "correct": [
+      "B",
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 18,
+    "originNo": 18
+  },
+  {
+    "id": "mh-2023b-019",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "周恩来说：“革命靠军阀的部队是靠不住的，我们必须建立自己的武装来打倒反革命。现在，我们起义成功了。这里的军队归共产党领导。”这段话表明中共（ ）",
+    "options": {
+      "A": "明确了掌握军队，开展武装斗争的重要性",
+      "B": "创建了工农革命军",
+      "C": "已开展土地革命，武装反抗国民党反动派",
+      "D": "确立了党对军队的领导地位"
+    },
+    "correct": [
+      "A",
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 19,
+    "originNo": 19
+  },
+  {
+    "id": "mh-2023b-020",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "在第二次国内革命战争的十年中，中国共产党经历的失败和崛起分别是（ ）",
+    "options": {
+      "A": "大革命的失败",
+      "B": "人民军队.农村革命根据地的创建",
+      "C": "第五次反“围剿”的失败",
+      "D": "红军长征的胜利"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 20,
+    "originNo": 20
+  },
+  {
+    "id": "mh-2023b-021",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "近代以来中华民族始终面临的两大历史任务是（ ）",
+    "options": {
+      "A": "反对帝国主义",
+      "B": "反对封建主义",
+      "C": "求得民族独立和人民解放",
+      "D": "实现国家繁荣富强和人民共同富裕"
+    },
+    "correct": [
+      "C",
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 21,
+    "originNo": 21
+  },
+  {
+    "id": "mh-2023b-022",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "1842年，英国通过《南京条约》迫使中国开放的通商口岸除广州外还包括（ ）",
+    "options": {
+      "A": "厦门",
+      "B": "福州",
+      "C": "宁波",
+      "D": "上海"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 22,
+    "originNo": 22
+  },
+  {
+    "id": "mh-2023b-023",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "中国同盟会纲领中涉及到的问题有（ ）",
+    "options": {
+      "A": "推翻满洲贵族的统治",
+      "B": "建立资产阶级共和国",
+      "C": "驱逐占据中国的帝国主义势力",
+      "D": "提出了资本主义的土地纲领"
+    },
+    "correct": [
+      "A",
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 23,
+    "originNo": 23
+  },
+  {
+    "id": "mh-2023b-024",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "1948年9月12日至1949年1月31日，中国人民解放军发动的三大战略决战是（ ）",
+    "options": {
+      "A": "辽沈战役",
+      "B": "淮海战役",
+      "C": "平津战役",
+      "D": "渡江战役"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 24,
+    "originNo": 24
+  },
+  {
+    "id": "mh-2023b-025",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷多选题",
+    "type": "multiple",
+    "stem": "新中国成立以前，中国共产党倡导组建的统一战线有：（ ）",
+    "options": {
+      "A": "革命统一战线",
+      "B": "抗日民族统一战线",
+      "C": "人民民主统一战线",
+      "D": "爱国统一战线"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 25,
+    "originNo": 25
+  },
+  {
+    "id": "mh-2023b-026",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "民国初年两次复辟失败的根本原因是资产阶级力量强大。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 26,
+    "originNo": 26
+  },
+  {
+    "id": "mh-2023b-027",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "第一次国共合作正式形成的标志是中共二大的召开。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 27,
+    "originNo": 27
+  },
+  {
+    "id": "mh-2023b-028",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "旧三民主义是中国历史上比较完整的民主革命纲领。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 28,
+    "originNo": 28
+  },
+  {
+    "id": "mh-2023b-029",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "北伐战争的发动，标志着第一次国共合作的建立。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 29,
+    "originNo": 29
+  },
+  {
+    "id": "mh-2023b-030",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "遵义会议清算了以陈独秀为代表的右倾机会主义 误。（×）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 30,
+    "originNo": 30
+  },
+  {
+    "id": "mh-2023b-031",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "官僚资本是中国的垄断资本。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 31,
+    "originNo": 31
+  },
+  {
+    "id": "mh-2023b-032",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "以“中学为体，西学为用”为核心的洋务思想是一种带有资本主义因素的封建主义思想。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 32,
+    "originNo": 32
+  },
+  {
+    "id": "mh-2023b-033",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "1930年5月，毛泽东在《反对本本主义》一文中批判了教条主义。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 33,
+    "originNo": 33
+  },
+  {
+    "id": "mh-2023b-034",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "身为顽固派的慈禧太后重用洋务派的原因是为了摆脱贫穷落后的面貌（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 34,
+    "originNo": 34
+  },
+  {
+    "id": "mh-2023b-035",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷判断题",
+    "type": "judge",
+    "stem": "《天演论》的作者是陈独秀。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 35,
+    "originNo": 35
+  },
+  {
+    "id": "mh-2023b-036",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷主观题",
+    "type": "short",
+    "stem": "简述毛泽东等老一代革命家探索中国社会主义建设道路的理论贡献？",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 36,
+    "originNo": 36,
+    "answer": "一是毛泽东论述了必须实行马克思主义与中国实际“第二次结合”的基本思想；二是提出了社会主义社会矛盾的学说；三是阐明了建设社会主义的基本方针。"
+  },
+  {
+    "id": "mh-2023b-037",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷主观题",
+    "type": "short",
+    "stem": "各地共产党早期组织所开展了哪些方面的工作?",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 37,
+    "originNo": 37,
+    "answer": "（1）进一步研究和宣传马克思主义。\n注重马、恩、列宁原著学习，宣传马克思主义和俄国革命的经验。与反马克思主义思潮进行三次论战，扩大了马克思主义的影响力。\n（2）大力卽织和开展工人运动，到人民中去开展宣传和组织工作。\n出版适宜工人的通俗刊物°创建工会和劳动学校等\n（3）进行关于建党问题的讨论和实际组织工作。\n上海共产党发起组制定了《中国共产党宣言》、蔡和森给毛泽东的信探索了建党的问题。\n（4）上述方面的工作，进一步促进了马克思主义同中国T.人运动的结合，为中国创建统一的工人阶级先锋队组织准备了条件。"
+  },
+  {
+    "id": "mh-2023b-038",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷主观题",
+    "type": "short",
+    "stem": "简述南昌起义的历史意义？",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 38,
+    "originNo": 38,
+    "answer": "它打响了武装反抗国民党反动统治的第一枪；它成为共产党独立领导革命战争、创建人民军队和武装夺取政权的伟大开端；它揭开了土地革命战争的序幕。"
+  },
+  {
+    "id": "mh-2023b-039",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷主观题",
+    "type": "short",
+    "stem": "革命派与改良派的辩驳内容与意义？",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 39,
+    "originNo": 39,
+    "answer": "内容：一是要不要以革命手段推翻清政府；二是要不要推翻帝制，实行共和；三是要不要社会革命。意义：论战划清了革命与改良的界限， 论战使资产阶级民主和三民主义思想得到了更加广泛的份额传播， 为推翻清朝统治的革命斗争奠定了思想基础。"
+  },
+  {
+    "id": "mh-2023b-040",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷主观题",
+    "type": "short",
+    "stem": "简述戊戌维新运动失败的原因和教训？",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 40,
+    "originNo": 40,
+    "answer": "戊戌维新运动失败的主要原因在于维新派自身的局限和以慈禧太后为首的强大的守旧势力的反对。维新派自身有三方面的弱点和局限：一是不敢否认封建主义；二是对帝国主义抱有幻想；三是脱离人民群众。戊戌维新以悲剧性的失败而告终，不仅暴露出资产阶级的软弱性，同时也说明在半殖民半封建的中国，企图通过统治者进行自上而下的改良的道路，是行不通的要想实现国家的独立、民主、富强，必须采用革命的手段。"
+  },
+  {
+    "id": "mh-2023b-041",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷主观题",
+    "type": "short",
+    "stem": "简述抗日战争胜利以后的三种政治力量和三种建国方案？",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 41,
+    "originNo": 41,
+    "answer": "一是地主阶级与买办性的大资产阶级的建国方案，此方案维护地主阶级和买办性的大资产阶级的根本利益；二是民族资产阶级的建国方案，此方案在中国行不通；三是工人阶级、农民阶级和城市小资产阶级的建国方案，此方案代表的是中国共产党，它希望建立一个工人阶级领导的、以工农联盟为基础的人民民主专政的人民共和国。"
+  },
+  {
+    "id": "mh-2023b-042",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷材料分析题",
+    "type": "comprehensive",
+    "stem": "阅读材料，回答问题。材料一 1899年5月23日，坐落在南通唐家闸的大生纱厂开工试车了，这件事成为轰动一时的新闻，他为什么这样引人注目？因为纱厂的创办人是五年前夺魁的状元。材料二 1913～1920年中国棉纺工业统计表\n（1）材料一中所述的状元实业家是谁？他创办大生纱厂的目的是什么？\n（2）根据材料二，指出这一时期中国棉纺工业的发展状况。并分析出现这一状况的主要原因。\n（3）结合所学知识，分析阻碍中国近代民族资本主义发展的根本原因是什么？",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 42,
+    "originNo": 42,
+    "answer": "\n（1）张謇；实业救国。\n（2）迅速发展；一战期间，帝国主义国家忙于战争无暇东顾；辛亥革命推动了工业的发展。\n（3）我国半殖民地半封建社会的性质或中国近代民族资本主义发展受到帝国主义和封建势力的双重挤压。"
+  },
+  {
+    "id": "mh-2023b-043",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷材料分析题",
+    "type": "comprehensive",
+    "stem": "阅读下列史料并回答问题。\n（1）改组以前，国民党的活动范围基本局限在狭小的上层社会，缺乏下层的群众工作。国民党的组织只在广东、上海、四川、山东等少数省、区和海外存在。共产党员加入国民党后，在各地积极帮助创建和发展国民党组织，使国民党在全国范围内得到空前的大发展。到1926年1月，国民党已有正式省党部11个，特别市党部4个，正在筹备的省党部8个，除新疆、云南、贵州等少数省、区外，已在全国大多数省、区建立起党部组织。这些党部大都是以共产党员和国民党左派为骨干建立起来的，其中许多党部的实际负责人是共产党员。总之，在国民党中央党部和各级地方党部的工作中，共产党人发挥了重大的作用。\n—中共中央党史研究室：《中国共产党历史》（第一卷上册），中共党史出版社2002年版，第146-147页。\n（2）随着国民党各级组织的建立，国民党党员人数迅猛增加，到国民党二大前夕，已达20万之多。据统计，北京执行部所辖华北、东北、西北15个省、区，有党员1.4万余人。江苏省党部改组后，县、市、区党部发展到25个，党员达3500多人。浙江省党部在20多个县建立了组织，党员约有2000人。四川的国民党党务工作在共产党员吴玉章主持下，更是成绩斐然，党员发展到8000多人。\n—中共中央党史研究室：《中国共产党历史》（第一卷上册），中共党史出版社2002年版，第147页。\n（B）在国民党党员人数增加的同时，党员成分也发生很大变化，工人、农民和青年学生占了相当大的比重。如广东各县党部，农民党员占80%；广州市党部中，工人党员占60%。又如山东省党部的党员，学生占40%，工人占25%，农民占15%，教师占15%，其他占5%。湖北省党部组织部在陈潭秋的主持下，十分注复制工农分子参加，到1925年10月，全省国民党党员中，工、农和青年学生占75%以上。\n——中共中央党史研究室：《中国共产党历史》（第一卷上册），中共党史出版社2002年版，第147页。请回答下列问题：\n（1）结合以上材料分析国民党发生以上变化的原因。\n（2）第一次国共合作的政治基础是什么？\n（3）结合材料及所学知识，分析第一次国共合作给国民党带来的变化。",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 43,
+    "originNo": 43,
+    "answer": "\n（1）国民党发生以上变化的原因在于：国民党一大重新解释了三民主义，融入了反帝、反封建、民主权利应为一般平民所共有，平均地权、节制资本等项内容，确立了联俄、联共、扶助农工的三大革命政策。共产党员、共青团员以个人身份加入国民党，为其注入了新的血液，增强了国民党的活力。\n（2）第一次国共合作的政治基础是国民党的新三民主义的政纲，它同中国共产党在民主革命阶段的纲领基本一致。\n（3）第一次国共合作给国民党带来了很大的变化：\n第一，经过共产党的帮助，国民党有了一个比较明确的反帝反封建的政治纲领：新三民主义和联俄、联共、扶助农工三大革命政策。\n第二，促进了广东工农运动的高涨，其影响及于邻近的湖南、江西等省，推动了北伐的顺利进展。\n第三，训练了一支党军：国民革命军。\n第四，改组了国民党，大大发展了国民党的组织。"
+  },
+  {
+    "id": "mh-2023b-044",
+    "source": "2023 b卷.docx",
+    "chapter": "2023 B卷主观题",
+    "type": "short",
+    "stem": "如何理解近代中国的两大历史任务及其相互关系?",
+    "options": {},
+    "correct": [],
+    "analysis": "来源：2023年新疆师范大学公共课《中国近代史纲要》期末试卷B。",
+    "examTags": [
+      "modern-history-2023-b"
+    ],
+    "mockOrder": 44,
+    "originNo": 44,
+    "answer": "近代中国的时代特点以及帝国主义和中华民族的矛盾、封建主义和人民大众的矛盾，\n决定了近代中国人民始终面临着两大历史任务：一是求得民族独立和人民解放；二是实现国家的繁荣富强和人民的共同富裕。在两大历史任务中，首先必须完成的历史任务是求得民族独立和人民解放，反对外国列强的侵略，摆脱封建专制的统治。这个历史任务决定了近代中国革命既是反帝的民族革命，又是反封建的民主革命。要改变民族压迫和人民受剥削的状况，必须首先进行民族和民主革命，结束半殖民地半封建社会，解决上层建筑和生产关系问题，才能为进行大规模的经济建设创造前提与基础，为进一步解放生产力、发展生产力开辟道路，才能使国家繁荣富强和人民共同富裕成为可能。\n历史表明，近代中国社会的两大历史任务不是孤立的，而是互相联系的。前一个任务为后一个任务扫清障碍，创造必要的前提；后一个任务是前一个任务的最终目的与必然要求。中华民族在近代主要是完成前一任务，在现代主要是完成后一任务。两大任务是统一的，统一于解放和发展中国的社会生产力。"
+  },
+  {
+    "id": "mh-user-shot-003",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "持有中间路线想法的民主党派，事实上只能在靠近共产党或靠近国民党中选择道路。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034153_75_227.jpg",
+    "originNo": 13,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-005",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "抗日战争胜利后，蒋介石集团已确定以武力消灭共产党及其领导的人民军队和解放区政权。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034157_77_227.jpg",
+    "originNo": 11,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-006",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "人民政协是中国共产党领导的以工农联盟为基础的人民民主统一战线的组织形式。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034200_78_227.jpg",
+    "originNo": 10,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：0分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-007",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "三大战役的胜利使国民党赖以维持其反动统治的主要军事力量基本上被摧毁。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034202_79_227.jpg",
+    "originNo": 9,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-008",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "1949年元旦，蒋介石发表“求和\"声明，目的是放弃战争，与中国共产党共同商议和平建国事宜。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034205_80_227.jpg",
+    "originNo": 8,
+    "ocrAnswer": "错",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-009",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "把工作重点放在敌后农村深刻体现了在新的抗日民族解放战争条件下，中国共产党继续走农村包围城市、武装夺取政权的道路。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034207_81_227.jpg",
+    "originNo": 7,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-010",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "近代以后中国人民的反帝反封建斗争之所以屡遭挫折和失败，最重要的原因就是没有先进的坚强的政党作为凝聚力量的领导核心。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034210_82_227.jpg",
+    "originNo": 6,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-011",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "李大钊是从爱国的立场出发，从民主主义者转变为共产主义者的。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034213_83_227.jpg",
+    "originNo": 5,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-012",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "中国共产党员以个人身份加入国民党，是在国民党第一次全国代表大会上提出的。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034215_84_227.jpg",
+    "originNo": 4,
+    "ocrAnswer": "错",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-013",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "新文化运动是从1915年9月陈独秀在上海创办《青年杂志》开始的。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034218_85_227.jpg",
+    "originNo": 3,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-014",
+    "source": "学习通截图详解",
+    "chapter": "截图判断题",
+    "type": "judge",
+    "stem": "五四运动的直接导火线，是巴黎和会上中国外交的失败。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034221_86_227.jpg",
+    "originNo": 2,
+    "ocrAnswer": "对",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-016",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "解决农民的土地问题，实现\"耕者有其田\"，是中国民主革命的根本问题，也是中国共产党在民主革命时期的基本任务。在党的土地政策中，包含“耕者有其田\"思想的有（）。",
+    "options": {
+      "A": "《井冈山土地法》",
+      "B": "《中国土地法大纲》",
+      "C": "《天朝田亩制度》",
+      "D": "《关于清算、减租及土地问题的指示》"
+    },
+    "correct": [
+      "A",
+      "B",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034226_88_227.jpg",
+    "originNo": 20,
+    "ocrAnswer": "ABD",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-017",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "人民解放战争获得（）等源源不断的人力、物力支援。",
+    "options": {
+      "A": "大批青壮年农民踊跃参加人民军队",
+      "B": "各地农民主动将粮食、被服等送上前线",
+      "C": "各地农民成立运输队、担架队、破路队来担负 战争勤务",
+      "D": "人民群众广泛建立和发展民兵组织，配合解放 军作战"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034229_89_227.jpg",
+    "originNo": 19,
+    "ocrAnswer": "ABCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-018",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "为建设新中国而奋斗，这是中国人民的根本利益之所在。抗日战争结束后，中国共产党曾经希望通过和平的途径对中国进行政治社会的改革，逐步向新中国这个目标迈进。为了争取和平民主，中国共产党付出了大量的努力，其主要措施有",
+    "options": {
+      "A": "明确提出\"和平、民主、团结\"的口号",
+      "B": "毛泽东亲赴重庆与国民党当局进行谈判",
+      "C": "参加重庆政协会议并维护政协制定的协议",
+      "D": "与民主党派密切合作并主张走第三条道路"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034231_90_227.jpg",
+    "originNo": 18,
+    "ocrAnswer": "ABC",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-019",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "国民党统治区陷入严重经济危机体现在（）。",
+    "options": {
+      "A": "农村饿孵遍地，人民在饥饿和死亡线上挣扎",
+      "B": "城市失业人数陡增",
+      "C": "工农业生产严重菱缩",
+      "D": "大批民族工商业濒于倒闭"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034234_91_227.jpg",
+    "originNo": 17,
+    "ocrAnswer": "ABCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-020",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "国民党当局以暴力对民主党派施行迫害。（）惨遭杀害，民盟地方组织的许多成员被逮捕、绑架、杀害，其所办的多家报社被捣毁或遭袭击。",
+    "options": {
+      "A": "李公朴",
+      "B": "闻一多",
+      "C": "杜斌丞",
+      "D": "沈钧儒"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034237_92_227.jpg",
+    "originNo": 16,
+    "ocrAnswer": "ABC",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-022",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "新民主主义理论指出，由无产阶级领导的人民大众的反帝反封建的中华民族的新文化，也就是（）的文化。",
+    "options": {
+      "A": "一元的",
+      "B": "民族的",
+      "C": "科学的",
+      "D": "大众的"
+    },
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034242_94_227.jpg",
+    "originNo": 14,
+    "ocrAnswer": "BCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-023",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "日本发动全面侵华战争后，中华民族面临空前危机，全国人民最关心的问题是：这场战争能不能胜利？怎样争取胜利？是毛泽东同志科学地回答了这个问题，他在1938年发表的《论持久战》一文，使全国人民对抗战的进程和前途有了清晰的认识，极大坚定了全国军民坚持抗战的信心。《论持久战》一文（）。",
+    "options": {
+      "A": "分析了抗日战争敌强我弱、敌退步我进步、敌 国土小人口少我国土大人口多、敌失道寡助我得 道多助的特点",
+      "B": "准确地预见了抗日战争由防御到相持、最后到 反攻的三个阶段",
+      "C": "系统提出了争取抗战胜利的依靠力量和战略战 术",
+      "D": "论证了“速胜论\"的合理性"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034245_95_227.jpg",
+    "originNo": 13,
+    "ocrAnswer": "ABC",
+    "ocrScore": "",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-024",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "日本帝国主义残害中国人民的罪行包括（）。",
+    "options": {
+      "A": "射杀、火焚、活埋及用其他方法处死中国平民 和被俘士兵",
+      "B": "掳掠和残害中国劳工，成批的劳工被折磨致死",
+      "C": "强迫中国等国妇女充当日军性奴隶，形成了丑 陋的“慰安妇\"制度",
+      "D": "对抗日根据地发动毁灭性的\"扫荡\"清乡‘"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034248_96_227.jpg",
+    "originNo": 12,
+    "ocrAnswer": "ABCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-025",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "1938年5月至6月间，毛泽东发表《论持久战》的讲演，总结全民族抗战10个月来的经验，集中全党智慧，系统地阐明了持久抗战的总方针。抗日战争之所以是持久战，中国最后一定会取得胜利，是因为（）。",
+    "options": {
+      "A": "日本在国际上失道寡助，中国在国际上得道多 助",
+      "B": "日本是小国，中国是大国",
+      "C": "日本是强国，中国是弱国",
+      "D": "日本发动的是野蛮的侵略战争，中国进行的是 正义的反侵略战争"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034251_97_227.jpg",
+    "originNo": 11,
+    "ocrAnswer": "ABCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-026",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "1931年9月18日夜，日本关东军按照精心策划，炸毁沈阳柳条湖“南满铁路\"路轨，并嫁祸于中国军队，日军以此为借口，炮轰中国东北军北大营，制造了震惊中外的“九一八事变”。面对日本的野蛮侵略，中国人民奋起抵抗。中国人民在白山黑水间的奋起抵抗（）。",
+    "options": {
+      "A": "揭开了世界反法西斯战争的序幕",
+      "B": "标志中国由此进入全民族抗战阶段",
+      "C": "成为中国人民抗日战争的起点",
+      "D": "直接促成了国共两党的第二次合作"
+    },
+    "correct": [
+      "A",
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034254_98_227.jpg",
+    "originNo": 10,
+    "ocrAnswer": "AC",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-027",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "九一八事变后，抗日救亡运动在全国兴起。中国共产党及其领导的（）是抗日救亡运动的中坚力量。",
+    "options": {
+      "A": "工农红军",
+      "B": "广大工人",
+      "C": "大地主",
+      "D": "农民"
+    },
+    "correct": [
+      "A",
+      "B",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034256_99_227.jpg",
+    "originNo": 9,
+    "ocrAnswer": "ABD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-028",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "为了抗日民族统一战线的坚持、扩大和巩固，中国共产党总结反“摩擦\"斗争的经验，制定了（)的策略方针。",
+    "options": {
+      "A": "发展进步势力",
+      "B": "争取中间势力",
+      "C": "反对顽固势力",
+      "D": "团结顽固势力"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034259_100_227.jpg",
+    "originNo": 8,
+    "ocrAnswer": "ABC",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-030",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "1936年10月，红二、红四方面军先后同红一方面军在甘肃会宁、隆德将台堡（今属宁夏）会师。长征的胜利向全中国和全世界宣告，中国共产党及其领导的人民军队，是一支不可战胜的力量。红军长征，铸就了伟大的长征精神。长征精神",
+    "options": {
+      "A": "是以爱国主义为核心的民族精神的最高体现",
+      "B": "为中国革命不断从胜利走向胜利提供了强大精 神动力",
+      "C": "是中国共产党人和人民军队革命风范的生动反 映",
+      "D": "是中华民族自强不息的民族品格的集中展示"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034305_102_227.jpg",
+    "originNo": 6,
+    "ocrAnswer": "ABCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-031",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "1935年1月中共中央政治局在长征途中召开的遵义会议，是党的历史上一个生死攸关的转折点。这次会议（）。",
+    "options": {
+      "A": "全面讨论了政治路线的是非问题",
+      "B": "解决了当时党内所面临的最迫切的组织问题和 军事问题",
+      "C": "结束了“左”倾教条主义错误在中央的统治",
+      "D": "开始确立毛泽东在中共中央和红军的领导地位"
+    },
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034308_103_227.jpg",
+    "originNo": 5,
+    "ocrAnswer": "BCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-032",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "国民党政府通过（）实行一党专政的军事独裁统治。",
+    "options": {
+      "A": "建立庞大的军队",
+      "B": "建立全国性特务系统",
+      "C": "大力推行保甲制度",
+      "D": "厉行文化专制主义"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034311_104_227.jpg",
+    "originNo": 4,
+    "ocrAnswer": "ABCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-033",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "在20世纪30年代前期、中期，中国共产党内屡次出现严重的\"左\"倾错误，其原因是（）。",
+    "options": {
+      "A": "党不善于把马克思列宁主义与中国实际全面 地、正确地结合起来",
+      "B": "八七会议后党内一直存在着浓厚的\"左\"倾情绪 始终没有得到认真清理",
+      "C": "共产国际对中国革命的错误指导",
+      "D": "党的马克思主义理论准备不足，缺乏实践经验"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034313_105_227.jpg",
+    "originNo": 3,
+    "ocrAnswer": "ABCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-034",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "中华苏维埃共和国是中国历史上第一个全国性的工农民主政权，通过（），开创了土地革命战争新局面。",
+    "options": {
+      "A": "实行“三三制\"原则",
+      "B": "实行工农兵代表大会制度",
+      "C": "重视司法建设，先后颁布120多部法律、法令",
+      "D": "注重廉政建设，严惩腐败分子"
+    },
+    "correct": [
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034316_106_227.jpg",
+    "originNo": 2,
+    "ocrAnswer": "BCD",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-035",
+    "source": "学习通截图详解",
+    "chapter": "截图多选题",
+    "type": "multiple",
+    "stem": "中国工农红军的长征是一部伟大的革命英雄主义史诗。它向全世界宣告，中国共产党及其领导的人民军队是一支不可战胜的力量。红军长征的胜利（）。",
+    "options": {
+      "A": "粉碎了国民党反动派消灭中国共产党和红军的 图谋",
+      "B": "实现了中国革命事业从挫折走向胜利的伟大转 折",
+      "C": "宣告了中国共产党胜利实现了北上抗日的战略 转移",
+      "D": "标志着中国革命进入全民族全面抗日战争的新 阶段"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034319_107_227.jpg",
+    "originNo": 1,
+    "ocrAnswer": "ABC",
+    "ocrScore": "本题得分：2分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-036",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1947年10月10日，中国人民解放军总部发表宣言，提出\"打倒蒋介石，解放全中国\"的口号，极大鼓舞了解放军全体指战员和全国人民的斗志。同年12月，中共中央在陕北米脂县杨家沟召开会议，制定了夺取全国胜利的行动纲领。为打败蒋介石、建立新中国奠定了深厚的群众基础的是",
+    "options": {
+      "A": "统一战线",
+      "B": "第二条战线的形成和发展",
+      "C": "人民民主运动的发展",
+      "D": "土地制度改革"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034322_108_227.jpg",
+    "originNo": 30,
+    "ocrAnswer": "",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-037",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "蒋介石在积极准备内战的同时，又表示愿意与中共进行和平谈判。原因不包括（）。",
+    "options": {
+      "A": "以此敷衍国内外舆论，掩盖其正在进行的内战 准备",
+      "B": "其内心仍有和平建国、政治协商的意愿",
+      "C": "诱使中共交出人民军队和解放区政权",
+      "D": "若谈判不成，即发动内战并把战争责任转嫁给 中国共产党"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034325_109_227.jpg",
+    "originNo": 29,
+    "ocrAnswer": "B",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-038",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "革命的根本问题是",
+    "options": {
+      "A": "国家政权问题",
+      "B": "领导人的阶级问题",
+      "C": "参与群众的阶级问题",
+      "D": "创造革命理论问题"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034327_110_227.jpg",
+    "originNo": 28,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-039",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "抗日战争胜利后，中国共产党公开颁布的第一个关于土地制度改革的纲领性文件（），规定彻底废除封建性及半封建性剥削的土地制度，规定实行耕者有其田的土地制度。",
+    "options": {
+      "A": "《关于土地问题的指示》",
+      "B": "《兴国土地法》",
+      "C": "《中国土地法大纲》",
+      "D": "《井冈山土地法》"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034330_111_227.jpg",
+    "originNo": 27,
+    "ocrAnswer": "8",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-040",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1947年7月至9月，中国共产党制定的（），明确规定“废除封建性及半封建性剥削的土地制度”。",
+    "options": {
+      "A": "《中国土地法大纲》",
+      "B": "《井冈山土地法》",
+      "C": "《中华人民共和国土地法》",
+      "D": "《关于土地问题的指示》"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034332_112_227.jpg",
+    "originNo": 26,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-041",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1949年10月1日，中央人民政府委员会任命为政务院总理兼外交部部长。",
+    "options": {
+      "A": "毛泽东",
+      "B": "周恩来",
+      "C": "聂荣臻",
+      "D": "刘伯承"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034335_113_227.jpg",
+    "originNo": 25,
+    "ocrAnswer": "B",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-042",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "在中国的政治生活中，各民主党派和无党派民主人士是一支重要的力量。抗日战争胜利后，民主党派在中国政治舞台上比较活跃。它们大多从成立时起，就同中国共产党建立了不同程度的合作关系，并在斗争实践中逐步发展了这种关系。中国共产党与民主党派团结合作，究其原因是由于",
+    "options": {
+      "A": "中国共产党与各民主党派的社会基础一致",
+      "B": "中国共产党对各民主党派采取了积极争取和团 结的政策",
+      "C": "中国共产党一贯鼓励和支持各民主党派反对国 民党独裁统治的斗争",
+      "D": "在主张爱国、民主，反对卖国、独裁方面，中 国共产党的新民主主义革命政纲与各民主党派的 政纲基本一致"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034338_114_227.jpg",
+    "originNo": 24,
+    "ocrAnswer": "",
+    "ocrScore": "",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-043",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1947年6月底，（）率领的晋冀鲁豫野战军主力，实施中央突破，千里跃进大别山。",
+    "options": {
+      "A": "陈毅、粟裕",
+      "B": "贺龙、习仲勋",
+      "C": "陈赓、谢富治",
+      "D": "刘伯承、邓小平"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034341_115_227.jpg",
+    "originNo": 23,
+    "ocrAnswer": "",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-044",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "中国革命的根本问题是（）。",
+    "options": {
+      "A": "土地问题",
+      "B": "经济问题",
+      "C": "国家政权问题",
+      "D": "意识形态问题"
+    },
+    "correct": [],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034344_116_227.jpg",
+    "originNo": 22,
+    "ocrAnswer": "XA",
+    "ocrScore": "本题得分：0分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-045",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1946年1月10日，（）开幕，出席会议的有国民党、共产党、民主同盟、青年党和无党派人士代表共38人。",
+    "options": {
+      "A": "政治协商会议",
+      "B": "全国土地会议",
+      "C": "中国人民政治协商会议",
+      "D": "制宪会议"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034346_117_227.jpg",
+    "originNo": 21,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-046",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "）是世界反法西斯战争的东方主战场。",
+    "options": {
+      "A": "太平洋战场",
+      "B": "缅甸战场",
+      "C": "中国战场",
+      "D": "东欧战场"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034349_118_227.jpg",
+    "originNo": 20,
+    "ocrAnswer": "",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-047",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1938年5月至6月间，毛泽东发表（）的讲演，总结全民族抗战10个月来的经验，批驳了“亡国论”“速胜论\"等错误观点。",
+    "options": {
+      "A": "《中国革命战争的战略问题》",
+      "B": "《论反对日本帝国主义的策略》",
+      "C": "《抗日游击战争的战略问题》",
+      "D": "《论持久战》"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034352_119_227.jpg",
+    "originNo": 19,
+    "ocrAnswer": "",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-048",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "）系统阐明了抗日战争的发展规律和坚持抗战、争取抗战胜利必须实行的战略总方针，是中国共产党领导抗日战争的纲领性文献。",
+    "options": {
+      "A": "《中国革命战争的战略问题》",
+      "B": "《论反对日本帝国主义的策略》",
+      "C": "《实践论》《矛盾论》",
+      "D": "《论持久战》"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034354_120_227.jpg",
+    "originNo": 18,
+    "ocrAnswer": "",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-049",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "从卢沟桥事变到（），中国抗战处于战略防御阶段。",
+    "options": {
+      "A": "上海沦陷",
+      "B": "太原失守",
+      "C": "广州、武汉失守",
+      "D": "枣宜会战"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034357_121_227.jpg",
+    "originNo": 17,
+    "ocrAnswer": "C",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-050",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "（）是最早为中国抗战提供援助的国家。",
+    "options": {
+      "A": "美国",
+      "B": "苏联",
+      "C": "新加坡",
+      "D": "英国"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034400_122_227.jpg",
+    "originNo": 16,
+    "ocrAnswer": "B",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-051",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1945年8月9日，毛泽东发表（）的声明，号召“中国人民的一切抗日力量应举行全国规模的反攻\"。",
+    "options": {
+      "A": "《论反对日本帝国主义的策略》",
+      "B": "《〈共产党人〉发刊词》",
+      "C": "《对日寇的最后一战》",
+      "D": "《中国共产党抗日救国十大纲领》"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034402_123_227.jpg",
+    "originNo": 15,
+    "ocrAnswer": "",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-052",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1940年5月，在枣宜会战中，第三十三集团军总司令（）殉国。",
+    "options": {
+      "A": "佟麟阁",
+      "B": "赵登禹",
+      "C": "张自忠",
+      "D": "戴安澜"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034405_124_227.jpg",
+    "originNo": 14,
+    "ocrAnswer": "C",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-053",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1935年12月，中共中央在陕北瓦窑堡召开政治局扩大会议，提出党的基本策略任务是（）。",
+    "options": {
+      "A": "建立广泛的抗日民族统一战线",
+      "B": "在根据地实行“耕者有其田\"的土地制度",
+      "C": "在敌后广泛开展游击战和运动战",
+      "D": "保持党在思想上、政治上和组织上的独立性"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034407_125_227.jpg",
+    "originNo": 13,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-055",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "毛泽东根据敌我力量对比的情况，科学预见到抗日战争将经过的阶段，分别是（）。①战略防御阶段②战略相持阶段③战略进攻阶段④战略反攻阶段",
+    "options": {
+      "A": "①③④",
+      "B": "①②④",
+      "C": "",
+      "D": "2"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034413_127_227.jpg",
+    "originNo": 11,
+    "ocrAnswer": "B",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-056",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "）确立了以毛泽东为主要代表的马克思主义正确路线在党中央的领导地位，开始形成以毛泽东同志为核心的第一代中央领导集体。",
+    "options": {
+      "A": "中华苏维埃第一次全国代表大会",
+      "B": "遵义会议",
+      "C": "党的七大",
+      "D": "党的七届二中全会"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034415_128_227.jpg",
+    "originNo": 10,
+    "ocrAnswer": "B",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-057",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1927年（），中共中央在汉口秘密召开紧急会议，会议确定了土地革命和武装起义的方针。",
+    "options": {
+      "A": "7月1日",
+      "B": "7月8日",
+      "C": "7月23日",
+      "D": "8月7日"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。 OCR 漏识的答案已按题目上下文补齐。",
+    "originFile": "微信图片_20260627034418_129_227.jpg",
+    "originNo": 9,
+    "ocrAnswer": "",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-058",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1936年10月22日，红二方面军指挥部到达（）同红一方面军会合。至此，三大主力红军的长征胜利结束。",
+    "options": {
+      "A": "甘肃将台堡",
+      "B": "甘肃会宁",
+      "C": "四川懋功",
+      "D": "陕北吴起"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034420_130_227.jpg",
+    "originNo": 8,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-059",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "在大革命失败的危急关头，中共八七会议确定的总方针是（）。",
+    "options": {
+      "A": "推翻北洋军阀黑暗统治",
+      "B": "开辟农村革命根据地",
+      "C": "土地革命和武装起义",
+      "D": "建立工农民主统一战线"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034423_131_227.jpg",
+    "originNo": 7,
+    "ocrAnswer": "C",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-060",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "在新民主主义革命时期，中国共产党在不同阶段建立了不同性质的革命政权。在土地革命战争时期建立的苏维埃政权的性质是（）。",
+    "options": {
+      "A": "工农民主政权",
+      "B": "“三三制\"民主政权",
+      "C": "各个革命阶级的联合专政",
+      "D": "人民民主专政"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034425_132_227.jpg",
+    "originNo": 6,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-061",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "在（）后，中央红军从长征出发时的8.6万人锐减到3万多人。严酷的事实促使广大党员和红军指战员对“左”倾错误领导产生了怀疑和不满。",
+    "options": {
+      "A": "强渡湘江",
+      "B": "强渡乌江",
+      "C": "四渡赤水",
+      "D": "强渡大渡河"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034428_133_227.jpg",
+    "originNo": 5,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-062",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "（）的\"砍头不要紧，只要主义真\"的就义诗，表达了共产党员的信念之光不灭。",
+    "options": {
+      "A": "陈延年",
+      "B": "陈乔年",
+      "C": "夏明翰",
+      "D": "赵世炎"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034431_134_227.jpg",
+    "originNo": 4,
+    "ocrAnswer": "C",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-063",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "‘奠都以来，青年之遭杀戮者，报纸记载至三十万人之多，而失踪监禁者更不可胜计。杀之不快，更施以活埋；禁之不足，复加以毒刑。地狱现形，人间何世？\"与之相关的是国民党（）。",
+    "options": {
+      "A": "推行保甲制度",
+      "B": "建立全国性特务系统",
+      "C": "查禁进步书刊",
+      "D": "摊派、征税"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034433_135_227.jpg",
+    "originNo": 3,
+    "ocrAnswer": "B",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-064",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "1928年12月29日张学良从东北发出通告，宣布“遵守三民主义，服从国民政府，改易旗帜\"。北洋军阀不再作为独立的政治力量继续存在，国民党在全国范围内建立了自己的统治。国民党政府的统治同北洋军阀的统治没有本质的区别，在根本上是因为（）。",
+    "options": {
+      "A": "国民党政府的统治依然是地主阶级和买办性的 大资产阶级的统治",
+      "B": "国民党所实行的是代表民族资产阶级利益的一 党专政和军事独裁统治",
+      "C": "国民党反动集团内部派系林立，外部则与地方 实力派之间矛盾重重、冲突不断",
+      "D": "国民党只是在形式上暂时地统一了中国"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034436_136_227.jpg",
+    "originNo": 2,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
+    ]
+  },
+  {
+    "id": "mh-user-shot-065",
+    "source": "学习通截图详解",
+    "chapter": "截图单选题",
+    "type": "single",
+    "stem": "土地革命时期，在中国共产党的土地革命路线指引下，根据地进行了热火朝天的（），充分调动了广大农民发展生产和参军参战的积极性。",
+    "options": {
+      "A": "“打土豪，分田地\"的斗争",
+      "B": "“自己动手，丰衣足食\"的大生产运动",
+      "C": "“一平二调\"的共产风”",
+      "D": "农业生产互助合作"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "来源：用户提供的学习通题目详情截图 OCR；答案来自页面“正确答案”或满分作答记录。",
+    "originFile": "微信图片_20260627034439_137_227.jpg",
+    "originNo": 1,
+    "ocrAnswer": "A",
+    "ocrScore": "本题得分：1分",
+    "examTags": [
+      "modern-history-screenshot-detail"
     ]
   }
 ];
@@ -4575,12 +6885,13 @@ function shuffleCopy(arr){
 }
 function pick(pool, count){ return shuffleCopy(pool).slice(0, count); }
 function buildModernExam(){
-  const tagged = QUESTIONS.filter(q => (q.examTags || []).includes("modern-history-mock"));
-  if (tagged.length >= 50) return tagged.slice().sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
+  const tagged = QUESTIONS.filter(q => (q.examTags || []).some(tag => String(tag).startsWith("modern-history-")) && hasKnownAnswer(q));
+  const pool = tagged.length >= 55 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
+  const byType = type => pool.filter(q => q.type === type);
   return [
-    ...pick(QUESTIONS.filter(q => q.type === "single"), 30),
-    ...pick(QUESTIONS.filter(q => q.type === "multiple"), 15),
-    ...pick(QUESTIONS.filter(q => q.type === "judge"), 10)
+    ...pick(byType("single"), 30),
+    ...pick(byType("multiple"), 15),
+    ...pick(byType("judge"), 10)
   ];
 }
 function buildLinuxExam(){
