@@ -5004,7 +5004,11 @@ let examQuestions = [];
 function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function stemOf(q){ return q.stem || q.title || ""; }
-function chapters(){ return [...new Set(QUESTIONS.map(q => q.chapter || "未分章"))]; }
+function chapters(){
+  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "截图详解"];
+  const seen = new Set(QUESTIONS.map(q => q.chapter || "未分章"));
+  return [...preferred.filter(x => seen.has(x)), ...[...seen].filter(x => !preferred.includes(x))];
+}
 function optionEntries(q){
   if (Array.isArray(q.options)) return q.options.map(o => [o.label, o.text]);
   return Object.entries(q.options || {});
@@ -5033,13 +5037,19 @@ function shuffleCopy(arr){
 }
 function pick(pool, count){ return shuffleCopy(pool).slice(0, count); }
 function buildModernExam(){
+  const bPaper = QUESTIONS
+    .filter(q => (q.examTags || []).includes("modern-history-2023-b"))
+    .sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
+  if (bPaper.length >= 44) return bPaper;
   const tagged = QUESTIONS.filter(q => (q.examTags || []).some(tag => String(tag).startsWith("modern-history-")) && hasKnownAnswer(q));
-  const pool = tagged.length >= 55 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
+  const pool = tagged.length >= 44 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
   const byType = type => pool.filter(q => q.type === type);
   return [
-    ...pick(byType("single"), 30),
-    ...pick(byType("multiple"), 15),
-    ...pick(byType("judge"), 10)
+    ...pick(byType("single"), 15),
+    ...pick(byType("multiple"), 10),
+    ...pick(byType("judge"), 10),
+    ...pick(byType("short"), 7),
+    ...pick(byType("comprehensive"), 2)
   ];
 }
 function buildLinuxExam(){
@@ -5156,7 +5166,7 @@ function show(q){
   });
 }
 function init(){
-  chapterFilter.innerHTML = '<option value="">全部章节</option>' + chapters().map(x => `<option>${esc(x)}</option>`).join("");
+  chapterFilter.innerHTML = '<option value="">全部分类</option>' + chapters().map(x => `<option>${esc(x)}</option>`).join("");
   typeFilter.innerHTML = '<option value="">全部题型</option>' + Object.entries(TYPE_NAME).map(([k,v]) => `<option value="${k}">${v}</option>`).join("");
   [chapterFilter,typeFilter,searchBox].forEach(el => el.addEventListener("input", () => { current = 0; render(); }));
   shuffleBtn.onclick = () => { const list = activeList(); current = Math.floor(Math.random() * list.length); render(); };
