@@ -85,7 +85,7 @@ function render(){
   if (q.type === "single" || q.type === "judge") {
     body = Object.entries(q.options || {}).map(([k,v]) => `<button class="option" data-answer="${esc(k)}"><b>${esc(k)}.</b> ${esc(v)}</button>`).join("");
   } else if (q.type === "multiple") {
-    body = Object.entries(q.options || {}).map(([k,v]) => `<label class="option"><input type="checkbox" value="${esc(k)}"> <b>${esc(k)}.</b> ${esc(v)}</label>`).join("");
+    body = Object.entries(q.options || {}).map(([k,v]) => `<label class="option" data-answer="${esc(k)}"><input type="checkbox" value="${esc(k)}"> <b>${esc(k)}.</b> ${esc(v)}</label>`).join("");
   } else {
     body = `<textarea id="textAnswer" style="width:100%;min-height:130px">${esc(saved || "")}</textarea>`;
   }
@@ -97,7 +97,7 @@ function render(){
     <div id="analysis" class="analysis hidden"></div>
   </article>`;
   questionPanel.querySelectorAll("[data-answer]").forEach(btn => btn.onclick = () => choose(q, btn.dataset.answer));
-  showBtn.onclick = () => show(q, null);
+  showBtn.onclick = () => submit(q);
   prevBtn.onclick = () => { current -= 1; render(); };
   nextBtn.onclick = () => { current += 1; render(); };
 }
@@ -107,6 +107,26 @@ function choose(q, value){
   if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = value;
   save();
   show(q, value);
+}
+function submit(q){
+  if (q.type === "multiple") {
+    const selected = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(x => x.value).sort();
+    const correct = [...(q.correct || [])].sort();
+    state.answers[q.id] = selected;
+    const ok = selected.length === correct.length && selected.every((x, i) => x === correct[i]);
+    if (correct.length) {
+      if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = selected;
+    }
+    save();
+    show(q, selected);
+    return;
+  }
+  const text = document.getElementById("textAnswer");
+  if (text) {
+    state.answers[q.id] = text.value;
+    save();
+  }
+  show(q, null);
 }
 function show(q, value){
   const box = document.getElementById("analysis");

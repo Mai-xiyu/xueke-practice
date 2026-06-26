@@ -44,6 +44,15 @@
       "accent": "linux",
       "description": "超星 Linux 课程作业题库，覆盖目录结构、命令、权限、进程、Shell 与系统管理。",
       "order": 50
+    },
+    {
+      "id": "modern-history",
+      "title": "中国近代史",
+      "mark": "MH",
+      "href": "modern_history_practice.html",
+      "accent": "history",
+      "description": "中国近代史纲要截图题库，包含单选、多选和主观题。",
+      "order": 60
     }
   ]
 }
