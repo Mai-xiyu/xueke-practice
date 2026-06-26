@@ -9,17 +9,7 @@
 - 数据采集
 - 数据结构
 
-当前局域网访问地址：
 
-```text
-http://<LAN_SERVER_IP>:8088/
-```
-
-当前 Windows 服务器部署目录：
-
-```text
-C:\xueke-practice
-```
 
 不要把 SSH 密码、Docker Hub token、GitHub token 或其他凭据写进仓库。
 
