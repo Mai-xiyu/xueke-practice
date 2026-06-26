@@ -73,6 +73,21 @@ def load_2023_b_paragraphs() -> list[str]:
     return read_docx_paragraphs(matches[0])
 
 
+def normalize_modern_category(question: dict) -> None:
+    source = question.get("source") or ""
+    chapter = question.get("chapter") or ""
+    if source == "学习通章节测验" or chapter.startswith("章节测验"):
+        question["chapter"] = "章节测验"
+    elif source == "截图题库" or chapter in {"单选题", "多选题", "判断题", "主观题"}:
+        question["chapter"] = "截图题库"
+    elif source == "中国近代史模拟试卷.docx":
+        question["chapter"] = "模拟试卷"
+    elif source == "2023 b卷.docx":
+        question["chapter"] = "2023 B卷"
+    elif source == "学习通截图详解" or chapter.startswith("截图"):
+        question["chapter"] = "截图详解"
+
+
 def read_questions(path: Path) -> tuple[str, list[dict], str]:
     text = path.read_text(encoding="utf-8")
     marker = "const QUESTIONS = "
@@ -305,17 +320,10 @@ def parse_2023_b_docx() -> list[dict]:
         if match_q and current_type:
             flush()
             order = int(match_q.group(1))
-            chapter = {
-                "single": "2023 B卷单选题",
-                "multiple": "2023 B卷多选题",
-                "judge": "2023 B卷判断题",
-                "short": "2023 B卷主观题",
-                "comprehensive": "2023 B卷材料分析题",
-            }[current_type]
             current = {
                 "id": f"mh-2023b-{order:03d}",
                 "source": "2023 b卷.docx",
-                "chapter": chapter,
+                "chapter": "2023 B卷",
                 "type": current_type,
                 "stem": match_q.group(2).strip(),
                 "options": {},
@@ -355,6 +363,7 @@ def parse_user_screenshots() -> list[dict]:
         "mh-user-shot-057": ["D"],
     }
     for question in questions:
+        question["chapter"] = "截图详解"
         question["examTags"] = sorted(set(question.get("examTags") or []) | {"modern-history-screenshot-detail"})
         if question.get("id") in manual_answers and not question.get("correct"):
             question["correct"] = manual_answers[question["id"]]
@@ -374,6 +383,8 @@ def merge_modern_history() -> dict:
         and q.get("source") not in {"Book118公开摘要", "中国近代史模拟试卷.docx", "2023 b卷.docx", "学习通截图详解"}
         and "modern-history-book118" not in (q.get("examTags") or [])
     ]
+    for question in questions:
+        normalize_modern_category(question)
     seen = {norm_stem(q.get("stem") or q.get("title")): q for q in questions}
     removed_managed = before - len(questions)
 
@@ -384,6 +395,7 @@ def merge_modern_history() -> dict:
             key = norm_stem(q.get("stem") or q.get("title"))
             if not key:
                 continue
+            normalize_modern_category(q)
             normalize_options(q)
             if key in seen:
                 target = seen[key]
@@ -409,7 +421,7 @@ def merge_modern_history() -> dict:
     prefix = replace_toolbar(
         prefix,
         "modern",
-        "截图题库、学习通章节测验、2023 B 卷与模拟试卷题源；模拟考试按 30 单选、15 多选、10 判断组卷，重复题干只保留一份。",
+        "截图题库、学习通章节测验、2023 B 卷与模拟试卷题源；模拟考试采用 2023 B 卷结构：15 单选、10 多选、10 判断、6 简答、2 材料分析、1 论述。",
     )
     write_questions(path, prefix, questions, modern_tail())
     return {
@@ -656,7 +668,11 @@ let examQuestions = [];
 function save(){{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }}
 function esc(s){{ return String(s ?? "").replace(/[&<>"']/g, c => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[c])); }}
 function stemOf(q){{ return q.stem || q.title || ""; }}
-function chapters(){{ return [...new Set(QUESTIONS.map(q => q.chapter || "未分章"))]; }}
+function chapters(){{
+  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "截图详解"];
+  const seen = new Set(QUESTIONS.map(q => q.chapter || "未分章"));
+  return [...preferred.filter(x => seen.has(x)), ...[...seen].filter(x => !preferred.includes(x))];
+}}
 function optionEntries(q){{
   if (Array.isArray(q.options)) return q.options.map(o => [o.label, o.text]);
   return Object.entries(q.options || {{}});
@@ -685,13 +701,19 @@ function shuffleCopy(arr){{
 }}
 function pick(pool, count){{ return shuffleCopy(pool).slice(0, count); }}
 function buildModernExam(){{
+  const bPaper = QUESTIONS
+    .filter(q => (q.examTags || []).includes("modern-history-2023-b"))
+    .sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
+  if (bPaper.length >= 44) return bPaper;
   const tagged = QUESTIONS.filter(q => (q.examTags || []).some(tag => String(tag).startsWith("modern-history-")) && hasKnownAnswer(q));
-  const pool = tagged.length >= 55 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
+  const pool = tagged.length >= 44 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
   const byType = type => pool.filter(q => q.type === type);
   return [
-    ...pick(byType("single"), 30),
-    ...pick(byType("multiple"), 15),
-    ...pick(byType("judge"), 10)
+    ...pick(byType("single"), 15),
+    ...pick(byType("multiple"), 10),
+    ...pick(byType("judge"), 10),
+    ...pick(byType("short"), 7),
+    ...pick(byType("comprehensive"), 2)
   ];
 }}
 function buildLinuxExam(){{
@@ -808,7 +830,7 @@ function show(q){{
   }});
 }}
 function init(){{
-  chapterFilter.innerHTML = '<option value="">全部章节</option>' + chapters().map(x => `<option>${{esc(x)}}</option>`).join("");
+  chapterFilter.innerHTML = '<option value="">全部分类</option>' + chapters().map(x => `<option>${{esc(x)}}</option>`).join("");
   typeFilter.innerHTML = '<option value="">全部题型</option>' + Object.entries(TYPE_NAME).map(([k,v]) => `<option value="${{k}}">${{v}}</option>`).join("");
   [chapterFilter,typeFilter,searchBox].forEach(el => el.addEventListener("input", () => {{ current = 0; render(); }}));
   shuffleBtn.onclick = () => {{ const list = activeList(); current = Math.floor(Math.random() * list.length); render(); }};
