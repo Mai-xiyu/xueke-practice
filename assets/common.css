@@ -613,6 +613,39 @@ body.practice-page .stat div {
   background: #fbfcff !important;
 }
 
+body.practice-page .practice-stat-panel {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 14px !important;
+}
+
+body.practice-page .practice-stat-card {
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  padding: 16px 18px;
+  border: 1px solid var(--practice-line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+body.practice-page .practice-stat-label {
+  color: #7a879a;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+body.practice-page .practice-stat-value {
+  color: #020617;
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
 body.practice-page .toolbar {
   margin: 14px 0 !important;
   padding: 14px 16px !important;
@@ -908,6 +941,10 @@ body.practice-page .analysis {
 }
 
 @media (max-width: 1099px) {
+  body.practice-page .practice-stat-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   body.practice-page > main,
   body.practice-page .app,
   body.practice-page .wrap,
@@ -917,6 +954,12 @@ body.practice-page .analysis {
     max-width: min(100% - 28px, 900px) !important;
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+}
+
+@media (max-width: 560px) {
+  body.practice-page .practice-stat-panel {
+    grid-template-columns: 1fr;
   }
 }
 

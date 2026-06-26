@@ -5404,7 +5404,7 @@ const QUESTIONS = [
   {
     "id": "mh-latest-short-001",
     "source": "近代史最新模拟格式",
-    "chapter": "最新模拟卷",
+    "chapter": "模拟试卷",
     "type": "short",
     "stem": "中国共产党领导中国革命取得胜利的基本经验是什么？",
     "answer": "通常应围绕三点展开：第一，建立广泛的统一战线；第二，坚持革命的武装斗争；第三，加强中国共产党自身建设。三者相互联系，是中国革命取得胜利的重要经验。",
@@ -5417,7 +5417,7 @@ const QUESTIONS = [
   {
     "id": "mh-latest-short-002",
     "source": "近代史最新模拟格式",
-    "chapter": "最新模拟卷",
+    "chapter": "模拟试卷",
     "type": "short",
     "stem": "中国共产党成立的历史意义是什么？",
     "answer": "中国共产党的成立，是中华民族发展史上开天辟地的大事变。它使中国革命有了坚强领导核心、有了科学指导思想、有了新的革命道路和奋斗目标，中国人民从精神上由被动转为主动，中国革命面貌从此焕然一新。",
@@ -5430,7 +5430,7 @@ const QUESTIONS = [
   {
     "id": "mh-latest-essay-001",
     "source": "近代史最新模拟格式",
-    "chapter": "最新模拟卷",
+    "chapter": "模拟试卷",
     "type": "essay",
     "stem": "结合对这门课的学习，谈谈你对“历史是最好的教科书”的理解。",
     "answer": "可从历史认识、现实启示和青年责任三个层面展开：历史记录民族兴衰和社会变革，能够帮助我们理解近代中国从沉沦到奋起的逻辑；学习历史可以总结经验教训，认识中国共产党领导和中国特色社会主义道路形成的历史必然性；面向现实，应以史为鉴，增强历史主动精神，把个人发展同国家民族前途联系起来。",
@@ -6872,7 +6872,7 @@ function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function stemOf(q){ return q.stem || q.title || ""; }
 function chapters(){
-  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "最新模拟卷", "截图详解"];
+  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "截图详解"];
   const seen = new Set(QUESTIONS.map(q => q.chapter || "未分章"));
   return [...preferred.filter(x => seen.has(x)), ...[...seen].filter(x => !preferred.includes(x))];
 }
@@ -7051,6 +7051,13 @@ function practiceQuestionType(q){
   if(q.type === "comprehensive") return "comprehensive";
   return "other";
 }
+window.studyHubPracticeStats=()=>{
+  const done=Object.keys(state.answers||{}).length;
+  const wrong=Object.keys(state.wrong||{}).length;
+  const chapters=new Set(QUESTIONS.map(q=>q.chapter||"未分类")).size;
+  const types=new Set(QUESTIONS.map(q=>practiceQuestionType(q))).size;
+  return {total:QUESTIONS.length,done,wrong,extraLabel:"分类/题型",extraValue:`${chapters}/${types}`};
+};
 window.studyHubPracticeNav=()=>{
   const list=activeList();
   if(!list.length)return null;

@@ -5014,7 +5014,7 @@ function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function stemOf(q){ return q.stem || q.title || ""; }
 function chapters(){
-  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "最新模拟卷", "截图详解"];
+  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "截图详解"];
   const seen = new Set(QUESTIONS.map(q => q.chapter || "未分章"));
   return [...preferred.filter(x => seen.has(x)), ...[...seen].filter(x => !preferred.includes(x))];
 }
@@ -5193,6 +5193,13 @@ function practiceQuestionType(q){
   if(q.type === "comprehensive") return "comprehensive";
   return "other";
 }
+window.studyHubPracticeStats=()=>{
+  const done=Object.keys(state.answers||{}).length;
+  const wrong=Object.keys(state.wrong||{}).length;
+  const chapters=new Set(QUESTIONS.map(q=>q.chapter||"未分类")).size;
+  const types=new Set(QUESTIONS.map(q=>practiceQuestionType(q))).size;
+  return {total:QUESTIONS.length,done,wrong,extraLabel:"分类/题型",extraValue:`${chapters}/${types}`};
+};
 window.studyHubPracticeNav=()=>{
   const list=activeList();
   if(!list.length)return null;

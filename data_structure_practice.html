@@ -184,6 +184,14 @@ function updateStats(){
  let attempts=0, correct=0; for(const [id,val] of Object.entries(state.answers||{})){const q=QUESTIONS.find(x=>x.id===id); if(!q||q.type==='short') continue; const ok=isCorrect(q,val); if(ok!==null){attempts++; if(ok) correct++;}}
  accRate.textContent=attempts?Math.round(correct*100/attempts)+'%':'0%';
 }
+window.studyHubPracticeStats=()=>{
+ const answered=Object.keys(state.answers||{}).length;
+ let attempts=0, correct=0;
+ for(const [id,val] of Object.entries(state.answers||{})){const q=QUESTIONS.find(x=>x.id===id); if(!q||q.type==='short') continue; const ok=isCorrect(q,val); if(ok!==null){attempts++; if(ok) correct++;}}
+ const chapters=new Set(QUESTIONS.map(q=>q.chapter||'未分类')).size;
+ const types=new Set(QUESTIONS.map(q=>q.type||'other')).size;
+ return {total:QUESTIONS.length,done:answered,wrong:state.wrong.length,accuracy:attempts?Math.round(correct*100/attempts)+'%':'0%',extraLabel:'章节/题型',extraValue:`${chapters}/${types}`};
+};
 initFilters();
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); mode=b.dataset.mode; render();});
 [chapterFilter,typeFilter,sourceFilter,searchBox].forEach(el=>el.addEventListener('input',()=>{shuffled=false; render();}));

@@ -262,6 +262,15 @@ function practiceQuestionType(q) {
   if (isSubjective(q)) return 'short';
   return 'choice';
 }
+window.studyHubPracticeStats = () => {
+  const progress = state.progress || {};
+  const records = Object.values(progress);
+  const done = records.filter((rec) => rec.studyRevealed || rec.lastCorrect !== undefined || rec.examSelected !== undefined).length;
+  const wrong = records.filter((rec) => rec.lastCorrect === false).length;
+  const docs = new Set(QUESTIONS.map((q) => q.doc ?? q.source ?? "default")).size;
+  const types = new Set(QUESTIONS.map((q) => practiceQuestionType(q))).size;
+  return { total: QUESTIONS.length, done, wrong, extraLabel: "题库/题型", extraValue: `${docs}/${types}` };
+};
 window.studyHubPracticeNav = () => {
   const activeMode = document.querySelector('.tab.active')?.dataset.mode;
   if (activeMode !== 'study' || !studyList.length) return null;
