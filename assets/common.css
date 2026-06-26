@@ -453,3 +453,451 @@ code {
     padding: 26px 0 22px;
   }
 }
+
+/* Unified practice pages: compact Xuexitong-like answer surface. */
+body.practice-page {
+  --practice-bg: #f3f5f9;
+  --practice-card: #ffffff;
+  --practice-line: #e3eaf4;
+  --practice-line-strong: #cfd8e6;
+  --practice-text: #0f172a;
+  --practice-muted: #8a96aa;
+  --practice-blue: #2563eb;
+  --practice-blue-soft: #eff6ff;
+  --practice-good: #16a34a;
+  --practice-bad: #dc2626;
+  min-height: 100vh;
+  background: var(--practice-bg) !important;
+  color: var(--practice-text) !important;
+}
+
+body.practice-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  height: 4px;
+  background: #253246;
+}
+
+body.practice-page .study-hub-nav {
+  top: 4px;
+  background: rgba(255, 255, 255, .98);
+  box-shadow: none;
+}
+
+body.practice-page .study-hub-nav-inner {
+  width: min(1180px, calc(100% - 40px));
+  min-height: 50px;
+}
+
+body.practice-page .study-hub-links a,
+body.practice-page .study-hub-sync {
+  min-height: 30px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 13px;
+}
+
+@media (min-width: 1100px) {
+  body.practice-page > main,
+  body.practice-page .app,
+  body.practice-page .wrap {
+    width: min(880px, calc(100vw - 390px)) !important;
+    max-width: min(880px, calc(100vw - 390px)) !important;
+    margin-left: max(20px, calc((100vw - 1180px) / 2)) !important;
+    margin-right: 0 !important;
+    padding: 24px 0 64px !important;
+  }
+
+  body.practice-page > main,
+  body.practice-page .wrap {
+    display: block !important;
+  }
+}
+
+body.practice-page .panel > .grid {
+  display: block !important;
+}
+
+body.practice-page .panel > .grid > .side {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+  gap: 10px 12px !important;
+  align-items: end;
+}
+
+body.practice-page .panel > .grid > .side .modeTitle,
+body.practice-page .panel > .grid > .side .progress,
+body.practice-page .panel > .grid > .side .small,
+body.practice-page .panel > .grid > .side > .note {
+  grid-column: 1 / -1;
+}
+
+body.practice-page .practice-field label {
+  margin-bottom: 5px !important;
+}
+
+body.practice-page .panel > .grid > main {
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.practice-page header,
+body.practice-page .card,
+body.practice-page .toolbar,
+body.practice-page .sidebar,
+body.practice-page .top,
+body.practice-page .side,
+body.practice-page details {
+  border-color: var(--practice-line) !important;
+  border-radius: 8px !important;
+  background: var(--practice-card) !important;
+  color: var(--practice-text) !important;
+  box-shadow: none !important;
+}
+
+body.practice-page header {
+  position: static !important;
+  margin: 0 !important;
+}
+
+body.practice-page .header-inner {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
+  padding: 18px 0 !important;
+}
+
+body.practice-page h1 {
+  font-size: 20px !important;
+  line-height: 1.35 !important;
+  color: var(--practice-text) !important;
+}
+
+body.practice-page .meta,
+body.practice-page .sub,
+body.practice-page .muted,
+body.practice-page .small {
+  color: var(--practice-muted) !important;
+}
+
+body.practice-page .sidebar {
+  position: static !important;
+  margin: 0 0 14px !important;
+  padding: 14px !important;
+}
+
+body.practice-page .side {
+  position: static !important;
+  margin: 0 0 14px !important;
+  padding: 14px !important;
+}
+
+body.practice-page .controls {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 10px !important;
+}
+
+body.practice-page .stat {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+body.practice-page .stat div {
+  border-color: var(--practice-line) !important;
+  border-radius: 8px !important;
+  background: #fbfcff !important;
+}
+
+body.practice-page .toolbar {
+  margin: 14px 0 !important;
+  padding: 14px 16px !important;
+}
+
+body.practice-page .row,
+body.practice-page .footer-actions {
+  gap: 10px !important;
+}
+
+body.practice-page button,
+body.practice-page select,
+body.practice-page input,
+body.practice-page textarea {
+  border: 1px solid var(--practice-line-strong) !important;
+  border-radius: 7px !important;
+  background: #ffffff !important;
+  color: var(--practice-text) !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+}
+
+body.practice-page button,
+body.practice-page button.primary,
+body.practice-page .tabs button.active,
+body.practice-page .tab.active {
+  border-color: var(--practice-blue) !important;
+  background: var(--practice-blue) !important;
+  color: #ffffff !important;
+}
+
+body.practice-page button.secondary,
+body.practice-page button.ghost,
+body.practice-page .secondary,
+body.practice-page .ghost,
+body.practice-page .tabs button,
+body.practice-page .tab {
+  border-color: var(--practice-line-strong) !important;
+  background: #ffffff !important;
+  color: var(--practice-text) !important;
+}
+
+body.practice-page button.warn,
+body.practice-page button.danger {
+  border-color: #b45309 !important;
+  background: #b45309 !important;
+  color: #ffffff !important;
+}
+
+body.practice-page .tabs {
+  gap: 8px !important;
+  margin: 16px 0 14px !important;
+}
+
+body.practice-page .tabs button,
+body.practice-page .tab {
+  min-height: 38px;
+  padding: 8px 13px !important;
+  border-radius: 7px !important;
+}
+
+body.practice-page .card {
+  margin: 14px 0 !important;
+  padding: 22px 24px !important;
+}
+
+body.practice-page .q-card,
+body.practice-page #questionPanel > .card,
+body.practice-page .mode-section > .card {
+  padding: 24px 28px !important;
+}
+
+body.practice-page .question-title h2,
+body.practice-page .q-title,
+body.practice-page .stem,
+body.practice-page h2 {
+  color: var(--practice-text) !important;
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+  font-weight: 650 !important;
+}
+
+body.practice-page .qno {
+  color: var(--practice-blue) !important;
+}
+
+body.practice-page .pill,
+body.practice-page .badge,
+body.practice-page .stat {
+  border-radius: 7px !important;
+}
+
+body.practice-page .options {
+  gap: 10px !important;
+  margin: 18px 0 !important;
+}
+
+body.practice-page .option {
+  position: relative;
+  width: 100% !important;
+  min-height: 48px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin: 10px 0 !important;
+  padding: 10px 14px !important;
+  border: 1px solid var(--practice-line) !important;
+  border-radius: 7px !important;
+  background: #fbfdff !important;
+  color: var(--practice-text) !important;
+  line-height: 1.65 !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+body.practice-page .option input[type="radio"],
+body.practice-page .option input[type="checkbox"] {
+  position: absolute;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.practice-page .option .letter,
+body.practice-page .option .label,
+body.practice-page .option > b:first-child {
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  border: 1px solid var(--practice-line-strong) !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  color: var(--practice-blue) !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+}
+
+body.practice-page .option:has(input:checked) {
+  border-color: rgba(37, 99, 235, .55) !important;
+  background: var(--practice-blue-soft) !important;
+}
+
+body.practice-page .option.correct {
+  border-color: rgba(22, 163, 74, .45) !important;
+  background: #f0fdf4 !important;
+}
+
+body.practice-page .option.correct .letter,
+body.practice-page .option.correct .label,
+body.practice-page .option.correct > b:first-child {
+  border-color: var(--practice-good) !important;
+  background: var(--practice-good) !important;
+  color: #ffffff !important;
+}
+
+body.practice-page .option.wrong {
+  border-color: rgba(220, 38, 38, .42) !important;
+  background: #fff1f2 !important;
+}
+
+body.practice-page .option.wrong .letter,
+body.practice-page .option.wrong .label,
+body.practice-page .option.wrong > b:first-child {
+  border-color: var(--practice-bad) !important;
+  background: var(--practice-bad) !important;
+  color: #ffffff !important;
+}
+
+body.practice-page .progress {
+  height: 8px !important;
+  border: 0 !important;
+  background: #e9eef6 !important;
+}
+
+body.practice-page .progress > div {
+  background: var(--practice-blue) !important;
+}
+
+body.practice-page .explain,
+body.practice-page .analysis {
+  border: 1px solid var(--practice-line) !important;
+  border-left: 4px solid var(--practice-blue) !important;
+  border-radius: 7px !important;
+  background: #fbfdff !important;
+}
+
+.practice-question-nav {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .practice-question-nav {
+    position: fixed;
+    top: 152px;
+    right: max(20px, calc((100vw - 1180px) / 2));
+    z-index: 900;
+    width: 262px;
+    max-height: calc(100vh - 176px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    overflow: hidden;
+    border: 1px solid var(--practice-line);
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: none;
+  }
+
+  .practice-question-nav h2 {
+    margin: 0;
+    color: var(--practice-text);
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+  }
+
+  .practice-question-nav .practice-nav-meta {
+    color: var(--practice-muted);
+    font-size: 12px;
+  }
+
+  .practice-question-nav .practice-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    overflow-y: auto;
+    padding-right: 2px;
+  }
+
+  .practice-question-nav .practice-nav-btn {
+    min-width: 0;
+    min-height: 34px;
+    padding: 0 !important;
+    border: 1px solid #3b82f6 !important;
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    color: #2563eb !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+  }
+
+  .practice-question-nav .practice-nav-btn.active {
+    background: #2563eb !important;
+    color: #ffffff !important;
+  }
+}
+
+@media (max-width: 1099px) {
+  body.practice-page > main,
+  body.practice-page .app,
+  body.practice-page .wrap,
+  body.practice-page .header-inner,
+  body.practice-page .study-hub-nav-inner {
+    width: min(100% - 28px, 900px) !important;
+    max-width: min(100% - 28px, 900px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 680px) {
+  body.practice-page .card,
+  body.practice-page .q-card,
+  body.practice-page #questionPanel > .card,
+  body.practice-page .mode-section > .card {
+    padding: 16px !important;
+  }
+
+  body.practice-page .stat {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.practice-page .study-hub-links {
+    overflow-x: auto;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-bottom: 2px;
+  }
+}
