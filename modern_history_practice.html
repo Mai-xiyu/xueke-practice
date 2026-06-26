@@ -17,7 +17,7 @@
     .option.correct{border-color:#22c55e;background:#f0fdf4}
     .option.wrong{border-color:#ef4444;background:#fef2f2}
     textarea{box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:12px;font:inherit;line-height:1.65;color:#0f172a}
-    .muted{color:#64748b}.hidden{display:none}.analysis{margin-top:12px;padding:12px;background:#f8fafc;border-left:4px solid #2563eb;line-height:1.65}
+    .muted{color:#64748b}.hidden{display:none}.answer-code{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:8px;padding:12px;line-height:1.55;overflow:auto}.analysis{margin-top:12px;padding:12px;background:#f8fafc;border-left:4px solid #2563eb;line-height:1.65}
   </style>
 </head>
 <body data-practice-shell="modern-history">
@@ -25,7 +25,7 @@
 <main class="app">
   <header class="card">
     <h1>中国近代史 练习系统</h1>
-    <p class="muted">截图题库 + 学习通章节测验，包含单选、多选、判断和主观题；部分章节测验答案待补充。</p>
+    <p class="muted">截图题库、学习通章节测验与模拟试卷题源；模拟考试按 30 单选、15 多选、10 判断组卷，重复题干只保留一份。</p>
   </header>
 
   <section class="toolbar">
@@ -35,6 +35,9 @@
       <input id="searchBox" placeholder="搜索题干/解析">
       <button id="shuffleBtn">随机一题</button>
       <button id="resetBtn">重置本题</button>
+      <button id="examBtn" class="primary">模拟考试</button>
+      <button id="exitExamBtn" class="hidden">退出模拟</button>
+      <span id="examInfo" class="muted"></span>
     </div>
   </section>
 
@@ -59,7 +62,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 1
   },
   {
     "id": "mh-single-002",
@@ -76,7 +83,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 2
   },
   {
     "id": "mh-single-003",
@@ -93,7 +104,11 @@ const QUESTIONS = [
     "correct": [
       "C"
     ],
-    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 3
   },
   {
     "id": "mh-single-004",
@@ -110,7 +125,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 4
   },
   {
     "id": "mh-single-005",
@@ -127,7 +146,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 5
   },
   {
     "id": "mh-single-006",
@@ -161,7 +184,11 @@ const QUESTIONS = [
     "correct": [
       "C"
     ],
-    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 7
   },
   {
     "id": "mh-single-008",
@@ -178,7 +205,11 @@ const QUESTIONS = [
     "correct": [
       "B"
     ],
-    "analysis": "参考答案：B。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：B。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 8
   },
   {
     "id": "mh-single-009",
@@ -195,7 +226,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 9
   },
   {
     "id": "mh-single-010",
@@ -212,7 +247,11 @@ const QUESTIONS = [
     "correct": [
       "C"
     ],
-    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 10
   },
   {
     "id": "mh-single-011",
@@ -229,7 +268,11 @@ const QUESTIONS = [
     "correct": [
       "B"
     ],
-    "analysis": "参考答案：B。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：B。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 11
   },
   {
     "id": "mh-single-012",
@@ -246,7 +289,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 12
   },
   {
     "id": "mh-single-013",
@@ -263,7 +310,11 @@ const QUESTIONS = [
     "correct": [
       "C"
     ],
-    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 13
   },
   {
     "id": "mh-single-014",
@@ -280,7 +331,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 14
   },
   {
     "id": "mh-single-015",
@@ -297,7 +352,11 @@ const QUESTIONS = [
     "correct": [
       "B"
     ],
-    "analysis": "参考答案：B。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：B。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 15
   },
   {
     "id": "mh-single-016",
@@ -314,7 +373,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 16
   },
   {
     "id": "mh-single-017",
@@ -331,7 +394,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 17
   },
   {
     "id": "mh-single-018",
@@ -348,7 +415,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 18
   },
   {
     "id": "mh-single-019",
@@ -365,7 +436,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 19
   },
   {
     "id": "mh-single-020",
@@ -382,7 +457,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 20
   },
   {
     "id": "mh-single-021",
@@ -399,7 +478,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 21
   },
   {
     "id": "mh-single-022",
@@ -416,7 +499,11 @@ const QUESTIONS = [
     "correct": [
       "C"
     ],
-    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 22
   },
   {
     "id": "mh-single-023",
@@ -433,7 +520,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 23
   },
   {
     "id": "mh-single-024",
@@ -450,7 +541,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 24
   },
   {
     "id": "mh-single-025",
@@ -467,7 +562,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 25
   },
   {
     "id": "mh-single-026",
@@ -484,7 +583,11 @@ const QUESTIONS = [
     "correct": [
       "D"
     ],
-    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：D。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 26
   },
   {
     "id": "mh-single-027",
@@ -501,7 +604,11 @@ const QUESTIONS = [
     "correct": [
       "C"
     ],
-    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 27
   },
   {
     "id": "mh-single-028",
@@ -518,7 +625,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 28
   },
   {
     "id": "mh-single-029",
@@ -535,7 +646,11 @@ const QUESTIONS = [
     "correct": [
       "C"
     ],
-    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：C。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 29
   },
   {
     "id": "mh-single-030",
@@ -552,7 +667,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：A。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 30
   },
   {
     "id": "mh-multi-001",
@@ -570,7 +689,11 @@ const QUESTIONS = [
       "A",
       "D"
     ],
-    "analysis": "参考答案：AD。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：AD。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 31
   },
   {
     "id": "mh-multi-002",
@@ -589,7 +712,11 @@ const QUESTIONS = [
       "C",
       "D"
     ],
-    "analysis": "参考答案：ACD。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：ACD。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 32
   },
   {
     "id": "mh-multi-003",
@@ -628,7 +755,11 @@ const QUESTIONS = [
       "C",
       "D"
     ],
-    "analysis": "参考答案：ABCD。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：ABCD。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 34
   },
   {
     "id": "mh-multi-005",
@@ -647,7 +778,11 @@ const QUESTIONS = [
       "B",
       "C"
     ],
-    "analysis": "参考答案：ABC。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：ABC。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 35
   },
   {
     "id": "mh-multi-006",
@@ -667,7 +802,11 @@ const QUESTIONS = [
       "C",
       "D"
     ],
-    "analysis": "参考答案：ABCD。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：ABCD。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 36
   },
   {
     "id": "mh-multi-007",
@@ -686,7 +825,11 @@ const QUESTIONS = [
       "C",
       "D"
     ],
-    "analysis": "参考答案：ACD。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：ACD。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 37
   },
   {
     "id": "mh-multi-008",
@@ -705,7 +848,11 @@ const QUESTIONS = [
       "C",
       "D"
     ],
-    "analysis": "参考答案：BCD。题目来自近代史截图 OCR 后人工校正。"
+    "analysis": "参考答案：BCD。题目来自近代史截图 OCR 后人工校正。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 38
   },
   {
     "id": "mh-judge-001",
@@ -720,7 +867,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：对。"
+    "analysis": "参考答案：对。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 46
   },
   {
     "id": "mh-judge-002",
@@ -735,7 +886,11 @@ const QUESTIONS = [
     "correct": [
       "B"
     ],
-    "analysis": "参考答案：错。"
+    "analysis": "参考答案：错。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 47
   },
   {
     "id": "mh-judge-003",
@@ -750,7 +905,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：对。"
+    "analysis": "参考答案：对。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 48
   },
   {
     "id": "mh-judge-004",
@@ -765,7 +924,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：对。"
+    "analysis": "参考答案：对。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 49
   },
   {
     "id": "mh-judge-005",
@@ -780,7 +943,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：对。"
+    "analysis": "参考答案：对。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 50
   },
   {
     "id": "mh-judge-006",
@@ -795,7 +962,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：对。"
+    "analysis": "参考答案：对。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 51
   },
   {
     "id": "mh-judge-007",
@@ -810,7 +981,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：对。"
+    "analysis": "参考答案：对。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 52
   },
   {
     "id": "mh-judge-009",
@@ -825,7 +1000,11 @@ const QUESTIONS = [
     "correct": [
       "A"
     ],
-    "analysis": "参考答案：对。"
+    "analysis": "参考答案：对。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 54
   },
   {
     "id": "mh-judge-010",
@@ -840,7 +1019,11 @@ const QUESTIONS = [
     "correct": [
       "B"
     ],
-    "analysis": "参考答案：错。"
+    "analysis": "参考答案：错。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 55
   },
   {
     "id": "mh-short-001",
@@ -937,7 +1120,11 @@ const QUESTIONS = [
     },
     "correct": [],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
-    "originId": "214729012"
+    "originId": "214729012",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 43
   },
   {
     "id": "mh-chaoxing-006",
@@ -2295,7 +2482,11 @@ const QUESTIONS = [
     },
     "correct": [],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
-    "originId": "214729209"
+    "originId": "214729209",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 44
   },
   {
     "id": "mh-chaoxing-104",
@@ -3043,7 +3234,11 @@ const QUESTIONS = [
     },
     "correct": [],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
-    "originId": "214729215"
+    "originId": "214729215",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 40
   },
   {
     "id": "mh-chaoxing-155",
@@ -3861,7 +4056,11 @@ const QUESTIONS = [
     },
     "correct": [],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
-    "originId": "214729465"
+    "originId": "214729465",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 41
   },
   {
     "id": "mh-chaoxing-212",
@@ -4186,32 +4385,246 @@ const QUESTIONS = [
     "correct": [],
     "analysis": "来源：学习通中国近现代史纲要章节测验；原页面未公开标准答案，待人工补充。",
     "originId": "214353219"
+  },
+  {
+    "id": "mh-mock-docx-006",
+    "source": "中国近代史模拟试卷.docx",
+    "chapter": "模拟试卷",
+    "type": "single",
+    "stem": "中国人民革命斗争进入新民主主义革命时期，（ ）成为民主革命的领导力量。",
+    "options": {
+      "A": "中国农民阶级及其领导人",
+      "B": "封建地主阶级及其武装力量",
+      "C": "民族资产阶级及其政党",
+      "D": "工人阶级"
+    },
+    "correct": [],
+    "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 6
+  },
+  {
+    "id": "mh-mock-docx-033",
+    "source": "中国近代史模拟试卷.docx",
+    "chapter": "模拟试卷",
+    "type": "multiple",
+    "stem": "抗日战争相持阶段到来以后，由于以蒋介石为代表的国民党亲英美派开始推行消极抗日、积极反共的政策，团结抗战的局面逐步发生严重危机，出现了中途妥协和内部分裂两大危险。针对这种情况，为了坚决揭露打击汪精卫集团的叛国投降活动，继续争取同蒋介石集团合作抗日，1939年7月，中国共产党明确提出的口号有（ ）。",
+    "options": {
+      "A": "\"坚持抗战到底，反对中途妥协\"",
+      "B": "\"巩固国内团结，反对内部分裂\"",
+      "C": "\"坚持反蒋抗日，对日速胜速决\"",
+      "D": "\"力求全国进步，反对向后倒退\""
+    },
+    "correct": [],
+    "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 33
+  },
+  {
+    "id": "mh-mock-docx-039",
+    "source": "中国近代史模拟试卷.docx",
+    "chapter": "模拟试卷",
+    "type": "multiple",
+    "stem": "五四运动孕育了以（ ）为主要内容的伟大五四精神。",
+    "options": {
+      "A": "爱国",
+      "B": "进步",
+      "C": "民主",
+      "D": "科学"
+    },
+    "correct": [],
+    "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 39
+  },
+  {
+    "id": "mh-mock-docx-042",
+    "source": "中国近代史模拟试卷.docx",
+    "chapter": "模拟试卷",
+    "type": "multiple",
+    "stem": "中国共产党在抗日民族统一战线中坚持的策略总方针是（ ）。",
+    "options": {
+      "A": "发展进步势力",
+      "B": "争取中间势力",
+      "C": "消灭顽固势力",
+      "D": "孤立顽固势力"
+    },
+    "correct": [],
+    "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 42
+  },
+  {
+    "id": "mh-mock-docx-045",
+    "source": "中国近代史模拟试卷.docx",
+    "chapter": "模拟试卷",
+    "type": "multiple",
+    "stem": "国民党政府维护的是（ ）的利益。",
+    "options": {
+      "A": "帝国主义",
+      "B": "封建主义",
+      "C": "官僚资本主义",
+      "D": "民族资本主义"
+    },
+    "correct": [],
+    "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 45
+  },
+  {
+    "id": "mh-mock-docx-053",
+    "source": "中国近代史模拟试卷.docx",
+    "chapter": "模拟试卷",
+    "type": "judge",
+    "stem": "国民党之所以迅速失去民心，主要是由于它违背全国人民迫切要求休养生息、和平建国的意愿，执行反人民的内战政策。（ ）",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [],
+    "analysis": "来源：中国近代史模拟试卷.docx；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-mock"
+    ],
+    "mockOrder": 53
+  },
+  {
+    "id": "mh-book118-001",
+    "source": "Book118公开摘要",
+    "chapter": "Book118模拟卷",
+    "type": "single",
+    "stem": "1946年，中共中央决定将减租减息政策改变为实现“耕者有其田”政策的重要文件是（ ）",
+    "options": {
+      "A": "《兴国土地法》",
+      "B": "《中国土地法大纲》",
+      "C": "《在晋绥干部会议上的讲话》",
+      "D": "《关于清算减租及土地问题的指示》"
+    },
+    "correct": [],
+    "analysis": "来源：https://max.book118.com/html/2024/0104/8072025041006023.shtm 公开 HTML 摘要；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-book118"
+    ]
+  },
+  {
+    "id": "mh-book118-002",
+    "source": "Book118公开摘要",
+    "chapter": "Book118模拟卷",
+    "type": "single",
+    "stem": "洋务运动其间,建成的海军有福建水师.广东水师.南洋水师.北洋水师，其中（ ）是清政府的海军主力。",
+    "options": {
+      "A": "福建水师",
+      "B": "南洋水师.",
+      "C": "广东水师",
+      "D": "北洋水师"
+    },
+    "correct": [],
+    "analysis": "来源：https://max.book118.com/html/2024/0104/8072025041006023.shtm 公开 HTML 摘要；标准答案待人工补充。",
+    "examTags": [
+      "modern-history-book118"
+    ]
   }
 ];
 
-const TYPE_NAME = { single: "单选题", multiple: "多选题", fill: "填空题", judge: "判断题", short: "简答题", code: "代码题" };
+
+const TYPE_NAME = {"single": "单选题", "multiple": "多选题", "fill": "填空题", "judge": "判断题", "short": "简答题", "code": "代码题", "comprehensive": "综合应用题"};
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"answers":{},"wrong":{}}');
 let current = 0;
+let examMode = false;
+let examQuestions = [];
 
 function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function stemOf(q){ return q.stem || q.title || ""; }
 function chapters(){ return [...new Set(QUESTIONS.map(q => q.chapter || "未分章"))]; }
+function optionEntries(q){
+  if (Array.isArray(q.options)) return q.options.map(o => [o.label, o.text]);
+  return Object.entries(q.options || {});
+}
 function filtered(){
   const ch = chapterFilter.value;
   const ty = typeFilter.value;
   const kw = searchBox.value.trim().toLowerCase();
   return QUESTIONS.filter(q => (!ch || q.chapter === ch) && (!ty || q.type === ty) && (!kw || JSON.stringify(q).toLowerCase().includes(kw)));
 }
+function activeList(){ return examMode ? examQuestions : filtered(); }
 function answerText(q){
-  if (q.type === "fill") return (q.answers || []).join(" / ");
-  if (q.type === "short" || q.type === "code") return q.answer || "";
-  return (q.correct || []).join("");
+  if (q.type === "fill") return (q.answers || (Array.isArray(q.answer) ? q.answer : [q.answer]).filter(Boolean)).join(" / ");
+  if (q.type === "short" || q.type === "code" || q.type === "comprehensive") return q.answer || "";
+  const opts = q.options || {};
+  return (q.correct || []).map(k => opts[k] ? `${k}. ${opts[k]}` : k).join(" / ");
 }
-function hasKnownAnswer(q){
-  return Boolean(answerText(q));
+function hasKnownAnswer(q){ return Boolean(answerText(q)); }
+function shuffleCopy(arr){
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+function pick(pool, count){ return shuffleCopy(pool).slice(0, count); }
+function buildModernExam(){
+  const tagged = QUESTIONS.filter(q => (q.examTags || []).includes("modern-history-mock"));
+  if (tagged.length >= 50) return tagged.slice().sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
+  return [
+    ...pick(QUESTIONS.filter(q => q.type === "single"), 30),
+    ...pick(QUESTIONS.filter(q => q.type === "multiple"), 15),
+    ...pick(QUESTIONS.filter(q => q.type === "judge"), 10)
+  ];
+}
+function buildLinuxExam(){
+  const singles = QUESTIONS.filter(q => q.type === "single");
+  const fills = QUESTIONS.filter(q => q.type === "fill");
+  const judges = QUESTIONS.filter(q => q.type === "judge");
+  const triangles = QUESTIONS.filter(q => q.examPool === "linux-triangle");
+  const shortOther = QUESTIONS.filter(q => q.type === "short" && q.examPool !== "linux-triangle");
+  const comprehensive = QUESTIONS.filter(q => q.type === "comprehensive");
+  return [
+    ...pick(singles, 25),
+    ...pick(fills, 5),
+    ...pick(judges, 10),
+    ...pick(triangles, 1),
+    ...pick(shortOther, 1),
+    ...pick(comprehensive, 2)
+  ];
+}
+function startExam(){
+  examQuestions = buildModernExam();
+  examMode = true;
+  current = 0;
+  chapterFilter.disabled = true;
+  typeFilter.disabled = true;
+  searchBox.disabled = true;
+  examBtn.classList.add("hidden");
+  exitExamBtn.classList.remove("hidden");
+  examInfo.textContent = `模拟考试：${examQuestions.length} 题`;
+  render();
+}
+function exitExam(){
+  examMode = false;
+  examQuestions = [];
+  current = 0;
+  chapterFilter.disabled = false;
+  typeFilter.disabled = false;
+  searchBox.disabled = false;
+  examBtn.classList.remove("hidden");
+  exitExamBtn.classList.add("hidden");
+  examInfo.textContent = "";
+  render();
 }
 function render(){
-  const list = filtered();
+  const list = activeList();
   if (!list.length) {
     questionPanel.innerHTML = '<div class="card">没有匹配题目。</div>';
     return;
@@ -4221,60 +4634,64 @@ function render(){
   const saved = state.answers[q.id];
   let body = "";
   if (q.type === "single" || q.type === "judge") {
-    body = Object.entries(q.options || {}).map(([k,v]) => `<button class="option" data-answer="${esc(k)}"><b>${esc(k)}.</b> ${esc(v)}</button>`).join("");
+    body = optionEntries(q).map(([k,v]) => `<button class="option" data-answer="${esc(k)}"><b>${esc(k)}.</b> ${esc(v)}</button>`).join("");
   } else if (q.type === "multiple") {
-    body = Object.entries(q.options || {}).map(([k,v]) => `<label class="option" data-answer="${esc(k)}"><input type="checkbox" value="${esc(k)}"> <b>${esc(k)}.</b> ${esc(v)}</label>`).join("");
+    const savedSet = new Set(Array.isArray(saved) ? saved : []);
+    body = optionEntries(q).map(([k,v]) => `<label class="option" data-option="${esc(k)}"><input type="checkbox" value="${esc(k)}" ${savedSet.has(k) ? "checked" : ""}> <b>${esc(k)}.</b> ${esc(v)}</label>`).join("");
   } else {
-    body = `<textarea id="textAnswer" style="width:100%;min-height:130px">${esc(saved || "")}</textarea>`;
+    body = `<textarea id="textAnswer" style="width:100%;min-height:150px">${esc(saved || "")}</textarea>`;
   }
   questionPanel.innerHTML = `<article class="card">
-    <p class="muted">${current + 1}/${list.length} · ${esc(q.source)} · ${esc(q.chapter)} · ${esc(TYPE_NAME[q.type] || q.type)}</p>
-    <h2>${esc(q.stem)}</h2>
+    <p class="muted">${examMode ? "模拟考试" : "学习模式"} · ${current + 1}/${list.length} · ${esc(q.source)} · ${esc(q.chapter)} · ${esc(TYPE_NAME[q.type] || q.type)}</p>
+    <h2>${esc(stemOf(q))}</h2>
     ${body}
     <div class="row"><button class="primary" id="showBtn">提交/查看解析</button><button id="prevBtn">上一题</button><button id="nextBtn">下一题</button></div>
     <div id="analysis" class="analysis hidden"></div>
   </article>`;
-  questionPanel.querySelectorAll("[data-answer]").forEach(btn => btn.onclick = () => choose(q, btn.dataset.answer));
+  if (q.type === "single" || q.type === "judge") {
+    questionPanel.querySelectorAll("[data-answer]").forEach(btn => btn.onclick = () => choose(q, btn.dataset.answer));
+  }
   showBtn.onclick = () => submit(q);
   prevBtn.onclick = () => { current -= 1; render(); };
   nextBtn.onclick = () => { current += 1; render(); };
 }
 function choose(q, value){
   state.answers[q.id] = value;
-  if ((q.correct || []).length) {
-    const ok = (q.correct || []).includes(value);
+  const correct = q.correct || [];
+  if (correct.length) {
+    const ok = correct.includes(value);
     if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = value;
   } else {
     delete state.wrong[q.id];
   }
   save();
-  show(q, value);
+  show(q);
 }
 function submit(q){
   if (q.type === "multiple") {
     const selected = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(x => x.value).sort();
     state.answers[q.id] = selected;
     const correct = [...(q.correct || [])].sort();
-    const ok = selected.length === correct.length && selected.every((x, i) => x === correct[i]);
     if (correct.length) {
+      const ok = selected.length === correct.length && selected.every((x, i) => x === correct[i]);
       if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = selected;
     }
     save();
-    show(q, selected);
+    show(q);
     return;
   }
   const text = document.getElementById("textAnswer");
   if (text) { state.answers[q.id] = text.value; save(); }
-  show(q, null);
+  show(q);
 }
-function show(q, value){
+function show(q){
   const box = document.getElementById("analysis");
   const known = hasKnownAnswer(q);
   box.classList.remove("hidden");
-  box.innerHTML = `<b>参考答案：${known ? esc(answerText(q)) : "待补充"}</b><p>${esc(q.analysis || "")}</p>`;
+  box.innerHTML = `<b>参考答案：</b><pre class="answer-code">${known ? esc(answerText(q)) : "待补充"}</pre><p>${esc(q.analysis || "")}</p>`;
   document.querySelectorAll(".option").forEach(el => {
     if (!known) return;
-    const value = el.dataset.answer;
+    const value = el.dataset.answer || el.dataset.option;
     if ((q.correct || []).includes(value)) el.classList.add("correct");
     else el.classList.add("wrong");
   });
@@ -4283,8 +4700,10 @@ function init(){
   chapterFilter.innerHTML = '<option value="">全部章节</option>' + chapters().map(x => `<option>${esc(x)}</option>`).join("");
   typeFilter.innerHTML = '<option value="">全部题型</option>' + Object.entries(TYPE_NAME).map(([k,v]) => `<option value="${k}">${v}</option>`).join("");
   [chapterFilter,typeFilter,searchBox].forEach(el => el.addEventListener("input", () => { current = 0; render(); }));
-  shuffleBtn.onclick = () => { const list = filtered(); current = Math.floor(Math.random() * list.length); render(); };
-  resetBtn.onclick = () => { const q = filtered()[current]; if (q) delete state.answers[q.id]; save(); render(); };
+  shuffleBtn.onclick = () => { const list = activeList(); current = Math.floor(Math.random() * list.length); render(); };
+  resetBtn.onclick = () => { const q = activeList()[current]; if (q) delete state.answers[q.id]; save(); render(); };
+  examBtn.onclick = startExam;
+  exitExamBtn.onclick = exitExam;
   render();
 }
 function practiceQuestionType(q){
@@ -4293,12 +4712,13 @@ function practiceQuestionType(q){
   if(q.type === "short") return "short";
   if(q.type === "fill") return "fill";
   if(q.type === "code") return "code";
+  if(q.type === "comprehensive") return "comprehensive";
   return "other";
 }
 window.studyHubPracticeNav=()=>{
-  const list=filtered();
+  const list=activeList();
   if(!list.length)return null;
-  return {mode:'study',title:'答题卡',current:current+1,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:Boolean(state.wrong[q.id])})),jump(index){current=Math.max(0,Math.min(index-1,list.length-1));render();window.scrollTo(0,0);}};
+  return {mode:'study',title:examMode?'模拟答题卡':'答题卡',current:current+1,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:Boolean(state.wrong[q.id])})),jump(index){current=Math.max(0,Math.min(index-1,list.length-1));render();window.scrollTo(0,0);}};
 };
 init();
 </script>

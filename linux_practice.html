@@ -16,7 +16,7 @@
     .option{display:block;width:100%;text-align:left;margin:8px 0;padding:12px;border:1px solid #d9e2ef;border-radius:8px;background:#f8fafc}
     .option.correct{border-color:#22c55e;background:#f0fdf4}
     .option.wrong{border-color:#ef4444;background:#fef2f2}
-    .muted{color:#64748b}.hidden{display:none}.analysis{margin-top:12px;padding:12px;background:#f8fafc;border-left:4px solid #2563eb}
+    .muted{color:#64748b}.hidden{display:none}.answer-code{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:8px;padding:12px;line-height:1.55;overflow:auto}.analysis{margin-top:12px;padding:12px;background:#f8fafc;border-left:4px solid #2563eb}
   </style>
 </head>
 <body data-practice-shell="linux">
@@ -24,7 +24,7 @@
 <main class="app">
   <header class="card">
     <h1>Linux课程 练习系统</h1>
-    <p class="muted">超星 Linux 课程作业题库，共 300 道单选题。未显示标准答案的题目已标记为待补答案。</p>
+    <p class="muted">超星 Linux 作业题库 + 模拟考试补充题；模拟考试按 25 单选、5 填空、10 判断、2 简答、2 综合应用组卷。</p>
   </header>
 
   <section class="toolbar">
@@ -34,6 +34,9 @@
       <input id="searchBox" placeholder="搜索题干/解析">
       <button id="shuffleBtn">随机一题</button>
       <button id="resetBtn">重置本题</button>
+      <button id="examBtn" class="primary">模拟考试</button>
+      <button id="exitExamBtn" class="hidden">退出模拟</button>
+      <span id="examInfo" class="muted"></span>
     </div>
   </section>
 
@@ -4553,146 +4556,509 @@ const QUESTIONS = [
   },
   {
     "id": "linux-judge-001",
-    "source": "????",
-    "chapter": "???",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
     "type": "judge",
-    "stem": "? Linux ??????/etc ?????????????",
+    "stem": "Linux 中 /etc 目录主要存放系统和服务配置文件。",
     "options": {
-      "A": "??",
-      "B": "??"
+      "A": "对",
+      "B": "错"
     },
     "correct": [
       "A"
     ],
-    "analysis": "??/etc ??????????????"
+    "analysis": "/etc 是系统配置文件目录。"
   },
   {
     "id": "linux-judge-002",
-    "source": "????",
-    "chapter": "???",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
     "type": "judge",
-    "stem": "? Linux ??????/proc ?????????????",
+    "stem": "Linux 中 /proc 目录主要存放普通用户长期保存的文档。",
     "options": {
-      "A": "??",
-      "B": "??"
+      "A": "对",
+      "B": "错"
     },
     "correct": [
       "B"
     ],
-    "analysis": "??????????? /etc?/proc ????????"
+    "analysis": "/proc 是内核和进程信息的虚拟文件系统。"
   },
   {
     "id": "linux-judge-003",
-    "source": "????",
-    "chapter": "???",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
     "type": "judge",
-    "stem": "? CentOS 7 ??systemctl reboot ??????????",
+    "stem": "CentOS 7 可使用 systemctl reboot 重启系统。",
     "options": {
-      "A": "??",
-      "B": "??"
+      "A": "对",
+      "B": "错"
     },
     "correct": [
       "A"
     ],
-    "analysis": "??systemctl reboot ??????????"
+    "analysis": "systemctl reboot 可触发重启。"
   },
   {
     "id": "linux-judge-004",
-    "source": "????",
-    "chapter": "???",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
     "type": "judge",
-    "stem": "? CentOS 7 ??poweroff ???????????",
+    "stem": "poweroff 命令用于注销当前用户但不关闭系统。",
     "options": {
-      "A": "??",
-      "B": "??"
+      "A": "对",
+      "B": "错"
     },
     "correct": [
       "B"
     ],
-    "analysis": "poweroff ??????????"
+    "analysis": "poweroff 用于关闭系统电源。"
   },
   {
     "id": "linux-judge-005",
-    "source": "????",
-    "chapter": "???",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
     "type": "judge",
-    "stem": "? vi ??????? dd ????????????",
+    "stem": "vi 普通模式下 dd 可以删除当前行。",
     "options": {
-      "A": "??",
-      "B": "??"
+      "A": "对",
+      "B": "错"
     },
     "correct": [
       "A"
     ],
-    "analysis": "??dd ???????????"
+    "analysis": "dd 删除当前行。"
   },
   {
     "id": "linux-judge-006",
-    "source": "????",
-    "chapter": "???",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
     "type": "judge",
-    "stem": "? vi ??????? dd ??????????????",
+    "stem": "vi 普通模式下 x 可以删除当前光标所在字符。",
     "options": {
-      "A": "??",
-      "B": "??"
-    },
-    "correct": [
-      "B"
-    ],
-    "analysis": "dd ??????????????? x?"
-  },
-  {
-    "id": "linux-judge-007",
-    "source": "????",
-    "chapter": "???",
-    "type": "judge",
-    "stem": "? Linux ??cd ???????????",
-    "options": {
-      "A": "??",
-      "B": "??"
+      "A": "对",
+      "B": "错"
     },
     "correct": [
       "A"
     ],
-    "analysis": "??cd ????????????"
+    "analysis": "x 删除当前字符。"
+  },
+  {
+    "id": "linux-judge-007",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
+    "type": "judge",
+    "stem": "cd 命令用于切换当前工作目录。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "cd 用于改变 shell 当前目录。"
   },
   {
     "id": "linux-judge-008",
-    "source": "????",
-    "chapter": "???",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
     "type": "judge",
-    "stem": "? Linux ??pwd ???????????",
+    "stem": "pwd 命令用于显示当前工作目录。",
     "options": {
-      "A": "??",
-      "B": "??"
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "pwd 输出当前工作目录。"
+  },
+  {
+    "id": "linux-judge-009",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
+    "type": "judge",
+    "stem": "chmod 755 file 表示所有用户都拥有写权限。",
+    "options": {
+      "A": "对",
+      "B": "错"
     },
     "correct": [
       "B"
     ],
-    "analysis": "pwd ???????????cd ????????"
+    "analysis": "755 中其他用户只有读和执行权限。"
+  },
+  {
+    "id": "linux-judge-010",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
+    "type": "judge",
+    "stem": "grep 常用于按模式检索文本内容。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "grep 是常用文本检索命令。"
+  },
+  {
+    "id": "linux-judge-011",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
+    "type": "judge",
+    "stem": "Shell 脚本第一行 #!/usr/bin/env bash 通常用于指定解释器。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "shebang 指定脚本解释器。"
+  },
+  {
+    "id": "linux-judge-012",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础判断",
+    "type": "judge",
+    "stem": "在 shell 脚本中 $# 表示脚本文件名。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "$# 表示位置参数个数，$0 通常表示脚本名。"
+  },
+  {
+    "id": "linux-fill-001",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "显示当前工作目录的命令是____。",
+    "options": {},
+    "answers": [
+      "pwd"
+    ],
+    "analysis": "pwd 输出当前目录。"
+  },
+  {
+    "id": "linux-fill-002",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "切换当前目录的命令是____。",
+    "options": {},
+    "answers": [
+      "cd"
+    ],
+    "analysis": "cd 用于切换目录。"
+  },
+  {
+    "id": "linux-fill-003",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "修改文件权限常用命令是____。",
+    "options": {},
+    "answers": [
+      "chmod"
+    ],
+    "analysis": "chmod 修改权限位。"
+  },
+  {
+    "id": "linux-fill-004",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "Linux 超级用户用户名通常是____。",
+    "options": {},
+    "answers": [
+      "root"
+    ],
+    "analysis": "root 是超级用户。"
+  },
+  {
+    "id": "linux-fill-005",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "Shell 脚本中表示位置参数个数的变量是____。",
+    "options": {},
+    "answers": [
+      "$#"
+    ],
+    "analysis": "$# 表示参数个数。"
+  },
+  {
+    "id": "linux-fill-006",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "查看文本前 10 行常用____命令。",
+    "options": {},
+    "answers": [
+      "head"
+    ],
+    "analysis": "head 默认显示前 10 行。"
+  },
+  {
+    "id": "linux-fill-007",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "按模式搜索文本常用____命令。",
+    "options": {},
+    "answers": [
+      "grep"
+    ],
+    "analysis": "grep 用于文本匹配检索。"
+  },
+  {
+    "id": "linux-fill-008",
+    "source": "Linux模拟考试补充",
+    "chapter": "Linux基础填空",
+    "type": "fill",
+    "stem": "创建目录常用____命令。",
+    "options": {},
+    "answers": [
+      "mkdir"
+    ],
+    "analysis": "mkdir 创建目录。"
+  },
+  {
+    "id": "linux-triangle-001",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出左对齐递增实心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = 1; i <= n; i++)); do\n    for ((j = 1; j <= i; j++)); do\n        printf \"*\"\n    done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-triangle-002",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出左对齐递增空心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = 1; i <= n; i++)); do\n    for ((j = 1; j <= i; j++)); do\n        if ((j == 1 || j == i || i == n)); then printf \"*\"; else printf \" \"; fi\n    done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-triangle-003",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出右对齐递减实心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = n; i >= 1; i--)); do\n    for ((s = 0; s < n - i; s++)); do printf \" \"; done\n    for ((j = 1; j <= i; j++)); do printf \"*\"; done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-triangle-004",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出右对齐递减空心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = n; i >= 1; i--)); do\n    for ((s = 0; s < n - i; s++)); do printf \" \"; done\n    for ((j = 1; j <= i; j++)); do\n        if ((j == 1 || j == i || i == n)); then printf \"*\"; else printf \" \"; fi\n    done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-triangle-005",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出左对齐递减实心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = n; i >= 1; i--)); do\n    for ((j = 1; j <= i; j++)); do printf \"*\"; done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-triangle-006",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出左对齐递减空心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = n; i >= 1; i--)); do\n    for ((j = 1; j <= i; j++)); do\n        if ((j == 1 || j == i || i == n)); then printf \"*\"; else printf \" \"; fi\n    done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-triangle-007",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出右对齐递增实心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = 1; i <= n; i++)); do\n    for ((s = 0; s < n - i; s++)); do printf \" \"; done\n    for ((j = 1; j <= i; j++)); do printf \"*\"; done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-triangle-008",
+    "source": "Linux模拟考试补充",
+    "chapter": "Shell脚本三角形",
+    "type": "short",
+    "stem": "Shell脚本：读取行数 n，输出右对齐递增空心直角三角形。",
+    "options": {},
+    "answer": "#!/usr/bin/env bash\nread -rp \"请输入行数：\" n\nfor ((i = 1; i <= n; i++)); do\n    for ((s = 0; s < n - i; s++)); do printf \" \"; done\n    for ((j = 1; j <= i; j++)); do\n        if ((j == 1 || j == i || i == n)); then printf \"*\"; else printf \" \"; fi\n    done\n    printf \"\\n\"\ndone",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "examPool": "linux-triangle"
+  },
+  {
+    "id": "linux-short-001",
+    "source": "Linux模拟考试补充",
+    "chapter": "权限管理",
+    "type": "short",
+    "stem": "简述 Linux 文件权限 r、w、x 的含义，并说明 chmod 755 file 的权限效果。",
+    "options": {},
+    "answer": "r 表示读，w 表示写，x 表示执行。chmod 755 file 表示属主拥有读写执行权限，所属组和其他用户拥有读、执行权限。",
+    "analysis": "考查权限位与 chmod 八进制表示。"
+  },
+  {
+    "id": "linux-comp-001",
+    "source": "Educoder实训截图/链接",
+    "chapter": "Linux网络实战",
+    "type": "comprehensive",
+    "stem": "Linux网络实战（一）- DNS配置：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
+    "options": {},
+    "answer": "说明 BIND/named 服务安装、主配置文件与区域文件配置、正反向解析记录编写、服务启动以及 nslookup/dig 验证过程。",
+    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
+  },
+  {
+    "id": "linux-comp-002",
+    "source": "Educoder实训截图/链接",
+    "chapter": "Linux网络实战",
+    "type": "comprehensive",
+    "stem": "Linux网络实战（二）- Samba服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
+    "options": {},
+    "answer": "说明 Samba 安装、共享目录创建、smb.conf 配置、用户映射/密码设置、服务启动、防火墙放行和客户端访问验证。",
+    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
+  },
+  {
+    "id": "linux-comp-003",
+    "source": "Educoder实训截图/链接",
+    "chapter": "Linux网络实战",
+    "type": "comprehensive",
+    "stem": "Linux网络实战（三）- WWW服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
+    "options": {},
+    "answer": "说明 Apache/Nginx 安装、站点根目录与首页配置、虚拟主机/端口配置、服务启动、防火墙放行和浏览器/curl 验证。",
+    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
+  },
+  {
+    "id": "linux-comp-004",
+    "source": "Educoder实训截图/链接",
+    "chapter": "Linux网络实战",
+    "type": "comprehensive",
+    "stem": "Linux网络实战（四）- FTP服务器搭建：按实训要求给出关键配置步骤、主要配置文件、启动命令和验证方法。",
+    "options": {},
+    "answer": "说明 vsftpd 安装、匿名或本地用户访问配置、上传目录权限、服务启动、防火墙/SELinux 注意点和 ftp/lftp 验证。",
+    "analysis": "来源：https://www.educoder.net/classrooms/J3A4RP9P/shixun_homework/1238445?tabs=0；浏览器控制通道不可用时按用户截图中的实训标题整理。"
   }
 ];
 
-const TYPE_NAME = { single: "单选", multiple: "多选", fill: "填空", judge: "判断", short: "简答", code: "代码" };
+
+const TYPE_NAME = {"single": "单选题", "multiple": "多选题", "fill": "填空题", "judge": "判断题", "short": "简答题", "code": "代码题", "comprehensive": "综合应用题"};
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"answers":{},"wrong":{}}');
 let current = 0;
+let examMode = false;
+let examQuestions = [];
 
 function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function stemOf(q){ return q.stem || q.title || ""; }
 function chapters(){ return [...new Set(QUESTIONS.map(q => q.chapter || "未分章"))]; }
+function optionEntries(q){
+  if (Array.isArray(q.options)) return q.options.map(o => [o.label, o.text]);
+  return Object.entries(q.options || {});
+}
 function filtered(){
   const ch = chapterFilter.value;
   const ty = typeFilter.value;
   const kw = searchBox.value.trim().toLowerCase();
   return QUESTIONS.filter(q => (!ch || q.chapter === ch) && (!ty || q.type === ty) && (!kw || JSON.stringify(q).toLowerCase().includes(kw)));
 }
+function activeList(){ return examMode ? examQuestions : filtered(); }
 function answerText(q){
-  if (q.type === "fill") return (q.answers || []).join(" / ");
-  if (q.type === "short" || q.type === "code") return q.answer || "";
-  return (q.correct || []).join("");
+  if (q.type === "fill") return (q.answers || (Array.isArray(q.answer) ? q.answer : [q.answer]).filter(Boolean)).join(" / ");
+  if (q.type === "short" || q.type === "code" || q.type === "comprehensive") return q.answer || "";
+  const opts = q.options || {};
+  return (q.correct || []).map(k => opts[k] ? `${k}. ${opts[k]}` : k).join(" / ");
+}
+function hasKnownAnswer(q){ return Boolean(answerText(q)); }
+function shuffleCopy(arr){
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+function pick(pool, count){ return shuffleCopy(pool).slice(0, count); }
+function buildModernExam(){
+  const tagged = QUESTIONS.filter(q => (q.examTags || []).includes("modern-history-mock"));
+  if (tagged.length >= 50) return tagged.slice().sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
+  return [
+    ...pick(QUESTIONS.filter(q => q.type === "single"), 30),
+    ...pick(QUESTIONS.filter(q => q.type === "multiple"), 15),
+    ...pick(QUESTIONS.filter(q => q.type === "judge"), 10)
+  ];
+}
+function buildLinuxExam(){
+  const singles = QUESTIONS.filter(q => q.type === "single");
+  const fills = QUESTIONS.filter(q => q.type === "fill");
+  const judges = QUESTIONS.filter(q => q.type === "judge");
+  const triangles = QUESTIONS.filter(q => q.examPool === "linux-triangle");
+  const shortOther = QUESTIONS.filter(q => q.type === "short" && q.examPool !== "linux-triangle");
+  const comprehensive = QUESTIONS.filter(q => q.type === "comprehensive");
+  return [
+    ...pick(singles, 25),
+    ...pick(fills, 5),
+    ...pick(judges, 10),
+    ...pick(triangles, 1),
+    ...pick(shortOther, 1),
+    ...pick(comprehensive, 2)
+  ];
+}
+function startExam(){
+  examQuestions = buildLinuxExam();
+  examMode = true;
+  current = 0;
+  chapterFilter.disabled = true;
+  typeFilter.disabled = true;
+  searchBox.disabled = true;
+  examBtn.classList.add("hidden");
+  exitExamBtn.classList.remove("hidden");
+  examInfo.textContent = `模拟考试：${examQuestions.length} 题`;
+  render();
+}
+function exitExam(){
+  examMode = false;
+  examQuestions = [];
+  current = 0;
+  chapterFilter.disabled = false;
+  typeFilter.disabled = false;
+  searchBox.disabled = false;
+  examBtn.classList.remove("hidden");
+  exitExamBtn.classList.add("hidden");
+  examInfo.textContent = "";
+  render();
 }
 function render(){
-  const list = filtered();
+  const list = activeList();
   if (!list.length) {
     questionPanel.innerHTML = '<div class="card">没有匹配题目。</div>';
     return;
@@ -4702,37 +5068,64 @@ function render(){
   const saved = state.answers[q.id];
   let body = "";
   if (q.type === "single" || q.type === "judge") {
-    body = Object.entries(q.options || {}).map(([k,v]) => `<button class="option" data-answer="${esc(k)}"><b>${esc(k)}.</b> ${esc(v)}</button>`).join("");
+    body = optionEntries(q).map(([k,v]) => `<button class="option" data-answer="${esc(k)}"><b>${esc(k)}.</b> ${esc(v)}</button>`).join("");
   } else if (q.type === "multiple") {
-    body = Object.entries(q.options || {}).map(([k,v]) => `<label class="option"><input type="checkbox" value="${esc(k)}"> <b>${esc(k)}.</b> ${esc(v)}</label>`).join("");
+    const savedSet = new Set(Array.isArray(saved) ? saved : []);
+    body = optionEntries(q).map(([k,v]) => `<label class="option" data-option="${esc(k)}"><input type="checkbox" value="${esc(k)}" ${savedSet.has(k) ? "checked" : ""}> <b>${esc(k)}.</b> ${esc(v)}</label>`).join("");
   } else {
-    body = `<textarea id="textAnswer" style="width:100%;min-height:130px">${esc(saved || "")}</textarea>`;
+    body = `<textarea id="textAnswer" style="width:100%;min-height:150px">${esc(saved || "")}</textarea>`;
   }
   questionPanel.innerHTML = `<article class="card">
-    <p class="muted">${current + 1}/${list.length} · ${esc(q.source)} · ${esc(q.chapter)} · ${esc(TYPE_NAME[q.type] || q.type)}</p>
-    <h2>${esc(q.stem)}</h2>
+    <p class="muted">${examMode ? "模拟考试" : "学习模式"} · ${current + 1}/${list.length} · ${esc(q.source)} · ${esc(q.chapter)} · ${esc(TYPE_NAME[q.type] || q.type)}</p>
+    <h2>${esc(stemOf(q))}</h2>
     ${body}
     <div class="row"><button class="primary" id="showBtn">提交/查看解析</button><button id="prevBtn">上一题</button><button id="nextBtn">下一题</button></div>
     <div id="analysis" class="analysis hidden"></div>
   </article>`;
-  questionPanel.querySelectorAll("[data-answer]").forEach(btn => btn.onclick = () => choose(q, btn.dataset.answer));
-  showBtn.onclick = () => show(q, null);
+  if (q.type === "single" || q.type === "judge") {
+    questionPanel.querySelectorAll("[data-answer]").forEach(btn => btn.onclick = () => choose(q, btn.dataset.answer));
+  }
+  showBtn.onclick = () => submit(q);
   prevBtn.onclick = () => { current -= 1; render(); };
   nextBtn.onclick = () => { current += 1; render(); };
 }
 function choose(q, value){
   state.answers[q.id] = value;
-  const ok = (q.correct || []).includes(value);
-  if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = value;
+  const correct = q.correct || [];
+  if (correct.length) {
+    const ok = correct.includes(value);
+    if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = value;
+  } else {
+    delete state.wrong[q.id];
+  }
   save();
-  show(q, value);
+  show(q);
 }
-function show(q, value){
+function submit(q){
+  if (q.type === "multiple") {
+    const selected = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(x => x.value).sort();
+    state.answers[q.id] = selected;
+    const correct = [...(q.correct || [])].sort();
+    if (correct.length) {
+      const ok = selected.length === correct.length && selected.every((x, i) => x === correct[i]);
+      if (ok) delete state.wrong[q.id]; else state.wrong[q.id] = selected;
+    }
+    save();
+    show(q);
+    return;
+  }
+  const text = document.getElementById("textAnswer");
+  if (text) { state.answers[q.id] = text.value; save(); }
+  show(q);
+}
+function show(q){
   const box = document.getElementById("analysis");
+  const known = hasKnownAnswer(q);
   box.classList.remove("hidden");
-  box.innerHTML = `<b>参考答案：${esc(answerText(q))}</b><p>${esc(q.analysis || "")}</p>`;
+  box.innerHTML = `<b>参考答案：</b><pre class="answer-code">${known ? esc(answerText(q)) : "待补充"}</pre><p>${esc(q.analysis || "")}</p>`;
   document.querySelectorAll(".option").forEach(el => {
-    const value = el.dataset.answer;
+    if (!known) return;
+    const value = el.dataset.answer || el.dataset.option;
     if ((q.correct || []).includes(value)) el.classList.add("correct");
     else el.classList.add("wrong");
   });
@@ -4741,15 +5134,25 @@ function init(){
   chapterFilter.innerHTML = '<option value="">全部章节</option>' + chapters().map(x => `<option>${esc(x)}</option>`).join("");
   typeFilter.innerHTML = '<option value="">全部题型</option>' + Object.entries(TYPE_NAME).map(([k,v]) => `<option value="${k}">${v}</option>`).join("");
   [chapterFilter,typeFilter,searchBox].forEach(el => el.addEventListener("input", () => { current = 0; render(); }));
-  shuffleBtn.onclick = () => { const list = filtered(); current = Math.floor(Math.random() * list.length); render(); };
-  resetBtn.onclick = () => { const q = filtered()[current]; if (q) delete state.answers[q.id]; save(); render(); };
+  shuffleBtn.onclick = () => { const list = activeList(); current = Math.floor(Math.random() * list.length); render(); };
+  resetBtn.onclick = () => { const q = activeList()[current]; if (q) delete state.answers[q.id]; save(); render(); };
+  examBtn.onclick = startExam;
+  exitExamBtn.onclick = exitExam;
   render();
 }
-function practiceQuestionType(q){return q.type}
+function practiceQuestionType(q){
+  if(q.type === "single" || q.type === "multiple") return "choice";
+  if(q.type === "judge") return "judge";
+  if(q.type === "short") return "short";
+  if(q.type === "fill") return "fill";
+  if(q.type === "code") return "code";
+  if(q.type === "comprehensive") return "comprehensive";
+  return "other";
+}
 window.studyHubPracticeNav=()=>{
-  const list=filtered();
+  const list=activeList();
   if(!list.length)return null;
-  return {mode:'study',title:'答题卡',current:current+1,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:Boolean(state.wrong[q.id])})),jump(index){current=Math.max(0,Math.min(index-1,list.length-1));render();window.scrollTo(0,0);}};
+  return {mode:'study',title:examMode?'模拟答题卡':'答题卡',current:current+1,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:Boolean(state.wrong[q.id])})),jump(index){current=Math.max(0,Math.min(index-1,list.length-1));render();window.scrollTo(0,0);}};
 };
 init();
 </script>
