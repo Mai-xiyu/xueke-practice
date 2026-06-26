@@ -4995,17 +4995,26 @@ const QUESTIONS = [
 ];
 
 
-const TYPE_NAME = {"single": "单选题", "multiple": "多选题", "fill": "填空题", "judge": "判断题", "short": "简答题", "code": "代码题", "comprehensive": "综合应用题"};
+const TYPE_NAME = {"single": "单选题", "multiple": "多选题", "fill": "填空题", "judge": "判断题", "short": "简答题", "essay": "论述题", "code": "代码题", "comprehensive": "综合应用题"};
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"answers":{},"wrong":{}}');
 let current = 0;
 let examMode = false;
 let examQuestions = [];
+const chapterFilter = document.getElementById("chapterFilter");
+const typeFilter = document.getElementById("typeFilter");
+const searchBox = document.getElementById("searchBox");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const resetBtn = document.getElementById("resetBtn");
+const examBtn = document.getElementById("examBtn");
+const exitExamBtn = document.getElementById("exitExamBtn");
+const examInfo = document.getElementById("examInfo");
+const questionPanel = document.getElementById("questionPanel");
 
 function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function stemOf(q){ return q.stem || q.title || ""; }
 function chapters(){
-  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "截图详解"];
+  const preferred = ["章节测验", "截图题库", "模拟试卷", "2023 B卷", "最新模拟卷", "截图详解"];
   const seen = new Set(QUESTIONS.map(q => q.chapter || "未分章"));
   return [...preferred.filter(x => seen.has(x)), ...[...seen].filter(x => !preferred.includes(x))];
 }
@@ -5022,7 +5031,7 @@ function filtered(){
 function activeList(){ return examMode ? examQuestions : filtered(); }
 function answerText(q){
   if (q.type === "fill") return (q.answers || (Array.isArray(q.answer) ? q.answer : [q.answer]).filter(Boolean)).join(" / ");
-  if (q.type === "short" || q.type === "code" || q.type === "comprehensive") return q.answer || "";
+  if (q.type === "short" || q.type === "essay" || q.type === "code" || q.type === "comprehensive") return q.answer || "";
   const opts = q.options || {};
   return (q.correct || []).map(k => opts[k] ? `${k}. ${opts[k]}` : k).join(" / ");
 }
@@ -5037,19 +5046,18 @@ function shuffleCopy(arr){
 }
 function pick(pool, count){ return shuffleCopy(pool).slice(0, count); }
 function buildModernExam(){
-  const bPaper = QUESTIONS
-    .filter(q => (q.examTags || []).includes("modern-history-2023-b"))
-    .sort((a,b) => (a.mockOrder || 9999) - (b.mockOrder || 9999));
-  if (bPaper.length >= 44) return bPaper;
   const tagged = QUESTIONS.filter(q => (q.examTags || []).some(tag => String(tag).startsWith("modern-history-")) && hasKnownAnswer(q));
-  const pool = tagged.length >= 44 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
+  const pool = tagged.length >= 58 ? tagged : QUESTIONS.filter(q => hasKnownAnswer(q));
   const byType = type => pool.filter(q => q.type === type);
+  const latestByType = type => QUESTIONS
+    .filter(q => q.type === type && (q.examTags || []).includes("modern-history-latest") && hasKnownAnswer(q))
+    .sort((a,b) => (a.latestMockOrder || 9999) - (b.latestMockOrder || 9999));
   return [
-    ...pick(byType("single"), 15),
-    ...pick(byType("multiple"), 10),
+    ...pick(byType("single"), 30),
+    ...pick(byType("multiple"), 15),
     ...pick(byType("judge"), 10),
-    ...pick(byType("short"), 7),
-    ...pick(byType("comprehensive"), 2)
+    ...(latestByType("short").length >= 2 ? latestByType("short").slice(0, 2) : pick(byType("short"), 2)),
+    ...(latestByType("essay").length >= 1 ? latestByType("essay").slice(0, 1) : pick(byType("essay"), 1))
   ];
 }
 function buildLinuxExam(){
@@ -5179,6 +5187,7 @@ function practiceQuestionType(q){
   if(q.type === "single" || q.type === "multiple") return "choice";
   if(q.type === "judge") return "judge";
   if(q.type === "short") return "short";
+  if(q.type === "essay") return "essay";
   if(q.type === "fill") return "fill";
   if(q.type === "code") return "code";
   if(q.type === "comprehensive") return "comprehensive";

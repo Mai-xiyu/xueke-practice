@@ -169,6 +169,7 @@
       ["fill", "填空题"],
       ["judge", "判断题"],
       ["short", "简答题"],
+      ["essay", "论述题"],
       ["code", "代码题"],
       ["comprehensive", "综合应用题"],
       ["other", "其他"]
@@ -246,7 +247,8 @@
       if (["single", "multiple", "choice", "select", "radio", "checkbox"].includes(value)) return "choice";
       if (["tf", "true_false", "judge", "judgement", "boolean"].includes(value)) return "judge";
       if (["fill", "blank", "completion"].includes(value)) return "fill";
-      if (["short", "subjective", "essay"].includes(value)) return "short";
+      if (["essay", "argument"].includes(value)) return "essay";
+      if (["short", "subjective"].includes(value)) return "short";
       if (["comprehensive", "application", "case"].includes(value)) return "comprehensive";
       if (["code", "program", "programming"].includes(value)) return "code";
       return "other";
