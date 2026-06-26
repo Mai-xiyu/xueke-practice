@@ -161,10 +161,17 @@
 
     document.body.classList.add("practice-page");
 
-    let nav = null;
-    let grid = null;
-    let lastTotal = 0;
+    let nav = document.getElementById("practiceAnswerCard");
+    let lastSignature = "";
     let updateTimer = null;
+    const groups = [
+      ["choice", "选择题"],
+      ["judge", "判断题"],
+      ["fill", "填空题"],
+      ["short", "简答题"],
+      ["code", "代码题"],
+      ["other", "其他"]
+    ];
 
     function isVisible(el) {
       if (!el) return false;
@@ -193,35 +200,6 @@
       });
     }
 
-    function scopedText(selector, limit) {
-      const el = document.querySelector(selector);
-      return el ? (el.innerText || "").slice(0, limit || 2000) : "";
-    }
-
-    function parseProgress() {
-      const chunks = [
-        scopedText("#questionPanel", 1000),
-        scopedText("#learn:not(.hidden)", 1400),
-        scopedText("#exam:not(.hidden)", 1400),
-        scopedText("#study:not(.hidden)", 1000),
-        scopedText("#panel", 1000),
-        scopedText("#learnInfo", 400),
-        scopedText("main", 1800),
-        scopedText(".app", 2200),
-        scopedText(".wrap", 2200)
-      ];
-      for (const text of chunks) {
-        const match = text.match(/(?:当前\s*)?(\d+)\s*\/\s*(\d+)/);
-        if (match) {
-          return {
-            current: Number(match[1]),
-            total: Number(match[2])
-          };
-        }
-      }
-      return { current: null, total: null };
-    }
-
     function cardList() {
       return Array.from(document.querySelectorAll(".q-card")).filter(isVisible);
     }
@@ -242,140 +220,150 @@
       return bestIndex + 1;
     }
 
-    function detectTotal() {
-      const candidates = [];
-      const progress = parseProgress();
-      if (progress.total) return progress.total;
-
-      const totalCount = Number((document.getElementById("totalCount") || {}).innerText || 0);
-      if (totalCount > 1) candidates.push(totalCount);
-
-      const cards = cardList().length;
-      if (cards > 1) candidates.push(cards);
-
-      const text = [
-        scopedText("header", 1500),
-        scopedText("#learn:not(.hidden)", 1800),
-        scopedText("#exam:not(.hidden)", 1800),
-        scopedText("#learnInfo", 400),
-        scopedText("#totalPill", 300),
-        scopedText("#stats", 1000),
-        scopedText("main", 2600),
-        scopedText(".app", 3200),
-        scopedText(".wrap", 3200)
-      ].join("\n");
-
-      const patterns = [
-        /总题(?:库)?\s*(\d+)\s*题/g,
-        /共\s*(\d+)\s*(?:题|道)/g,
-        /(\d+)\s*题/g
-      ];
-      patterns.forEach((pattern) => {
-        for (const match of text.matchAll(pattern)) {
-          const value = Number(match[1]);
-          if (value > 1 && value <= 1000) candidates.push(value);
-        }
-      });
-
-      return candidates.length ? Math.max(...candidates) : 0;
-    }
-
-    function findStepButton(direction) {
-      const labels = direction > 0 ? ["下一题", "下一道", "下一个"] : ["上一题", "上一道", "上一个"];
-      return Array.from(document.querySelectorAll("button")).find((button) => {
-        if (!isVisible(button) || button.disabled) return false;
-        const text = (button.textContent || "").trim();
-        return labels.some((label) => text.includes(label));
-      });
-    }
-
-    function jumpByStepButtons(targetIndex) {
-      const progress = parseProgress();
-      const current = progress.current || currentFromCards() || 1;
-      const delta = targetIndex - current;
-      const direction = delta > 0 ? 1 : -1;
-      for (let i = 0; i < Math.abs(delta); i += 1) {
-        const button = findStepButton(direction);
-        if (!button) break;
-        button.click();
-      }
-    }
-
-    function jumpToQuestion(index) {
-      const cards = cardList();
-      if (cards.length > 1 && cards[index - 1]) {
-        cards[index - 1].scrollIntoView({ behavior: "smooth", block: "start" });
-        setTimeout(updateActive, 180);
-        return;
-      }
-      jumpByStepButtons(index);
-      scheduleUpdate();
-    }
-
-    function currentIndex() {
-      const progress = parseProgress();
-      return progress.current || currentFromCards() || 1;
-    }
-
-    function updateActive() {
-      if (!grid) return;
-      const active = currentIndex();
-      grid.querySelectorAll(".practice-nav-btn").forEach((button) => {
-        button.classList.toggle("active", Number(button.dataset.index) === active);
-      });
-    }
-
-    function renderNav(total) {
-      if (!total || total < 2) return;
+    function ensureNav() {
       if (!nav) {
         nav = document.createElement("aside");
+        nav.id = "practiceAnswerCard";
         nav.className = "practice-question-nav";
-        nav.setAttribute("aria-label", "题号导航");
+        nav.setAttribute("aria-label", "答题卡");
         document.body.appendChild(nav);
       }
+      return nav;
+    }
 
-      nav.innerHTML = "";
+    function hideNav() {
+      if (nav) {
+        nav.hidden = true;
+        nav.innerHTML = "";
+      }
+      document.body.classList.remove("has-practice-nav");
+      lastSignature = "";
+    }
+
+    function normalizeType(type) {
+      const value = String(type || "").toLowerCase();
+      if (["single", "multiple", "choice", "select", "radio", "checkbox"].includes(value)) return "choice";
+      if (["tf", "true_false", "judge", "judgement", "boolean"].includes(value)) return "judge";
+      if (["fill", "blank", "completion"].includes(value)) return "fill";
+      if (["short", "subjective", "essay"].includes(value)) return "short";
+      if (["code", "program", "programming"].includes(value)) return "code";
+      return "other";
+    }
+
+    function readPracticeModel() {
+      if (typeof window.studyHubPracticeNav !== "function") return null;
+      let raw = null;
+      try {
+        raw = window.studyHubPracticeNav();
+      } catch (_) {
+        return null;
+      }
+      if (!raw || (raw.mode && !["study", "learn"].includes(raw.mode))) return null;
+      if (!Array.isArray(raw.items) || raw.items.length < 2) return null;
+      const items = raw.items.map((item, index) => ({
+        id: String(item.id || item.key || item.label || index + 1),
+        index: Number(item.index || index + 1),
+        label: String(item.label || index + 1),
+        type: normalizeType(item.type || item.kind),
+        done: Boolean(item.done),
+        wrong: Boolean(item.wrong),
+        marked: Boolean(item.marked)
+      }));
+      return {
+        title: raw.title || "答题卡",
+        current: Number(raw.current || raw.currentIndex || currentFromCards() || 1),
+        items,
+        jump: typeof raw.jump === "function" ? raw.jump : null
+      };
+    }
+
+    function signatureOf(model) {
+      return [
+        model.current,
+        model.items.length,
+        model.items.map((item) => `${item.id}:${item.index}:${item.type}:${item.done ? 1 : 0}:${item.wrong ? 1 : 0}:${item.marked ? 1 : 0}`).join("|")
+      ].join(";");
+    }
+
+    function jumpToQuestion(model, item) {
+      if (model.jump) {
+        model.jump(item.index, item);
+        scheduleUpdate();
+        setTimeout(scheduleUpdate, 220);
+        return;
+      }
+      const cards = cardList();
+      if (cards.length > 1 && cards[item.index - 1]) {
+        cards[item.index - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(scheduleUpdate, 180);
+      }
+    }
+
+    function renderNav(model) {
+      if (!model) {
+        hideNav();
+        return;
+      }
+      const nextSignature = signatureOf(model);
+      if (nextSignature === lastSignature) return;
+      const box = ensureNav();
+      box.hidden = false;
+      document.body.classList.add("has-practice-nav");
+      box.innerHTML = "";
+
       const title = document.createElement("h2");
-      title.textContent = "一、答题卡";
+      title.textContent = model.title;
       const meta = document.createElement("div");
       meta.className = "practice-nav-meta";
-      meta.textContent = `共 ${total} 题`;
-      grid = document.createElement("div");
-      grid.className = "practice-nav-grid";
+      meta.textContent = `当前 ${model.current} / ${model.items.length}`;
+      box.append(title, meta);
 
-      for (let i = 1; i <= total; i += 1) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "practice-nav-btn";
-        button.dataset.index = String(i);
-        button.textContent = String(i);
-        button.addEventListener("click", () => jumpToQuestion(i));
-        grid.appendChild(button);
-      }
+      groups.forEach(([key, label]) => {
+        const sectionItems = model.items.filter((item) => item.type === key);
+        if (!sectionItems.length) return;
 
-      nav.append(title, meta, grid);
-      lastTotal = total;
-      updateActive();
+        const section = document.createElement("section");
+        section.className = "practice-nav-section";
+        const heading = document.createElement("div");
+        heading.className = "practice-nav-section-title";
+        heading.textContent = label;
+        const grid = document.createElement("div");
+        grid.className = "practice-nav-grid";
+
+        sectionItems.forEach((item) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "practice-nav-btn";
+          button.dataset.index = String(item.index);
+          button.textContent = item.label;
+          button.classList.toggle("active", item.index === model.current);
+          button.classList.toggle("done", item.done);
+          button.classList.toggle("wrongMini", item.wrong);
+          button.classList.toggle("marked", item.marked);
+          button.addEventListener("click", () => jumpToQuestion(model, item));
+          grid.appendChild(button);
+        });
+
+        section.append(heading, grid);
+        box.appendChild(section);
+      });
+      lastSignature = nextSignature;
     }
 
     function scheduleUpdate() {
       clearTimeout(updateTimer);
       updateTimer = setTimeout(() => {
         normalizePracticeFields();
-        const total = detectTotal();
-        if (total && total !== lastTotal) {
-          renderNav(total);
-        } else {
-          updateActive();
-        }
+        renderNav(readPracticeModel());
       }, 80);
     }
 
     normalizePracticeFields();
-    renderNav(detectTotal());
-    window.addEventListener("scroll", updateActive, { passive: true });
+    renderNav(readPracticeModel());
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     new MutationObserver(scheduleUpdate).observe(main, {
+      attributes: true,
       childList: true,
       subtree: true,
       characterData: true

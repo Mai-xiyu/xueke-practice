@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="assets/common.css">
 <script src="assets/session-sync.js" defer></script>
 </head>
-<body>
+<body data-practice-shell="data-collection">
+<aside id="practiceAnswerCard" class="practice-question-nav" aria-label="答题卡" hidden></aside>
 <div class="app">
   <div class="top">
     <div class="title">
@@ -184,6 +185,11 @@ function renderWrong(){let ids=Object.keys(state.wrong||{}); let area=document.g
 window.removeWrong=(id)=>{delete state.wrong[id]; saveState(); renderWrong();}
 function renderCards(){document.getElementById('cardsArea').innerHTML=CARDS.map(c=>`<div class="item"><h3>${escapeHtml(c.title)}</h3><p>${escapeHtml(c.body)}</p></div>`).join('')}
 function renderBrowse(){let src=document.getElementById('browseSource').value, type=document.getElementById('browseType').value, kw=document.getElementById('browseSearch').value; let list=filterQuestions(src==='all'?'全部':src,'全部',type,kw); document.getElementById('browseArea').innerHTML=`<p class="small">共 ${list.length} 题</p><table class="table"><thead><tr><th>ID</th><th>题目</th><th>答案</th><th>解析</th></tr></thead><tbody>${list.map(q=>`<tr><td>${escapeHtml(q.id)}<br><span class="small">${escapeHtml(q.source)} / ${labelType(q.type)}</span></td><td>${escapeHtml(q.stem)}</td><td>${escapeHtml(answerText(q)).replace(/\n/g,'<br>')}</td><td>${escapeHtml(q.analysis||q.note||'').replace(/\n/g,'<br>')}</td></tr>`).join('')}</tbody></table>`;}
+function practiceQuestionType(q){return q.type==='tf'?'judge':q.type}
+window.studyHubPracticeNav=()=>{
+  if(document.querySelector('.tab.active')?.dataset.tab!=='learn'||!learnList.length)return null;
+  return {mode:'study',title:'答题卡',current:learnIdx+1,items:learnList.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:Boolean(state.done?.[q.id]),wrong:Boolean(state.wrong?.[q.id]),marked:Boolean(state.mastered?.[q.id])})),jump(index){learnIdx=Math.max(0,Math.min(index-1,learnList.length-1));renderLearn();window.scrollTo(0,0);}};
+};
 document.querySelectorAll('.tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active'); if(btn.dataset.tab==='wrong')renderWrong(); if(btn.dataset.tab==='cards')renderCards(); if(btn.dataset.tab==='browse')renderBrowse(); if(btn.dataset.tab==='code')renderCode();});
 document.getElementById('learnSource').onchange=updateChapterSelect; document.getElementById('applyLearn').onclick=applyLearn; document.getElementById('randomLearn').onclick=()=>{if(!learnList.length)applyLearn(); learnIdx=Math.floor(Math.random()*learnList.length); renderLearn();}; document.getElementById('startExam').onclick=startExam; document.getElementById('submitExam').onclick=submitExam; document.getElementById('refreshCode').onclick=renderCode; document.getElementById('doBrowse').onclick=renderBrowse; document.getElementById('clearWrong').onclick=()=>{if(confirm('确定清空错题本？')){state.wrong={};saveState();renderWrong();}}; document.getElementById('exportProgress').onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='crawler_practice_progress.json';a.click();}; document.getElementById('importProgressBtn').onclick=()=>document.getElementById('importProgress').click(); document.getElementById('importProgress').onchange=e=>{let f=e.target.files[0]; if(!f)return; let r=new FileReader(); r.onload=()=>{try{state=JSON.parse(r.result);saveState();renderWrong();alert('导入完成')}catch(err){alert('导入失败')}}; r.readAsText(f);};
 initSelects(); updatePills(); applyLearn(); startExam(); renderCards(); renderCode(); renderBrowse();
