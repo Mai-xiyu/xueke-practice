@@ -142,14 +142,17 @@
     const rawClear = localStorage.clear.bind(localStorage);
     localStorage.setItem = function (key, value) {
       rawSet(key, value);
+      if (typeof window.studyHubRefreshStats === "function") window.studyHubRefreshStats();
       scheduleSave();
     };
     localStorage.removeItem = function (key) {
       rawRemove(key);
+      if (typeof window.studyHubRefreshStats === "function") window.studyHubRefreshStats();
       scheduleSave();
     };
     localStorage.clear = function () {
       rawClear();
+      if (typeof window.studyHubRefreshStats === "function") window.studyHubRefreshStats();
       scheduleSave();
     };
   }
@@ -164,6 +167,9 @@
     let nav = document.getElementById("practiceAnswerCard");
     let lastSignature = "";
     let updateTimer = null;
+    let statsPanel = document.getElementById("practiceStatPanel");
+    let lastStatsSignature = "";
+    let statsTimer = null;
     const groups = [
       ["choice", "选择题"],
       ["fill", "填空题"],
@@ -252,6 +258,97 @@
       if (["comprehensive", "application", "case"].includes(value)) return "comprehensive";
       if (["code", "program", "programming"].includes(value)) return "code";
       return "other";
+    }
+
+    function toCount(value) {
+      const number = Number(value);
+      if (!Number.isFinite(number) || number < 0) return 0;
+      return Math.round(number);
+    }
+
+    function formatAccuracy(value, done, wrong) {
+      if (value !== undefined && value !== null && value !== "") {
+        if (typeof value === "number") {
+          const normalized = value <= 1 ? value * 100 : value;
+          return `${Math.max(0, Math.min(100, Math.round(normalized)))}%`;
+        }
+        return String(value);
+      }
+      if (!done) return "0%";
+      const correct = Math.max(0, done - wrong);
+      return `${Math.max(0, Math.min(100, Math.round((correct / done) * 100)))}%`;
+    }
+
+    function readPracticeStats() {
+      if (typeof window.studyHubPracticeStats === "function") {
+        try {
+          const raw = window.studyHubPracticeStats();
+          if (raw) return raw;
+        } catch (_) {
+          return null;
+        }
+      }
+      const model = readPracticeModel();
+      if (!model) return null;
+      return {
+        total: model.items.length,
+        done: model.items.filter((item) => item.done).length,
+        wrong: model.items.filter((item) => item.wrong).length,
+        extraLabel: "\u9898\u578b",
+        extraValue: new Set(model.items.map((item) => item.type)).size
+      };
+    }
+
+    function normalizeStats(raw) {
+      if (!raw) return null;
+      const total = toCount(raw.total ?? raw.count);
+      const done = toCount(raw.done ?? raw.answered ?? raw.practiceDone);
+      const wrong = toCount(raw.wrong ?? raw.errors ?? raw.mistakes);
+      return [
+        ["\u603b\u9898\u6570", total || "-"],
+        ["\u5df2\u7ec3", done],
+        ["\u9519\u9898", wrong],
+        ["\u51c6\u786e\u7387", formatAccuracy(raw.accuracy, done, wrong)],
+        [String(raw.extraLabel || "\u9898\u5e93/\u9898\u578b"), String(raw.extraValue || raw.extra || "-")]
+      ];
+    }
+
+    function ensureStatsPanel() {
+      if (!statsPanel) {
+        statsPanel = document.createElement("section");
+        statsPanel.id = "practiceStatPanel";
+        statsPanel.className = "practice-stat-panel";
+        statsPanel.setAttribute("aria-label", "\u7ec3\u4e60\u7edf\u8ba1");
+        main.insertBefore(statsPanel, main.firstElementChild || null);
+      }
+      return statsPanel;
+    }
+
+    function renderStatsPanel() {
+      const stats = normalizeStats(readPracticeStats());
+      if (!stats) return;
+      const signature = JSON.stringify(stats);
+      if (signature === lastStatsSignature) return;
+      const box = ensureStatsPanel();
+      box.innerHTML = "";
+      stats.forEach(([label, value]) => {
+        const card = document.createElement("div");
+        card.className = "practice-stat-card";
+        const labelEl = document.createElement("div");
+        labelEl.className = "practice-stat-label";
+        labelEl.textContent = label;
+        const valueEl = document.createElement("b");
+        valueEl.className = "practice-stat-value";
+        valueEl.textContent = String(value);
+        card.append(labelEl, valueEl);
+        box.appendChild(card);
+      });
+      lastStatsSignature = signature;
+    }
+
+    function scheduleStatsUpdate() {
+      clearTimeout(statsTimer);
+      statsTimer = setTimeout(renderStatsPanel, 80);
     }
 
     function readPracticeModel() {
@@ -358,12 +455,15 @@
       clearTimeout(updateTimer);
       updateTimer = setTimeout(() => {
         normalizePracticeFields();
+        renderStatsPanel();
         renderNav(readPracticeModel());
       }, 80);
     }
 
     normalizePracticeFields();
+    renderStatsPanel();
     renderNav(readPracticeModel());
+    window.studyHubRefreshStats = scheduleStatsUpdate;
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     new MutationObserver(scheduleUpdate).observe(main, {
