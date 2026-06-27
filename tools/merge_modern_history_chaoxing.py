@@ -159,6 +159,8 @@ def decode_structured_questions() -> list[dict]:
                 key = (option.get("key") or "").strip()
                 if key:
                     options[key] = decode_text(option.get("text", ""), mapping)
+            if q_type == "judge":
+                options = {"A": "对", "B": "错"}
 
             questions.append(
                 {
