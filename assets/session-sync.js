@@ -49,7 +49,9 @@
   }
 
   function apiAvailable() {
-    return location.protocol === "http:" || location.protocol === "https:";
+    if (!(location.protocol === "http:" || location.protocol === "https:")) return false;
+    const host = location.hostname.toLowerCase();
+    return !(host.endsWith(".github.io") || host === "me.mai-xiyu.top");
   }
 
   const clientKey = "study_hub_client_id";
