@@ -189,7 +189,31 @@ function applyFilter() {
 function renderStudy() {
   const root=document.getElementById('study'); root.innerHTML='';
   root.appendChild(filtersCard(applyFilter));
+  if (!studyList.length) {
+    const empty=el('div','card');
+    empty.appendChild(el('h2','','没有匹配的题目'));
+    empty.appendChild(el('div','meta','当前筛选或错题集合为空，可以恢复全部题目继续练习。'));
+    const resetAll=el('button','primary','恢复全部题目');
+    resetAll.onclick=()=>{ currentFilters={source:'all',status:'all',search:''}; studyList=QUESTIONS.map(q=>q.id); studyIndex=0; state.studyIndex=0; saveState(); renderStudy(); };
+    empty.appendChild(resetAll);
+    root.appendChild(empty);
+    if (typeof window.studyHubRefreshStats === 'function') window.studyHubRefreshStats();
+    return;
+  }
+  if (studyIndex < 0 || studyIndex >= studyList.length) {
+    studyIndex=Math.max(0, Math.min(studyIndex, studyList.length-1));
+    state.studyIndex=studyIndex;
+    saveState();
+  }
   const q=getQ(studyList[studyIndex]);
+  if (!q) {
+    studyList=QUESTIONS.map(q=>q.id);
+    studyIndex=0;
+    state.studyIndex=0;
+    saveState();
+    renderStudy();
+    return;
+  }
   const rec=state.progress?.[q.id] || {}; const selected=rec.studySelected || null; const revealed=!!rec.studyRevealed;
   const card=el('div','card');
   const top=el('div','row'); top.appendChild(el('div','meta',`当前 ${studyIndex+1}/${studyList.length}，总题库 ${QUESTIONS.length} 题`));
@@ -222,7 +246,14 @@ function renderExam() {
   const order=el('select'); order.id='examOrder'; [['random','随机抽题'],['seq','顺序出题'],['wrong','错题重练']].forEach(([v,t])=>{const o=el('option','',t);o.value=v;order.appendChild(o);});
   const start=el('button','primary','开始/重开考试'); start.onclick=startExam;
   row.append(source,count,order,start); cfg.appendChild(row); cfg.appendChild(el('div','meta','交卷前不显示答案；交卷后统计客观题分数，主观题交卷后显示参考答案并需人工判分。')); root.appendChild(cfg);
-  if(!examSet.length) return;
+  examSet=examSet.filter(id=>getQ(id));
+  if(!examSet.length) {
+    const empty=el('div','card');
+    empty.appendChild(el('h2','','暂无考试题目'));
+    empty.appendChild(el('div','meta','当前出题条件没有可用题目，请切换模式或点击重新生成试卷。'));
+    root.appendChild(empty);
+    return;
+  }
   const card=el('div','card'); card.appendChild(el('h3','', examSubmitted ? '考试结果' : '答题区'));
   if(examSubmitted) {
     const scored = examSet.filter(id=>!isSubjective(getQ(id)));
