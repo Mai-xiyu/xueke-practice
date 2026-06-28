@@ -35,6 +35,8 @@
       <input id="searchBox" placeholder="搜索题干/解析">
       <button id="shuffleBtn">随机一题</button>
       <button id="resetBtn">重置本题</button>
+      <button id="wrongBtn">错题本</button>
+      <button id="exitWrongBtn" class="hidden">退出错题本</button>
       <button id="examBtn" class="primary">模拟考试</button>
       <button id="exitExamBtn" class="hidden">退出模拟</button>
       <span id="examInfo" class="muted"></span>
@@ -7711,14 +7713,19 @@ const QUESTIONS = [
 
 const TYPE_NAME = {"single": "单选题", "multiple": "多选题", "fill": "填空题", "judge": "判断题", "short": "简答题", "essay": "论述题", "code": "代码题", "comprehensive": "综合应用题"};
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"answers":{},"wrong":{}}');
+state.answers = state.answers || {};
+state.wrong = state.wrong || {};
 let current = 0;
 let examMode = false;
+let wrongMode = false;
 let examQuestions = [];
 const chapterFilter = document.getElementById("chapterFilter");
 const typeFilter = document.getElementById("typeFilter");
 const searchBox = document.getElementById("searchBox");
 const shuffleBtn = document.getElementById("shuffleBtn");
 const resetBtn = document.getElementById("resetBtn");
+const wrongBtn = document.getElementById("wrongBtn");
+const exitWrongBtn = document.getElementById("exitWrongBtn");
 const examBtn = document.getElementById("examBtn");
 const exitExamBtn = document.getElementById("exitExamBtn");
 const examInfo = document.getElementById("examInfo");
@@ -7750,7 +7757,8 @@ function filtered(){
   const kw = searchBox.value.trim().toLowerCase();
   return QUESTIONS.filter(q => (!ch || q.chapter === ch) && (!ty || q.type === ty) && (!kw || JSON.stringify(q).toLowerCase().includes(kw)));
 }
-function activeList(){ return examMode ? examQuestions : filtered(); }
+function wrongList(){ return filtered().filter(q => Object.prototype.hasOwnProperty.call(state.wrong || {}, q.id)); }
+function activeList(){ return examMode ? examQuestions : (wrongMode ? wrongList() : filtered()); }
 function answerText(q){
   if (q.type === "fill") return (q.answers || (Array.isArray(q.answer) ? q.answer : [q.answer]).filter(Boolean)).join(" / ");
   if (q.type === "short" || q.type === "essay" || q.type === "code" || q.type === "comprehensive") return q.answer || "";
@@ -7801,10 +7809,13 @@ function buildLinuxExam(){
 function startExam(){
   examQuestions = buildModernExam();
   examMode = true;
+  wrongMode = false;
   current = 0;
   chapterFilter.disabled = true;
   typeFilter.disabled = true;
   searchBox.disabled = true;
+  wrongBtn.classList.add("hidden");
+  exitWrongBtn.classList.add("hidden");
   examBtn.classList.add("hidden");
   exitExamBtn.classList.remove("hidden");
   examInfo.textContent = `模拟考试：${examQuestions.length} 题`;
@@ -7817,15 +7828,35 @@ function exitExam(){
   chapterFilter.disabled = false;
   typeFilter.disabled = false;
   searchBox.disabled = false;
+  wrongBtn.classList.remove("hidden");
+  exitWrongBtn.classList.add("hidden");
   examBtn.classList.remove("hidden");
   exitExamBtn.classList.add("hidden");
   examInfo.textContent = "";
   render();
 }
+function enterWrong(){
+  if (examMode) exitExam();
+  wrongMode = true;
+  current = 0;
+  wrongBtn.classList.add("hidden");
+  exitWrongBtn.classList.remove("hidden");
+  examInfo.textContent = `错题本：${wrongList().length} 题`;
+  render();
+}
+function exitWrong(){
+  wrongMode = false;
+  current = 0;
+  wrongBtn.classList.remove("hidden");
+  exitWrongBtn.classList.add("hidden");
+  examInfo.textContent = "";
+  render();
+}
 function render(){
   const list = activeList();
+  if (wrongMode) examInfo.textContent = `错题本：${list.length} 题`;
   if (!list.length) {
-    questionPanel.innerHTML = '<div class="card">没有匹配题目。</div>';
+    questionPanel.innerHTML = `<div class="card">${wrongMode ? "错题本暂无题目，或当前筛选条件下没有错题。" : "没有匹配题目。"}</div>`;
     return;
   }
   current = Math.max(0, Math.min(current, list.length - 1));
@@ -7841,10 +7872,10 @@ function render(){
     body = `<textarea id="textAnswer" style="width:100%;min-height:150px">${esc(saved || "")}</textarea>`;
   }
   questionPanel.innerHTML = `<article class="card">
-    <p class="muted">${examMode ? "模拟考试" : "学习模式"} · ${current + 1}/${list.length} · ${esc(q.source)} · ${esc(q.chapter)} · ${esc(TYPE_NAME[q.type] || q.type)}</p>
+    <p class="muted">${examMode ? "模拟考试" : (wrongMode ? "错题本" : "学习模式")} · ${current + 1}/${list.length} · ${esc(q.source)} · ${esc(q.chapter)} · ${esc(TYPE_NAME[q.type] || q.type)}</p>
     <h2>${esc(stemOf(q))}</h2>
     ${body}
-    <div class="row"><button class="primary" id="showBtn">提交/查看解析</button><button id="prevBtn">上一题</button><button id="nextBtn">下一题</button></div>
+    <div class="row"><button class="primary" id="showBtn">提交/查看解析</button><button id="prevBtn">上一题</button><button id="nextBtn">下一题</button>${wrongMode ? '<button id="masterBtn">标记已掌握</button>' : ""}</div>
     <div id="analysis" class="analysis hidden"></div>
   </article>`;
   if (q.type === "single" || q.type === "judge") {
@@ -7853,6 +7884,8 @@ function render(){
   showBtn.onclick = () => submit(q);
   prevBtn.onclick = () => { current -= 1; render(); };
   nextBtn.onclick = () => { current += 1; render(); };
+  const masterBtn = document.getElementById("masterBtn");
+  if (masterBtn) masterBtn.onclick = () => { delete state.wrong[q.id]; save(); render(); };
 }
 function choose(q, value){
   state.answers[q.id] = value;
@@ -7901,6 +7934,8 @@ function init(){
   [chapterFilter,typeFilter,searchBox].forEach(el => el.addEventListener("input", () => { current = 0; render(); }));
   shuffleBtn.onclick = () => { const list = activeList(); current = Math.floor(Math.random() * list.length); render(); };
   resetBtn.onclick = () => { const q = activeList()[current]; if (q) delete state.answers[q.id]; save(); render(); };
+  wrongBtn.onclick = enterWrong;
+  exitWrongBtn.onclick = exitWrong;
   examBtn.onclick = startExam;
   exitExamBtn.onclick = exitExam;
   render();
@@ -7925,7 +7960,7 @@ window.studyHubPracticeStats=()=>{
 window.studyHubPracticeNav=()=>{
   const list=activeList();
   if(!list.length)return null;
-  return {mode:'study',title:examMode?'模拟答题卡':'答题卡',current:current+1,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:Boolean(state.wrong[q.id])})),jump(index){current=Math.max(0,Math.min(index-1,list.length-1));render();window.scrollTo(0,0);}};
+  return {mode:'study',title:examMode?'模拟答题卡':(wrongMode?'错题答题卡':'答题卡'),current:current+1,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:practiceQuestionType(q),done:state.answers[q.id]!==undefined,wrong:Boolean(state.wrong[q.id])})),jump(index){current=Math.max(0,Math.min(index-1,list.length-1));render();window.scrollTo(0,0);}};
 };
 init();
 </script>
