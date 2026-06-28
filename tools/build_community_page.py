@@ -1,0 +1,249 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+QUESTIONS_PATH = ROOT / "tmp_community_questions.json"
+PAGE_PATH = ROOT / "community_practice.html"
+SUBJECTS_PATH = ROOT / "subjects.json"
+
+
+UI = {
+    "title": "\u4e2d\u534e\u6c11\u65cf\u5171\u540c\u4f53\u9898\u5e93\u7ec3\u4e60",
+    "shortTitle": "\u4e2d\u534e\u6c11\u65cf\u5171\u540c\u4f53",
+    "sub": "\u8d85\u661f\u6a21\u62df\u6d4b\u8bd5\u53bb\u91cd\u9898\u5e93\uff0c\u652f\u6301\u5b66\u4e60\u3001\u6a21\u8003\u3001\u6d4f\u89c8\u548c\u9519\u9898\u7edf\u8ba1\u3002",
+    "answerCard": "\u7b54\u9898\u5361",
+    "source": "\u6765\u6e90",
+    "chapter": "\u7ae0\u8282",
+    "type": "\u9898\u578b",
+    "search": "\u641c\u7d22\u9898\u5e72/\u9009\u9879/\u89e3\u6790",
+    "apply": "\u5e94\u7528\u7b5b\u9009",
+    "clear": "\u6e05\u7a7a\u8fdb\u5ea6",
+    "study": "\u5b66\u4e60\u6a21\u5f0f",
+    "exam": "\u6a21\u62df\u8003\u8bd5",
+    "browse": "\u9898\u5e93\u6d4f\u89c8",
+    "wrong": "\u9519\u9898\u672c",
+    "allSource": "\u5168\u90e8\u6765\u6e90",
+    "allChapter": "\u5168\u90e8\u7ae0\u8282",
+    "allType": "\u5168\u90e8\u9898\u578b",
+    "noMatch": "\u6ca1\u6709\u5339\u914d\u9898\u76ee",
+    "pickRequired": "\u8bf7\u9009\u62e9\u540e\u63d0\u4ea4",
+    "essayPlaceholder": "\u8bf7\u5728\u8fd9\u91cc\u8f93\u5165\u4f60\u7684\u4f5c\u7b54",
+    "referenceAnswer": "\u53c2\u8003\u7b54\u6848",
+    "correct": "\u56de\u7b54\u6b63\u786e",
+    "incorrect": "\u56de\u7b54\u9519\u8bef",
+    "submit": "\u63d0\u4ea4/\u67e5\u770b\u89e3\u6790",
+    "prev": "\u4e0a\u4e00\u9898",
+    "next": "\u4e0b\u4e00\u9898",
+    "random": "\u968f\u673a\u4e00\u9898",
+    "redo": "\u91cd\u505a\u672c\u9898",
+    "newExam": "\u5f00\u59cb\u65b0\u8bd5\u5377",
+    "submitExam": "\u63d0\u4ea4\u8bd5\u5377",
+    "examCount": "\u8003\u8bd5\u9898\u91cf",
+    "objectiveScore": "\u5ba2\u89c2\u9898\u5f97\u5206",
+    "subjectiveNote": "\u4e3b\u89c2\u9898\u8bf7\u81ea\u884c\u6838\u5bf9\u53c2\u8003\u7b54\u6848",
+    "countPrefix": "\u5171",
+    "countSuffix": "\u9898",
+    "noWrong": "\u6ca1\u6709\u9519\u9898",
+    "confirmClear": "\u786e\u8ba4\u6e05\u7a7a\u672c\u9875\u7ec3\u4e60\u8fdb\u5ea6\uff1f",
+    "accuracy": "\u51c6\u786e\u7387",
+    "bankType": "\u9898\u5e93/\u9898\u578b",
+    "done": "\u5df2\u4f5c\u7b54",
+    "notDone": "\u672a\u4f5c\u7b54",
+    "typeNames": {
+        "single": "\u5355\u9009\u9898",
+        "multiple": "\u591a\u9009\u9898",
+        "judge": "\u5224\u65ad\u9898",
+        "essay": "\u8bba\u8ff0\u9898",
+    },
+}
+
+
+def read_questions() -> list[dict]:
+    questions = json.loads(QUESTIONS_PATH.read_text(encoding="utf-8"))
+    for question in questions:
+        if question.get("type") == "judge" and not question.get("options"):
+            question["options"] = {"A": "\u5bf9", "B": "\u9519"}
+    return questions
+
+
+def write_subjects() -> None:
+    data = json.loads(SUBJECTS_PATH.read_text(encoding="utf-8"))
+    subjects = data.setdefault("subjects", [])
+    subjects = [item for item in subjects if item.get("id") != "community"]
+    subjects.append(
+        {
+            "id": "community",
+            "title": UI["shortTitle"],
+            "mark": "CM",
+            "href": "community_practice.html",
+            "accent": "history",
+            "description": "\u8d85\u661f\u300a\u4e2d\u534e\u6c11\u65cf\u5171\u540c\u4f53\u6982\u8bba\u300b\u4e24\u5957\u6a21\u62df\u6d4b\u8bd5\u53bb\u91cd\u9898\u5e93\uff0c\u542b\u5355\u9009\u3001\u591a\u9009\u3001\u5224\u65ad\u548c\u8bba\u8ff0\u9898\u3002",
+            "order": 70,
+        }
+    )
+    data["subjects"] = sorted(subjects, key=lambda item: item.get("order", 999))
+    SUBJECTS_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def write_page(questions: list[dict]) -> None:
+    ui_json = json.dumps(UI, ensure_ascii=True, separators=(",", ":"))
+    questions_json = json.dumps(questions, ensure_ascii=True, separators=(",", ":"))
+    html = """<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>__TITLE__</title>
+  <link rel="stylesheet" href="assets/common.css">
+  <script src="assets/session-sync.js" defer></script>
+  <style>
+    body{margin:0;background:#f5f7fb;color:#0f172a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif}
+    .app{max-width:1180px;margin:0 auto;padding:24px}
+    .header,.toolbar,.card,.listItem{background:#fff;border:1px solid #d9e2ef;border-radius:8px;padding:16px;margin-bottom:14px}
+    .header{padding:24px}
+    .header h1{margin:0 0 8px;font-size:28px}
+    .sub,.muted,.qmeta{color:#64748b}
+    .toolbar-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px;align-items:end}
+    .toolbar label{display:block;margin-bottom:6px;color:#64748b;font-size:13px}
+    .row,.tabs{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    button,select,input,textarea{box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:10px 12px;background:#fff;color:#0f172a;font:inherit}
+    select,input{width:100%}
+    button{width:auto;cursor:pointer}
+    button.primary,.tab.active{background:#2563eb;border-color:#2563eb;color:#fff}
+    .tab{background:#fff}
+    .mode-section[hidden]{display:none}
+    .stem{margin:12px 0 16px;font-size:20px;font-weight:700;line-height:1.55}
+    .option{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;margin:10px 0;padding:13px;border:1px solid #d9e2ef;border-radius:8px;background:#f8fafc}
+    .option input{width:auto;margin:3px 0 0}
+    .letter{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:999px;background:#e2e8f0;color:#0f172a;font-weight:700}
+    .option.correct{border-color:#22c55e;background:#f0fdf4}
+    .option.wrong{border-color:#ef4444;background:#fef2f2}
+    .option.correct .letter{background:#22c55e;color:#fff}
+    .option.wrong .letter{background:#ef4444;color:#fff}
+    textarea{width:100%;min-height:150px;line-height:1.7}
+    .analysis{margin-top:12px;padding:14px;border-left:4px solid #2563eb;background:#fbfdff;line-height:1.75}
+    .answer-code{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;border-radius:8px;padding:12px;line-height:1.65;overflow:auto}
+    .correctText{color:#15803d}.wrongText{color:#b91c1c}
+    .pill{display:inline-block;margin:0 6px 6px 0;padding:4px 8px;border:1px solid #d9e2ef;border-radius:999px;background:#f8fafc;color:#64748b;font-size:12px}
+    .q-card{scroll-margin-top:96px}
+    details summary{cursor:pointer;line-height:1.55}
+    @media(max-width:760px){.toolbar-grid{grid-template-columns:1fr}.header h1{font-size:24px}.app{padding:16px}.stem{font-size:18px}}
+  </style>
+</head>
+<body data-practice-shell="community">
+<aside id="practiceAnswerCard" class="practice-question-nav" aria-label="__ANSWER_CARD__" hidden></aside>
+<main class="app">
+  <header class="header">
+    <h1>__TITLE__</h1>
+    <p class="sub">__SUB__</p>
+  </header>
+
+  <section class="toolbar">
+    <div class="toolbar-grid">
+      <div><label id="sourceLabel" for="sourceFilter"></label><select id="sourceFilter"></select></div>
+      <div><label id="chapterLabel" for="chapterFilter"></label><select id="chapterFilter"></select></div>
+      <div><label id="typeLabel" for="typeFilter"></label><select id="typeFilter"></select></div>
+      <div><label id="searchLabel" for="searchBox"></label><input id="searchBox"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="primary" id="applyBtn"></button>
+      <button id="clearBtn"></button>
+    </div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-mode="study" id="studyTab"></button>
+    <button class="tab" data-mode="exam" id="examTab"></button>
+    <button class="tab" data-mode="browse" id="browseTab"></button>
+    <button class="tab" data-mode="wrong" id="wrongTab"></button>
+  </nav>
+
+  <section id="study" class="mode-section"></section>
+  <section id="exam" class="mode-section" hidden></section>
+  <section id="browse" class="mode-section" hidden></section>
+  <section id="wrong" class="mode-section" hidden></section>
+</main>
+
+<script>
+const UI=__UI__;
+const QUESTIONS=__QUESTIONS__;
+const TYPE_NAME=UI.typeNames;
+const STORAGE_KEY="community_practice_state_v1";
+const $=id=>document.getElementById(id);
+let state=loadState();
+let activeMode="study";
+let studyIds=QUESTIONS.map(q=>q.id);
+let studyIndex=0;
+let examSet=[];
+let examAnswers={};
+let examSubmitted=false;
+
+function loadState(){try{return Object.assign({answers:{},wrong:{},done:{}},JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}"));}catch(_){return {answers:{},wrong:{},done:{}};}}
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;","'":"&#39;"}[c]));}
+function uniq(arr){return [...new Set(arr.filter(Boolean))];}
+function byId(id){return QUESTIONS.find(q=>q.id===id);}
+function isSubjective(q){return q.type==="essay";}
+function qText(q){return [q.title,Object.values(q.options||{}).join(" "),q.answer,(q.explanations||[]).map(x=>x.text||"").join(" ")].join(" ").toLowerCase();}
+function filtered(){const s=$("sourceFilter").value,ch=$("chapterFilter").value,t=$("typeFilter").value,kw=$("searchBox").value.trim().toLowerCase();return QUESTIONS.filter(q=>(!s||q.source===s)&&(!ch||q.chapter===ch)&&(!t||q.type===t)&&(!kw||qText(q).includes(kw)));}
+function normAnswer(v){return Array.isArray(v)?v.slice().sort().join(""):String(v||"").split("").sort().join("");}
+function answerKeys(q){return String(q.answer||"").split("").filter(Boolean);}
+function answerText(q){if(isSubjective(q))return q.answer||"";return answerKeys(q).map(k=>q.options&&q.options[k]?`${k}. ${q.options[k]}`:k).join(" / ");}
+function selectedFor(q,name,root=document){if(isSubjective(q)){const el=root.querySelector(`[name="${name}"]`);return el?el.value:"";}if(q.type==="multiple")return [...root.querySelectorAll(`[name="${name}"]:checked`)].map(x=>x.value).sort();const el=root.querySelector(`[name="${name}"]:checked`);return el?el.value:"";}
+function hasSelection(q,value){return isSubjective(q)||Array.isArray(value)?value.length>0:Boolean(value);}
+function markAnswer(q,selected){state.answers[q.id]=selected;state.done[q.id]=true;const ok=isSubjective(q)||normAnswer(selected)===normAnswer(q.answer);if(ok)delete state.wrong[q.id];else state.wrong[q.id]=selected||"";save();return ok;}
+function refreshShell(){if(typeof window.studyHubRefreshStats==="function")window.studyHubRefreshStats();}
+function renderStats(){refreshShell();}
+function optionHtml(q,{name,selected,show=false}){if(isSubjective(q))return `<textarea name="${esc(name)}" placeholder="${esc(UI.essayPlaceholder)}">${esc(selected||"")}</textarea>`;const selectedSet=new Set(Array.isArray(selected)?selected:(selected?[selected]:[]));const correctSet=new Set(answerKeys(q));const inputType=q.type==="multiple"?"checkbox":"radio";return Object.entries(q.options||{}).map(([k,v])=>{const chosen=selectedSet.has(k),correct=correctSet.has(k);let cls="option";if(show&&correct)cls+=" correct";else if(show&&chosen&&!correct)cls+=" wrong";return `<label class="${cls}"><input type="${inputType}" name="${esc(name)}" value="${esc(k)}" ${chosen?"checked":""} ${show?"disabled":""}><span class="letter">${esc(k)}</span><span>${esc(v)}</span></label>`;}).join("");}
+function headerHtml(q,i,total){return `<p class="qmeta">${i+1}/${total} <span class="pill">${esc(q.source)}</span><span class="pill">${esc(q.chapter)}</span><span class="pill">${esc(TYPE_NAME[q.type]||q.type)}</span></p><div class="stem">${esc(q.title)}</div>`;}
+function explanationHtml(q,selected){const ok=isSubjective(q)?null:normAnswer(selected)===normAnswer(q.answer);const verdict=ok===null?"":`<p class="${ok?"correctText":"wrongText"}">${ok?esc(UI.correct):esc(UI.incorrect)}</p>`;const explains=(q.explanations||[]).map(item=>`<p><b>${esc(item.label||"")}</b>${item.label?"：":""}${esc(item.text||"")}</p>`).join("");return `<div class="analysis"><b>${esc(UI.referenceAnswer)}:</b><pre class="answer-code">${esc(answerText(q))}</pre>${verdict}${explains}</div>`;}
+
+function initFilters(){sourceFilter.innerHTML=`<option value="">${esc(UI.allSource)}</option>`+uniq(QUESTIONS.map(q=>q.source)).map(x=>`<option>${esc(x)}</option>`).join("");chapterFilter.innerHTML=`<option value="">${esc(UI.allChapter)}</option>`+uniq(QUESTIONS.map(q=>q.chapter)).map(x=>`<option>${esc(x)}</option>`).join("");typeFilter.innerHTML=`<option value="">${esc(UI.allType)}</option>`+Object.entries(TYPE_NAME).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join("");}
+function initText(){document.title=UI.title;$("sourceLabel").textContent=UI.source;$("chapterLabel").textContent=UI.chapter;$("typeLabel").textContent=UI.type;$("searchLabel").textContent=UI.search;$("searchBox").placeholder=UI.search;$("applyBtn").textContent=UI.apply;$("clearBtn").textContent=UI.clear;$("studyTab").textContent=UI.study;$("examTab").textContent=UI.exam;$("browseTab").textContent=UI.browse;$("wrongTab").textContent=UI.wrong;}
+function applyFilter(){studyIds=filtered().map(q=>q.id);studyIndex=0;renderMode();}
+function setMode(mode){activeMode=mode;document.querySelectorAll(".tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.mode===mode));document.querySelectorAll(".mode-section").forEach(sec=>sec.hidden=sec.id!==mode);renderMode();}
+function renderMode(){if(activeMode==="study")renderStudy();if(activeMode==="exam")renderExam();if(activeMode==="browse")renderBrowse();if(activeMode==="wrong")renderWrong();renderStats();}
+
+function renderStudy(show=false,selected=null){const root=$("study");const list=studyIds.map(byId).filter(Boolean);if(!list.length){root.innerHTML=`<div class="card">${esc(UI.noMatch)}</div>`;return;}studyIndex=Math.max(0,Math.min(studyIndex,list.length-1));const q=list[studyIndex];const name=`study-${q.id}`;const current=selected??state.answers[q.id];root.innerHTML=`<article class="card q-card">${headerHtml(q,studyIndex,list.length)}${optionHtml(q,{name,selected:current,show})}<div class="row"><button class="primary" id="studySubmit">${esc(UI.submit)}</button><button id="studyPrev">${esc(UI.prev)}</button><button id="studyNext">${esc(UI.next)}</button><button id="studyRandom">${esc(UI.random)}</button><button id="studyRedo">${esc(UI.redo)}</button></div>${show?explanationHtml(q,current):""}</article>`;$("studySubmit").onclick=()=>{const value=selectedFor(q,name,root);if(!hasSelection(q,value)){alert(UI.pickRequired);return;}markAnswer(q,value);renderStudy(true,value);};$("studyPrev").onclick=()=>{studyIndex--;renderStudy();window.scrollTo(0,0);};$("studyNext").onclick=()=>{studyIndex++;renderStudy();window.scrollTo(0,0);};$("studyRandom").onclick=()=>{studyIndex=Math.floor(Math.random()*list.length);renderStudy();window.scrollTo(0,0);};$("studyRedo").onclick=()=>{delete state.answers[q.id];delete state.done[q.id];delete state.wrong[q.id];save();renderStudy();};}
+function shuffle(arr){return arr.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);}
+function pick(type,count){return shuffle(QUESTIONS.filter(q=>q.type===type)).slice(0,count);}
+function buildExam(){return [...pick("single",40),...pick("multiple",20),...pick("judge",20),...pick("essay",1)];}
+function renderExam(){const root=$("exam");if(!examSet.length)examSet=buildExam();let header=`<div class="card"><div class="row"><button class="primary" id="newExamBtn">${esc(UI.newExam)}</button><button id="submitExamBtn">${esc(UI.submitExam)}</button><span class="muted">${esc(UI.examCount)} ${examSet.length}</span></div></div>`;let summary="";if(examSubmitted){let scored=0,correct=0;examSet.forEach(q=>{if(!isSubjective(q)){scored++;if(normAnswer(examAnswers[q.id])===normAnswer(q.answer))correct++;}});summary=`<div class="card"><b>${esc(UI.objectiveScore)}: ${correct}/${scored}</b><p class="muted">${esc(UI.subjectiveNote)}</p></div>`;}root.innerHTML=header+summary+examSet.map((q,i)=>{const name=`exam-${q.id}`;const selected=examAnswers[q.id]??state.answers[q.id];return `<article class="card q-card" data-qid="${esc(q.id)}">${headerHtml(q,i,examSet.length)}${optionHtml(q,{name,selected,show:examSubmitted})}${examSubmitted?explanationHtml(q,selected):""}</article>`;}).join("");$("newExamBtn").onclick=()=>{examSet=buildExam();examAnswers={};examSubmitted=false;renderExam();window.scrollTo(0,0);};$("submitExamBtn").onclick=submitExam;root.querySelectorAll("input,textarea").forEach(el=>{el.onchange=el.oninput=()=>{const card=el.closest(".q-card");const q=byId(card.dataset.qid);examAnswers[q.id]=selectedFor(q,`exam-${q.id}`,card);};});}
+function submitExam(){const root=$("exam");examSet.forEach(q=>{const card=root.querySelector(`[data-qid="${q.id}"]`);const value=selectedFor(q,`exam-${q.id}`,card||root);examAnswers[q.id]=value;markAnswer(q,value);});examSubmitted=true;renderExam();window.scrollTo(0,0);}
+function renderBrowse(){const arr=filtered();$("browse").innerHTML=`<div class="card"><h2>${esc(UI.browse)}</h2><p class="muted">${esc(UI.countPrefix)} ${arr.length} ${esc(UI.countSuffix)}</p></div>`+arr.map((q,i)=>{const selected=q.type==="multiple"?answerKeys(q):q.answer;return `<details class="listItem"><summary><b>${esc(q.id)}</b> [${esc(TYPE_NAME[q.type]||q.type)}] ${esc(q.title)}</summary>${headerHtml(q,i,arr.length)}${optionHtml(q,{name:`browse-${q.id}`,selected,show:true})}${explanationHtml(q,selected)}</details>`;}).join("");}
+function renderWrong(){const arr=Object.keys(state.wrong||{}).map(byId).filter(Boolean);$("wrong").innerHTML=`<div class="card"><h2>${esc(UI.wrong)}</h2><p class="muted">${arr.length?`${esc(UI.countPrefix)} ${arr.length} ${esc(UI.countSuffix)}`:esc(UI.noWrong)}</p></div>`+arr.map((q,i)=>`<div class="listItem">${headerHtml(q,i,arr.length)}${optionHtml(q,{name:`wrong-${q.id}`,selected:state.wrong[q.id],show:true})}${explanationHtml(q,state.wrong[q.id])}</div>`).join("");}
+
+function navItems(){if(activeMode==="browse"||activeMode==="wrong")return null;const list=(activeMode==="exam"?examSet:studyIds.map(byId).filter(Boolean));if(!list.length)return null;const current=activeMode==="exam"?1:studyIndex+1;return {mode:"study",title:UI.answerCard,current,items:list.map((q,i)=>({id:q.id,index:i+1,label:String(i+1),type:q.type,done:Boolean(state.done[q.id]||examAnswers[q.id]),wrong:Boolean(state.wrong[q.id])})),jump(index){if(activeMode==="exam"){const cards=[...document.querySelectorAll("#exam .q-card")];if(cards[index-1])cards[index-1].scrollIntoView({behavior:"smooth",block:"start"});return;}studyIndex=Math.max(0,Math.min(index-1,list.length-1));renderStudy();window.scrollTo(0,0);}};}
+window.studyHubPracticeNav=navItems;
+window.studyHubPracticeStats=()=>{const total=QUESTIONS.length,done=Object.keys(state.done||{}).length,wrong=Object.keys(state.wrong||{}).length,correct=Math.max(0,done-wrong),accuracy=done?Math.round(correct*100/done):0;return {total,done,wrong,accuracy,extraLabel:UI.bankType,extraValue:`${uniq(QUESTIONS.map(q=>q.source)).length}/${uniq(QUESTIONS.map(q=>q.type)).length}`};};
+document.querySelectorAll(".tab").forEach(btn=>btn.onclick=()=>setMode(btn.dataset.mode));
+$("applyBtn").onclick=applyFilter;
+$("clearBtn").onclick=()=>{if(confirm(UI.confirmClear)){state={answers:{},wrong:{},done:{}};save();renderMode();}};
+["sourceFilter","chapterFilter","typeFilter","searchBox"].forEach(id=>$(id).addEventListener("input",applyFilter));
+initText();initFilters();applyFilter();
+</script>
+</body>
+</html>
+"""
+    html = (
+        html.replace("__TITLE__", UI["title"])
+        .replace("__SUB__", UI["sub"])
+        .replace("__ANSWER_CARD__", UI["answerCard"])
+        .replace("__UI__", ui_json)
+        .replace("__QUESTIONS__", questions_json)
+    )
+    PAGE_PATH.write_text(html, encoding="utf-8")
+
+
+def main() -> None:
+    questions = read_questions()
+    write_page(questions)
+    write_subjects()
+    print(f"wrote {PAGE_PATH.name}: {len(questions)} questions")
+
+
+if __name__ == "__main__":
+    main()
