@@ -34,6 +34,17 @@
       "dataFile": "data/data-collection.json"
     },
     {
+      "id": "data-visualization",
+      "title": "数据可视化",
+      "mark": "DV",
+      "href": "data_visualization_practice.html",
+      "accent": "visualization",
+      "description": "数据可视化测试1，覆盖图表选择、可视化工具、设计原则、视觉通道和数据预处理。",
+      "order": 35,
+      "college": "computer-science",
+      "dataFile": "data/data-visualization.json"
+    },
+    {
       "id": "data-structure",
       "title": "数据结构",
       "mark": "DS",

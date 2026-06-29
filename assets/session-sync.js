@@ -9,6 +9,7 @@
       { id: "route-switching", title: "路由交换", href: "network_practice.html", college: "computer-science", order: 10 },
       { id: "network-security", title: "网络安全", href: "network_info_security_practice.html", college: "computer-science", order: 20 },
       { id: "data-collection", title: "数据采集", href: "network_data_collection_practice.html", college: "computer-science", order: 30 },
+      { id: "data-visualization", title: "数据可视化", href: "data_visualization_practice.html", college: "computer-science", order: 35 },
       { id: "data-structure", title: "数据结构", href: "data_structure_practice.html", college: "computer-science", order: 40 },
       { id: "linux-course", title: "Linux课程", href: "linux_practice.html", college: "computer-science", order: 50 },
       { id: "modern-history", title: "中国近代史", href: "modern_history_practice.html", college: "marxism", order: 60 },
