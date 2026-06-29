@@ -3,14 +3,21 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const subjectFile = path.join(root, "subjects.json");
-const subjects = JSON.parse(fs.readFileSync(subjectFile, "utf8")).subjects;
+const directory = JSON.parse(fs.readFileSync(subjectFile, "utf8"));
+const subjects = directory.subjects;
+const colleges = directory.colleges;
 
 if (!Array.isArray(subjects) || subjects.length === 0) {
   throw new Error("subjects.json must contain a non-empty subjects array");
 }
 
+if (!Array.isArray(colleges) || colleges.length === 0) {
+  throw new Error("subjects.json must contain a non-empty colleges array");
+}
+
 const ids = new Set();
 const hrefs = new Set();
+const collegeIds = new Set(colleges.map((college) => college.id));
 
 function extractQuestionArray(source) {
   const match = source.match(/\b(?:const|let|var)\s+(QUESTIONS|QBANK)\s*=\s*\[/);
@@ -42,10 +49,17 @@ function extractQuestionArray(source) {
   throw new Error("question array end not found");
 }
 
+for (const college of colleges) {
+  for (const key of ["id", "title"]) {
+    if (!college[key]) throw new Error(`college missing ${key}: ${JSON.stringify(college)}`);
+  }
+}
+
 for (const subject of subjects) {
-  for (const key of ["id", "title", "href"]) {
+  for (const key of ["id", "title", "href", "college", "dataFile"]) {
     if (!subject[key]) throw new Error(`subject missing ${key}: ${JSON.stringify(subject)}`);
   }
+  if (!collegeIds.has(subject.college)) throw new Error(`subject references unknown college: ${subject.id} -> ${subject.college}`);
   if (ids.has(subject.id)) throw new Error(`duplicate subject id: ${subject.id}`);
   ids.add(subject.id);
   hrefs.add(subject.href);
@@ -58,12 +72,21 @@ for (const subject of subjects) {
     throw new Error(`derived-question marker found in ${subject.href}`);
   }
 
-  const arrayText = extractQuestionArray(html);
-  if (!arrayText) {
-    console.warn(`[warn] ${subject.href}: no QUESTIONS/QBANK array detected`);
-    continue;
+  if (!html.includes("studyHubLoadQuestions")) {
+    throw new Error(`${subject.href}: missing JSON question loader`);
   }
-  const questions = JSON.parse(arrayText);
+
+  const embeddedArray = extractQuestionArray(html);
+  if (embeddedArray) {
+    const embeddedQuestions = JSON.parse(embeddedArray);
+    if (Array.isArray(embeddedQuestions) && embeddedQuestions.length > 0) {
+      throw new Error(`${subject.href}: questions must live in ${subject.dataFile}, not in HTML`);
+    }
+  }
+
+  const dataPath = path.join(root, subject.dataFile);
+  if (!fs.existsSync(dataPath)) throw new Error(`subject dataFile does not exist: ${subject.dataFile}`);
+  const questions = JSON.parse(fs.readFileSync(dataPath, "utf8"));
   if (!Array.isArray(questions) || questions.length === 0) {
     throw new Error(`${subject.href}: question array is empty`);
   }

@@ -9,9 +9,10 @@
 ## 输出要求
 
 1. 新建一个 `<subject_id>_practice.html`。
-2. 基于 `templates/subject_practice_template.html` 的结构实现，不要引入外部 CDN。
-3. 在 `subjects.json` 追加新科目入口。
-4. 题库对象统一使用：
+2. 新建一个 `data/<subject_id>.json`，题库只写入这个 JSON，HTML 中不要内嵌大题库。
+3. 基于 `templates/subject_practice_template.html` 的结构实现，不要引入外部 CDN；页面通过 `studyHubLoadQuestions(DATA_FILE, "...")` 读取 JSON。
+4. 在 `subjects.json` 追加新科目入口，必须包含 `college` 和 `dataFile`。
+5. 题库对象统一使用：
 
    ```js
    {
@@ -29,15 +30,15 @@
    }
    ```
 
-5. 不允许使用 `衍生题` 作为来源。
-6. 判断题通过选择题改写生成。生成规则：
+6. 不允许使用 `衍生题` 作为来源。
+7. 判断题通过选择题改写生成。生成规则：
 
    - 从选择题中抽取正确或错误选项构造判断陈述。
    - 正确判断题答案为 `A`，错误判断题答案为 `B`。
    - `analysis` 中注明由哪一道选择题改写。
 
-7. 简答题必须提供可背诵的参考答案。
-8. 输出后说明运行校验命令：
+8. 简答题必须提供可背诵的参考答案。
+9. 输出后说明运行校验命令：
 
    ```powershell
    npm run validate

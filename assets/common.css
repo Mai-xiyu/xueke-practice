@@ -81,6 +81,7 @@ body {
 }
 
 .study-hub-links a,
+.study-hub-menu-trigger,
 .study-hub-sync {
   min-height: 34px;
   display: inline-flex;
@@ -95,18 +96,89 @@ body {
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
+  font-family: inherit;
+  cursor: pointer;
 }
 
-.study-hub-links a:hover {
+.study-hub-links a:hover,
+.study-hub-menu-trigger:hover {
   border-color: var(--hub-line);
   background: var(--hub-surface-2);
 }
 
-.study-hub-links a.active {
+.study-hub-links a.active,
+.study-hub-menu.active > .study-hub-menu-trigger {
   color: #ffffff;
   border-color: var(--hub-primary);
   background: var(--hub-primary);
   box-shadow: 0 6px 14px rgba(36, 87, 214, .22);
+}
+
+.study-hub-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.study-hub-menu-trigger {
+  appearance: none;
+  margin: 0;
+  border-color: transparent !important;
+  background: transparent !important;
+  color: #344054 !important;
+}
+
+.study-hub-menu.active > .study-hub-menu-trigger {
+  color: #ffffff !important;
+}
+
+.study-hub-menu-trigger::after {
+  content: "";
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+}
+
+.study-hub-submenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: 1100;
+  min-width: 190px;
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  border: 1px solid var(--hub-line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 34px rgba(16, 24, 40, .14);
+  transition: opacity .12s ease, transform .12s ease, visibility .12s ease;
+}
+
+.study-hub-submenu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10px;
+  height: 10px;
+}
+
+.study-hub-menu:hover .study-hub-submenu,
+.study-hub-menu:focus-within .study-hub-submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.study-hub-submenu a {
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .study-hub-sync {
@@ -335,6 +407,37 @@ code {
 
 .subject-grid {
   display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.college-section {
+  display: grid;
+  gap: 14px;
+}
+
+.college-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 2px;
+}
+
+.college-heading h2 {
+  margin: 0;
+  color: var(--hub-heading);
+  font-size: 21px;
+  line-height: 1.35;
+}
+
+.college-heading span {
+  color: var(--hub-muted);
+  font-size: 13px;
+}
+
+.college-subject-grid {
+  display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
@@ -377,10 +480,12 @@ code {
   font-weight: 850;
 }
 
-.subject-card h2 {
+.subject-card h2,
+.subject-card h3 {
   margin: 0;
   color: var(--hub-heading);
   font-size: 20px;
+  line-height: 1.35;
 }
 
 .subject-card p {
@@ -422,7 +527,7 @@ code {
 }
 
 @media (max-width: 980px) {
-  .subject-grid {
+  .college-subject-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -440,13 +545,28 @@ code {
     justify-content: flex-start;
   }
 
+  .study-hub-menu {
+    position: static;
+  }
+
+  .study-hub-submenu {
+    left: auto;
+    right: 12px;
+    transform: translateY(6px);
+  }
+
+  .study-hub-menu:hover .study-hub-submenu,
+  .study-hub-menu:focus-within .study-hub-submenu {
+    transform: translateY(0);
+  }
+
   main,
   .wrap,
   .portal-hero-inner {
     width: min(100% - 24px, 1180px) !important;
   }
 
-  .subject-grid {
+  .college-subject-grid {
     grid-template-columns: 1fr;
   }
 
@@ -495,11 +615,25 @@ body.practice-page .study-hub-nav-inner {
 }
 
 body.practice-page .study-hub-links a,
+body.practice-page .study-hub-menu-trigger,
 body.practice-page .study-hub-sync {
   min-height: 30px;
   padding: 6px 10px;
   border-radius: 7px;
   font-size: 13px;
+}
+
+body.practice-page .study-hub-menu-trigger {
+  border-color: transparent !important;
+  background: transparent !important;
+  color: #344054 !important;
+  box-shadow: none !important;
+}
+
+body.practice-page .study-hub-menu.active > .study-hub-menu-trigger {
+  border-color: var(--hub-primary) !important;
+  background: var(--hub-primary) !important;
+  color: #ffffff !important;
 }
 
 @media (min-width: 1100px) {

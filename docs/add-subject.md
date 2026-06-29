@@ -2,10 +2,11 @@
 
 ## 目标
 
-新增科目只需要两个稳定入口：
+新增科目只需要三个稳定入口：
 
 1. 一个新的 `*_practice.html` 页面。
-2. `subjects.json` 中的一条科目配置。
+2. 一个新的 `data/<subject_id>.json` 题库文件。
+3. `subjects.json` 中的一条科目配置。
 
 ## 手工新增
 
@@ -20,9 +21,17 @@
    - `<title>`
    - `SUBJECT_TITLE`
    - `STORAGE_KEY`
-   - `QUESTIONS`
+   - `DATA_FILE`
 
-3. 在 `subjects.json` 增加入口：
+3. 新建题库 JSON：
+
+   ```powershell
+   New-Item -ItemType File data/new-subject.json
+   ```
+
+   JSON 顶层必须是题目数组，不要把大题库写进 HTML。
+
+4. 在 `subjects.json` 增加入口：
 
    ```json
    {
@@ -32,11 +41,23 @@
      "href": "new_subject_practice.html",
      "accent": "new-subject",
      "description": "一句话说明覆盖范围。",
-     "order": 50
+     "order": 90,
+     "college": "computer-science",
+     "dataFile": "data/new-subject.json"
    }
    ```
 
-4. 校验：
+5. 如果是新学院，在 `subjects.json` 的 `colleges` 数组里增加学院：
+
+   ```json
+   {
+     "id": "new-college",
+     "title": "新学院",
+     "order": 90
+   }
+   ```
+
+6. 校验：
 
    ```powershell
    npm run validate

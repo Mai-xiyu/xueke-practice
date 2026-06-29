@@ -10,6 +10,8 @@
 - 数据结构
 - Linux课程
 - 中国近代史
+- 中华民族共同体
+- 高等数学(下)
 
 ## 快速使用
 
@@ -42,10 +44,12 @@ docker compose down
 ```text
 index.html                                  总入口，读取 subjects.json
 subjects.json                               科目注册表
-*_practice.html                             各科目题库页面
+data/*.json                                 各科目题库数据
+*_practice.html                             各科目练习页面
 linux_practice.html                         Linux 课程题库页面
 modern_history_practice.html                中国近代史题库页面
 assets/common.css                           统一样式
+assets/question-loader.js                   题库 JSON 加载器
 assets/session-sync.js                      顶部导航和进度同步
 backend/server.js                           会话 JSON 后端
 docker/nginx.conf                           Nginx 静态站点和 /api 反代
@@ -65,9 +69,10 @@ README-docker.md                            Docker 部署补充说明
 优先按这个流程：
 
 1. 复制 `templates/subject_practice_template.html` 为新的 `*_practice.html`。
-2. 写入题库数组，设置页面标题、`SUBJECT_TITLE` 和 `STORAGE_KEY`。
-3. 在 `subjects.json` 增加一条科目配置。
-4. 运行：
+2. 新建 `data/<subject_id>.json`，把题库写入 JSON 顶层数组。
+3. 设置页面标题、`SUBJECT_TITLE`、`STORAGE_KEY` 和 `DATA_FILE`。
+4. 在 `subjects.json` 增加一条科目配置，包含 `college` 和 `dataFile`。
+5. 运行：
 
    ```powershell
    npm run validate
@@ -177,7 +182,7 @@ A specified logon session does not exist.
 
 维护规则：
 
-- 新增科目只改 `subjects.json` 和新的 `*_practice.html`，除非确实需要共享能力。
+- 新增科目只改 `subjects.json`、新的 `*_practice.html` 和 `data/<subject_id>.json`，除非确实需要共享能力。
 - 统一 UI 放在 `assets/common.css`，不要在单个页面里做风格分叉。
 - 共享进度逻辑放在 `assets/session-sync.js`，后端接口放在 `backend/server.js`。
 - 不要提交 `session-data/`、`.artifacts/`、`.env*`、token、密码或临时产物。

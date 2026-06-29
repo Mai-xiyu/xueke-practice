@@ -26,77 +26,100 @@
 
     <section class="card portal-note">
       <strong>新增科目</strong>
-      <p>复制 <code>templates/subject_practice_template.html</code> 生成新的科目页面，再把入口写入 <code>subjects.json</code>。需要让 AI 处理试卷时，直接使用 <code>prompts/add-subject-prompt.md</code>。</p>
+      <p>题库统一放在 <code>data/&lt;科目ID&gt;.json</code>，科目页面只负责读取 JSON。新增科目时，把学院、入口和 <code>dataFile</code> 写入 <code>subjects.json</code>；需要让 AI 处理试卷时，直接使用 <code>prompts/add-subject-prompt.md</code>。</p>
     </section>
   </main>
 
   <script>
-    const fallbackSubjects = [
-      {
-        id: "route-switching",
-        title: "路由交换",
-        mark: "RS",
-        href: "network_practice.html",
-        accent: "route",
-        description: "路由基础、RIP、OSPF、BGP、ACL、NAT、VLAN、STP、VRRP，以及去年考试题。"
-      },
-      {
-        id: "network-security",
-        title: "网络安全",
-        mark: "NS",
-        href: "network_info_security_practice.html",
-        accent: "security",
-        description: "密码学、认证、PKI、防火墙、IDS/IPS 和实验题复盘，支持模拟考试。"
-      },
-      {
-        id: "data-collection",
-        title: "数据采集",
-        mark: "DC",
-        href: "network_data_collection_practice.html",
-        accent: "data",
-        description: "网络数据采集题库练习，支持搜索、错题记录和本地进度保存。"
-      },
-      {
-        id: "data-structure",
-        title: "数据结构",
-        mark: "DS",
-        href: "data_structure_practice.html",
-        accent: "structure",
-        description: "数据结构题库练习、题库浏览、错题复盘和模拟测试。"
-      },
-      {
-        id: "linux-course",
-        title: "Linux课程",
-        mark: "LX",
-        href: "linux_practice.html",
-        accent: "linux",
-        description: "超星 Linux 课程作业题库，覆盖目录结构、命令、权限、进程、Shell 与系统管理。"
-      },
-      {
-        id: "modern-history",
-        title: "中国近代史",
-        mark: "MH",
-        href: "modern_history_practice.html",
-        accent: "history",
-        description: "中国近代史纲要截图题库，包含单选、多选和主观题。"
-      },
-      {
-        id: "community",
-        title: "中华民族共同体",
-        mark: "CM",
-        href: "community_practice.html",
-        accent: "history",
-        description: "超星《中华民族共同体概论》两套模拟测试去重题库，含单选、多选、判断和论述题。"
-      },
-      {
-        id: "higher-math-down",
-        title: "高等数学(下)",
-        mark: "HM",
-        href: "higher_math_down_practice.html",
-        accent: "math",
-        description: "高数下册期末资料、学习通截图题、纸质卷图片和 Word 复习资料。"
-      }
-    ];
+    const fallbackDirectory = {
+      colleges: [
+        { id: "computer-science", title: "计算机科学技术学院", order: 10 },
+        { id: "marxism", title: "马克思主义学院", order: 20 },
+        { id: "mathematics", title: "数学科学学院", order: 30 }
+      ],
+      subjects: [
+        {
+          id: "route-switching",
+          title: "路由交换",
+          mark: "RS",
+          href: "network_practice.html",
+          accent: "route",
+          college: "computer-science",
+          order: 10,
+          description: "路由基础、RIP、OSPF、BGP、ACL、NAT、VLAN、STP、VRRP，以及去年考试题。"
+        },
+        {
+          id: "network-security",
+          title: "网络安全",
+          mark: "NS",
+          href: "network_info_security_practice.html",
+          accent: "security",
+          college: "computer-science",
+          order: 20,
+          description: "密码学、认证、PKI、防火墙、IDS/IPS 和实验题复盘，支持模拟考试。"
+        },
+        {
+          id: "data-collection",
+          title: "数据采集",
+          mark: "DC",
+          href: "network_data_collection_practice.html",
+          accent: "data",
+          college: "computer-science",
+          order: 30,
+          description: "网络数据采集题库练习，支持搜索、错题记录和本地进度保存。"
+        },
+        {
+          id: "data-structure",
+          title: "数据结构",
+          mark: "DS",
+          href: "data_structure_practice.html",
+          accent: "structure",
+          college: "computer-science",
+          order: 40,
+          description: "数据结构题库练习、题库浏览、错题复盘和模拟测试。"
+        },
+        {
+          id: "linux-course",
+          title: "Linux课程",
+          mark: "LX",
+          href: "linux_practice.html",
+          accent: "linux",
+          college: "computer-science",
+          order: 50,
+          description: "超星 Linux 课程题库与模拟考试，覆盖命令、权限、Shell、服务配置和网络实战。"
+        },
+        {
+          id: "modern-history",
+          title: "中国近代史",
+          mark: "MH",
+          href: "modern_history_practice.html",
+          accent: "history",
+          college: "marxism",
+          order: 60,
+          description: "中国近现代史纲要题库、章节测验和模拟试卷，支持单选、多选、判断组卷。"
+        },
+        {
+          id: "community",
+          title: "中华民族共同体",
+          mark: "CM",
+          href: "community_practice.html",
+          accent: "history",
+          college: "marxism",
+          order: 70,
+          description: "超星《中华民族共同体概论》两套模拟测试去重题库，含单选、多选、判断和论述题。"
+        },
+        {
+          id: "higher-math-down",
+          title: "高等数学(下)",
+          mark: "HM",
+          href: "higher_math_down_practice.html",
+          accent: "math",
+          college: "mathematics",
+          order: 80,
+          description: "高数下册期末资料、学习通截图题、纸质卷图片和 Word 复习资料。"
+        }
+      ]
+    };
 
     function escapeHtml(value) {
       return String(value ?? "").replace(/[&<>"']/g, char => ({
@@ -108,18 +131,50 @@
       }[char]));
     }
 
-    function renderSubjects(subjects) {
+    function normalizeDirectory(data) {
+      const subjects = Array.isArray(data && data.subjects) ? data.subjects : fallbackDirectory.subjects;
+      const colleges = Array.isArray(data && data.colleges) ? data.colleges : fallbackDirectory.colleges;
+      return {
+        subjects: [...subjects].sort((a, b) => (a.order || 0) - (b.order || 0)),
+        colleges: [...colleges].sort((a, b) => (a.order || 0) - (b.order || 0))
+      };
+    }
+
+    function renderSubjects(directory) {
       const grid = document.getElementById("subjectGrid");
-      const list = [...subjects].sort((a, b) => (a.order || 0) - (b.order || 0));
-      document.getElementById("subjectCount").textContent = `${list.length} 个科目入口`;
-      grid.innerHTML = list.map(subject => `
-        <a class="card subject-card subject-${escapeHtml(subject.accent || subject.id)}" href="${escapeHtml(subject.href)}">
-          <span class="subject-mark">${escapeHtml(subject.mark || subject.title.slice(0, 2))}</span>
-          <h2>${escapeHtml(subject.title)}</h2>
-          <p>${escapeHtml(subject.description || "")}</p>
-          <span class="subject-action">进入练习</span>
-        </a>
-      `).join("");
+      const subjectByCollege = new Map();
+      directory.subjects.forEach(subject => {
+        const key = subject.college || "other";
+        if (!subjectByCollege.has(key)) subjectByCollege.set(key, []);
+        subjectByCollege.get(key).push(subject);
+      });
+      const known = new Set(directory.colleges.map(college => college.id));
+      const colleges = directory.colleges.filter(college => subjectByCollege.has(college.id));
+      if ([...subjectByCollege.keys()].some(id => !known.has(id))) {
+        colleges.push({ id: "other", title: "其他科目", order: 999 });
+      }
+      document.getElementById("subjectCount").textContent = `${colleges.length} 个学院 / ${directory.subjects.length} 个科目`;
+      grid.innerHTML = colleges.map(college => {
+        const subjects = subjectByCollege.get(college.id) || [];
+        return `
+          <section class="college-section" aria-labelledby="college-${escapeHtml(college.id)}">
+            <div class="college-heading">
+              <h2 id="college-${escapeHtml(college.id)}">${escapeHtml(college.title)}</h2>
+              <span>${subjects.length} 门科目</span>
+            </div>
+            <div class="college-subject-grid">
+              ${subjects.map(subject => `
+                <a class="card subject-card subject-${escapeHtml(subject.accent || subject.id)}" href="${escapeHtml(subject.href)}">
+                  <span class="subject-mark">${escapeHtml(subject.mark || subject.title.slice(0, 2))}</span>
+                  <h3>${escapeHtml(subject.title)}</h3>
+                  <p>${escapeHtml(subject.description || "")}</p>
+                  <span class="subject-action">进入练习</span>
+                </a>
+              `).join("")}
+            </div>
+          </section>
+        `;
+      }).join("");
     }
 
     async function loadSubjects() {
@@ -128,10 +183,10 @@
         if (!response.ok) throw new Error(`subjects.json ${response.status}`);
         const data = await response.json();
         if (!Array.isArray(data.subjects)) throw new Error("subjects.json 缺少 subjects 数组");
-        renderSubjects(data.subjects);
+        renderSubjects(normalizeDirectory(data));
       } catch (error) {
         console.warn("使用内置科目清单", error);
-        renderSubjects(fallbackSubjects);
+        renderSubjects(normalizeDirectory(fallbackDirectory));
       }
     }
 
