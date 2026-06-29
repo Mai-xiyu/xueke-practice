@@ -1,34 +1,96 @@
 (function () {
-  const navLinks = [
-    ["index.html", "总览"],
-    ["network_practice.html", "路由交换"],
-    ["network_info_security_practice.html", "网络安全"],
-    ["network_data_collection_practice.html", "数据采集"],
-    ["data_structure_practice.html", "数据结构"],
-    ["linux_practice.html", "Linux课程"],
-    ["modern_history_practice.html", "中国近代史"],
-    ["community_practice.html", "\u4e2d\u534e\u6c11\u65cf\u5171\u540c\u4f53"],
-    ["higher_math_down_practice.html", "高等数学(下)"]
-  ];
+  const fallbackDirectory = {
+    colleges: [
+      { id: "computer-science", title: "计算机科学技术学院", order: 10 },
+      { id: "marxism", title: "马克思主义学院", order: 20 },
+      { id: "mathematics", title: "数学科学学院", order: 30 }
+    ],
+    subjects: [
+      { id: "route-switching", title: "路由交换", href: "network_practice.html", college: "computer-science", order: 10 },
+      { id: "network-security", title: "网络安全", href: "network_info_security_practice.html", college: "computer-science", order: 20 },
+      { id: "data-collection", title: "数据采集", href: "network_data_collection_practice.html", college: "computer-science", order: 30 },
+      { id: "data-structure", title: "数据结构", href: "data_structure_practice.html", college: "computer-science", order: 40 },
+      { id: "linux-course", title: "Linux课程", href: "linux_practice.html", college: "computer-science", order: 50 },
+      { id: "modern-history", title: "中国近代史", href: "modern_history_practice.html", college: "marxism", order: 60 },
+      { id: "community", title: "中华民族共同体", href: "community_practice.html", college: "marxism", order: 70 },
+      { id: "higher-math-down", title: "高等数学(下)", href: "higher_math_down_practice.html", college: "mathematics", order: 80 }
+    ]
+  };
+  let directoryPromise = null;
 
   function pageName() {
     const name = location.pathname.split("/").pop() || "index.html";
     return decodeURIComponent(name);
   }
 
-  function ensureNav() {
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+  }
+
+  function normalizeDirectory(data) {
+    const subjects = Array.isArray(data && data.subjects) ? data.subjects : fallbackDirectory.subjects;
+    const colleges = Array.isArray(data && data.colleges) ? data.colleges : fallbackDirectory.colleges;
+    return {
+      colleges: [...colleges].sort((a, b) => (a.order || 0) - (b.order || 0)),
+      subjects: [...subjects].sort((a, b) => (a.order || 0) - (b.order || 0))
+    };
+  }
+
+  function loadDirectory() {
+    if (directoryPromise) return directoryPromise;
+    directoryPromise = fetch("subjects.json", { cache: "no-store" })
+      .then((res) => {
+        if (!res.ok) throw new Error(`subjects.json ${res.status}`);
+        return res.json();
+      })
+      .then(normalizeDirectory)
+      .catch(() => normalizeDirectory(fallbackDirectory));
+    return directoryPromise;
+  }
+
+  async function ensureNav() {
     if (document.querySelector(".study-hub-nav")) return;
+    const directory = await loadDirectory();
     const current = pageName();
+    const subjectsByCollege = new Map();
+    directory.subjects.forEach((subject) => {
+      const key = subject.college || "other";
+      if (!subjectsByCollege.has(key)) subjectsByCollege.set(key, []);
+      subjectsByCollege.get(key).push(subject);
+    });
+    const collegeIds = new Set(directory.colleges.map((college) => college.id));
+    const colleges = directory.colleges.filter((college) => subjectsByCollege.has(college.id));
+    if ([...subjectsByCollege.keys()].some((id) => !collegeIds.has(id))) {
+      colleges.push({ id: "other", title: "其他科目", order: 999 });
+    }
+    const collegeMenus = colleges.map((college) => {
+      const subjects = subjectsByCollege.get(college.id) || [];
+      const activeCollege = subjects.some((subject) => current === subject.href);
+      const links = subjects.map((subject) => {
+        const active = current === subject.href ? " active" : "";
+        return `<a class="${active}" href="${escapeHtml(subject.href)}" role="menuitem">${escapeHtml(subject.title)}</a>`;
+      }).join("");
+      return [
+        `<div class="study-hub-menu${activeCollege ? " active" : ""}">`,
+        `<button class="study-hub-menu-trigger" type="button" aria-haspopup="true">${escapeHtml(college.title)}</button>`,
+        `<div class="study-hub-submenu" role="menu">${links}</div>`,
+        "</div>"
+      ].join("");
+    }).join("");
     const nav = document.createElement("nav");
     nav.className = "study-hub-nav";
     nav.innerHTML = [
       '<div class="study-hub-nav-inner">',
       '<div class="study-hub-brand">学科练习系统</div>',
       '<div class="study-hub-links">',
-      navLinks.map(([href, label]) => {
-        const active = current === href ? " active" : "";
-        return `<a class="${active}" href="${href}">${label}</a>`;
-      }).join(""),
+      `<a class="${current === "index.html" ? " active" : ""}" href="index.html">总览</a>`,
+      collegeMenus,
       '<span class="study-hub-sync" id="studyHubSync">本地</span>',
       '</div>',
       '</div>'
@@ -491,9 +553,9 @@
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    ensureNav();
+    const navReady = ensureNav();
     patchLocalStorage();
     installPracticeShell();
-    loadRemote().then(() => setTimeout(saveRemote, 1200));
+    navReady.then(() => loadRemote()).then(() => setTimeout(saveRemote, 1200));
   });
 })();
