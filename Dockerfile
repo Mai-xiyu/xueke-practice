@@ -1,10 +1,17 @@
+FROM node:22-alpine AS build
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY tsconfig.json vite.config.ts vitest.config.ts ./
+COPY src/ ./src/
+COPY public/ ./public/
+COPY *.html ./
+RUN npm run build
+
 FROM nginx:alpine
 
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
-COPY index.html /usr/share/nginx/html/index.html
-COPY subjects.json /usr/share/nginx/html/subjects.json
-COPY *.html /usr/share/nginx/html/
-COPY assets/ /usr/share/nginx/html/assets/
-COPY data/ /usr/share/nginx/html/data/
+COPY --from=build /app/dist/ /usr/share/nginx/html/
 
 EXPOSE 80

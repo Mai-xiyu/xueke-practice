@@ -1,20 +1,13 @@
-# 学科练习系统
+# Docker 部署说明
 
-面向校园局域网部署的静态题库练习系统，包含：
+前端镜像采用两阶段构建：
 
-- 路由交换
-- 网络安全
-- 数据采集
-- 数据结构
-- Linux课程
-- 中国近代史
+1. `node:22-alpine` 执行 `npm ci` 和 `npm run build`。
+2. `nginx:alpine` 只复制 `dist` 和 Nginx 配置。
 
-页面进度默认保存到浏览器 `localStorage`。Docker Compose 部署时，会通过后端 API 按访问 IP 持久化会话 JSON。
-
-## 本地运行
+## 本地构建运行
 
 ```powershell
-cd <repo-path>
 docker compose up -d --build
 ```
 
@@ -24,89 +17,54 @@ docker compose up -d --build
 http://127.0.0.1:8088/
 ```
 
-## 镜像
-
-本地构建会生成：
-
-```text
-xueke-practice-web:local
-xueke-practice-session-api:local
-```
-
-## 会话持久化
-
-浏览器通过 `/api/session` 同步各页面的 `localStorage`。Nginx 传递客户端 IP，后端按 IP 写入：
-
-```text
-session-data/<client-ip>.json
-```
-
-直接双击 HTML 使用 `file://` 打开时，同步后端不可用，页面会自动退回纯本地 `localStorage`。
-
-## 新增科目
-
-1. 复制 `templates/subject_practice_template.html` 为新的 `*_practice.html`。
-2. 写入题库数组。
-3. 在 `subjects.json` 增加入口。
-4. 运行校验：
-
-   ```powershell
-   npm run validate
-   ```
-
-可以把 `prompts/add-subject-prompt.md` 连同试卷文件发给 AI，让 AI 按本项目格式生成新科目页面和 `subjects.json` 修改。
-
-## GitHub Actions 发布到 Docker Hub
-
-仓库需要配置：
-
-- Repository variable: `DOCKERHUB_USERNAME`
-- Repository secret: `DOCKERHUB_TOKEN`
-- Repository variable 可选: `DOCKERHUB_IMAGE`
-
-未设置 `DOCKERHUB_IMAGE` 时，默认推送：
-
-```text
-<DOCKERHUB_USERNAME>/xueke-practice
-```
-
-工作流文件：
-
-```text
-.github/workflows/docker-hub.yml
-```
-
-推送到 `main` 或创建 `v*.*.*` tag 后会自动构建并上传 Docker Hub。
-
-默认会推送两个运行镜像：
-
-```text
-<DOCKERHUB_USERNAME>/xueke-practice:latest
-<DOCKERHUB_USERNAME>/xueke-practice:session-api-latest
-```
-
-## 局域网 Windows 服务器部署
-
-推荐在局域网 Windows Docker 主机上安装 GitHub Actions self-hosted runner，并给 runner 增加 `xueke-lan` 标签。之后可以在 GitHub 页面手动触发：
-
-```text
-Actions -> Deploy to LAN Windows server -> Run workflow
-```
-
-部署工作流文件：
-
-```text
-.github/workflows/deploy-lan.yml
-```
-
-详细步骤见：
-
-```text
-docs/lan-windows-deploy.md
-```
-
-## 停止
+停止：
 
 ```powershell
 docker compose down
+```
+
+## 服务
+
+```text
+web          Nginx 静态站点，暴露 8088 -> 80
+session-api  Node JSON session API，容器内 3000
+```
+
+`session-api` 的数据目录：
+
+```text
+./session-data:/data
+```
+
+升级镜像或重建容器时不要删除 `session-data/`。
+
+## GitHub Actions
+
+- `github-pages.yml`：`npm ci -> npm run check -> npm run build -> upload dist`
+- `docker-hub.yml`：校验并发布 Docker Hub 镜像
+- `package-images.yml`：构建 Docker tar 包
+- `deploy-lan.yml`：self-hosted runner 在局域网 Windows 服务器拉取并重启容器
+
+Docker Hub 变量：
+
+```text
+DOCKERHUB_USERNAME
+DOCKERHUB_TOKEN
+DOCKERHUB_IMAGE 可选
+```
+
+## 局域网部署
+
+已验证服务器：
+
+```text
+LAN IP: <LAN_SERVER_IP>
+端口: 8088
+目录: C:\xueke-practice
+```
+
+详见：
+
+```text
+docs/lan-windows-deploy.md
 ```

@@ -1,0 +1,195 @@
+{
+  "subjects": [
+    {
+      "id": "route-switching",
+      "title": "路由交换",
+      "mark": "RS",
+      "href": "network_practice.html",
+      "accent": "route",
+      "description": "路由基础、RIP、OSPF、BGP、ACL、NAT、VLAN、STP、VRRP，以及去年考试题。",
+      "order": 10,
+      "college": "computer-science",
+      "dataFile": "data/route-switching.json"
+    },
+    {
+      "id": "network-security",
+      "title": "网络安全",
+      "mark": "NS",
+      "href": "network_info_security_practice.html",
+      "accent": "security",
+      "description": "密码学、认证、PKI、防火墙、IDS/IPS 和实验题复盘，支持模拟考试。",
+      "order": 20,
+      "college": "computer-science",
+      "dataFile": "data/network-security.json",
+      "mockExam": {
+        "title": "网络安全模拟考试",
+        "sections": [
+          {
+            "type": "single",
+            "count": 30,
+            "score": 1
+          },
+          {
+            "type": "judge",
+            "count": 10,
+            "score": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "data-collection",
+      "title": "数据采集",
+      "mark": "DC",
+      "href": "network_data_collection_practice.html",
+      "accent": "data",
+      "description": "网络数据采集题库练习，支持搜索、错题记录和本地进度保存。",
+      "order": 30,
+      "college": "computer-science",
+      "dataFile": "data/data-collection.json"
+    },
+    {
+      "id": "data-visualization",
+      "title": "数据可视化",
+      "mark": "DV",
+      "href": "data_visualization_practice.html",
+      "accent": "visualization",
+      "description": "数据可视化测试1-3，覆盖图表选择、Python 数据处理、Pandas、NumPy、Matplotlib、Seaborn、ECharts、Flask 与爬虫基础。",
+      "order": 35,
+      "college": "computer-science",
+      "dataFile": "data/data-visualization.json"
+    },
+    {
+      "id": "data-structure",
+      "title": "数据结构",
+      "mark": "DS",
+      "href": "data_structure_practice.html",
+      "accent": "structure",
+      "description": "数据结构题库练习、题库浏览、错题复盘和模拟测试。",
+      "order": 40,
+      "college": "computer-science",
+      "dataFile": "data/data-structure.json"
+    },
+    {
+      "id": "linux-course",
+      "title": "Linux课程",
+      "mark": "LX",
+      "href": "linux_practice.html",
+      "accent": "linux",
+      "description": "超星 Linux 课程题库与模拟考试，覆盖命令、权限、Shell、服务配置和网络实战。",
+      "order": 50,
+      "college": "computer-science",
+      "dataFile": "data/linux-course.json",
+      "mockExam": {
+        "title": "Linux课程模拟考试",
+        "sections": [
+          {
+            "type": "single",
+            "count": 25,
+            "score": 2
+          },
+          {
+            "type": "fill",
+            "count": 5,
+            "score": 2
+          },
+          {
+            "type": "judge",
+            "count": 10,
+            "score": 1
+          },
+          {
+            "type": "short",
+            "count": 2,
+            "score": 5
+          },
+          {
+            "type": "comprehensive",
+            "count": 2,
+            "score": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": "modern-history",
+      "title": "中国近代史",
+      "mark": "MH",
+      "href": "modern_history_practice.html",
+      "accent": "history",
+      "description": "中国近现代史纲要题库、章节测验和模拟试卷，支持单选、多选、判断组卷。",
+      "order": 60,
+      "college": "marxism",
+      "dataFile": "data/modern-history.json",
+      "mockExam": {
+        "title": "中国近代史最新模拟卷",
+        "sections": [
+          {
+            "type": "single",
+            "count": 30,
+            "score": 1
+          },
+          {
+            "type": "multiple",
+            "count": 15,
+            "score": 1
+          },
+          {
+            "type": "judge",
+            "count": 10,
+            "score": 1
+          },
+          {
+            "type": "short",
+            "count": 2,
+            "score": 15
+          },
+          {
+            "type": "essay",
+            "count": 1,
+            "score": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "community",
+      "title": "中华民族共同体",
+      "mark": "CM",
+      "href": "community_practice.html",
+      "accent": "history",
+      "description": "超星《中华民族共同体概论》两套模拟测试去重题库，含单选、多选、判断和论述题。",
+      "order": 70,
+      "college": "marxism",
+      "dataFile": "data/community.json"
+    },
+    {
+      "id": "higher-math-down",
+      "title": "高等数学(下)",
+      "mark": "HM",
+      "href": "higher_math_down_practice.html",
+      "accent": "math",
+      "description": "高数下册期末资料、学习通截图题、纸质卷图片和 Word 复习资料。",
+      "order": 80,
+      "college": "mathematics",
+      "dataFile": "data/higher-math-down.json"
+    }
+  ],
+  "colleges": [
+    {
+      "id": "computer-science",
+      "title": "计算机科学技术学院",
+      "order": 10
+    },
+    {
+      "id": "marxism",
+      "title": "马克思主义学院",
+      "order": 20
+    },
+    {
+      "id": "mathematics",
+      "title": "数学科学学院",
+      "order": 30
+    }
+  ]
+}
