@@ -11,9 +11,14 @@
       "C": "比较不同类别的数据大小",
       "D": "显示数据的分布密度"
     },
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "analysis": "饼图用于表示各部分在整体中的占比，重点是部分与整体的比例关系。",
-    "tags": ["图表选择", "饼图"]
+    "tags": [
+      "图表选择",
+      "饼图"
+    ]
   },
   {
     "id": "dv-test1-single-002",
@@ -27,9 +32,14 @@
       "C": "填充缺失值",
       "D": "删除重复数据"
     },
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "analysis": "归一化的核心作用是把不同量纲或范围的数据缩放到统一范围，便于比较和建模。",
-    "tags": ["数据预处理", "归一化"]
+    "tags": [
+      "数据预处理",
+      "归一化"
+    ]
   },
   {
     "id": "dv-test1-single-003",
@@ -43,9 +53,14 @@
       "C": "两个变量的关系",
       "D": "随时间的变化"
     },
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "analysis": "饼图适合展示不同类别在总体中的占比，不适合展示变量关系或时间趋势。",
-    "tags": ["图表选择", "饼图"]
+    "tags": [
+      "图表选择",
+      "饼图"
+    ]
   },
   {
     "id": "dv-test1-single-004",
@@ -59,9 +74,14 @@
       "C": "树图和环形图",
       "D": "柱状图和饼图"
     },
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "analysis": "题源给出的标准答案为 A：威廉·普莱费尔发明了折线图和饼图。",
-    "tags": ["可视化历史", "William Playfair"]
+    "tags": [
+      "可视化历史",
+      "William Playfair"
+    ]
   },
   {
     "id": "dv-test1-single-005",
@@ -75,9 +95,14 @@
       "C": "展示男女比例",
       "D": "显示温度一周的变化趋势"
     },
-    "correct": ["D"],
+    "correct": [
+      "D"
+    ],
     "analysis": "折线图适合展示连续变量随时间变化的趋势，例如一周温度变化。",
-    "tags": ["图表选择", "折线图"]
+    "tags": [
+      "图表选择",
+      "折线图"
+    ]
   },
   {
     "id": "dv-test1-single-006",
@@ -91,9 +116,14 @@
       "C": "Excel",
       "D": "Tableau"
     },
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "analysis": "D3.js 是基于 JavaScript 的编程式数据可视化库，适合用代码构建交互式图表。",
-    "tags": ["可视化工具", "D3.js"]
+    "tags": [
+      "可视化工具",
+      "D3.js"
+    ]
   },
   {
     "id": "dv-test1-single-007",
@@ -107,9 +137,14 @@
       "C": "数据",
       "D": "审阅"
     },
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "analysis": "Excel 中常用的图表创建入口位于“插入”菜单。",
-    "tags": ["可视化工具", "Excel"]
+    "tags": [
+      "可视化工具",
+      "Excel"
+    ]
   },
   {
     "id": "dv-test1-single-008",
@@ -123,9 +158,13 @@
       "C": "生成复杂的图表",
       "D": "替代人工分析"
     },
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "analysis": "数据可视化的核心价值是用图形快速传达信息，帮助理解数据并辅助决策。",
-    "tags": ["可视化目的"]
+    "tags": [
+      "可视化目的"
+    ]
   },
   {
     "id": "dv-test1-single-009",
@@ -139,9 +178,13 @@
       "C": "数据的分布密度",
       "D": "数据的层次结构"
     },
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "analysis": "时变数据以时间为重要维度，可视化时要突出数据随时间发生的变化。",
-    "tags": ["时变数据"]
+    "tags": [
+      "时变数据"
+    ]
   },
   {
     "id": "dv-test1-single-010",
@@ -155,9 +198,14 @@
       "C": "多个类别之间的比例",
       "D": "时间序列的趋势"
     },
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "analysis": "热力图通过颜色深浅表达矩阵或区域中数值的密度、强度或大小差异。",
-    "tags": ["图表选择", "热力图"]
+    "tags": [
+      "图表选择",
+      "热力图"
+    ]
   },
   {
     "id": "dv-test1-multiple-011",
@@ -171,9 +219,15 @@
       "C": "明星名字",
       "D": "数据单位"
     },
-    "correct": ["B", "D"],
+    "correct": [
+      "B",
+      "D"
+    ],
     "analysis": "坐标轴标签应帮助读者理解数值含义，通常需要注明数值范围和数据单位。",
-    "tags": ["图表规范", "坐标轴"]
+    "tags": [
+      "图表规范",
+      "坐标轴"
+    ]
   },
   {
     "id": "dv-test1-multiple-012",
@@ -187,9 +241,14 @@
       "C": "微信",
       "D": "Tableau"
     },
-    "correct": ["A", "D"],
+    "correct": [
+      "A",
+      "D"
+    ],
     "analysis": "Excel 和 Tableau 都可用于数据可视化；计算器和微信不是专门的数据可视化工具。",
-    "tags": ["可视化工具"]
+    "tags": [
+      "可视化工具"
+    ]
   },
   {
     "id": "dv-test1-multiple-013",
@@ -203,9 +262,15 @@
       "C": "增强人机交互",
       "D": "制作静态图表"
     },
-    "correct": ["A", "B", "C"],
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
     "analysis": "数据可视化的发展强调高维数据处理、与数据挖掘结合以及交互能力增强。",
-    "tags": ["发展方向"]
+    "tags": [
+      "发展方向"
+    ]
   },
   {
     "id": "dv-test1-multiple-014",
@@ -219,9 +284,15 @@
       "C": "增加图表美观性",
       "D": "替代坐标轴标签"
     },
-    "correct": ["A", "B"],
+    "correct": [
+      "A",
+      "B"
+    ],
     "analysis": "图例用于解释颜色、线型或符号等编码含义，帮助理解数据分类。",
-    "tags": ["图表规范", "图例"]
+    "tags": [
+      "图表规范",
+      "图例"
+    ]
   },
   {
     "id": "dv-test1-multiple-015",
@@ -235,9 +306,15 @@
       "C": "隐喻原则",
       "D": "随机排列原则"
     },
-    "correct": ["A", "B", "C"],
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
     "analysis": "可视化设计需要考虑美学、数据筛选和隐喻表达，随机排列不属于有效设计原则。",
-    "tags": ["设计原则"]
+    "tags": [
+      "设计原则"
+    ]
   },
   {
     "id": "dv-test1-fill-016",
@@ -245,9 +322,13 @@
     "chapter": "测试1",
     "type": "fill",
     "stem": "层次数据可视化方法包括节点 - 链接法和______（如树图）。",
-    "answers": ["空间填充法"],
+    "answers": [
+      "空间填充法"
+    ],
     "analysis": "层次数据常见可视化方法包括节点-链接法和空间填充法，树图属于空间填充思想的典型形式。",
-    "tags": ["层次数据"]
+    "tags": [
+      "层次数据"
+    ]
   },
   {
     "id": "dv-test1-fill-017",
@@ -255,9 +336,14 @@
     "chapter": "测试1",
     "type": "fill",
     "stem": "最早发明折线图和饼图的科学家是______。",
-    "answers": ["威廉·普莱费尔", "William Playfair"],
+    "answers": [
+      "威廉·普莱费尔",
+      "William Playfair"
+    ],
     "analysis": "题源标准答案为威廉·普莱费尔；英文名 William Playfair 也可作为等价记忆。",
-    "tags": ["可视化历史"]
+    "tags": [
+      "可视化历史"
+    ]
   },
   {
     "id": "dv-test1-fill-018",
@@ -265,9 +351,14 @@
     "chapter": "测试1",
     "type": "fill",
     "stem": "约翰·斯诺通过绘制伦敦______地图发现霍乱传播源头。",
-    "answers": ["霍乱"],
+    "answers": [
+      "霍乱"
+    ],
     "analysis": "约翰·斯诺通过绘制伦敦霍乱地图分析病例空间分布，定位传播源头。",
-    "tags": ["可视化历史", "John Snow"]
+    "tags": [
+      "可视化历史",
+      "John Snow"
+    ]
   },
   {
     "id": "dv-test1-fill-019",
@@ -275,9 +366,15 @@
     "chapter": "测试1",
     "type": "fill",
     "stem": "散点图主要用于展示数据的分布和______。",
-    "answers": ["关联性", "相关性"],
+    "answers": [
+      "关联性",
+      "相关性"
+    ],
     "analysis": "散点图适合观察变量分布、相关性和异常点，题源答案为关联性。",
-    "tags": ["图表选择", "散点图"]
+    "tags": [
+      "图表选择",
+      "散点图"
+    ]
   },
   {
     "id": "dv-test1-fill-020",
@@ -285,8 +382,1465 @@
     "chapter": "测试1",
     "type": "fill",
     "stem": "可视化设计中，颜色和字体大小属于______通道。",
-    "answers": ["视觉"],
+    "answers": [
+      "视觉"
+    ],
     "analysis": "颜色、字号、位置、形状等都属于视觉编码通道。",
-    "tags": ["视觉通道", "设计原则"]
+    "tags": [
+      "视觉通道",
+      "设计原则"
+    ]
+  },
+  {
+    "id": "dv-test2-single-001",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "列表与元组核心区别是（ ）",
+    "options": {
+      "A": "元组支持切片，列表不支持",
+      "B": "列表可变，元组不可变",
+      "C": "两者存储元素类型必须统一",
+      "D": "列表有序，元组无序"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. 列表可变，元组不可变",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-002",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "Matplotlib库主要用途是（ ）",
+    "options": {
+      "A": "数值计算",
+      "B": "数据可视化",
+      "C": "爬虫抓取",
+      "D": "Web开发"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. 数据可视化",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-003",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "Selenium模拟鼠标双击操作的类方法（ ）",
+    "options": {
+      "A": "double_click( )",
+      "B": "click( )",
+      "C": "drag( )",
+      "D": "context_click( )"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. double_click( )",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-004",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "创建空DataFrame的函数是（ ）",
+    "options": {
+      "A": "pd.zeros( )",
+      "B": "pd.empty( )",
+      "C": "pd.new_df( )",
+      "D": "pd.DataFrame( )"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "题源标准答案为 D。D. pd.DataFrame( )",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-005",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "下列不属于合法Python变量名的是（ ）",
+    "options": {
+      "A": "666num",
+      "B": "_data01",
+      "C": "user_name",
+      "D": "StudentInfo"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. 666num",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-006",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "仅接收GET请求的路由装饰器是（ ）",
+    "options": {
+      "A": "@app.post",
+      "B": "@app.get",
+      "C": "@app.put",
+      "D": "@app.delete"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. @app.get",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-007",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "下列不属于ECharts支持图表类型的是（ ）",
+    "options": {
+      "A": "无正确选项",
+      "B": "热力图",
+      "C": "饼图",
+      "D": "时序图"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "题源标准答案为 D。D. 时序图",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-008",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "Seaborn绘制散点图的函数（ ）",
+    "options": {
+      "A": "regplot( )",
+      "B": "kdeplot( )",
+      "C": "lineplot( )",
+      "D": "scatterplot( )"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "题源标准答案为 D。D. scatterplot( )",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-009",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "专门解析HTML/XML文档的爬虫库是（ ）",
+    "options": {
+      "A": "BeautifulSoup",
+      "B": "requests",
+      "C": "Selenium",
+      "D": "Flask"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. BeautifulSoup",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-010",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "按列拼接两个数组的函数是（ ）",
+    "options": {
+      "A": "np.arange( )",
+      "B": "np.vstack( )",
+      "C": "np.column_stack( )",
+      "D": "np.hstack( )"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. np.column_stack( )",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-011",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "判断表格是否存在缺失值的方法（ ）",
+    "options": {
+      "A": "df.empty( )",
+      "B": "df.isnull( )",
+      "C": "df.missing( )",
+      "D": "df.na( )"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. df.isnull( )",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-012",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "plt.bar( )函数作用是绘制（ ）",
+    "options": {
+      "A": "折线图",
+      "B": "柱状图",
+      "C": "散点图",
+      "D": "直方图"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. 柱状图",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-013",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "ECharts中展示图例的配置项是（ ）",
+    "options": {
+      "A": "tooltip",
+      "B": "xAxis",
+      "C": "title",
+      "D": "legend"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "题源标准答案为 D。D. legend",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-014",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "处理JS动态渲染网页首选工具（ ）",
+    "options": {
+      "A": "NumPy",
+      "B": "Pandas",
+      "C": "Selenium",
+      "D": "BeautifulSoup"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. Selenium",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-015",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "实现字符串转整数的内置函数是（ ）",
+    "options": {
+      "A": "float( )",
+      "B": "bool( )",
+      "C": "int( )",
+      "D": "str( )"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. int( )",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-016",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "Pandas按指定列排序使用（ ）",
+    "options": {
+      "A": "sort_values( )",
+      "B": "sort_col( )",
+      "C": "order_by( )",
+      "D": "sort( )"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. sort_values( )",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-017",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "Flask属于（ ）",
+    "options": {
+      "A": "后端Web框架",
+      "B": "爬虫库",
+      "C": "前端可视化库",
+      "D": "数值计算库"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. 后端Web框架",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-018",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "NumPy核心数据结构为（ ）",
+    "options": {
+      "A": "Series",
+      "B": "ndarray",
+      "C": "list",
+      "D": "dict"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. ndarray",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-019",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "Selenium主要用于（ ）",
+    "options": {
+      "A": "静态网页爬取",
+      "B": "数据分析",
+      "C": "浏览器自动化",
+      "D": "后端开发"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. 浏览器自动化",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-single-020",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "single",
+    "stem": "Seaborn底层依赖的可视化库（ ）",
+    "options": {
+      "A": "Matplotlib",
+      "B": "Plotly",
+      "C": "ECharts",
+      "D": "Bokeh"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. Matplotlib",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-021",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Windows版Jupyter中，___命令可查看当前目录文件。",
+    "answers": [
+      "!dir"
+    ],
+    "analysis": "题源标准答案为：!dir。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-022",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "BeautifulSoup解析XML文档时，第二个参数传入___解析器。",
+    "answers": [
+      "lxml-xml",
+      "xml"
+    ],
+    "analysis": "题源标准答案为：lxml-xml / xml。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-023",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "ECharts 创建图表实例核心函数:___。",
+    "answers": [
+      "echarts.init()"
+    ],
+    "analysis": "题源标准答案为：echarts.init()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-024",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "创建15个元素全0一维NumPy数组代码:___。",
+    "answers": [
+      "np.zeros(15)"
+    ],
+    "analysis": "题源标准答案为：np.zeros(15)。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-025",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Windows系统下PyCharm运行代码快捷键为___，Mac系统对应快捷键是Control+R。",
+    "answers": [
+      "Shift+F10"
+    ],
+    "analysis": "题源标准答案为：Shift+F10。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-026",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "查看DataFrame末尾3行使用___方法。",
+    "answers": [
+      "df.tail(3)"
+    ],
+    "analysis": "题源标准答案为：df.tail(3)。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-027",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Flask中___装饰器绑定网页访问路由。",
+    "answers": [
+      "@app.route()"
+    ],
+    "analysis": "题源标准答案为：@app.route()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-028",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Seaborn设置图表整体主题样式的函数:___。",
+    "answers": [
+      "set_theme()",
+      "set_style()"
+    ],
+    "analysis": "题源标准答案为：set_theme() / set_style()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-029",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "requests库中___用于维持会话，实现登录状态持久化。",
+    "answers": [
+      "Session"
+    ],
+    "analysis": "题源标准答案为：Session。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-030",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Matplotlib添加图表标题使用___函数。",
+    "answers": [
+      "plt.title()"
+    ],
+    "analysis": "题源标准答案为：plt.title()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-031",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "数组x、y计算点积可使用___或x @ y。",
+    "answers": [
+      "np.dot(x, y)"
+    ],
+    "analysis": "题源标准答案为：np.dot(x, y)。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-032",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Matplotlib中___函数用于新建独立绘图窗口。",
+    "answers": [
+      "plt.figure()"
+    ],
+    "analysis": "题源标准答案为：plt.figure()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-033",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "删除表格重复行的 Pandas 方法:___。",
+    "answers": [
+      "df.drop_duplicates()"
+    ],
+    "analysis": "题源标准答案为：df.drop_duplicates()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-034",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "爬虫模拟浏览器访问需要配置请求头中的___字段。",
+    "answers": [
+      "User-Agent"
+    ],
+    "analysis": "题源标准答案为：User-Agent。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-035",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Jupyter Notebook依托___环境实现交互式代码编写。",
+    "answers": [
+      "浏览器/Web/B/S"
+    ],
+    "analysis": "题源标准答案为：浏览器/Web/B/S。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-036",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "求NumPy数组arr均值:___。",
+    "answers": [
+      "arr.mean()",
+      "np.mean(arr)"
+    ],
+    "analysis": "题源标准答案为：arr.mean() / np.mean(arr)。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-037",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Pandas读取excel文件函数:___。",
+    "answers": [
+      "pd.read_excel()"
+    ],
+    "analysis": "题源标准答案为：pd.read_excel()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-038",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "plt.plot( )绘制折线图时，通过___参数修改线条颜色。",
+    "answers": [
+      "color",
+      "c"
+    ],
+    "analysis": "题源标准答案为：color / c。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-039",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Flask向前端html模板传参渲染使用___函数。",
+    "answers": [
+      "render_template()"
+    ],
+    "analysis": "题源标准答案为：render_template()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test2-fill-040",
+    "source": "数据可视化-测试2.md",
+    "chapter": "测试2",
+    "type": "fill",
+    "stem": "Selenium 启动 Chrome 浏览器对象:___。",
+    "answers": [
+      "webdriver.Chrome()"
+    ],
+    "analysis": "题源标准答案为：webdriver.Chrome()。",
+    "tags": [
+      "数据可视化",
+      "测试2"
+    ]
+  },
+  {
+    "id": "dv-test3-single-001",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "df.drop_duplicates( )功能( )",
+    "options": {
+      "A": "删除空列",
+      "B": "筛选数据",
+      "C": "删除重复行",
+      "D": "删除缺失值"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. 删除重复行",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-002",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "Selenium支持的浏览器包含( )",
+    "options": {
+      "A": "Safari",
+      "B": "Chrome",
+      "C": "全部都支持",
+      "D": "Firefox"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. 全部都支持",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-003",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "筛选DataFrame指定列写法正确的是( )",
+    "options": {
+      "A": "df.col(列名)",
+      "B": "df.iloc(列名)",
+      "C": "df[列名]",
+      "D": "df.loc(列名)"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. df[列名]",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-004",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "绘制直方图统计数据分布使用( )",
+    "options": {
+      "A": "plt.bar( )",
+      "B": "plt.scatter( )",
+      "C": "plt.hist( )",
+      "D": "plt.plot( )"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. plt.hist( )",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-005",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "元组特性描述正确的是( )",
+    "options": {
+      "A": "只能存放数字",
+      "B": "支持append添加元素",
+      "C": "元素不可修改",
+      "D": "无法切片取值"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. 元素不可修改",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-006",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "仅发送HTTP请求、无法解析页面的库( )",
+    "options": {
+      "A": "requests",
+      "B": "Selenium",
+      "C": "lxml",
+      "D": "BeautifulSoup"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. requests",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-007",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "df.loc[ ]索引方式依靠( )",
+    "options": {
+      "A": "列位置",
+      "B": "数字下标",
+      "C": "行标签",
+      "D": "内存地址"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. 行标签",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-008",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "ECharts实现图表动态更新使用方法( )",
+    "options": {
+      "A": "setOption( )",
+      "B": "getDom( )",
+      "C": "init( )",
+      "D": "render( )"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. setOption( )",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-009",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "np.linspace(0,10,20)功能是( )",
+    "options": {
+      "A": "生成随机数组",
+      "B": "创建全0数组",
+      "C": "生成等间隔20个数值",
+      "D": "矩阵点积运算"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. 生成等间隔20个数值",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-010",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "np.vstack( )数组拼接方式为( )",
+    "options": {
+      "A": "按列合并",
+      "B": "纵向上下拼接",
+      "C": "无固定规则",
+      "D": "横向拼接"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. 纵向上下拼接",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-011",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "Seaborn绘制核密度分布图函数( )",
+    "options": {
+      "A": "histplot( )",
+      "B": "kdeplot( )",
+      "C": "regplot( )",
+      "D": "scatterplot( )"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. kdeplot( )",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-012",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "Flask中login_required装饰器作用是( )",
+    "options": {
+      "A": "操作数据库",
+      "B": "校验用户登录状态",
+      "C": "渲染模板",
+      "D": "路由分块"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. 校验用户登录状态",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-013",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "调整Seaborn单张图表尺寸可搭配( )",
+    "options": {
+      "A": "lineplot",
+      "B": "kdeplot",
+      "C": "set_style( )",
+      "D": "plt.figure(figsize)"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "题源标准答案为 D。D. plt.figure(figsize)",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-014",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "大批量爬虫开发、自带异步调度的框架( )",
+    "options": {
+      "A": "BeautifulSoup",
+      "B": "Scrapy",
+      "C": "requests",
+      "D": "Selenium"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "题源标准答案为 B。B. Scrapy",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-015",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "plt.xlim( )、plt.ylim( )作用是( )",
+    "options": {
+      "A": "限定坐标轴数值范围",
+      "B": "添加图例",
+      "C": "设置坐标轴标签",
+      "D": "绘制网格"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. 限定坐标轴数值范围",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-016",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "下列合法Python标识符( )",
+    "options": {
+      "A": "_test99",
+      "B": "var!test",
+      "C": "99test",
+      "D": "test-var"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. _test99",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-017",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "float( )函数作用是( )",
+    "options": {
+      "A": "转布尔值",
+      "B": "转字符串",
+      "C": "转浮点小数",
+      "D": "转整数"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. 转浮点小数",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-018",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "ECharts\"数据驱动\"含义是( )",
+    "options": {
+      "A": "修改data自动重绘图表",
+      "B": "仅支持静态数据",
+      "C": "必须本地读取文件",
+      "D": "手动修改DOM更新图表"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "题源标准答案为 A。A. 修改data自动重绘图表",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-019",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "Selenium隐式等待全局设置函数( )",
+    "options": {
+      "A": "WebDriverWait",
+      "B": "wait_url( )",
+      "C": "implicitly_wait( )",
+      "D": "time.sleep"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "题源标准答案为 C。C. implicitly_wait( )",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-single-020",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "single",
+    "stem": "Blueprint蓝图核心优势是( )",
+    "options": {
+      "A": "加快运行速度",
+      "B": "爬虫爬取网页",
+      "C": "实现数据可视化",
+      "D": "项目模块化拆分解耦"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "题源标准答案为 D。D. 项目模块化拆分解耦",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-021",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "BeautifulSoup解析html默认解析器为___。",
+    "answers": [
+      "html.parser"
+    ],
+    "analysis": "题源标准答案为：html.parser。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-022",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "清除 DataFrame 重复数据行方法:___。",
+    "answers": [
+      "df.drop_duplicates()"
+    ],
+    "analysis": "题源标准答案为：df.drop_duplicates()。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-023",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "生成0~20步长3的连续整数NumPy数组:___。",
+    "answers": [
+      "np.arange(0, 20, 3)",
+      "np.arange(0, 21, 3)"
+    ],
+    "analysis": "题源标准答案为：np.arange(0, 20, 3) / np.arange(0, 21, 3)。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-024",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Matplotlib存放所有子图的顶层容器对象叫___。",
+    "answers": [
+      "Figure",
+      "figure"
+    ],
+    "analysis": "题源标准答案为：Figure / figure。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-025",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "防止爬虫被服务器拦截，需要在headers中配置___伪装浏览器。",
+    "answers": [
+      "User-Agent"
+    ],
+    "analysis": "题源标准答案为：User-Agent。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-026",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "np.dot(m,n)实现两个矩阵的___运算。",
+    "answers": [
+      "点积/乘法",
+      "点积",
+      "乘法",
+      "矩阵乘法"
+    ],
+    "analysis": "题源标准答案为：点积/乘法 / 点积 / 乘法 / 矩阵乘法。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-027",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "df.head(10)作用是获取表格前___行数据。",
+    "answers": [
+      "10"
+    ],
+    "analysis": "题源标准答案为：10。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-028",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "ECharts初始化图表实例必须传入___DOM容器。",
+    "answers": [
+      "HTML",
+      "DOM 元素/节点"
+    ],
+    "analysis": "题源标准答案为：HTML / DOM 元素/节点。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-029",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "计算数组arr所有元素平均值两种写法:arr.mean( )、___。",
+    "answers": [
+      "np.mean(arr)"
+    ],
+    "analysis": "题源标准答案为：np.mean(arr)。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-030",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Flask拆分多模块、实现代码解耦的工具是___。",
+    "answers": [
+      "Blueprint"
+    ],
+    "analysis": "题源标准答案为：Blueprint。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-031",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "plt.title( )设置标题，___设置X轴坐标轴名称。",
+    "answers": [
+      "plt.xlabel()"
+    ],
+    "analysis": "题源标准答案为：plt.xlabel()。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-032",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Linux系统Jupyter查看目录文件命令:___。",
+    "answers": [
+      "!ls",
+      "ls"
+    ],
+    "analysis": "题源标准答案为：!ls / ls。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-033",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Flask 模板渲染传递变量的函数:___。",
+    "answers": [
+      "render_template()"
+    ],
+    "analysis": "题源标准答案为：render_template()。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-034",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Pandas 读取 csv 文件标准函数:___。",
+    "answers": [
+      "pd.read_csv()"
+    ],
+    "analysis": "题源标准答案为：pd.read_csv()。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-035",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "爬虫模拟登录、保存Cookie需要实例化___对象。",
+    "answers": [
+      "Session"
+    ],
+    "analysis": "题源标准答案为：Session。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-036",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Seaborn绘制带回归线散点图函数:___。",
+    "answers": [
+      "regplot()"
+    ],
+    "analysis": "题源标准答案为：regplot()。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-037",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Jupyter Notebook运行代码块可直接在浏览器交互，底层依托___架构。",
+    "answers": [
+      "B/S",
+      "Browser/Server"
+    ],
+    "analysis": "题源标准答案为：B/S / Browser/Server。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-038",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Matplotlib中___函数设置图表标题文字。",
+    "answers": [
+      "plt.title()"
+    ],
+    "analysis": "题源标准答案为：plt.title()。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-039",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Mac系统运行PyCharm代码快捷键为Control+R，Windows对应快捷键___。",
+    "answers": [
+      "Shift+F10"
+    ],
+    "analysis": "题源标准答案为：Shift+F10。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
+  },
+  {
+    "id": "dv-test3-fill-040",
+    "source": "数据可视化-测试3.md",
+    "chapter": "测试3",
+    "type": "fill",
+    "stem": "Selenium 切换网页弹窗使用 driver.switch_to.___。",
+    "answers": [
+      "alert"
+    ],
+    "analysis": "题源标准答案为：alert。",
+    "tags": [
+      "数据可视化",
+      "测试3"
+    ]
   }
 ]
