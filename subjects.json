@@ -39,7 +39,7 @@
       "mark": "DV",
       "href": "data_visualization_practice.html",
       "accent": "visualization",
-      "description": "数据可视化测试1，覆盖图表选择、可视化工具、设计原则、视觉通道和数据预处理。",
+      "description": "数据可视化测试1-3，覆盖图表选择、Python 数据处理、Pandas、NumPy、Matplotlib、Seaborn、ECharts、Flask 与爬虫基础。",
       "order": 35,
       "college": "computer-science",
       "dataFile": "data/data-visualization.json"
