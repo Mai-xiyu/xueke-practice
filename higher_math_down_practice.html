@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高等数学(下)练习系统</title>
+  <link rel="stylesheet" href="assets/common.css">
+  <script src="assets/session-sync.js" defer></script>
+  <style>
+    body{margin:0;background:#f3f5f9;color:#0f172a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Microsoft YaHei",Arial,sans-serif}
+    .app{max-width:1180px;margin:0 auto;padding:24px}
+    .card,.toolbar{background:#fff;border:1px solid #d9e2ef;border-radius:8px;padding:18px;margin-bottom:14px}
+    .toolbar{display:grid;gap:12px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tabs button{min-width:92px}
+    button,select,input,textarea{border:1px solid #cbd5e1;border-radius:8px;padding:9px 12px;background:#fff;color:#0f172a;font:inherit}
+    button.primary,.tabs button.active{background:#2563eb;border-color:#2563eb;color:#fff}
+    button.ghost{background:#fff;color:#0f172a;border-color:#cbd5e1}
+    button.warn{background:#b45309;border-color:#b45309;color:#fff}
+    input{min-width:220px;flex:1}
+    textarea{width:100%;min-height:118px;line-height:1.65;resize:vertical}
+    .muted{color:#64748b}
+    .meta-line{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;color:#64748b}
+    .pill{display:inline-flex;align-items:center;min-height:26px;padding:4px 8px;border:1px solid #d9e2ef;border-radius:8px;background:#f8fafc;color:#475569;font-size:13px}
+    .stem{font-size:18px;line-height:1.75;font-weight:700;margin:8px 0 14px;color:#0f172a}
+    .question-image-wrap{margin:14px 0;border:1px solid #d9e2ef;border-radius:8px;background:#fff;overflow:hidden}
+    .question-image{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;background:#fff}
+    .answer-box{margin-top:14px;padding:14px 16px;border:1px solid #d9e2ef;border-left:4px solid #2563eb;border-radius:8px;background:#fbfdff;line-height:1.75}
+    .answer-box b{display:block;margin-bottom:6px}
+    .library-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .library-item{display:grid;gap:10px;padding:14px;border:1px solid #d9e2ef;border-radius:8px;background:#fff}
+    .thumb{width:100%;height:150px;object-fit:cover;object-position:top;border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+    .empty{padding:28px;text-align:center;color:#64748b}
+    .hidden{display:none!important}
+    @media (max-width:680px){.app{padding:14px} input,select,button{width:100%} .question-image{max-height:none}}
+  </style>
+</head>
+<body data-practice-shell="higher-math-down">
+<aside id="practiceAnswerCard" class="practice-question-nav" aria-label="答题卡" hidden></aside>
+<main class="app">
+  <header class="card">
+    <h1>高等数学(下)练习系统</h1>
+    <p class="muted">高数下册期末资料、学习通截图题、2023-2024 A卷纸质卷图片和 Word 复习资料。公式题以原图为准，避免 OCR 误改数学符号。</p>
+  </header>
+
+  <section class="toolbar">
+    <div class="tabs" aria-label="练习模式">
+      <button type="button" data-mode="study" class="active">学习模式</button>
+      <button type="button" data-mode="wrong">错题本</button>
+      <button type="button" data-mode="library">题库浏览</button>
+      <button type="button" data-mode="materials">复习资料</button>
+    </div>
+    <div class="row">
+      <select id="chapterFilter" aria-label="章节筛选"></select>
+      <select id="typeFilter" aria-label="题型筛选"></select>
+      <input id="searchBox" placeholder="搜索题干 / OCR 摘要 / 来源">
+      <button id="randomBtn" type="button" class="primary">随机一题</button>
+      <button id="resetBtn" type="button" class="ghost">重置本题</button>
+    </div>
+  </section>
+
+  <section id="questionPanel"></section>
+</main>
+
+<script>
+const STORAGE_KEY = "higher_math_down_practice_state_v1";
+const QUESTIONS = [
+  {
+    "id": "hm-down-img-001",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 1：25.（4.0分）已知函数f(u,v)=uv，其中",
+    "image": "assets/higher_math_down/math_down_001.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 1：25.（4.0分）已知函数f(u,v)=uv，其中\n!!! 5G\n42\n单选题（共25题，100.0分）\n25.（4.0分）已知函数f(u,v)=uv，其中\naf.af\nu=x+y,v=x-y，则\ndx\ndy\n4Q034020\nA\nK-x\n2x+2y\nB\nx+y\n2x-2y\nD",
+    "originalName": "微信图片_20260628134859_81_102.jpg"
+  },
+  {
+    "id": "hm-down-img-002",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 2：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)",
+    "image": "assets/higher_math_down/math_down_002.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 2：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\n:!!! 5G\n42\n单选题（共25题，100.0分）\n24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\nθ∈[α,]，则曲线弧长公式S=(\n).\nA\nA.{√{x²(t)+y²(t）dt\nB\nπ-y²（x)dx\np²()+p(0)d\nf√1+y/²(x)dx",
+    "originalName": "微信图片_20260628134901_83_102.jpg"
+  },
+  {
+    "id": "hm-down-img-003",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 3：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)",
+    "image": "assets/higher_math_down/math_down_003.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 3：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\n:!!! 5G\n42\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分)\n24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\nθ∈[α,]，则曲线弧长公式S=(\n).\nA\nA.{√{x²(t)+y²(t）dt\nB\nπ-y²（x)dx\np²()+p(）dθ\nf√1+y/²(x)dx",
+    "originalName": "微信图片_20260628134904_84_102.jpg"
+  },
+  {
+    "id": "hm-down-img-004",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 4：23.（4.0分）抛物线y²=x与y=x²所围成的图",
+    "image": "assets/higher_math_down/math_down_004.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 4：23.（4.0分）抛物线y²=x与y=x²所围成的图\n!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分)\n23.（4.0分）抛物线y²=x与y=x²所围成的图\n形的面积等于(\n).\nA\nB\nD",
+    "originalName": "微信图片_20260628134905_85_102.jpg"
+  },
+  {
+    "id": "hm-down-img-005",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 5：22.（4.0分）二元函数z=x²-y²+3x²+3y²-9x",
+    "image": "assets/higher_math_down/math_down_005.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 5：22.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n:!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n22.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n的极大值点是(\n)。\nA (1,2)\nB(-3,0)\n(1.0)\nC\n(-3，2)\nD",
+    "originalName": "微信图片_20260628134906_86_102.jpg"
+  },
+  {
+    "id": "hm-down-img-006",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 6：21. (4.0分)",
+    "image": "assets/higher_math_down/math_down_006.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 6：21. (4.0分)\n!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n21. (4.0分)\n计算二重积分x²do:其中D是由圆周x²+y²=4\nD\n及以轴所围成的闭区域面积为昕萌\nA\nB",
+    "originalName": "微信图片_20260628134907_87_102.jpg"
+  },
+  {
+    "id": "hm-down-img-007",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 7：20.（4.0分）设直线L：",
+    "image": "assets/higher_math_down/math_down_007.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 7：20.（4.0分）设直线L：\n:!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\nX-1\n2+3\n20.（4.0分）设直线L：\n-4\ny+2\n则两直线的夹角为(\n).\n萌2\n(8.0)\nA\nB\nD\n-6",
+    "originalName": "微信图片_20260628134909_88_102.jpg"
+  },
+  {
+    "id": "hm-down-img-008",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 8：19.(4.0分)",
+    "image": "assets/higher_math_down/math_down_008.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 8：19.(4.0分)\n:!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\n19.(4.0分)\nf'(x)dx=(\nAf(a)-f(b)\nBf(a)-f(b)+C\nCf(b)-f(a)\nDf(b)-f(a)+C",
+    "originalName": "微信图片_20260628134911_89_102.jpg"
+  },
+  {
+    "id": "hm-down-img-009",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 9：18.(4.0分)",
+    "image": "assets/higher_math_down/math_down_009.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 9：18.(4.0分)\n:!!!5GA\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n18.(4.0分)\n计算二重积分x√vd:其中D是由两条抛物线\ny=√x=x²o所围成的闭区萌域\nA\n55\nB",
+    "originalName": "微信图片_20260628134912_90_102.jpg"
+  },
+  {
+    "id": "hm-down-img-010",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 10：17.(4.0分）向量à=(1,2,2) 的模等于",
+    "image": "assets/higher_math_down/math_down_010.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 10：17.(4.0分）向量à=(1,2,2) 的模等于\n:!!!5GA\n41\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\n17.(4.0分）向量à=(1,2,2) 的模等于\n).\nA3\nB\nC\nD",
+    "originalName": "微信图片_20260628134913_91_102.jpg"
+  },
+  {
+    "id": "hm-down-img-011",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 11：16.（4.0分）二元函数z=x²-y²+3x²+3y²-9x",
+    "image": "assets/higher_math_down/math_down_011.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 11：16.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n16.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n的极小值点是(\nD。\nA (1.0)\n(-3,0)\nB\n(1, 2)\nC\n(-3, 2)\nD",
+    "originalName": "微信图片_20260628134914_92_102.jpg"
+  },
+  {
+    "id": "hm-down-img-012",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 12：15.（4.0分）z=e\"在点(1，2)处的全微分等于",
+    "image": "assets/higher_math_down/math_down_012.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 12：15.（4.0分）z=e\"在点(1，2)处的全微分等于\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n15.（4.0分）z=e\"在点(1，2)处的全微分等于\n)。\nA2e²dx+e²dy\nB2edx+2e²dy\ne²dx+2e²dy\ne²dx+2edy\nD",
+    "originalName": "微信图片_20260628134916_93_102.jpg"
+  },
+  {
+    "id": "hm-down-img-013",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 13：14．（4.0分）下列方程中有一个是一阶微分方程，",
+    "image": "assets/higher_math_down/math_down_013.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 13：14．（4.0分）下列方程中有一个是一阶微分方程，\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n14．（4.0分）下列方程中有一个是一阶微分方程，\n它是（\n).\nA\n（y)²+5（y)-y²+7=0\nB\nxy\"+y'+y=0\n（y-xy）²=x²y\n（x²-y²)dx+（x²+y²)ay=0",
+    "originalName": "微信图片_20260628134917_94_102.jpg"
+  },
+  {
+    "id": "hm-down-img-014",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 14：13.（4.0分）设g(x)为偶函数，则",
+    "image": "assets/higher_math_down/math_down_014.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 14：13.（4.0分）设g(x)为偶函数，则\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分）\n13.（4.0分）设g(x)为偶函数，则\ng（x)dx=\n).\nA\nB\ng（x）dx\n2] g(x)dx",
+    "originalName": "微信图片_20260628134918_95_102.jpg"
+  },
+  {
+    "id": "hm-down-img-015",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 15：12.(4.0分）点(2.1,1)到平面x+y-Z+1=0",
+    "image": "assets/higher_math_down/math_down_015.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 15：12.(4.0分）点(2.1,1)到平面x+y-Z+1=0\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n12.(4.0分）点(2.1,1)到平面x+y-Z+1=0\n的距离为(\n).\n(8.0)\n昕萌\nA\nB\nV3",
+    "originalName": "微信图片_20260628134920_96_102.jpg"
+  },
+  {
+    "id": "hm-down-img-016",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 16：11. (4.0分)",
+    "image": "assets/higher_math_down/math_down_016.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 16：11. (4.0分)\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\nd\n11. (4.0分)\nf(t)dt=(\ndx\nAf(x)-f(a)\nBf(b)-f(a)\nCf(x)+C\nf(x)\nD",
+    "originalName": "微信图片_20260628134924_97_102.jpg"
+  },
+  {
+    "id": "hm-down-img-017",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 17：10.（4.0分）D",
+    "image": "assets/higher_math_down/math_down_017.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 17：10.（4.0分）D\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n10.（4.0分）D\n由直线\ny=1,x-y+3=0与x+y-3=0所围成的区\n域，则』dg=(\n).\nD\nA\nB\nC\nD",
+    "originalName": "微信图片_20260628134926_98_102.jpg"
+  },
+  {
+    "id": "hm-down-img-018",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 18：9.（4.0分）设|a=4,它与x轴的夹角",
+    "image": "assets/higher_math_down/math_down_018.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 18：9.（4.0分）设|a=4,它与x轴的夹角\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n9.（4.0分）设|a=4,它与x轴的夹角\n在x轴上的投影为(\n李昕明\nA4\nB\nC\nD\n2√2",
+    "originalName": "微信图片_20260628134927_99_102.jpg"
+  },
+  {
+    "id": "hm-down-img-019",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 19：8.（4.0分）定积分lnxdx=(",
+    "image": "assets/higher_math_down/math_down_019.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 19：8.（4.0分）定积分lnxdx=(\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n8.（4.0分）定积分lnxdx=(\nA2-1n2\nB2ln2\nC\n1n2\n2-21n2\nD",
+    "originalName": "微信图片_20260628134928_100_102.jpg"
+  },
+  {
+    "id": "hm-down-img-020",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 20：7.（4.0分）Z=5xy²的全微分(",
+    "image": "assets/higher_math_down/math_down_020.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 20：7.（4.0分）Z=5xy²的全微分(\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n7.（4.0分）Z=5xy²的全微分(\nA\n10xydx + 10xydy\n5y²dx + 5y²dy\n5xy² (dx + dy)\n5y²dx + 10xydy",
+    "originalName": "微信图片_20260628134929_101_102.jpg"
+  },
+  {
+    "id": "hm-down-img-021",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 21：6．(4.0分）平面曲线的直角坐标方程为y=f(x)",
+    "image": "assets/higher_math_down/math_down_021.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 21：6．(4.0分）平面曲线的直角坐标方程为y=f(x)\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n6．(4.0分）平面曲线的直角坐标方程为y=f(x)\n，x=[αb]，则由\n√1+y²dx可得出曲线y=f(x)\n在x=[a.]的(\n).\nA面积\nB\n旋转体体积\n弧长\nD\n体积",
+    "originalName": "微信图片_20260628134930_102_102.jpg"
+  },
+  {
+    "id": "hm-down-img-022",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 22：5.（4.0分）定积分",
+    "image": "assets/higher_math_down/math_down_022.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 22：5.（4.0分）定积分\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n5.（4.0分）定积分\nx sin xdx =(\nB\n+1\nD",
+    "originalName": "微信图片_20260628134931_103_102.jpg"
+  },
+  {
+    "id": "hm-down-img-023",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 23：4.(4.0分）向量à=(1,2,2)与B=(2,-2,2)",
+    "image": "assets/higher_math_down/math_down_023.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 23：4.(4.0分）向量à=(1,2,2)与B=(2,-2,2)\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\n4.(4.0分）向量à=(1,2,2)与B=(2,-2,2)\n的数量积等于(\n).(7.0)\nA\nB3\nD2",
+    "originalName": "微信图片_20260628134935_104_102.jpg"
+  },
+  {
+    "id": "hm-down-img-024",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 24：3.(4.0分）向量α= (1,2,2)的模等于(",
+    "image": "assets/higher_math_down/math_down_024.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 24：3.(4.0分）向量α= (1,2,2)的模等于(\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n3.(4.0分）向量α= (1,2,2)的模等于(\nA3\nB2\nD",
+    "originalName": "微信图片_20260628134936_105_102.jpg"
+  },
+  {
+    "id": "hm-down-img-025",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 25：见图作答，答案以截图中高亮选项为准。",
+    "image": "assets/higher_math_down/math_down_025.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 25：见图作答，答案以截图中高亮选项为准。\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分)\n0=--+x（（）\n离为(\nA5\nB\nD",
+    "originalName": "微信图片_20260628134937_106_102.jpg"
+  },
+  {
+    "id": "hm-down-img-026",
+    "source": "选择题截图",
+    "chapter": "学习通截图题",
+    "type": "single",
+    "stem": "学习通截图题 26：1.(4.0分）设g(x)为奇函数，则",
+    "image": "assets/higher_math_down/math_down_026.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "学习通截图题 26：1.(4.0分）设g(x)为奇函数，则\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n1.(4.0分）设g(x)为奇函数，则\ng（x)dx=\n).\ng(x)dx\nB\nxp(x)8\nD",
+    "originalName": "微信图片_20260628134938_107_102.jpg"
+  },
+  {
+    "id": "hm-down-img-027",
+    "source": "纸质卷图片",
+    "chapter": "2023-2024 A卷纸质卷",
+    "type": "comprehensive",
+    "stem": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 1 页。",
+    "image": "assets/higher_math_down/math_down_027.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 1 页。\n新疆师范大学2023-2024学年第2学期\n考试类型：（闭卷）考试\n考试时间：120分钟\n装订线\n学号\n姓名\n年级专业\n题号\n总分\n得分\n评阅人\n得分\n一、填空题（本大题共5小题，每小题3分，共15分）\n1.二元函数z=Iln(y²-2+1)的定义域为_\n2.设向量a=（2.1.2），b=（4.-1.10），=b-a，且a⊥c，则=\n3.经过(4.0,-2)和(5.7)且平行于轴的平面方程为\n4.设\ncdu\n条件时级数条件收敛。\n得分\n二、单项选择题（本大题共5小题，每小题3分，共15分）\n1.微分方程2(xy+x)y'=y的通解是\n（）\nA,",
+    "originalName": "微信图片_20260629224235.jpg"
+  },
+  {
+    "id": "hm-down-img-028",
+    "source": "纸质卷图片",
+    "chapter": "2023-2024 A卷纸质卷",
+    "type": "comprehensive",
+    "stem": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 2 页。",
+    "image": "assets/higher_math_down/math_down_028.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 2 页。\n（）\nA.直线L平行于平面π\nB.直线L在平面π上\nC.直线L垂直于平面π\nD.直线L与平面π斜交\n4.D是闭区域(（x,y)la²≤x²+y²≤b²}，则{√x²+y²do=\n（）\n(b²-a)\n(b²-a”)\n(b²-a)B.\nA.\n5.下列级数收敛的是\n（）\nA.\nc.\nD.\n(n+1)(n+4)\n2n(n+1)\n+1\n21-]\n得分\n三、计算题（本大题共7小题，每小题7分，共49分）\n1.求微分方程y+y=c满足初始条件x=0’y=2的特解。\n2.计算二重积分[+dxdy，其中D=（x,y)x²+y²≤,x+y≥}°",
+    "originalName": "微信图片_2026-06-29_224242_065.jpg"
+  },
+  {
+    "id": "hm-down-img-029",
+    "source": "纸质卷图片",
+    "chapter": "2023-2024 A卷纸质卷",
+    "type": "comprehensive",
+    "stem": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 3 页。",
+    "image": "assets/higher_math_down/math_down_029.jpg",
+    "answer": "见原图高亮或纸质资料。数学公式以图片为准。",
+    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "searchText": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 3 页。\n4.求曲线积分{x+y)d+（x-yd，其中L沿x²+y²=a²（x≥0,y≥0)，逆时针方\n向。\n装订线\n5.计算[√+x²-ydxdy，其中D是由y=，x=-1及y=1所围成的区\n域。\n6.判断级数（I\"的敛散性，并指出是条件收敛还是绝对收敛。\nn+1\n7.将函数\n展开成，的幂级数，并求其成立的区间。\n（1-x)（2-x)",
+    "originalName": "微信图片_2026-06-29_224247_308.jpg"
+  },
+  {
+    "id": "hm-down-doc-a",
+    "source": "Word复习资料",
+    "chapter": "Word复习资料",
+    "type": "short",
+    "stem": "复习1(5).docx：高数下册期末测试卷A卷，包含选择题、填空题、计算题和应用题。",
+    "answer": "按原 Word 资料复习；公式未强行转文本。",
+    "analysis": "Word 内大量公式是对象/图片形式，抽纯文本会丢失关键公式。页面将其作为复习资料索引保留，正式练习以截图题和纸质卷图片为准。",
+    "searchText": "复习1 A卷 选择题 填空题 计算题 应用题 高等数学下册 期末"
+  },
+  {
+    "id": "hm-down-doc-b",
+    "source": "Word复习资料",
+    "chapter": "Word复习资料",
+    "type": "short",
+    "stem": "复习2(5).docx：期末测试卷B卷，包含选择题、填空题、计算题和应用题。",
+    "answer": "按原 Word 资料复习；公式未强行转文本。",
+    "analysis": "该文件适合用作模拟卷结构参考。公式题建议打开原 Word 或结合截图复习，避免公式识别误差。",
+    "searchText": "复习2 B卷 选择题 填空题 计算题 应用题 高等数学下册 期末"
+  },
+  {
+    "id": "hm-down-doc-review",
+    "source": "Word复习资料",
+    "chapter": "Word复习资料",
+    "type": "short",
+    "stem": "高数下册  复习.docx：复习提纲，包含选择题与计算题方向。",
+    "answer": "按原 Word 资料复习；公式未强行转文本。",
+    "analysis": "该资料用于复习范围提示。系统保留为资料卡，可配合图片题面进行自测。",
+    "searchText": "复习提纲 选择题 计算题 向量 多元函数 重积分 曲线积分 曲面积分 级数 微分方程"
+  }
+];
+
+const TYPE_LABELS = {
+  single: "选择题截图",
+  multiple: "选择题截图",
+  fill: "填空题",
+  judge: "判断题",
+  short: "资料卡片",
+  essay: "论述题",
+  comprehensive: "试卷图片"
+};
+
+let mode = "study";
+let currentIndex = 0;
+let currentList = [];
+
+const state = loadState();
+const els = {};
+
+function loadState() {
+  try {
+    return Object.assign({ done: {}, wrong: {}, notes: {} }, JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"));
+  } catch (_) {
+    return { done: {}, wrong: {}, notes: {} };
+  }
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  if (typeof window.studyHubRefreshStats === "function") window.studyHubRefreshStats();
+}
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
+}
+
+function typeGroup(type) {
+  if (["single", "multiple", "choice"].includes(type)) return "choice";
+  if (type === "comprehensive") return "comprehensive";
+  if (type === "fill") return "fill";
+  if (type === "judge") return "judge";
+  return "short";
+}
+
+function typeLabel(type) {
+  return TYPE_LABELS[type] || "资料";
+}
+
+function unique(values) {
+  return Array.from(new Set(values.filter(Boolean)));
+}
+
+function initFilters() {
+  els.chapter.innerHTML = `<option value="all">全部分类</option>${unique(QUESTIONS.map(q => q.chapter)).map(x => `<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>`).join("")}`;
+  els.type.innerHTML = `<option value="all">全部题型</option>${unique(QUESTIONS.map(q => typeGroup(q.type))).map(x => `<option value="${escapeHtml(x)}">${escapeHtml(groupTitle(x))}</option>`).join("")}`;
+}
+
+function groupTitle(group) {
+  return {
+    choice: "选择题",
+    fill: "填空题",
+    judge: "判断题",
+    short: "资料/简答",
+    essay: "论述题",
+    comprehensive: "综合/试卷"
+  }[group] || "其他";
+}
+
+function filteredQuestions() {
+  const chapter = els.chapter?.value || "all";
+  const type = els.type?.value || "all";
+  const keyword = (els.search?.value || "").trim().toLowerCase();
+  let list = QUESTIONS.slice();
+  if (mode === "wrong") list = list.filter(q => state.wrong[q.id]);
+  if (mode === "materials") list = list.filter(q => q.chapter === "Word复习资料");
+  if (chapter !== "all") list = list.filter(q => q.chapter === chapter);
+  if (type !== "all") list = list.filter(q => typeGroup(q.type) === type);
+  if (keyword) {
+    list = list.filter(q => [q.stem, q.answer, q.analysis, q.source, q.chapter, q.searchText, q.originalName].join("\n").toLowerCase().includes(keyword));
+  }
+  return list;
+}
+
+function setMode(nextMode) {
+  mode = nextMode;
+  currentIndex = 0;
+  document.querySelectorAll(".tabs button").forEach(btn => btn.classList.toggle("active", btn.dataset.mode === mode));
+  render();
+}
+
+function goToQuestionById(id) {
+  mode = "study";
+  document.querySelectorAll(".tabs button").forEach(btn => btn.classList.toggle("active", btn.dataset.mode === mode));
+  currentList = filteredQuestions();
+  const idx = currentList.findIndex(q => q.id === id);
+  currentIndex = Math.max(0, idx);
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function markDone(q) {
+  state.done[q.id] = true;
+  saveState();
+  render();
+}
+
+function toggleWrong(q) {
+  if (state.wrong[q.id]) delete state.wrong[q.id];
+  else state.wrong[q.id] = true;
+  saveState();
+  render();
+}
+
+function resetQuestion(q) {
+  delete state.done[q.id];
+  delete state.wrong[q.id];
+  delete state.notes[q.id];
+  saveState();
+  render();
+}
+
+function updateNote(q, value) {
+  state.notes[q.id] = value;
+  saveState();
+}
+
+function renderQuestion(q) {
+  const done = !!state.done[q.id];
+  const wrong = !!state.wrong[q.id];
+  const note = state.notes[q.id] || "";
+  const imageHtml = q.image ? `
+    <div class="question-image-wrap">
+      <img class="question-image" src="${escapeHtml(q.image)}" alt="${escapeHtml(q.stem)}">
+    </div>
+    <a class="pill" href="${escapeHtml(q.image)}" target="_blank" rel="noopener">打开原图</a>` : "";
+  const answerHtml = done ? `
+    <div class="answer-box">
+      <b>参考答案：</b>
+      <div>${escapeHtml(q.answer)}</div>
+      <b style="margin-top:10px">解析：</b>
+      <div>${escapeHtml(q.analysis)}</div>
+    </div>` : "";
+  return `
+    <article class="card q-card" data-qid="${escapeHtml(q.id)}">
+      <div class="meta-line">
+        <span class="pill">学习模式 · ${currentIndex + 1}/${currentList.length}</span>
+        <span class="pill">${escapeHtml(q.chapter)}</span>
+        <span class="pill">${escapeHtml(typeLabel(q.type))}</span>
+        <span class="pill">${escapeHtml(q.source)}</span>
+        ${wrong ? '<span class="pill" style="border-color:#fca5a5;color:#b91c1c;background:#fff1f2">已加入错题本</span>' : ""}
+      </div>
+      <div class="stem">${escapeHtml(q.stem)}</div>
+      ${imageHtml}
+      <label class="muted" for="noteBox">自测记录</label>
+      <textarea id="noteBox" placeholder="这里写自己的解题过程或答案。">${escapeHtml(note)}</textarea>
+      <div class="row" style="margin-top:12px">
+        <button type="button" class="primary" data-action="done">提交/查看解析</button>
+        <button type="button" class="${wrong ? "warn" : "ghost"}" data-action="wrong">${wrong ? "移出错题本" : "加入错题本"}</button>
+        <button type="button" class="ghost" data-action="prev">上一题</button>
+        <button type="button" class="primary" data-action="next">下一题</button>
+      </div>
+      ${answerHtml}
+    </article>`;
+}
+
+function renderLibrary(list) {
+  if (!list.length) return `<div class="card empty">没有匹配的题目。</div>`;
+  return `<div class="library-grid">${list.map((q, idx) => `
+    <article class="library-item">
+      ${q.image ? `<img class="thumb" src="${escapeHtml(q.image)}" alt="${escapeHtml(q.stem)}">` : ""}
+      <div class="meta-line"><span class="pill">${escapeHtml(q.chapter)}</span><span class="pill">${escapeHtml(typeLabel(q.type))}</span></div>
+      <b>${escapeHtml(q.stem)}</b>
+      <div class="muted">${escapeHtml(q.originalName || q.source)}</div>
+      <button type="button" class="primary" data-open-id="${escapeHtml(q.id)}">开始练</button>
+    </article>`).join("")}</div>`;
+}
+
+function render() {
+  currentList = filteredQuestions();
+  if (currentIndex < 0) currentIndex = 0;
+  if (currentIndex >= currentList.length) currentIndex = Math.max(0, currentList.length - 1);
+  if (mode === "library" || mode === "materials") {
+    els.panel.innerHTML = renderLibrary(currentList);
+    bindLibrary();
+    return;
+  }
+  if (!currentList.length) {
+    els.panel.innerHTML = `<div class="card empty">${mode === "wrong" ? "错题本为空。" : "没有匹配的题目。"}</div>`;
+    return;
+  }
+  els.panel.innerHTML = renderQuestion(currentList[currentIndex]);
+  bindQuestion();
+}
+
+function bindQuestion() {
+  const q = currentList[currentIndex];
+  const note = document.getElementById("noteBox");
+  if (note) note.addEventListener("input", event => updateNote(q, event.target.value));
+  els.panel.querySelectorAll("[data-action]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const action = btn.dataset.action;
+      if (action === "done") markDone(q);
+      if (action === "wrong") toggleWrong(q);
+      if (action === "prev") { currentIndex = Math.max(0, currentIndex - 1); render(); }
+      if (action === "next") { currentIndex = Math.min(currentList.length - 1, currentIndex + 1); render(); }
+    });
+  });
+}
+
+function bindLibrary() {
+  els.panel.querySelectorAll("[data-open-id]").forEach(btn => {
+    btn.addEventListener("click", () => goToQuestionById(btn.dataset.openId));
+  });
+}
+
+function randomQuestion() {
+  const list = filteredQuestions();
+  if (!list.length) return;
+  currentIndex = Math.floor(Math.random() * list.length);
+  mode = "study";
+  document.querySelectorAll(".tabs button").forEach(btn => btn.classList.toggle("active", btn.dataset.mode === mode));
+  render();
+}
+
+window.studyHubPracticeStats = function () {
+  const total = QUESTIONS.length;
+  const done = Object.keys(state.done).filter(id => QUESTIONS.some(q => q.id === id)).length;
+  const wrong = Object.keys(state.wrong).filter(id => QUESTIONS.some(q => q.id === id)).length;
+  return {
+    total,
+    done,
+    wrong,
+    accuracy: done ? Math.max(0, (done - wrong) / done) : 0,
+    extraLabel: "图片/资料",
+    extraValue: `${QUESTIONS.filter(q => q.image).length}/${QUESTIONS.filter(q => !q.image).length}`
+  };
+};
+
+window.studyHubPracticeNav = function () {
+  if (!["study", "wrong"].includes(mode) || currentList.length < 2) return null;
+  return {
+    title: "答题卡",
+    current: currentIndex + 1,
+    mode: "study",
+    items: currentList.map((q, idx) => ({
+      id: q.id,
+      index: idx + 1,
+      label: String(idx + 1),
+      type: typeGroup(q.type),
+      done: !!state.done[q.id],
+      wrong: !!state.wrong[q.id]
+    })),
+    jump(index) {
+      currentIndex = index - 1;
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  els.chapter = document.getElementById("chapterFilter");
+  els.type = document.getElementById("typeFilter");
+  els.search = document.getElementById("searchBox");
+  els.panel = document.getElementById("questionPanel");
+  initFilters();
+  document.querySelectorAll(".tabs button").forEach(btn => btn.addEventListener("click", () => setMode(btn.dataset.mode)));
+  els.chapter.addEventListener("change", () => { currentIndex = 0; render(); });
+  els.type.addEventListener("change", () => { currentIndex = 0; render(); });
+  els.search.addEventListener("input", () => { currentIndex = 0; render(); });
+  document.getElementById("randomBtn").addEventListener("click", randomQuestion);
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    if (currentList[currentIndex]) resetQuestion(currentList[currentIndex]);
+  });
+  render();
+});
+</script>
+</body>
+</html>

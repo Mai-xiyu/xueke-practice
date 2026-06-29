@@ -7,7 +7,8 @@
     ["data_structure_practice.html", "数据结构"],
     ["linux_practice.html", "Linux课程"],
     ["modern_history_practice.html", "中国近代史"],
-    ["community_practice.html", "\u4e2d\u534e\u6c11\u65cf\u5171\u540c\u4f53"]
+    ["community_practice.html", "\u4e2d\u534e\u6c11\u65cf\u5171\u540c\u4f53"],
+    ["higher_math_down_practice.html", "高等数学(下)"]
   ];
 
   function pageName() {
