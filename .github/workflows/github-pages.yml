@@ -27,24 +27,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: "npm"
 
-      - name: Validate question bank
-        run: npm run validate
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Prepare static site
-        shell: bash
+      - name: Validate, test, and build
+        run: npm run check
+
+      - name: Prepare Pages marker
         run: |
-          set -euo pipefail
-          mkdir -p _site
-          cp index.html *_practice.html subjects.json _site/
-          cp -R assets _site/assets
-          touch _site/.nojekyll
-          cat > _site/pages-mode.json <<'JSON'
-          {
-            "mode": "github-pages",
-            "serverSession": false,
-            "persistence": "browser-localStorage-only"
-          }
+          touch dist/.nojekyll
+          cat > dist/pages-mode.json <<'JSON'
+          {"mode":"github-pages","serverSession":false,"persistence":"browser-localStorage-only"}
           JSON
 
       - name: Configure Pages
@@ -53,7 +48,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: _site
+          path: dist
 
   deploy:
     name: Deploy to GitHub Pages

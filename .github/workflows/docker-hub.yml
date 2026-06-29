@@ -20,8 +20,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Validate subject registry and question banks
-        run: node tools/validate-site.js
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate, test, and build
+        run: npm run check
 
       - name: Resolve Docker image name
         id: image

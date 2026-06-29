@@ -1,22 +1,28 @@
 # 学科练习系统
 
-面向校园局域网的题库练习系统。当前仓库包含多个科目入口、统一前端样式、按浏览器 client id 持久化进度的后端、Docker/Nginx 部署配置，以及 GitHub Actions 自动打包流程。
+面向校园局域网的多科目练习系统。前端使用 Vite + React + TypeScript，所有科目共用同一套学习、模拟考试、错题本、收藏、题库浏览和进度同步逻辑。
 
-当前科目：
+## 当前科目
 
-- 路由交换
-- 网络安全
-- 数据采集
-- 数据可视化
-- 数据结构
-- Linux课程
-- 中国近代史
-- 中华民族共同体
-- 高等数学(下)
+- 计算机科学技术学院：路由交换、网络安全、数据采集、数据可视化、数据结构、Linux课程
+- 马克思主义学院：中国近代史、中华民族共同体
+- 数学科学学院：高等数学(下)
 
-## 快速使用
+## 快速开始
 
-本地 Docker 运行：
+```powershell
+npm ci
+npm run dev
+```
+
+构建和校验：
+
+```powershell
+npm run check
+npm run e2e
+```
+
+Docker 本地运行：
 
 ```powershell
 docker compose up -d --build
@@ -28,130 +34,93 @@ docker compose up -d --build
 http://127.0.0.1:8088/
 ```
 
-校验题库和入口：
-
-```powershell
-npm run validate
-```
-
-停止：
-
-```powershell
-docker compose down
-```
-
-## 文件地图
+## 项目结构
 
 ```text
-index.html                                  总入口，读取 subjects.json
-subjects.json                               科目注册表
-data/*.json                                 各科目题库数据
-*_practice.html                             各科目练习页面
-linux_practice.html                         Linux 课程题库页面
-modern_history_practice.html                中国近代史题库页面
-assets/common.css                           统一样式
-assets/question-loader.js                   题库 JSON 加载器
-assets/session-sync.js                      顶部导航和进度同步
-backend/server.js                           会话 JSON 后端
-docker/nginx.conf                           Nginx 静态站点和 /api 反代
-docker-compose.yml                          本地构建运行
-Dockerfile                                  前端 Nginx 镜像
-backend/Dockerfile                          会话 API 镜像
-templates/subject_practice_template.html    新科目模板
-tools/validate-site.js                      题库/入口校验脚本
-prompts/add-subject-prompt.md               给 AI 新增科目的提示词
-docs/add-subject.md                         新增科目说明
-docs/lan-windows-deploy.md                  局域网 Windows 服务器部署说明
-README-docker.md                            Docker 部署补充说明
+src/                         React/TypeScript 统一运行时
+src/lib/questions.ts          题型、判分、搜索、模拟考试抽题
+src/lib/progress.ts           进度保存、旧 localStorage 迁移、后端同步
+src/styles/app.css            统一 UI 样式
+public/subjects.json          科目注册表
+public/data/*.json            canonical 题库
+public/assets/**              图片等静态资产
+backend/server.js             session JSON 后端
+docker/nginx.conf             Nginx 静态站点和 /api 反代
+tools/validate-site.mjs       题库和入口校验
+tools/migrate-question-banks.mjs 旧题库迁移脚本
+docs/architecture.md          架构说明
+docs/question-schema.md       题库 schema
+docs/ui-guidelines.md         UI 规范
+CONTRIBUTING.md               PR 贡献指南
 ```
+
+旧入口文件仍保留，例如：
+
+```text
+network_practice.html
+modern_history_practice.html
+data_visualization_practice.html
+```
+
+这些 HTML 只是 Vite 多页面 shell，真实 UI 由 `src/main.tsx` 挂载。
 
 ## 新增科目
 
-优先按这个流程：
-
-1. 复制 `templates/subject_practice_template.html` 为新的 `*_practice.html`。
-2. 新建 `data/<subject_id>.json`，把题库写入 JSON 顶层数组。
-3. 设置页面标题、`SUBJECT_TITLE`、`STORAGE_KEY` 和 `DATA_FILE`。
-4. 在 `subjects.json` 增加一条科目配置，包含 `college` 和 `dataFile`。
-5. 运行：
+1. 在 `public/data/<subject_id>.json` 新建题库。
+2. 在 `public/subjects.json` 增加科目配置。
+3. 如果需要保留旧式 URL，新建一个轻量 HTML shell，写入 `data-subject-id="<subject_id>"`。
+4. 运行：
 
    ```powershell
    npm run validate
+   npm run check
    ```
 
-详细说明见 [docs/add-subject.md](docs/add-subject.md)。
+详细规则见：
 
-如果让 AI 处理，把 [prompts/add-subject-prompt.md](prompts/add-subject-prompt.md) 和试卷图片、docx、pdf 或老师资料一起发给 AI。
+- [docs/add-subject.md](docs/add-subject.md)
+- [docs/question-schema.md](docs/question-schema.md)
+- [prompts/add-subject-prompt.md](prompts/add-subject-prompt.md)
 
-题库约束：
+## 题库规则
 
-- 不使用 `衍生题` 作为来源。
-- 判断题可以从选择题改写生成，但前提是原选择题答案可确认；答案未知时不要硬编判断题。
-- 简答题、论述题正式使用时应有参考答案；截图没有给出答案时先标记为 `待补参考答案`。
-- 来源字段应写真实来源，例如 `A卷真题`、`课堂简答题`、`实验题`。
-- 从在线作业页抓取的新科目，如果页面没有明确显示标准答案，不要猜答案；先标记为 `待补答案`。
+- 题库只放在 `public/data/*.json`。
+- 题型只允许：`single | multiple | judge | fill | short | essay | code | comprehensive`。
+- 题目 ID 必须稳定，不能因重构、排序或去重改变。
+- 不确定答案不得伪造成确定答案。
+- 判断题由选择题改写时，必须在 `analysis` 中保留来源线索。
+- 提交前必须运行 `npm run validate`。
 
 ## 进度保存
 
-浏览器端先保存到 `localStorage`。通过 Docker/Nginx 运行时，页面还会同步到后端：
+新版本使用：
+
+```text
+studyhub:v2:<subjectId>
+```
+
+首次打开会自动迁移旧 key，例如 `network-practice-v1`、`linux_practice_state_v1`、`modern_history_practice_state_v2`。旧 key 不删除，方便回滚。
+
+Docker/Nginx 模式下会同步到：
 
 ```text
 /api/session
 ```
 
-后端持久化目录：
+GitHub Pages 模式不请求后端，只使用浏览器 localStorage。
+
+## 部署
+
+GitHub Actions：
 
 ```text
-session-data/
+.github/workflows/github-pages.yml       构建 dist 并部署 Pages
+.github/workflows/docker-hub.yml         校验、构建并发布 Docker Hub 镜像
+.github/workflows/deploy-lan.yml         self-hosted runner 部署到局域网 Windows
+.github/workflows/package-images.yml     构建 Docker tar 包
 ```
 
-Windows Docker Desktop 下，后端看到的 IP 可能是 Docker 网关地址，不一定是真实学生 IP。因此当前实现优先使用浏览器生成的 `study_hub_client_id` 区分用户，IP 只是兜底。
-
-## GitHub Actions
-
-当前 workflow：
-
-```text
-.github/workflows/docker-hub.yml       构建并发布 Docker Hub 镜像
-.github/workflows/deploy-lan.yml       通过 self-hosted runner 部署到局域网 Windows 服务器
-.github/workflows/package-images.yml   云端构建 Docker tar 包，供离线/受限网络部署
-```
-
-Docker Hub 发布需要仓库配置：
-
-```text
-DOCKERHUB_USERNAME
-DOCKERHUB_TOKEN
-```
-
-可选：
-
-```text
-DOCKERHUB_IMAGE
-```
-
-默认发布镜像：
-
-```text
-<DOCKERHUB_USERNAME>/xueke-practice:latest
-<DOCKERHUB_USERNAME>/xueke-practice:session-api-latest
-```
-
-## 局域网 Windows 服务器部署
-
-推荐长期方案：
-
-1. 在 Windows Docker 服务器安装 GitHub Actions self-hosted runner。
-2. 给 runner 加标签 `xueke-lan`。
-3. 在 GitHub 页面手动触发：
-
-   ```text
-   Actions -> Deploy to LAN Windows server -> Run workflow
-   ```
-
-详见 [docs/lan-windows-deploy.md](docs/lan-windows-deploy.md)。
-
-已验证的服务器信息：
+局域网 Windows 服务端：
 
 ```text
 LAN IP: <LAN_SERVER_IP>
@@ -159,51 +128,34 @@ LAN IP: <LAN_SERVER_IP>
 部署目录: C:\xueke-practice
 ```
 
-注意：Windows Docker Desktop 在普通 SSH 非交互会话里可能会触发凭据助手错误：
+详见 [docs/lan-windows-deploy.md](docs/lan-windows-deploy.md)。
 
-```text
-error getting credentials
-A specified logon session does not exist.
-```
+## 给维护者
 
-如果遇到这个问题，用以下任一方式：
+修改前先读：
 
-- 通过交互式登录会话/计划任务执行部署脚本。
-- 使用 `Package Docker image tarballs` workflow 云端构建 tar 包，再上传到服务器执行 `docker load`。
-- 使用真正的 self-hosted runner，并确认 runner 运行用户能访问 Docker Desktop。
+1. [docs/architecture.md](docs/architecture.md)
+2. [docs/question-schema.md](docs/question-schema.md)
+3. [docs/ui-guidelines.md](docs/ui-guidelines.md)
+4. [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## 给 AI 维护者
-
-修改仓库前先读：
-
-1. 本文件。
-2. [docs/add-subject.md](docs/add-subject.md)。
-3. [prompts/add-subject-prompt.md](prompts/add-subject-prompt.md)。
-4. [tools/validate-site.js](tools/validate-site.js)。
-
-维护规则：
-
-- 新增科目只改 `subjects.json`、新的 `*_practice.html` 和 `data/<subject_id>.json`，除非确实需要共享能力。
-- 统一 UI 放在 `assets/common.css`，不要在单个页面里做风格分叉。
-- 共享进度逻辑放在 `assets/session-sync.js`，后端接口放在 `backend/server.js`。
-- 不要提交 `session-data/`、`.artifacts/`、`.env*`、token、密码或临时产物。
-- 不要删除已有题库、错题/收藏/模拟考试功能，除非用户明确要求。
-- 遇到试卷图片或 docx，先结构化题目，再写入题库；不确定答案要标注，不要编造。
-- 判断题从选择题改写时，在说明里保留来源线索。
-
-提交前至少运行：
+PR 前至少运行：
 
 ```powershell
-npm run validate
-node --check backend/server.js
-node --check assets/session-sync.js
+npm run check
 ```
 
-如果改了 Docker、Nginx、后端或部署 workflow，还要至少验证一种部署路径：
+涉及页面交互：
 
-- 本地 `docker compose up -d --build`
-- GitHub Actions `Package Docker image tarballs`
-- GitHub Actions `Build and publish Docker image`
+```powershell
+npm run e2e
+```
+
+涉及 Docker、Nginx、后端或 workflow：
+
+```powershell
+docker compose up -d --build
+```
 
 ## 安全边界
 
@@ -211,11 +163,3 @@ node --check assets/session-sync.js
 - 不要暴露 Docker API、RDP、WinRM 到公网。
 - 不可信 PR 不应触发 LAN 部署。
 - `session-data/` 是用户进度数据，升级容器时必须保留。
-
-## 参考文档
-
-- [GitHub README 文档](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)
-- [GitHub Markdown 相对链接](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-- [GitHub self-hosted runner 标签](https://docs.github.com/actions/using-jobs/choosing-the-runner-for-a-job)
-- [Docker Compose up](https://docs.docker.com/reference/cli/docker/compose/up/)
-- [Docker Compose pull](https://docs.docker.com/reference/cli/docker/compose/pull/)

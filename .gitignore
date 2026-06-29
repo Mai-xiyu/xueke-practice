@@ -1,6 +1,8 @@
 session-data/
 work/
 .artifacts/
+node_modules/
+dist/
 *.log
 .env
 .env.*

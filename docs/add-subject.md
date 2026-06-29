@@ -1,79 +1,71 @@
 # 新增科目流程
 
-## 目标
+新增科目不再复制整页 HTML。页面能力由 React 统一运行时提供，只需要题库和注册表。
 
-新增科目只需要三个稳定入口：
+## 1. 准备题库
 
-1. 一个新的 `*_practice.html` 页面。
-2. 一个新的 `data/<subject_id>.json` 题库文件。
-3. `subjects.json` 中的一条科目配置。
+新建：
 
-## 手工新增
+```text
+public/data/<subject_id>.json
+```
 
-1. 复制模板：
+顶层是题目数组，字段遵循 [question-schema.md](question-schema.md)。
 
-   ```powershell
-   Copy-Item templates/subject_practice_template.html new_subject_practice.html
-   ```
+## 2. 注册科目
 
-2. 修改页面里的：
+在 `public/subjects.json` 的 `subjects` 中增加：
 
-   - `<title>`
-   - `SUBJECT_TITLE`
-   - `STORAGE_KEY`
-   - `DATA_FILE`
+```json
+{
+  "id": "new-subject",
+  "title": "新科目",
+  "mark": "NS",
+  "href": "new_subject_practice.html",
+  "accent": "new-subject",
+  "description": "一句话说明覆盖范围。",
+  "order": 90,
+  "college": "computer-science",
+  "dataFile": "data/new-subject.json"
+}
+```
 
-3. 新建题库 JSON：
+如果是新学院，在 `colleges` 中增加：
 
-   ```powershell
-   New-Item -ItemType File data/new-subject.json
-   ```
+```json
+{
+  "id": "new-college",
+  "title": "新学院",
+  "order": 90
+}
+```
 
-   JSON 顶层必须是题目数组，不要把大题库写进 HTML。
+## 3. 增加旧式 URL 入口
 
-4. 在 `subjects.json` 增加入口：
+如果需要 `new_subject_practice.html`：
 
-   ```json
-   {
-     "id": "new-subject",
-     "title": "新科目",
-     "mark": "NS",
-     "href": "new_subject_practice.html",
-     "accent": "new-subject",
-     "description": "一句话说明覆盖范围。",
-     "order": 90,
-     "college": "computer-science",
-     "dataFile": "data/new-subject.json"
-   }
-   ```
+```html
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新科目练习系统</title>
+  </head>
+  <body>
+    <div id="root" data-subject-id="new-subject"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
 
-5. 如果是新学院，在 `subjects.json` 的 `colleges` 数组里增加学院：
-
-   ```json
-   {
-     "id": "new-college",
-     "title": "新学院",
-     "order": 90
-   }
-   ```
-
-6. 校验：
-
-   ```powershell
-   npm run validate
-   ```
-
-## 题库规则
-
-- `source` 使用真实来源，例如 `A卷真题`、`课堂简答题`、`实验题`。
-- 不再使用 `衍生题` 作为来源。
-- 判断题由选择题改写生成；如果要写入题库，`analysis/explanation` 里注明“由选择题 X 改写生成”。
-- 简答题必须带参考答案，否则模拟考试和题库浏览会失去复盘价值。
-
-## 用 AI 新增
-
-把 `prompts/add-subject-prompt.md` 发给 AI，并附上试卷图片、docx、pdf 或老师资料。AI 产出后仍要运行：
+## 4. 校验
 
 ```powershell
 npm run validate
+npm run check
 ```
+
+## 5. 用 AI 新增
+
+把 [prompts/add-subject-prompt.md](../prompts/add-subject-prompt.md) 发给 AI，并附上试卷图片、docx、pdf 或老师资料。AI 产出后仍要运行校验。
