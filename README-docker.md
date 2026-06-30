@@ -61,6 +61,8 @@ http://127.0.0.1:8088/api/dev-dashboard
 
 `/dev.html` 由后端直接提供，不属于主 React 前端。默认不展示完整 localStorage 内容，只展示汇总数量，避免把答题数据直接暴露在页面上。
 
+在 Docker Desktop for Windows 通过端口映射对外提供服务时，容器内经常只能看到 Docker 网桥地址，例如 `172.19.0.1`。仪表盘会把这种地址标记为 `Docker NAT（真实 IP 不可见）`，设备识别以 cookie client id 为准。若必须记录真实客户端 IP，需要在 Windows 宿主机上放一个宿主机级反向代理，由它把真实来源写入 `X-Forwarded-For` 后再转发到 Docker。
+
 开发者密码由后端环境变量控制：
 
 ```text
