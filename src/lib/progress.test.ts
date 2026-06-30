@@ -1,8 +1,20 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { isReviewDue, loadLocalProgress, migrateSnapshotProgress, progressKey, recordQuestionAttempt, saveLocalProgress } from "./progress";
+import {
+  CLIENT_ID_KEY,
+  getStudyClientId,
+  isReviewDue,
+  loadLocalProgress,
+  migrateSnapshotProgress,
+  progressKey,
+  recordQuestionAttempt,
+  saveLocalProgress
+} from "./progress";
 
 describe("progress migration", () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => {
+    localStorage.clear();
+    document.cookie = `${CLIENT_ID_KEY}=; Max-Age=0; Path=/`;
+  });
 
   it("migrates legacy route-switching state without deleting old key", () => {
     localStorage.setItem("network-practice-v1", JSON.stringify({ answers: { q1: "A" }, wrong: { q2: true }, favorites: { q3: true } }));
@@ -42,5 +54,13 @@ describe("progress migration", () => {
     expect(right.details.q1.correctStreak).toBe(1);
     expect(right.wrong.q1).toBeUndefined();
     expect(isReviewDue(right.details.q1, new Date("2026-07-01T00:00:00.000Z"))).toBe(true);
+  });
+
+  it("uses a stable cookie-backed client id", () => {
+    document.cookie = `${CLIENT_ID_KEY}=cookie-client-1; Path=/`;
+    const id = getStudyClientId();
+    expect(id).toBe("cookie-client-1");
+    expect(localStorage.getItem(CLIENT_ID_KEY)).toBe("cookie-client-1");
+    expect(document.cookie).toContain(`${CLIENT_ID_KEY}=cookie-client-1`);
   });
 });

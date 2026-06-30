@@ -41,6 +41,34 @@ docker compose ps
 
 升级镜像或重建容器时不要删除 `session-data/`。该目录包含用户学习进度，不应提交到 Git。
 
+前端会在浏览器 cookie 和 localStorage 中保存 `study_hub_client_id`。后端优先使用该 client id 保存 session，因此客户端切换 IP 后仍能续用同一份进度。
+
+## 开发者仪表盘
+
+Docker/Nginx 部署提供：
+
+```text
+http://127.0.0.1:8088/dev.html
+http://127.0.0.1:8088/api/dev-dashboard
+```
+
+仪表盘展示：
+
+- 最近在线设备，按最近 `/api/session` 请求估算。
+- 有历史 session 的设备。
+- 当前 IP 和历史 IP。
+- 每个设备保存过的应用快照数量、进度 key 数量和最近路径。
+
+`/dev.html` 由后端直接提供，不属于主 React 前端。默认不展示完整 localStorage 内容，只展示汇总数量，避免把答题数据直接暴露在页面上。
+
+开发者密码由后端环境变量控制：
+
+```text
+DEV_DASHBOARD_PASSWORD=change-this-password
+```
+
+默认值是 `mk113711`。面向多人网络部署时应显式设置为自定义密码。
+
 ## 镜像构建
 
 前端镜像采用多阶段构建：
@@ -48,7 +76,7 @@ docker compose ps
 1. `node:22-alpine` 执行 `npm ci` 和 `npm run build`。
 2. `nginx:alpine` 只复制 `dist/` 和 Nginx 配置。
 
-`npm run build` 会先构建 `index.html`，再由 `tools/generate-legacy-pages.mjs` 生成旧 URL 兼容 HTML。
+`npm run build` 会先构建 `index.html`，再由 `tools/generate-legacy-pages.mjs` 生成旧 URL 兼容 HTML。`/dev.html` 由后端在运行时提供。
 
 ## Docker Hub 发布
 
@@ -91,6 +119,12 @@ Actions -> Deploy to LAN Windows server -> Run workflow
 web_port          对外 HTTP 端口，例如 8088
 deploy_dir        Windows Docker 主机上的部署目录
 session_data_dir  持久化 session JSON 的目录
+```
+
+可选环境变量：
+
+```text
+DEV_DASHBOARD_PASSWORD   开发者仪表盘登录密码，默认 mk113711
 ```
 
 通用说明见 [docs/lan-windows-deploy.md](docs/lan-windows-deploy.md)。公开文档不应包含真实服务器 IP、个人用户名或本机路径。

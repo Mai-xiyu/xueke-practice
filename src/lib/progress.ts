@@ -259,19 +259,37 @@ function canUseSessionApi(): boolean {
   return !(host.endsWith(".github.io") || host === "me.mai-xiyu.top");
 }
 
-function ensureClientId(): string {
-  const key = "study_hub_client_id";
-  let id = localStorage.getItem(key);
-  if (!id) {
-    id = crypto.randomUUID ? crypto.randomUUID() : `client-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-    localStorage.setItem(key, id);
-  }
+export const CLIENT_ID_KEY = "study_hub_client_id";
+
+function cookieValue(name: string): string | null {
+  const prefix = `${encodeURIComponent(name)}=`;
+  return document.cookie
+    .split(";")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(prefix))
+    ?.slice(prefix.length) || null;
+}
+
+function writeClientCookie(id: string): void {
+  const secure = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${encodeURIComponent(CLIENT_ID_KEY)}=${encodeURIComponent(id)}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+}
+
+function newClientId(): string {
+  return crypto.randomUUID ? crypto.randomUUID() : `client-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+export function getStudyClientId(): string {
+  let id = cookieValue(CLIENT_ID_KEY) || localStorage.getItem(CLIENT_ID_KEY);
+  if (!id) id = newClientId();
+  localStorage.setItem(CLIENT_ID_KEY, id);
+  writeClientCookie(id);
   return id;
 }
 
 export async function loadRemoteSnapshot(app: string): Promise<Record<string, string> | null> {
   if (!canUseSessionApi()) return null;
-  const client = ensureClientId();
+  const client = getStudyClientId();
   try {
     const response = await fetch(`/api/session?app=${encodeURIComponent(app)}&client=${encodeURIComponent(client)}`, {
       credentials: "same-origin",
@@ -285,9 +303,21 @@ export async function loadRemoteSnapshot(app: string): Promise<Record<string, st
   }
 }
 
+export async function touchRemoteSession(app: string): Promise<void> {
+  if (!canUseSessionApi()) return;
+  const client = getStudyClientId();
+  try {
+    await fetch(`/api/session?app=${encodeURIComponent(app)}&client=${encodeURIComponent(client)}`, {
+      credentials: "same-origin"
+    });
+  } catch {
+    // Static deployments and offline use should keep working without the optional session API.
+  }
+}
+
 export async function saveRemoteSnapshot(app: string): Promise<void> {
   if (!canUseSessionApi()) return;
-  const client = ensureClientId();
+  const client = getStudyClientId();
   const localStorageSnapshot: Record<string, string> = {};
   for (let i = 0; i < localStorage.length; i += 1) {
     const key = localStorage.key(i);
