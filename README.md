@@ -54,7 +54,7 @@ docs/ui-guidelines.md         UI 规范
 CONTRIBUTING.md               PR 贡献指南
 ```
 
-旧入口文件仍保留，例如：
+旧入口 URL 仍保留，例如：
 
 ```text
 network_practice.html
@@ -62,13 +62,13 @@ modern_history_practice.html
 data_visualization_practice.html
 ```
 
-这些 HTML 只是 Vite 多页面 shell，真实 UI 由 `src/main.tsx` 挂载。
+这些文件不再作为源码文件散落在仓库根目录。源码只保留 `index.html`；`npm run build` 会通过 `tools/generate-legacy-pages.mjs` 在 `dist/` 中生成兼容 HTML，真实 UI 由 `src/main.tsx` 挂载并根据 URL 匹配科目。
 
 ## 新增科目
 
 1. 在 `public/data/<subject_id>.json` 新建题库。
 2. 在 `public/subjects.json` 增加科目配置。
-3. 如果需要保留旧式 URL，新建一个轻量 HTML shell，写入 `data-subject-id="<subject_id>"`。
+3. 在 `public/subjects.json` 中设置唯一的 `href`，构建脚本会自动生成兼容 HTML，不要手写根目录 HTML shell。
 4. 运行：
 
    ```powershell
