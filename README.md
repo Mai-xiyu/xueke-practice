@@ -1,10 +1,24 @@
 # 学科练习系统
 
-面向校园局域网的多科目练习系统。前端使用 Vite + React + TypeScript，所有科目共用同一套学习、模拟考试、错题本、收藏、待复习、题库浏览和进度同步逻辑。
+一个面向多科目题库的练习系统。项目使用 Vite + React + TypeScript 构建，题库以 JSON 形式维护，所有科目共用同一套学习、模拟考试、错题本、收藏、待复习、题库浏览和进度保存逻辑。
+
+项目可以作为纯静态站点部署到 GitHub Pages，也可以通过 Docker/Nginx 部署，并可选启用 JSON session 后端保存局域网用户进度。
+
+## 功能概览
+
+- 多学院、多科目入口。
+- 统一刷题页、题库浏览、模拟考试、错题本、收藏和待复习。
+- 右侧答题卡按题型和当前题集动态渲染，适配大题库。
+- 进度按 `subjectId + questionId` 保存，避免筛选、乱序和跨科目时串题。
+- 支持主动回忆提示和简单间隔复习调度。
+- 题库、科目注册、模拟考试规则均从 JSON 配置读取。
+- 保留旧入口 URL，例如 `network_practice.html`，但这些 HTML 在构建产物中生成，不作为源码文件维护。
 
 ## 当前科目
 
-- 计算机科学技术学院：路由交换、网络安全、数据采集、数据可视化、数据结构、Linux课程
+科目列表由 [public/subjects.json](public/subjects.json) 动态注册。当前仓库包含：
+
+- 计算机科学技术学院：路由交换、网络安全、数据采集、数据可视化、数据结构、Linux 课程
 - 马克思主义学院：中国近代史、中华民族共同体
 - 数学科学学院：高等数学(下)
 
@@ -15,172 +29,192 @@ npm ci
 npm run dev
 ```
 
-构建和校验：
-
-```powershell
-npm run check
-npm run e2e
-```
-
-Docker 本地运行：
+本地开发地址默认由 Vite 输出。Docker 本地运行：
 
 ```powershell
 docker compose up -d --build
 ```
 
-访问：
+默认访问：
 
 ```text
 http://127.0.0.1:8088/
 ```
 
+常用校验：
+
+```powershell
+npm run validate
+npm run typecheck
+npm run test
+npm run build
+npm run check
+```
+
+涉及页面交互时运行：
+
+```powershell
+npm run e2e
+```
+
 ## 项目结构
 
 ```text
-src/                         React/TypeScript 统一运行时
-src/lib/questions.ts          题型、判分、搜索、模拟考试抽题
-src/lib/progress.ts           进度保存、间隔复习、旧 localStorage 迁移、后端同步
-src/styles/app.css            统一 UI 样式
-public/subjects.json          科目注册表
-public/data/*.json            canonical 题库
-public/assets/**              图片等静态资产
-backend/server.js             session JSON 后端
-docker/nginx.conf             Nginx 静态站点和 /api 反代
-tools/validate-site.mjs       题库和入口校验
-tools/migrate-question-banks.mjs 旧题库迁移脚本
-docs/architecture.md          架构说明
-docs/question-schema.md       题库 schema
-docs/ui-guidelines.md         UI 规范
-CONTRIBUTING.md               PR 贡献指南
+src/                            React/TypeScript 统一运行时
+src/pages/                      首页和科目练习页
+src/components/                 共享 UI 组件
+src/lib/questions.ts            题型、判分、搜索、模拟考试抽题
+src/lib/progress.ts             进度保存、旧状态迁移、间隔复习、后端同步
+src/styles/app.css              统一视觉样式
+
+public/subjects.json            科目注册表
+public/data/*.json              canonical 题库
+public/assets/**                图片等静态资源
+
+backend/server.js               可选 JSON session 后端
+docker/nginx.conf               Nginx 静态站点和 /api 反代
+deploy/                         局域网 Docker 部署模板
+tools/validate-site.mjs         题库、科目和入口校验
+tools/generate-legacy-pages.mjs 构建后生成旧 URL 兼容 HTML
+
+docs/                           架构、题库、UI、部署和新增科目文档
+prompts/                        给 AI coding agent 的维护提示词
 ```
 
-旧入口 URL 仍保留，例如：
+源码根目录只保留 `index.html`。科目入口如 `linux_practice.html`、`modern_history_practice.html` 由 `npm run build` 后在 `dist/` 中自动生成。不要把科目题目或独立渲染逻辑写回 HTML。
+
+## 题库规范
+
+题库文件位于 `public/data/*.json`，顶层必须是数组。统一题型：
 
 ```text
-network_practice.html
-modern_history_practice.html
-data_visualization_practice.html
+single | multiple | judge | fill | short | essay | code | comprehensive
 ```
 
-这些文件不再作为源码文件散落在仓库根目录。源码只保留 `index.html`；`npm run build` 会通过 `tools/generate-legacy-pages.mjs` 在 `dist/` 中生成兼容 HTML，真实 UI 由 `src/main.tsx` 挂载并根据 URL 匹配科目。
+核心字段：
+
+```ts
+{
+  id: string;
+  source: string;
+  chapter: string;
+  type: QuestionType;
+  stem: string;
+  options?: Record<string, string>;
+  correct?: string[];
+  answers?: string[];
+  answer?: string;
+  analysis?: string;
+  tags: string[];
+  image?: string | null;
+  meta?: Record<string, unknown>;
+}
+```
+
+基本规则：
+
+- 题目 ID 必须稳定，不能因为排序、去重或重构改变。
+- 选择题和判断题使用 `correct` 数组。
+- 填空题使用 `answers`。
+- 简答、论述、代码、综合应用题使用 `answer`。
+- 不确定答案不能伪造成确定答案，必须在 `analysis` 中标注不确定来源。
+- 判断题由选择题改写时，必须在 `analysis` 中保留原题线索。
+- 题库来源、章节、标签尽量结构化，便于筛选和复习。
+
+详细说明见 [docs/question-schema.md](docs/question-schema.md)。
 
 ## 新增科目
 
-1. 在 `public/data/<subject_id>.json` 新建题库。
-2. 在 `public/subjects.json` 增加科目配置。
-3. 在 `public/subjects.json` 中设置唯一的 `href`，构建脚本会自动生成兼容 HTML，不要手写根目录 HTML shell。
-4. 运行：
+新增科目不需要复制 HTML 页面，只需要题库和科目注册：
 
-   ```powershell
-   npm run validate
-   npm run check
-   ```
+1. 新增 `public/data/<subject_id>.json`。
+2. 在 `public/subjects.json` 中注册科目和所属学院。
+3. 为科目配置唯一 `href`，例如 `new_subject_practice.html`。
+4. 如有正式模拟考试规则，在 `mockExam.sections` 中配置抽题规则。
+5. 运行 `npm run validate` 和 `npm run check`。
 
-详细规则见：
+完整流程见 [docs/add-subject.md](docs/add-subject.md)。
 
-- [docs/add-subject.md](docs/add-subject.md)
-- [docs/question-schema.md](docs/question-schema.md)
-- [prompts/add-subject-prompt.md](prompts/add-subject-prompt.md)
+## 给 AI Coding Agent
 
-## 题库规则
+本仓库接受 AI 辅助维护，但 AI 必须按工程边界提交修改，而不是把题库、页面和临时产物混在一起。
 
-- 题库只放在 `public/data/*.json`。
-- 题型只允许：`single | multiple | judge | fill | short | essay | code | comprehensive`。
-- 题目 ID 必须稳定，不能因重构、排序或去重改变。
-- 不确定答案不得伪造成确定答案。
-- 判断题由选择题改写时，必须在 `analysis` 中保留来源线索。
-- 提交前必须运行 `npm run validate`。
+AI 修改前必须阅读：
+
+1. [docs/ai-contributor-guide.md](docs/ai-contributor-guide.md)
+2. [docs/add-subject.md](docs/add-subject.md)
+3. [docs/question-schema.md](docs/question-schema.md)
+4. [docs/architecture.md](docs/architecture.md)
+5. [CONTRIBUTING.md](CONTRIBUTING.md)
+
+新增科目时，AI 应遵循以下约束：
+
+- 只修改 `public/subjects.json`、`public/data/*.json`、必要静态资源和必要文档。
+- 不新增根目录 `*_practice.html`，旧 URL 由构建脚本生成。
+- 不把 OCR 中间文件、截图裁剪文件、原始聊天文件、Docker tar、`dist/`、`node_modules/` 提交到仓库。
+- 不引入外部 CDN 或与当前技术栈无关的大型框架。
+- 不硬编码题量，题量必须从 JSON 动态计算。
+- 不用“AI 生成”“衍生题”这类不可追溯来源作为最终来源字段。
+- 题目去重时保留最稳定的旧 ID；新增题使用可读、可追溯、稳定的 ID。
+- 对没有答案或解析的题目，不得编造确定答案；应标注 `analysis` 或暂缓导入。
+- PR 必须说明影响科目、题量变化、来源材料、去重策略和校验结果。
+
+可直接使用 [prompts/add-subject-prompt.md](prompts/add-subject-prompt.md) 作为 AI 新增科目的提示词。
 
 ## 进度保存
 
-新版本使用：
+浏览器本地进度 key：
 
 ```text
 studyhub:v2:<subjectId>
 ```
 
-首次打开会自动迁移旧 key，例如 `network-practice-v1`、`linux_practice_state_v1`、`modern_history_practice_state_v2`。旧 key 不删除，方便回滚。
-
-Docker/Nginx 模式下会同步到：
+Docker/Nginx 模式下，前端会尝试同步到：
 
 ```text
 /api/session
 ```
 
-GitHub Pages 模式不请求后端，只使用浏览器 localStorage。
+GitHub Pages 等纯静态部署没有后端，自动退化为只使用浏览器 localStorage。
 
-每题还会记录长期复习明细：
+进度数据包括：
 
 - 作答次数、答错次数、答对次数、连续答对次数。
-- 最近作答时间和下次复习时间。
+- 最近作答时间、下次复习时间。
 - 收藏、错题、待复习状态。
-- 可选的主动回忆提示 `memoryHint`。
-
-复习间隔遵循“答错短间隔、连续答对逐步拉长”的策略：10 分钟、1 天、3 天、7 天、14 天、30 天。
-
-## 工作区清理规则
-
-仓库只保留 React 源码、题库 JSON、静态资产、部署配置和文档。以下内容不进入 Git：
-
-- `node_modules/`
-- `dist/`
-- `session-data/`
-- `.artifacts/`
-- 爬虫/OCR/截图裁剪/Docker tar 等临时产物
-
-历史采集产物如果需要保留，放到仓库外的本地归档目录。
+- 可选主动回忆提示 `memoryHint`。
 
 ## 部署
 
 GitHub Actions：
 
 ```text
-.github/workflows/github-pages.yml       构建 dist 并部署 Pages
-.github/workflows/docker-hub.yml         校验、构建并发布 Docker Hub 镜像
-.github/workflows/deploy-lan.yml         self-hosted runner 部署到局域网 Windows
-.github/workflows/package-images.yml     构建 Docker tar 包
+.github/workflows/github-pages.yml   构建并发布 GitHub Pages
+.github/workflows/docker-hub.yml     构建并发布 Docker 镜像
+.github/workflows/deploy-lan.yml     手动触发 self-hosted runner 局域网部署
+.github/workflows/package-images.yml 构建 Docker tar 包
 ```
 
-局域网 Windows 服务端：
+Docker 部署见 [README-docker.md](README-docker.md)。
 
-```text
-LAN IP: <LAN_SERVER_IP>
-访问端口: 8088
-部署目录: C:\xueke-practice
-```
+局域网 Windows Docker 部署见 [docs/lan-windows-deploy.md](docs/lan-windows-deploy.md)。文档只提供通用模板，不包含个人服务器地址或本地路径。
 
-详见 [docs/lan-windows-deploy.md](docs/lan-windows-deploy.md)。
+## 工作区边界
 
-## 给维护者
+仓库只保留源码、题库 JSON、静态资产、部署配置和文档。以下内容不得提交：
 
-修改前先读：
+- `node_modules/`
+- `dist/`
+- `session-data/`
+- `.artifacts/`
+- OCR 缓存、爬虫临时文件、截图裁剪文件、Docker tar 包
+- 根目录科目 HTML shell，例如 `network_practice.html`
 
-1. [docs/architecture.md](docs/architecture.md)
-2. [docs/question-schema.md](docs/question-schema.md)
-3. [docs/ui-guidelines.md](docs/ui-guidelines.md)
-4. [CONTRIBUTING.md](CONTRIBUTING.md)
-
-PR 前至少运行：
-
-```powershell
-npm run check
-```
-
-涉及页面交互：
-
-```powershell
-npm run e2e
-```
-
-涉及 Docker、Nginx、后端或 workflow：
-
-```powershell
-docker compose up -d --build
-```
+历史采集材料如需保留，应放在仓库外部归档。
 
 ## 安全边界
 
-- 本项目只计划在校园/局域网公开。
-- 不要暴露 Docker API、RDP、WinRM 到公网。
-- 不可信 PR 不应触发 LAN 部署。
-- `session-data/` 是用户进度数据，升级容器时必须保留。
+- 不提交账号、密码、API key、私有 IP、真实部署路径或个人机器信息。
+- 不暴露 Docker API、RDP、WinRM 或内网服务到公网。
+- 不可信 PR 不应触发带有部署权限的 workflow。
+- `session-data/` 是用户进度数据，升级容器时必须保留并避免提交。
