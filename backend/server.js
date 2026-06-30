@@ -43,14 +43,39 @@ function html(res, status, body) {
   res.end(data);
 }
 
-function clientIp(req) {
+function dockerNatIp(ip) {
+  return /^172\.(1[6-9]|2\d|3[01])\.0\.1$/.test(ip);
+}
+
+function requestIpInfo(req) {
   const real = req.headers["x-real-ip"];
   const forwarded = req.headers["x-forwarded-for"];
-  const raw = (Array.isArray(real) ? real[0] : real)
-    || (Array.isArray(forwarded) ? forwarded[0] : forwarded || "").split(",")[0]
+  const realIp = String(Array.isArray(real) ? real[0] : real || "").trim();
+  const forwardedChain = String(Array.isArray(forwarded) ? forwarded[0] : forwarded || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+  const socketIp = String(req.socket.remoteAddress || "").trim().replace(/^::ffff:/, "");
+  const raw = realIp
+    || forwardedChain[0]
+    || socketIp
     || req.socket.remoteAddress
     || "unknown";
-  return String(raw).trim().replace(/^::ffff:/, "");
+  const ip = String(raw).trim().replace(/^::ffff:/, "");
+  const throughDockerNat = dockerNatIp(ip);
+  return {
+    ip,
+    realIp,
+    forwardedFor: forwardedChain,
+    socketIp,
+    throughDockerNat,
+    displayIp: throughDockerNat ? "Docker NAT（真实 IP 不可见）" : ip,
+    note: throughDockerNat ? "Docker Desktop 已隐藏真实客户端 IP，请以设备 ID / Cookie 识别用户。" : ""
+  };
+}
+
+function clientIp(req) {
+  return requestIpInfo(req).ip;
 }
 
 function safeName(ip) {
@@ -139,13 +164,14 @@ function pushUniqueIp(history, ip, now) {
   return next.slice(0, MAX_IP_HISTORY);
 }
 
-function touchSession(session, req, app, ip, identity) {
+function touchSession(session, req, app, ip, identity, network) {
   const now = new Date().toISOString();
   session.createdAt ||= now;
   session.firstSeenAt ||= session.createdAt;
   session.lastSeenAt = now;
   session.currentIp = ip;
   session.ip = ip;
+  session.network = network;
   session.identity = identity;
   session.userAgent = userAgent(req);
   session.lastApp = app;
@@ -218,10 +244,22 @@ async function listSessions() {
     try {
       const session = await readSession(file);
       const apps = appSummaries(session.apps);
+      const fallbackIp = session.currentIp || session.ip || "unknown";
+      const fallbackDockerNat = dockerNatIp(fallbackIp);
+      const network = session.network && typeof session.network === "object"
+        ? session.network
+        : {
+            ip: fallbackIp,
+            displayIp: fallbackDockerNat ? "Docker NAT（真实 IP 不可见）" : fallbackIp,
+            throughDockerNat: fallbackDockerNat,
+            note: fallbackDockerNat ? "Docker Desktop 已隐藏真实客户端 IP，请以设备 ID / Cookie 识别用户。" : ""
+          };
       sessions.push({
         id: path.basename(name, ".json"),
         identity: session.identity || { id: path.basename(name, ".json"), type: "file" },
         currentIp: session.currentIp || session.ip || "unknown",
+        displayIp: network.displayIp || session.currentIp || session.ip || "unknown",
+        network,
         ipHistory: Array.isArray(session.ipHistory) ? session.ipHistory : [],
         firstSeenAt: session.firstSeenAt || session.createdAt || null,
         lastSeenAt: session.lastSeenAt || session.updatedAt || null,
@@ -245,11 +283,13 @@ async function dashboardPayload() {
   const online = sessions.filter((session) => session.lastSeenAt && now - new Date(session.lastSeenAt).getTime() <= ONLINE_WINDOW_MS);
   const ipMap = new Map();
   for (const session of sessions) {
-    const ip = session.currentIp || "unknown";
-    const entry = ipMap.get(ip) || { ip, sessions: 0, online: 0, lastSeenAt: null };
+    const ip = session.displayIp || session.currentIp || "unknown";
+    const entry = ipMap.get(ip) || { ip, sessions: 0, online: 0, lastSeenAt: null, throughDockerNat: Boolean(session.network?.throughDockerNat), note: session.network?.note || "" };
     entry.sessions += 1;
     if (online.some((item) => item.id === session.id)) entry.online += 1;
     if (!entry.lastSeenAt || String(session.lastSeenAt || "") > entry.lastSeenAt) entry.lastSeenAt = session.lastSeenAt;
+    entry.throughDockerNat ||= Boolean(session.network?.throughDockerNat);
+    entry.note ||= session.network?.note || "";
     ipMap.set(ip, entry);
   }
   return {
@@ -362,7 +402,7 @@ function devDashboardHtml() {
     <div class="wrap top">
       <div>
         <h1>开发者仪表盘</h1>
-        <p class="muted">后端会话、在线设备、访问 IP 和进度快照汇总</p>
+        <p class="muted">后端会话、在线设备、访问来源和进度快照汇总。Docker Desktop 部署下源 IP 可能显示为 Docker NAT，请以设备 ID / Cookie 为准。</p>
       </div>
       <div class="actions" id="toolbar">
         <button class="secondary" type="button" id="refresh">刷新</button>
@@ -384,10 +424,10 @@ function devDashboardHtml() {
       <div class="grid">
         <article class="panel">
           <div class="panel-head"><h2>当前在线</h2><span class="muted" id="online-note"></span></div>
-          <div class="table-wrap"><table><thead><tr><th>客户端</th><th>IP</th><th>最近路径</th><th>最后活跃</th></tr></thead><tbody id="online"></tbody></table></div>
+          <div class="table-wrap"><table><thead><tr><th>客户端</th><th>来源</th><th>最近路径</th><th>最后活跃</th></tr></thead><tbody id="online"></tbody></table></div>
         </article>
         <article class="panel">
-          <div class="panel-head"><h2>IP 汇总</h2><span class="muted" id="ip-count"></span></div>
+          <div class="panel-head"><h2>来源汇总</h2><span class="muted" id="ip-count"></span></div>
           <div class="ip-list" id="ips"></div>
         </article>
       </div>
@@ -449,19 +489,19 @@ function devDashboardHtml() {
       document.getElementById("stats").innerHTML = [
         stat("在线设备", data.totals.online, data.onlineWindowSeconds + " 秒窗口"),
         stat("历史设备", data.totals.sessions, "有 session 文件"),
-        stat("访问 IP", data.totals.uniqueIps, "按最近 IP 汇总"),
+        stat("访问来源", data.totals.uniqueIps, "Docker NAT 下真实 IP 可能不可见"),
         stat("应用快照", data.totals.appSnapshots, formatBytes(data.totals.storageBytes))
       ].join("");
       document.getElementById("online-note").textContent = data.onlineClients.length + " 台";
       document.getElementById("online").innerHTML = data.onlineClients.length
-        ? data.onlineClients.map((item) => "<tr><td><code>" + esc(item.id) + "</code><small class=\\"muted\\">" + esc(item.identity.type) + "</small></td><td>" + esc(item.currentIp) + "</td><td class=\\"break\\">" + esc(item.lastPath || "-") + "</td><td>" + esc(formatTime(item.lastSeenAt)) + "</td></tr>").join("")
+        ? data.onlineClients.map((item) => "<tr><td><code>" + esc(item.id) + "</code><small class=\\"muted\\">" + esc(item.identity.type) + "</small></td><td>" + esc(item.displayIp || item.currentIp) + "<small>" + esc(item.network?.note || "") + "</small></td><td class=\\"break\\">" + esc(item.lastPath || "-") + "</td><td>" + esc(formatTime(item.lastSeenAt)) + "</td></tr>").join("")
         : "<tr><td colspan=\\"4\\">当前没有最近活跃的客户端。</td></tr>";
       document.getElementById("ip-count").textContent = data.activeIps.length + " 个";
-      document.getElementById("ips").innerHTML = data.activeIps.map((item) => "<div class=\\"ip-item\\"><b>" + esc(item.ip) + "</b><p class=\\"muted\\">" + esc(item.online) + " 在线 / " + esc(item.sessions) + " 历史</p><small>" + esc(formatTime(item.lastSeenAt)) + "</small></div>").join("") || "<p class=\\"muted\\">暂无 IP 数据。</p>";
+      document.getElementById("ips").innerHTML = data.activeIps.map((item) => "<div class=\\"ip-item\\"><b>" + esc(item.ip) + "</b><p class=\\"muted\\">" + esc(item.online) + " 在线 / " + esc(item.sessions) + " 历史</p><small>" + esc(item.note || formatTime(item.lastSeenAt)) + "</small></div>").join("") || "<p class=\\"muted\\">暂无来源数据。</p>";
       document.getElementById("device-count").textContent = Math.min(data.devices.length, 50) + " / " + data.devices.length;
       document.getElementById("devices").innerHTML = data.devices.slice(0, 50).map((device) => {
         const apps = device.apps.length ? "<ul>" + device.apps.map((app) => "<li><code>" + esc(app.app) + "</code><span class=\\"break\\">" + esc(app.title || app.path || "-") + "</span><small>" + esc(app.progressKeys) + " 个进度 key / " + esc(app.localStorageKeys) + " 个 localStorage key / " + esc(formatTime(app.updatedAt)) + "</small></li>").join("") + "</ul>" : "<p class=\\"muted\\">暂无应用快照。</p>";
-        return "<section class=\\"device\\"><h3 class=\\"break\\">" + esc(device.id) + "</h3><p class=\\"muted\\">" + esc(device.currentIp) + " · " + esc(device.appCount) + " 个应用快照 · " + esc(formatBytes(device.storageBytes)) + "</p><div class=\\"device-grid\\"><div><small>首次</small><p>" + esc(formatTime(device.firstSeenAt)) + "</p></div><div><small>最近</small><p>" + esc(formatTime(device.lastSeenAt)) + "</p></div><div><small>路径</small><p class=\\"break\\">" + esc(device.lastPath || "-") + "</p></div><div><small>历史 IP</small><p class=\\"break\\">" + esc(device.ipHistory.map((item) => item.ip).slice(0, 4).join(" / ") || "-") + "</p></div></div><details><summary>应用快照</summary>" + apps + "</details><small class=\\"break\\">" + esc(device.userAgent || "unknown user-agent") + "</small></section>";
+        return "<section class=\\"device\\"><h3 class=\\"break\\">" + esc(device.id) + "</h3><p class=\\"muted\\">" + esc(device.displayIp || device.currentIp) + " · " + esc(device.appCount) + " 个应用快照 · " + esc(formatBytes(device.storageBytes)) + "</p><div class=\\"device-grid\\"><div><small>首次</small><p>" + esc(formatTime(device.firstSeenAt)) + "</p></div><div><small>最近</small><p>" + esc(formatTime(device.lastSeenAt)) + "</p></div><div><small>路径</small><p class=\\"break\\">" + esc(device.lastPath || "-") + "</p></div><div><small>历史来源</small><p class=\\"break\\">" + esc(device.ipHistory.map((item) => item.ip).slice(0, 4).join(" / ") || "-") + "</p></div></div><details><summary>应用快照</summary>" + apps + "</details><small class=\\"break\\">" + esc(device.network?.note || device.userAgent || "unknown user-agent") + "</small></section>";
       }).join("") || "<p class=\\"muted\\">暂无历史设备。</p>";
     }
     async function load() {
@@ -501,17 +541,19 @@ function devDashboardHtml() {
 }
 
 async function handleSession(req, res, url) {
-  const ip = clientIp(req);
+  const network = requestIpInfo(req);
+  const ip = network.ip;
   const app = safeApp(url.searchParams.get("app"));
   const identity = clientIdentity(req, url, ip);
   const file = path.join(DATA_DIR, `${identity.id}.json`);
   const session = await readSession(file);
-  const seenAt = touchSession(session, req, app, ip, identity);
+  const seenAt = touchSession(session, req, app, ip, identity, network);
 
   if (req.method === "GET") {
     await writeSession(file, session);
     return json(res, 200, {
       ip,
+      network,
       identity,
       app: session.apps[app] || null,
       apps: Object.keys(session.apps || {}),
@@ -530,7 +572,7 @@ async function handleSession(req, res, url) {
       meta: body.meta && typeof body.meta === "object" ? body.meta : {}
     };
     await writeSession(file, session);
-    return json(res, 200, { ok: true, ip, identity, app, file: path.basename(file), updatedAt: session.updatedAt });
+    return json(res, 200, { ok: true, ip, network, identity, app, file: path.basename(file), updatedAt: session.updatedAt });
   }
 
   return text(res, 405, "method not allowed\n");
