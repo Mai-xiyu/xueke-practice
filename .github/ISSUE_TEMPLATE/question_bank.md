@@ -22,3 +22,4 @@ assignees: ""
 ## 校验
 
 - [ ] `npm run validate`
+- [ ] 已确认没有提交账号、密码、私有 IP、个人路径或 API key

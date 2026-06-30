@@ -12,7 +12,8 @@ const legacyPages = [
   "linux_practice.html",
   "modern_history_practice.html",
   "community_practice.html",
-  "higher_math_down_practice.html"
+  "higher_math_down_practice.html",
+  "linear_algebra_practice.html"
 ];
 
 function legacyPageDevFallback(): Plugin {

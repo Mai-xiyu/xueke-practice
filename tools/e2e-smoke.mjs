@@ -41,7 +41,7 @@ try {
     subjects: document.querySelectorAll(".subject-card").length,
     colleges: document.querySelectorAll(".college-section").length
   }));
-  if (home.subjects !== 9 || home.colleges !== 3) throw new Error(`home check failed ${JSON.stringify(home)}`);
+  if (home.subjects !== 10 || home.colleges !== 3) throw new Error(`home check failed ${JSON.stringify(home)}`);
 
   await page.goto(`${base}/data_visualization_practice.html`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector(".question-card");

@@ -1,9 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { listMarkdownFiles, parseMarkdownFiles } from "./markdown-bank.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = path.join(root, "public");
+const contribDir = path.join(root, "contrib", "question-banks");
 const subjectFile = path.join(publicDir, "subjects.json");
 const directory = JSON.parse(fs.readFileSync(subjectFile, "utf8"));
 const subjects = directory.subjects;
@@ -18,7 +20,8 @@ const expectedCounts = new Map([
   ["linux-course", 335],
   ["modern-history", 390],
   ["community", 158],
-  ["higher-math-down", 32]
+  ["higher-math-down", 32],
+  ["linear-algebra", 116]
 ]);
 
 function fail(message) {
@@ -99,3 +102,11 @@ for (const subject of subjects) {
 }
 
 console.log(`subjects.json: ${subjects.length} subjects`);
+
+const markdownFiles = listMarkdownFiles(contribDir);
+const markdownBanks = parseMarkdownFiles(markdownFiles);
+for (const subjectId of markdownBanks.keys()) {
+  if (!subjectIds.has(subjectId)) fail(`markdown contribution references unknown subject: ${subjectId}`);
+}
+const markdownQuestionCount = [...markdownBanks.values()].reduce((sum, items) => sum + items.length, 0);
+console.log(`markdown contributions: ${markdownFiles.length} files, ${markdownQuestionCount} questions`);
