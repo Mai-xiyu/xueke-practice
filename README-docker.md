@@ -1,9 +1,11 @@
 # Docker 部署说明
 
-前端镜像采用两阶段构建：
+本项目提供两个容器：
 
-1. `node:22-alpine` 执行 `npm ci` 和 `npm run build`。
-2. `nginx:alpine` 只复制 `dist` 和 Nginx 配置。
+- `web`：Nginx 静态站点，服务 Vite 构建产物，并把 `/api/` 反代到后端。
+- `session-api`：Node.js JSON session API，用于在 Docker/Nginx 部署中保存学习进度快照。
+
+GitHub Pages 等纯静态部署不需要 `session-api`。
 
 ## 本地构建运行
 
@@ -11,7 +13,7 @@
 docker compose up -d --build
 ```
 
-访问：
+默认访问：
 
 ```text
 http://127.0.0.1:8088/
@@ -23,48 +25,72 @@ http://127.0.0.1:8088/
 docker compose down
 ```
 
-## 服务
+查看状态：
 
-```text
-web          Nginx 静态站点，暴露 8088 -> 80
-session-api  Node JSON session API，容器内 3000
+```powershell
+docker compose ps
 ```
 
-`session-api` 的数据目录：
+## 数据持久化
+
+`session-api` 默认把 JSON 数据写入：
 
 ```text
 ./session-data:/data
 ```
 
-升级镜像或重建容器时不要删除 `session-data/`。
+升级镜像或重建容器时不要删除 `session-data/`。该目录包含用户学习进度，不应提交到 Git。
 
-## GitHub Actions
+## 镜像构建
 
-- `github-pages.yml`：`npm ci -> npm run check -> npm run build -> upload dist`
-- `docker-hub.yml`：校验并发布 Docker Hub 镜像
-- `package-images.yml`：构建 Docker tar 包
-- `deploy-lan.yml`：self-hosted runner 在局域网 Windows 服务器拉取并重启容器
+前端镜像采用多阶段构建：
 
-Docker Hub 变量：
+1. `node:22-alpine` 执行 `npm ci` 和 `npm run build`。
+2. `nginx:alpine` 只复制 `dist/` 和 Nginx 配置。
+
+`npm run build` 会先构建 `index.html`，再由 `tools/generate-legacy-pages.mjs` 生成旧 URL 兼容 HTML。
+
+## Docker Hub 发布
+
+GitHub Actions workflow：
+
+```text
+.github/workflows/docker-hub.yml
+```
+
+需要配置：
 
 ```text
 DOCKERHUB_USERNAME
 DOCKERHUB_TOKEN
-DOCKERHUB_IMAGE 可选
+DOCKERHUB_IMAGE   可选，默认 <DOCKERHUB_USERNAME>/xueke-practice
 ```
+
+发布标签：
+
+```text
+latest
+session-api-latest
+sha-<commit>
+session-api-sha-<commit>
+```
+
+Pull request 只构建校验，不推送镜像；`main` 分支和 tag 才推送。
 
 ## 局域网部署
 
-已验证服务器：
+推荐使用 self-hosted runner 手动触发：
 
 ```text
-LAN IP: <LAN_SERVER_IP>
-端口: 8088
-目录: C:\xueke-practice
+Actions -> Deploy to LAN Windows server -> Run workflow
 ```
 
-详见：
+需要填写：
 
 ```text
-docs/lan-windows-deploy.md
+web_port          对外 HTTP 端口，例如 8088
+deploy_dir        Windows Docker 主机上的部署目录
+session_data_dir  持久化 session JSON 的目录
 ```
+
+通用说明见 [docs/lan-windows-deploy.md](docs/lan-windows-deploy.md)。公开文档不应包含真实服务器 IP、个人用户名或本机路径。
