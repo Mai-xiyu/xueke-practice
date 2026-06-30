@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TopNav } from "./components/TopNav";
+import { touchRemoteSession } from "./lib/progress";
 import { loadDirectory, subjectFromPage } from "./lib/registry";
 import type { Subject, SubjectDirectory } from "./lib/types";
 import { HomePage } from "./pages/HomePage";
@@ -25,8 +26,21 @@ export function App() {
       .catch((err) => setError(err.message || String(err)));
   }, []);
 
+  useEffect(() => {
+    const app = subject?.id || "home";
+    void touchRemoteSession(app);
+    const timer = window.setInterval(() => {
+      void touchRemoteSession(app);
+    }, 60000);
+    return () => window.clearInterval(timer);
+  }, [subject?.id]);
+
   if (error) {
-    return <main className="app-shell"><section className="empty-state">系统加载失败：{error}</section></main>;
+    return (
+      <main className="app-shell">
+        <section className="empty-state">系统加载失败：{error}</section>
+      </main>
+    );
   }
 
   return (
