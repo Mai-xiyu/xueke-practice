@@ -78,7 +78,7 @@ for (const subject of subjects) {
   if (hrefs.has(subject.href)) fail(`duplicate subject href: ${subject.href}`);
   hrefs.add(subject.href);
   if (!collegeIds.has(subject.college)) fail(`subject references unknown college: ${subject.id}`);
-  if (!fs.existsSync(path.join(root, subject.href))) fail(`subject href missing: ${subject.href}`);
+  if (!/^[a-z0-9_-]+\.html$/i.test(subject.href)) fail(`${subject.id}: href must be a root html filename`);
   if (!subject.dataFile.startsWith("data/")) fail(`${subject.id}: dataFile must stay under data/`);
   const questions = readJson(path.join(publicDir, subject.dataFile));
   assertArray(questions, `${subject.id}: question bank must be array`);

@@ -2,7 +2,7 @@
 
 ## 前端
 
-系统是 Vite 多页面应用。旧 URL 仍然存在，但每个 HTML 只负责提供 `#root` 和 `data-subject-id`，实际页面由 `src/main.tsx` 挂载 React 应用。
+系统是 Vite + React 单源码入口应用。仓库根目录只保留 `index.html`；旧 URL 仍然存在，但由构建脚本在 `dist/` 中生成兼容 HTML。实际页面由 `src/main.tsx` 挂载 React 应用，并根据当前 URL 的文件名匹配 `public/subjects.json` 中的科目。
 
 核心模块：
 
@@ -12,6 +12,7 @@
 - `src/lib/questions.ts`：题型、判分、搜索、模拟考试抽题。
 - `src/lib/progress.ts`：localStorage、旧进度迁移、间隔复习状态、后端 session 同步。
 - `src/styles/app.css`：统一视觉风格。
+- `tools/generate-legacy-pages.mjs`：构建后把 `dist/index.html` 复制成各科旧 URL，保持历史链接可访问。
 
 ## 学习进度模型
 
@@ -63,5 +64,6 @@ GitHub Pages 使用 `dist` 静态产物，不启用后端进度同步。Docker/N
 - `session-data/`
 - `.artifacts/`
 - 临时 OCR、爬虫缓存、截图裁剪、Docker tar 包
+- 根目录科目 HTML shell，例如 `network_practice.html`；它们只能存在于构建产物 `dist/` 中。
 
 历史采集产物如仍需保留，应移动到仓库外的本地归档目录，例如桌面 `xueke-local-artifacts-archive/`。
