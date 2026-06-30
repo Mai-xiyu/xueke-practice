@@ -173,6 +173,42 @@
       "order": 80,
       "college": "mathematics",
       "dataFile": "data/higher-math-down.json"
+    },
+    {
+      "id": "linear-algebra",
+      "title": "线性代数",
+      "mark": "LA",
+      "href": "linear_algebra_practice.html",
+      "accent": "math",
+      "description": "线性代数课件题库与知识点练习，覆盖行列式、矩阵、线性方程组、向量组、特征值、相似矩阵和二次型。",
+      "order": 90,
+      "college": "mathematics",
+      "dataFile": "data/linear-algebra.json",
+      "mockExam": {
+        "title": "线性代数随机练习卷",
+        "sections": [
+          {
+            "type": "single",
+            "count": 25,
+            "score": 2
+          },
+          {
+            "type": "judge",
+            "count": 10,
+            "score": 1
+          },
+          {
+            "type": "fill",
+            "count": 10,
+            "score": 2
+          },
+          {
+            "type": "short",
+            "count": 3,
+            "score": 10
+          }
+        ]
+      }
     }
   ],
   "colleges": [

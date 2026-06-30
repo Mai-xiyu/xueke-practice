@@ -1,71 +1,131 @@
 [
   {
     "id": "hm-down-img-001",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 1：25.（4.0分）已知函数f(u,v)=uv，其中",
-    "tags": [],
+    "type": "single",
+    "stem": "25. 已知函数 $f(u,v)=uv$，其中 $u=x+y, v=x-y$，则 $\\frac{\\partial f}{\\partial x}+\\frac{\\partial f}{\\partial y}$ =（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_001.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$f=(x+y)(x-y)=x^2-y^2$，所以 $f_x=2x$、$f_y=-2y$，相加得 $2x-2y$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 1：25.（4.0分）已知函数f(u,v)=uv，其中\n!!! 5G\n42\n单选题（共25题，100.0分）\n25.（4.0分）已知函数f(u,v)=uv，其中\naf.af\nu=x+y,v=x-y，则\ndx\ndy\n4Q034020\nA\nK-x\n2x+2y\nB\nx+y\n2x-2y\nD",
         "originalName": "微信图片_20260628134859_81_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_001.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$x-y$",
+      "B": "$2x+2y$",
+      "C": "$x+y$",
+      "D": "$2x-2y$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-002",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 2：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)",
-    "tags": [],
+    "type": "single",
+    "stem": "24. 平面曲线弧的极坐标方程为 $\\rho=\\rho(\\theta)$，$\\theta\\in[\\alpha,\\beta]$，则曲线弧长公式 $S=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_002.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "极坐标曲线 $\\rho=\\rho(\\theta)$ 的弧长微元为 $ds=\\sqrt{\\rho^2+(\\rho^\\prime)^2}\\,d\\theta$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 2：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\n:!!! 5G\n42\n单选题（共25题，100.0分）\n24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\nθ∈[α,]，则曲线弧长公式S=(\n).\nA\nA.{√{x²(t)+y²(t）dt\nB\nπ-y²（x)dx\np²()+p(0)d\nf√1+y/²(x)dx",
         "originalName": "微信图片_20260628134901_83_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_002.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "C",
+    "options": {
+      "A": "$\\int_\\alpha^\\beta \\sqrt{x^{\\prime 2}(t)+y^{\\prime 2}(t)}\\,dt$",
+      "B": "$\\int_\\alpha^\\beta \\pi y^2(x)\\,dx$",
+      "C": "$\\int_\\alpha^\\beta \\sqrt{\\rho^2(\\theta)+\\rho^{\\prime 2}(\\theta)}\\,d\\theta$",
+      "D": "$\\int_\\alpha^\\beta \\sqrt{1+y^{\\prime 2}(x)}\\,dx$"
+    },
+    "correct": [
+      "C"
+    ]
   },
   {
     "id": "hm-down-img-003",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 3：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)",
-    "tags": [],
+    "type": "single",
+    "stem": "24. 平面曲线弧的极坐标方程为 $\\rho=\\rho(\\theta)$，$\\theta\\in[\\alpha,\\beta]$，则曲线弧长公式 $S=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_003.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "同类题：极坐标弧长公式为 $S=\\int_\\alpha^\\beta\\sqrt{\\rho^2(\\theta)+\\rho^{\\prime 2}(\\theta)}\\,d\\theta$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 3：24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\n:!!! 5G\n42\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分)\n24.(4.0分）平面曲线弧的极坐标方程为p=p(θ)\nθ∈[α,]，则曲线弧长公式S=(\n).\nA\nA.{√{x²(t)+y²(t）dt\nB\nπ-y²（x)dx\np²()+p(）dθ\nf√1+y/²(x)dx",
         "originalName": "微信图片_20260628134904_84_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_003.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "C",
+    "options": {
+      "A": "$\\int_\\alpha^\\beta \\sqrt{x^{\\prime 2}(t)+y^{\\prime 2}(t)}\\,dt$",
+      "B": "$\\int_\\alpha^\\beta \\pi y^2(x)\\,dx$",
+      "C": "$\\int_\\alpha^\\beta \\sqrt{\\rho^2(\\theta)+\\rho^{\\prime 2}(\\theta)}\\,d\\theta$",
+      "D": "$\\int_\\alpha^\\beta \\sqrt{1+y^{\\prime 2}(x)}\\,dx$"
+    },
+    "correct": [
+      "C"
+    ]
   },
   {
     "id": "hm-down-img-004",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 4：23.（4.0分）抛物线y²=x与y=x²所围成的图",
-    "tags": [],
+    "type": "single",
+    "stem": "23. 抛物线 $y^2=x$ 与 $y=x^2$ 所围成图形的面积等于（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_004.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "两曲线在 $(0,0)$、$(1,1)$ 相交，面积为 $\\int_0^1(\\sqrt{x}-x^2)\\,dx=\\frac{2}{3}-\\frac{1}{3}=\\frac{1}{3}$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 4：23.（4.0分）抛物线y²=x与y=x²所围成的图\n!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分)\n23.（4.0分）抛物线y²=x与y=x²所围成的图\n形的面积等于(\n).\nA\nB\nD",
         "originalName": "微信图片_20260628134905_85_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_004.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "A",
+    "options": {
+      "A": "$\\frac{1}{3}$",
+      "B": "$\\frac{1}{4}$",
+      "C": "$1$",
+      "D": "$\\frac{1}{2}$"
+    },
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "hm-down-img-005",
@@ -120,20 +180,35 @@
   },
   {
     "id": "hm-down-img-008",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 8：19.(4.0分)",
-    "tags": [],
+    "type": "single",
+    "stem": "19. $\\int_a^b f^\\prime(x)\\,dx=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_008.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "由牛顿-莱布尼茨公式，定积分 $\\int_a^b f^\\prime(x)dx=f(b)-f(a)$，不加任意常数。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 8：19.(4.0分)\n:!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\n19.(4.0分)\nf'(x)dx=(\nAf(a)-f(b)\nBf(a)-f(b)+C\nCf(b)-f(a)\nDf(b)-f(a)+C",
         "originalName": "微信图片_20260628134911_89_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_008.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "C",
+    "options": {
+      "A": "$f(a)-f(b)$",
+      "B": "$f(a)-f(b)+C$",
+      "C": "$f(b)-f(a)$",
+      "D": "$f(b)-f(a)+C$"
+    },
+    "correct": [
+      "C"
+    ]
   },
   {
     "id": "hm-down-img-009",
@@ -154,20 +229,35 @@
   },
   {
     "id": "hm-down-img-010",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 10：17.(4.0分）向量à=(1,2,2) 的模等于",
-    "tags": [],
+    "type": "single",
+    "stem": "17. 向量 $\\vec a=(1,2,2)$ 的模等于（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_010.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$|\\vec a|=\\sqrt{1^2+2^2+2^2}=3$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 10：17.(4.0分）向量à=(1,2,2) 的模等于\n:!!!5GA\n41\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\n17.(4.0分）向量à=(1,2,2) 的模等于\n).\nA3\nB\nC\nD",
         "originalName": "微信图片_20260628134913_91_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_010.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "A",
+    "options": {
+      "A": "$3$",
+      "B": "$1$",
+      "C": "$2$",
+      "D": "$9$"
+    },
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "hm-down-img-011",
@@ -222,54 +312,99 @@
   },
   {
     "id": "hm-down-img-014",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 14：13.（4.0分）设g(x)为偶函数，则",
-    "tags": [],
+    "type": "single",
+    "stem": "13. 设 $g(x)$ 为偶函数，则 $\\int_{-2}^{2} g(x)\\,dx=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_014.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "偶函数在对称区间上的积分等于右半区间积分的 2 倍。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 14：13.（4.0分）设g(x)为偶函数，则\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分）\n13.（4.0分）设g(x)为偶函数，则\ng（x)dx=\n).\nA\nB\ng（x）dx\n2] g(x)dx",
         "originalName": "微信图片_20260628134918_95_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_014.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$\\int_{-2}^{0} g(x)\\,dx$",
+      "D": "$2\\int_0^2 g(x)\\,dx$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-015",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 15：12.(4.0分）点(2.1,1)到平面x+y-Z+1=0",
-    "tags": [],
+    "type": "single",
+    "stem": "12. 点 $(2,1,1)$ 到平面 $x+y-z+1=0$ 的距离为（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_015.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "点到平面距离 $d=\\frac{|Ax_0+By_0+Cz_0+D|}{\\sqrt{A^2+B^2+C^2}}=\\frac{|2+1-1+1|}{\\sqrt3}=\\sqrt3$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 15：12.(4.0分）点(2.1,1)到平面x+y-Z+1=0\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n12.(4.0分）点(2.1,1)到平面x+y-Z+1=0\n的距离为(\n).\n(8.0)\n昕萌\nA\nB\nV3",
         "originalName": "微信图片_20260628134920_96_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_015.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$1$",
+      "B": "$\\frac{2}{\\sqrt3}$",
+      "C": "$3$",
+      "D": "$\\sqrt3$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-016",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 16：11. (4.0分)",
-    "tags": [],
+    "type": "single",
+    "stem": "11. $\\frac{d}{dx}\\int_a^x f(t)\\,dt=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_016.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "变上限积分求导：若 $F(x)=\\int_a^x f(t)dt$，则 $F^\\prime(x)=f(x)$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 16：11. (4.0分)\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\nd\n11. (4.0分)\nf(t)dt=(\ndx\nAf(x)-f(a)\nBf(b)-f(a)\nCf(x)+C\nf(x)\nD",
         "originalName": "微信图片_20260628134924_97_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_016.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$f(x)-f(a)$",
+      "B": "$f(b)-f(a)$",
+      "C": "$f(x)+C$",
+      "D": "$f(x)$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-017",
@@ -307,139 +442,259 @@
   },
   {
     "id": "hm-down-img-019",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 19：8.（4.0分）定积分lnxdx=(",
-    "tags": [],
+    "type": "single",
+    "stem": "8. 定积分 $\\int_2^e \\ln x\\,dx=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_019.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$\\int \\ln x\\,dx=x\\ln x-x$，代入 $2$ 到 $e$ 得 $(e\\ln e-e)-(2\\ln2-2)=2-2\\ln2$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 19：8.（4.0分）定积分lnxdx=(\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n8.（4.0分）定积分lnxdx=(\nA2-1n2\nB2ln2\nC\n1n2\n2-21n2\nD",
         "originalName": "微信图片_20260628134928_100_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_019.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$2-\\ln2$",
+      "B": "$2\\ln2$",
+      "C": "$\\ln2$",
+      "D": "$2-2\\ln2$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-020",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 20：7.（4.0分）Z=5xy²的全微分(",
-    "tags": [],
+    "type": "single",
+    "stem": "7. $z=5xy^2$ 的全微分是（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_020.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$dz=z_xdx+z_ydy$，$z_x=5y^2$，$z_y=10xy$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 20：7.（4.0分）Z=5xy²的全微分(\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n7.（4.0分）Z=5xy²的全微分(\nA\n10xydx + 10xydy\n5y²dx + 5y²dy\n5xy² (dx + dy)\n5y²dx + 10xydy",
         "originalName": "微信图片_20260628134929_101_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_020.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$10xy\\,dx+10xy\\,dy$",
+      "B": "$5y^2\\,dx+5y^2\\,dy$",
+      "C": "$5xy^2(dx+dy)$",
+      "D": "$5y^2\\,dx+10xy\\,dy$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-021",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 21：6．(4.0分）平面曲线的直角坐标方程为y=f(x)",
-    "tags": [],
+    "type": "single",
+    "stem": "6. 平面曲线的直角坐标方程为 $y=f(x)$，$x\\in[a,b]$，由 $\\pi\\int_a^b y^2\\,dx$ 可得出曲线 $y=f(x)$ 在 $x\\in[a,b]$ 上绕 $x$ 轴旋转所得的（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_021.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$V=\\pi\\int_a^b [f(x)]^2dx$ 是曲线 $y=f(x)$ 与 $x$ 轴围成区域绕 $x$ 轴旋转的体积公式。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 21：6．(4.0分）平面曲线的直角坐标方程为y=f(x)\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n6．(4.0分）平面曲线的直角坐标方程为y=f(x)\n，x=[αb]，则由\n√1+y²dx可得出曲线y=f(x)\n在x=[a.]的(\n).\nA面积\nB\n旋转体体积\n弧长\nD\n体积",
         "originalName": "微信图片_20260628134930_102_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_021.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "B",
+    "options": {
+      "A": "面积",
+      "B": "旋转体体积",
+      "C": "弧长",
+      "D": "体积"
+    },
+    "correct": [
+      "B"
+    ]
   },
   {
     "id": "hm-down-img-022",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 22：5.（4.0分）定积分",
-    "tags": [],
+    "type": "single",
+    "stem": "5. 定积分 $\\int_0^{\\pi/2} x\\sin x\\,dx=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_022.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "分部积分：$\\int x\\sin xdx=-x\\cos x+\\sin x$，代入 $0$ 到 $\\pi/2$ 得 $1$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 22：5.（4.0分）定积分\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n5.（4.0分）定积分\nx sin xdx =(\nB\n+1\nD",
         "originalName": "微信图片_20260628134931_103_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_022.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "A",
+    "options": {
+      "A": "$1$",
+      "B": "$\\frac{\\pi}{2}+1$",
+      "C": "$\\frac{\\pi}{2}$",
+      "D": "$0$"
+    },
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "hm-down-img-023",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 23：4.(4.0分）向量à=(1,2,2)与B=(2,-2,2)",
-    "tags": [],
+    "type": "single",
+    "stem": "4. 向量 $\\vec a=(1,2,2)$ 与 $\\vec b=(2,-2,2)$ 的数量积等于（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_023.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$\\vec a\\cdot\\vec b=1\\cdot2+2\\cdot(-2)+2\\cdot2=2$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 23：4.(4.0分）向量à=(1,2,2)与B=(2,-2,2)\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题\n（共25题，100.0分）\n4.(4.0分）向量à=(1,2,2)与B=(2,-2,2)\n的数量积等于(\n).(7.0)\nA\nB3\nD2",
         "originalName": "微信图片_20260628134935_104_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_023.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$1$",
+      "B": "$3$",
+      "C": "$9$",
+      "D": "$2$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-024",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 24：3.(4.0分）向量α= (1,2,2)的模等于(",
-    "tags": [],
+    "type": "single",
+    "stem": "3. 向量 $\\vec a=(1,2,2)$ 的模等于（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_024.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$|\\vec a|=\\sqrt{1^2+2^2+2^2}=3$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 24：3.(4.0分）向量α= (1,2,2)的模等于(\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n3.(4.0分）向量α= (1,2,2)的模等于(\nA3\nB2\nD",
         "originalName": "微信图片_20260628134936_105_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_024.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "A",
+    "options": {
+      "A": "$3$",
+      "B": "$2$",
+      "C": "$1$",
+      "D": "$9$"
+    },
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "hm-down-img-025",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 25：见图作答，答案以截图中高亮选项为准。",
-    "tags": [],
+    "type": "single",
+    "stem": "2. 点 $(1,2,1)$ 到平面 $2x+2y-z-2=0$ 的距离为（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_025.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "$d=\\frac{|2\\cdot1+2\\cdot2-1-2|}{\\sqrt{2^2+2^2+(-1)^2}}=\\frac{3}{3}=1$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 25：见图作答，答案以截图中高亮选项为准。\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题(共25题，100.0分)\n0=--+x（（）\n离为(\nA5\nB\nD",
         "originalName": "微信图片_20260628134937_106_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_025.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "C",
+    "options": {
+      "A": "$5$",
+      "B": "$9$",
+      "C": "$1$",
+      "D": "$3$"
+    },
+    "correct": [
+      "C"
+    ]
   },
   {
     "id": "hm-down-img-026",
-    "source": "选择题截图",
+    "source": "高数下册期末资料截图校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 26：1.(4.0分）设g(x)为奇函数，则",
-    "tags": [],
+    "type": "single",
+    "stem": "1. 设 $g(x)$ 为奇函数，则 $\\int_{-2}^{4}g(x)\\,dx=$（ ）。",
+    "tags": [
+      "公式校正",
+      "截图来源"
+    ],
     "image": "assets/higher_math_down/math_down_026.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "analysis": "奇函数在对称区间 $[-2,2]$ 上积分为 0，所以 $\\int_{-2}^{4}g(x)dx=\\int_2^4g(x)dx$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 26：1.(4.0分）设g(x)为奇函数，则\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n1.(4.0分）设g(x)为奇函数，则\ng（x)dx=\n).\ng(x)dx\nB\nxp(x)8\nD",
         "originalName": "微信图片_20260628134938_107_102.jpg"
-      }
+      },
+      "correctedFromImage": true,
+      "correctedAt": "2026-07-01",
+      "originalImage": "assets/higher_math_down/math_down_026.jpg"
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "A",
+    "options": {
+      "A": "$\\int_2^4 g(x)\\,dx$",
+      "B": "$-\\int_2^4 g(x)\\,dx$",
+      "C": "$2\\int_0^2 g(x)\\,dx$",
+      "D": "$0$"
+    },
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "hm-down-img-027",

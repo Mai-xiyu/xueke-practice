@@ -55,7 +55,7 @@
 
 GitHub Pages 使用 `dist` 静态产物，不启用后端进度同步。Docker/Nginx 使用同一份 `dist`，并通过 `/api/session` 反代到 `backend/server.js` 保存进度 JSON。
 
-## 工作区边界
+## 仓库边界
 
 仓库只保存 React 源码、题库 JSON、静态资产、部署配置和文档。以下内容不得提交：
 
@@ -66,4 +66,4 @@ GitHub Pages 使用 `dist` 静态产物，不启用后端进度同步。Docker/N
 - 临时 OCR、爬虫缓存、截图裁剪、Docker tar 包
 - 根目录科目 HTML shell，例如 `network_practice.html`；它们只能存在于构建产物 `dist/` 中。
 
-历史采集产物如仍需保留，应移动到仓库外的本地归档目录，例如桌面 `xueke-local-artifacts-archive/`。
+历史采集产物如仍需保留，应放在仓库外部归档，不应混入源码仓库。

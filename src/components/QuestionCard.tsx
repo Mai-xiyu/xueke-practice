@@ -1,5 +1,6 @@
 import { answerText, isAnswerCorrect, isChoice, isObjective, TYPE_LABEL } from "../lib/questions";
 import type { Question, QuestionProgress } from "../lib/types";
+import { MarkdownText } from "./MarkdownText";
 
 interface QuestionCardProps {
   question: Question;
@@ -35,6 +36,7 @@ export function QuestionCard(props: QuestionCardProps) {
   const showAnswer = reveal;
   const correct = isAnswerCorrect(question, value);
   const canShowMemoryHint = showAnswer && props.detail?.memoryHint;
+  const imageIsReference = question.meta?.correctedFromImage === true;
 
   return (
     <article className="question-card">
@@ -47,8 +49,19 @@ export function QuestionCard(props: QuestionCardProps) {
         {favorite ? <span className="badge-warning">已收藏</span> : null}
       </div>
       {canShowMemoryHint ? <p className="memory-hint">你的记忆提示：{props.detail?.memoryHint}</p> : null}
-      <h2>{question.stem}</h2>
-      {question.image ? <img className="question-image" src={question.image} alt="题目配图" /> : null}
+      <div className="question-stem">
+        <MarkdownText value={question.stem} />
+      </div>
+      {question.image ? (
+        imageIsReference ? (
+          <details className="source-image">
+            <summary>查看原截图</summary>
+            <img className="question-image" src={question.image} alt="题目原截图" />
+          </details>
+        ) : (
+          <img className="question-image" src={question.image} alt="题目配图" />
+        )
+      ) : null}
 
       {isChoice(question.type) ? (
         <div className="options">
@@ -76,7 +89,9 @@ export function QuestionCard(props: QuestionCardProps) {
                 }}
               >
                 <b className="option-letter">{key}</b>
-                <span>{text}</span>
+                <div className="option-text">
+                  <MarkdownText value={text} compact />
+                </div>
                 {showAnswer && isRight ? <em>正确答案</em> : null}
                 {showAnswer && picked && !isRight ? <em>你的选择</em> : null}
               </button>
@@ -104,12 +119,18 @@ export function QuestionCard(props: QuestionCardProps) {
         <section className={`analysis ${isObjective(question.type) ? (wrong || !correct ? "bad" : "ok") : ""}`}>
           <div className="analysis__result">
             <strong>{isObjective(question.type) ? (wrong || !correct ? "本题答错" : "本题答对") : "参考答案"}</strong>
-            <span>你的答案：{String(Array.isArray(value) ? value.join("") : value || "未填写")}</span>
-            <span>正确答案：{answerText(question) || "见解析"}</span>
+            <div>
+              <span>你的答案：</span>
+              <MarkdownText value={String(Array.isArray(value) ? value.join("") : value || "未填写")} compact />
+            </div>
+            <div>
+              <span>正确答案：</span>
+              <MarkdownText value={answerText(question) || "见解析"} compact />
+            </div>
           </div>
           <div className="analysis__block">
             <h3>解析</h3>
-            <p>{question.analysis || "题库暂未提供详细解析，先记住正确答案，并在下次复习时主动回忆判断依据。"}</p>
+            <MarkdownText value={question.analysis || "题库暂未提供详细解析，先记住正确答案，并在下次复习时主动回忆判断依据。"} />
           </div>
           <div className="analysis__block">
             <h3>记忆提示</h3>

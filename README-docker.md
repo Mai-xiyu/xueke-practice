@@ -69,7 +69,7 @@ http://127.0.0.1:8088/api/dev-dashboard
 DEV_DASHBOARD_PASSWORD=change-this-password
 ```
 
-默认值是 `mk113711`。面向多人网络部署时应显式设置为自定义密码。
+默认值是 `123456`。面向多人网络部署时应显式设置为自定义密码。
 
 ## 镜像构建
 
@@ -126,7 +126,7 @@ session_data_dir  持久化 session JSON 的目录
 可选环境变量：
 
 ```text
-DEV_DASHBOARD_PASSWORD   开发者仪表盘登录密码，默认 mk113711
+DEV_DASHBOARD_PASSWORD   开发者仪表盘登录密码，默认 123456
 ```
 
 通用说明见 [docs/lan-windows-deploy.md](docs/lan-windows-deploy.md)。公开文档不应包含真实服务器 IP、个人用户名或本机路径。

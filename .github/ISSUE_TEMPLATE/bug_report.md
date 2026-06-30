@@ -23,3 +23,4 @@ assignees: ""
 - URL：
 - 科目：
 - 浏览器：
+- 部署方式：GitHub Pages / Docker / 本地开发

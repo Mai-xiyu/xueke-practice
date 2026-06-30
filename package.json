@@ -8,14 +8,20 @@
     "build": "vite build && node tools/generate-legacy-pages.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "validate": "node tools/validate-site.mjs",
+    "import:markdown": "node tools/import-markdown-bank.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "e2e": "node tools/e2e-smoke.mjs",
     "check": "npm run validate && npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {
+    "katex": "^0.17.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-markdown": "^10.1.0",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.2",

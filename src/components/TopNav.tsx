@@ -45,6 +45,7 @@ export function TopNav({ directory, activeSubject }: TopNavProps) {
               </div>
             );
           })}
+          <a className="contribute-link" href="https://github.com/Mai-xiyu/xueke-practice/issues/new/choose" target="_blank" rel="noreferrer">投稿</a>
           <span className="sync-badge">本地/局域网</span>
         </div>
       </div>

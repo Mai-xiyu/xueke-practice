@@ -75,7 +75,7 @@ docker load -i xueke-practice-session-api.tar
 docker compose up -d --no-build --remove-orphans
 ```
 
-## 安全边界
+## 安全注意事项
 
 - 不要把 Docker API、Windows 远程桌面或 PowerShell Remoting 暴露到公网。
 - self-hosted runner 只给这个仓库使用，标签固定为 `xueke-lan`。
