@@ -1,6 +1,6 @@
 # 学科练习系统
 
-面向校园局域网的多科目练习系统。前端使用 Vite + React + TypeScript，所有科目共用同一套学习、模拟考试、错题本、收藏、题库浏览和进度同步逻辑。
+面向校园局域网的多科目练习系统。前端使用 Vite + React + TypeScript，所有科目共用同一套学习、模拟考试、错题本、收藏、待复习、题库浏览和进度同步逻辑。
 
 ## 当前科目
 
@@ -39,7 +39,7 @@ http://127.0.0.1:8088/
 ```text
 src/                         React/TypeScript 统一运行时
 src/lib/questions.ts          题型、判分、搜索、模拟考试抽题
-src/lib/progress.ts           进度保存、旧 localStorage 迁移、后端同步
+src/lib/progress.ts           进度保存、间隔复习、旧 localStorage 迁移、后端同步
 src/styles/app.css            统一 UI 样式
 public/subjects.json          科目注册表
 public/data/*.json            canonical 题库
@@ -108,6 +108,27 @@ Docker/Nginx 模式下会同步到：
 ```
 
 GitHub Pages 模式不请求后端，只使用浏览器 localStorage。
+
+每题还会记录长期复习明细：
+
+- 作答次数、答错次数、答对次数、连续答对次数。
+- 最近作答时间和下次复习时间。
+- 收藏、错题、待复习状态。
+- 可选的主动回忆提示 `memoryHint`。
+
+复习间隔遵循“答错短间隔、连续答对逐步拉长”的策略：10 分钟、1 天、3 天、7 天、14 天、30 天。
+
+## 工作区清理规则
+
+仓库只保留 React 源码、题库 JSON、静态资产、部署配置和文档。以下内容不进入 Git：
+
+- `node_modules/`
+- `dist/`
+- `session-data/`
+- `.artifacts/`
+- 爬虫/OCR/截图裁剪/Docker tar 等临时产物
+
+历史采集产物如果需要保留，放到仓库外的本地归档目录。
 
 ## 部署
 
