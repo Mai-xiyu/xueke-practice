@@ -10,18 +10,27 @@ import {
   TYPE_LABEL,
   uniqueSorted
 } from "../lib/questions";
-import { loadLocalProgress, loadRemoteSnapshot, migrateSnapshotProgress, saveLocalProgress, saveRemoteSnapshot } from "../lib/progress";
+import {
+  isReviewDue,
+  loadLocalProgress,
+  loadRemoteSnapshot,
+  migrateSnapshotProgress,
+  recordQuestionAttempt,
+  saveLocalProgress,
+  saveMemoryHint,
+  saveRemoteSnapshot
+} from "../lib/progress";
 import { loadQuestions } from "../lib/registry";
 import type { AnswerCardItem, ProgressState, Question, QuestionType, Subject, SubjectDirectory } from "../lib/types";
 
-type Mode = "study" | "browse" | "wrong" | "favorite" | "mock";
+type Mode = "study" | "browse" | "wrong" | "favorite" | "review" | "mock";
 
 interface PracticePageProps {
   directory: SubjectDirectory;
   subject: Subject;
 }
 
-const EMPTY_PROGRESS: ProgressState = { answers: {}, wrong: {}, favorites: {}, mockRuns: [] };
+const EMPTY_PROGRESS: ProgressState = { answers: {}, wrong: {}, favorites: {}, review: {}, details: {}, mockRuns: [] };
 
 function pageAppName() {
   return decodeURIComponent(location.pathname.split("/").pop() || "index.html");
@@ -43,6 +52,8 @@ function hasMeaningfulProgress(progress: ProgressState) {
     Object.keys(progress.answers).length ||
     Object.keys(progress.wrong).length ||
     Object.keys(progress.favorites).length ||
+    Object.keys(progress.review).length ||
+    Object.keys(progress.details).length ||
     progress.mockRuns.length
   );
 }
@@ -65,6 +76,7 @@ export function PracticePage({ subject }: PracticePageProps) {
   });
   const [drafts, setDrafts] = useState<Record<string, unknown>>({});
   const [revealed, setRevealed] = useState<Record<string, true>>({});
+  const [memoryHints, setMemoryHints] = useState<Record<string, string>>({});
   const [mockQuestions, setMockQuestions] = useState<Question[]>([]);
   const [mockSubmitted, setMockSubmitted] = useState(false);
   const [syncReady, setSyncReady] = useState(false);
@@ -113,6 +125,7 @@ export function PracticePage({ subject }: PracticePageProps) {
     return base.filter((question) => {
       if (mode === "wrong" && !progress.wrong[question.id]) return false;
       if (mode === "favorite" && !progress.favorites[question.id]) return false;
+      if (mode === "review" && !isReviewDue(progress.details[question.id])) return false;
       if (mode !== "mock") {
         if (chapter && question.chapter !== chapter) return false;
         if (type && question.type !== type) return false;
@@ -128,19 +141,26 @@ export function PracticePage({ subject }: PracticePageProps) {
   }, [visibleQuestions.length]);
 
   const current = visibleQuestions[index];
-  const doneCount = Object.keys(progress.answers).length;
+  const doneCount = Object.keys(progress.details).filter((id) => progress.details[id]?.attempts > 0 || progress.answers[id] !== undefined).length;
   const wrongCount = Object.keys(progress.wrong).length;
+  const favoriteCount = Object.keys(progress.favorites).length;
+  const reviewCount = questions.filter((question) => isReviewDue(progress.details[question.id])).length;
   const answerItems: AnswerCardItem[] = visibleQuestions.map((question, i) => ({
     id: question.id,
     index: i + 1,
     label: String(i + 1),
     type: question.type,
     done: progress.answers[question.id] !== undefined,
+    correct: progress.answers[question.id] !== undefined && !progress.wrong[question.id],
     wrong: Boolean(progress.wrong[question.id]),
-    marked: Boolean(progress.favorites[question.id])
+    marked: Boolean(progress.favorites[question.id]),
+    reviewDue: isReviewDue(progress.details[question.id]),
+    stem: question.stem
   }));
 
   function draftValue(question: Question) {
+    if (drafts[question.id] !== undefined) return drafts[question.id];
+    if (mode === "wrong" || mode === "review") return question.type === "multiple" ? [] : "";
     return drafts[question.id] ?? progress.answers[question.id] ?? (question.type === "multiple" ? [] : "");
   }
 
@@ -151,16 +171,7 @@ export function PracticePage({ subject }: PracticePageProps) {
   function submit(question: Question) {
     const value = draftValue(question);
     const wrong = !isAnswerCorrect(question, value);
-    setProgress((prev) => {
-      const next: ProgressState = {
-        ...prev,
-        answers: { ...prev.answers, [question.id]: value },
-        wrong: { ...prev.wrong }
-      };
-      if (wrong) next.wrong[question.id] = true;
-      else delete next.wrong[question.id];
-      return next;
-    });
+    setProgress((prev) => recordQuestionAttempt(prev, question.id, value, !wrong));
     setRevealed((prev) => ({ ...prev, [question.id]: true }));
   }
 
@@ -179,10 +190,12 @@ export function PracticePage({ subject }: PracticePageProps) {
       const next: ProgressState = {
         ...prev,
         answers: { ...prev.answers },
-        wrong: { ...prev.wrong }
+        wrong: { ...prev.wrong },
+        review: { ...prev.review }
       };
       delete next.answers[question.id];
       delete next.wrong[question.id];
+      delete next.review[question.id];
       return next;
     });
   }
@@ -192,8 +205,19 @@ export function PracticePage({ subject }: PracticePageProps) {
       const favorites = { ...prev.favorites };
       if (favorites[question.id]) delete favorites[question.id];
       else favorites[question.id] = true;
-      return { ...prev, favorites };
+      const detail = prev.details[question.id];
+      return {
+        ...prev,
+        favorites,
+        details: detail ? { ...prev.details, [question.id]: { ...detail, isFavorite: Boolean(favorites[question.id]) } } : prev.details
+      };
     });
+  }
+
+  function updateMemoryHint(question: Question) {
+    const value = memoryHints[question.id] || "";
+    setProgress((prev) => saveMemoryHint(prev, question.id, value));
+    setMemoryHints((prev) => ({ ...prev, [question.id]: "" }));
   }
 
   function startMock() {
@@ -248,7 +272,8 @@ export function PracticePage({ subject }: PracticePageProps) {
             ["study", "学习模式"],
             ["browse", "题库浏览"],
             ["wrong", `错题本 ${wrongCount}`],
-            ["favorite", `收藏 ${Object.keys(progress.favorites).length}`]
+            ["favorite", `收藏 ${favoriteCount}`],
+            ["review", `待复习 ${reviewCount}`]
           ].map(([key, label]) => (
             <button key={key} type="button" className={mode === key ? "active" : ""} onClick={() => { setMode(key as Mode); setIndex(0); }}>
               {label}
@@ -298,7 +323,11 @@ export function PracticePage({ subject }: PracticePageProps) {
               wrong={Boolean(progress.wrong[current.id])}
               favorite={Boolean(progress.favorites[current.id])}
               reveal={mode === "browse" || Boolean(revealed[current.id])}
+              detail={progress.details[current.id]}
+              memoryHintDraft={memoryHints[current.id] || ""}
               onChange={(value) => updateDraft(current, value)}
+              onMemoryHintChange={(value) => setMemoryHints((prev) => ({ ...prev, [current.id]: value }))}
+              onSaveMemoryHint={() => updateMemoryHint(current)}
               onSubmit={() => submit(current)}
               onReset={() => reset(current)}
               onFavorite={() => toggleFavorite(current)}

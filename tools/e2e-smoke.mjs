@@ -48,13 +48,24 @@ try {
   await page.locator(".option").first().click();
   await page.getByText("提交/查看解析").click();
   await page.waitForSelector(".analysis");
+  await page.getByText("打开完整答题卡").click();
+  await page.waitForSelector(".card-drawer");
   const practice = await page.evaluate(() => ({
     stats: document.querySelectorAll(".stat-card").length,
-    answerButtons: document.querySelectorAll(".answer-card__btn").length,
+    nearbyButtons: document.querySelectorAll(".answer-card > .answer-card__section .answer-card__btn").length,
+    drawerButtons: document.querySelectorAll(".card-drawer .answer-card__btn").length,
     hasAnalysis: Boolean(document.querySelector(".analysis")),
+    hasDrawer: Boolean(document.querySelector(".card-drawer")),
     title: document.querySelector(".subject-head h1")?.textContent
   }));
-  if (practice.stats !== 5 || !practice.hasAnalysis || !practice.answerButtons || !practice.title?.includes("数据可视化")) {
+  if (
+    practice.stats !== 5 ||
+    !practice.hasAnalysis ||
+    !practice.hasDrawer ||
+    practice.nearbyButtons <= 0 ||
+    practice.nearbyButtons >= practice.drawerButtons ||
+    !practice.title?.includes("数据可视化")
+  ) {
     throw new Error(`practice check failed ${JSON.stringify(practice)}`);
   }
 

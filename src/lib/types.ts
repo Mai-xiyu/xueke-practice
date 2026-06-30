@@ -67,6 +67,8 @@ export interface ProgressState {
   answers: Record<string, unknown>;
   wrong: Record<string, true>;
   favorites: Record<string, true>;
+  review: Record<string, true>;
+  details: Record<string, QuestionProgress>;
   mockRuns: Array<{
     id: string;
     title: string;
@@ -79,12 +81,30 @@ export interface ProgressState {
   updatedAt?: string;
 }
 
+export interface QuestionProgress {
+  questionId: string;
+  attempts: number;
+  wrongCount: number;
+  correctCount: number;
+  correctStreak: number;
+  lastAnsweredAt: string | null;
+  nextReviewAt: string | null;
+  isFavorite: boolean;
+  isWrong: boolean;
+  confidence?: 1 | 2 | 3 | 4 | 5;
+  lastSelectedAnswer?: unknown;
+  memoryHint?: string | null;
+}
+
 export interface AnswerCardItem {
   id: string;
   index: number;
   label: string;
   type: QuestionType;
   done: boolean;
+  correct: boolean;
   wrong: boolean;
   marked: boolean;
+  reviewDue: boolean;
+  stem: string;
 }

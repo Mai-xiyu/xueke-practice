@@ -1,3 +1,6 @@
+import { useEffect, useMemo, useState } from "react";
+import { uniqueSorted } from "../lib/questions";
+import { loadQuestions } from "../lib/registry";
 import type { Subject, SubjectDirectory } from "../lib/types";
 
 interface HomePageProps {
@@ -5,12 +8,30 @@ interface HomePageProps {
 }
 
 export function HomePage({ directory }: HomePageProps) {
-  const byCollege = new Map<string, Subject[]>();
-  directory.subjects.forEach((subject) => {
-    const list = byCollege.get(subject.college) || [];
-    list.push(subject);
-    byCollege.set(subject.college, list);
-  });
+  const [subjectStats, setSubjectStats] = useState<Record<string, { total: number; types: number }>>({});
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(directory.subjects.map(async (subject) => {
+      const questions = await loadQuestions(subject);
+      return [subject.id, { total: questions.length, types: uniqueSorted(questions.map((question) => question.type)).length }] as const;
+    })).then((entries) => {
+      if (!cancelled) setSubjectStats(Object.fromEntries(entries));
+    }).catch(() => undefined);
+    return () => { cancelled = true; };
+  }, [directory.subjects]);
+
+  const byCollege = useMemo(() => {
+    const map = new Map<string, Subject[]>();
+    directory.subjects.forEach((subject) => {
+      const list = map.get(subject.college) || [];
+      list.push(subject);
+      map.set(subject.college, list);
+    });
+    return map;
+  }, [directory.subjects]);
+
+  const totalQuestionCount = Object.values(subjectStats).reduce((sum, item) => sum + item.total, 0);
 
   return (
     <main className="home-layout">
@@ -21,6 +42,7 @@ export function HomePage({ directory }: HomePageProps) {
       <section className="home-summary">
         <div><span>学院</span><b>{directory.colleges.length}</b></div>
         <div><span>科目</span><b>{directory.subjects.length}</b></div>
+        <div><span>全站题量</span><b>{totalQuestionCount || "加载中"}</b></div>
         <div><span>部署</span><b>Docker / Pages</b></div>
       </section>
       {directory.colleges.map((college) => {
@@ -38,6 +60,7 @@ export function HomePage({ directory }: HomePageProps) {
                   <span>{subject.mark}</span>
                   <h3>{subject.title}</h3>
                   <p>{subject.description}</p>
+                  <small>{subjectStats[subject.id]?.total ?? "加载中"} 题 · {subjectStats[subject.id]?.types ?? "-"} 类题型</small>
                 </a>
               ))}
             </div>

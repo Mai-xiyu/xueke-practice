@@ -1,9 +1,11 @@
-import type { ProgressState } from "./types";
+import type { ProgressState, QuestionProgress } from "./types";
 
 export const DEFAULT_PROGRESS: ProgressState = {
   answers: {},
   wrong: {},
   favorites: {},
+  review: {},
+  details: {},
   mockRuns: []
 };
 
@@ -18,6 +20,9 @@ const LEGACY_KEYS: Record<string, string[]> = {
   community: ["community_practice_state_v1"],
   "higher-math-down": ["higher_math_down_practice_state_v1"]
 };
+
+const MINUTE = 60 * 1000;
+const DAY = 24 * 60 * MINUTE;
 
 function emptyProgress(): ProgressState {
   return structuredClone(DEFAULT_PROGRESS);
@@ -60,6 +65,29 @@ function toRecord(value: unknown): Record<string, true> {
   return out;
 }
 
+function normalizeDetails(value: unknown): Record<string, QuestionProgress> {
+  if (!value || typeof value !== "object") return {};
+  const out: Record<string, QuestionProgress> = {};
+  Object.entries(value as Record<string, Partial<QuestionProgress>>).forEach(([questionId, detail]) => {
+    if (!detail || typeof detail !== "object") return;
+    out[questionId] = {
+      questionId,
+      attempts: Number(detail.attempts || 0),
+      wrongCount: Number(detail.wrongCount || 0),
+      correctCount: Number(detail.correctCount || 0),
+      correctStreak: Number(detail.correctStreak || 0),
+      lastAnsweredAt: detail.lastAnsweredAt || null,
+      nextReviewAt: detail.nextReviewAt || null,
+      isFavorite: Boolean(detail.isFavorite),
+      isWrong: Boolean(detail.isWrong),
+      confidence: detail.confidence,
+      lastSelectedAnswer: detail.lastSelectedAnswer,
+      memoryHint: detail.memoryHint || null
+    };
+  });
+  return out;
+}
+
 function normalizeProgress(value: unknown): ProgressState | null {
   if (!value || typeof value !== "object") return null;
   const raw = value as Partial<ProgressState>;
@@ -69,7 +97,80 @@ function normalizeProgress(value: unknown): ProgressState | null {
     answers: raw.answers && typeof raw.answers === "object" ? raw.answers : {},
     wrong: toRecord(raw.wrong),
     favorites: toRecord(raw.favorites),
+    review: toRecord(raw.review),
+    details: normalizeDetails(raw.details),
     mockRuns: Array.isArray(raw.mockRuns) ? raw.mockRuns : []
+  };
+}
+
+function ensureDetail(state: ProgressState, questionId: string): QuestionProgress {
+  const existing = state.details[questionId];
+  return existing || {
+    questionId,
+    attempts: 0,
+    wrongCount: 0,
+    correctCount: 0,
+    correctStreak: 0,
+    lastAnsweredAt: null,
+    nextReviewAt: null,
+    isFavorite: Boolean(state.favorites[questionId]),
+    isWrong: Boolean(state.wrong[questionId]),
+    memoryHint: null
+  };
+}
+
+function nextReviewDate(correct: boolean, streak: number, now = new Date()): string {
+  const delay = correct
+    ? [0, DAY, 3 * DAY, 7 * DAY, 14 * DAY][Math.min(streak, 4)] || 30 * DAY
+    : 10 * MINUTE;
+  return new Date(now.getTime() + delay).toISOString();
+}
+
+export function isReviewDue(detail: QuestionProgress | undefined, now = new Date()): boolean {
+  if (!detail?.nextReviewAt) return false;
+  return new Date(detail.nextReviewAt).getTime() <= now.getTime();
+}
+
+export function recordQuestionAttempt(
+  state: ProgressState,
+  questionId: string,
+  answer: unknown,
+  correct: boolean,
+  now = new Date()
+): ProgressState {
+  const detail = ensureDetail(state, questionId);
+  const nextDetail: QuestionProgress = {
+    ...detail,
+    attempts: detail.attempts + 1,
+    wrongCount: detail.wrongCount + (correct ? 0 : 1),
+    correctCount: detail.correctCount + (correct ? 1 : 0),
+    correctStreak: correct ? detail.correctStreak + 1 : 0,
+    lastAnsweredAt: now.toISOString(),
+    nextReviewAt: nextReviewDate(correct, correct ? detail.correctStreak + 1 : 0, now),
+    isFavorite: Boolean(state.favorites[questionId]),
+    isWrong: !correct,
+    lastSelectedAnswer: answer
+  };
+  return {
+    ...state,
+    answers: { ...state.answers, [questionId]: answer },
+    wrong: correct ? Object.fromEntries(Object.entries(state.wrong).filter(([id]) => id !== questionId)) : { ...state.wrong, [questionId]: true },
+    review: { ...state.review, [questionId]: true },
+    details: { ...state.details, [questionId]: nextDetail }
+  };
+}
+
+export function saveMemoryHint(state: ProgressState, questionId: string, memoryHint: string): ProgressState {
+  const detail = ensureDetail(state, questionId);
+  return {
+    ...state,
+    details: {
+      ...state.details,
+      [questionId]: {
+        ...detail,
+        memoryHint: memoryHint.trim().slice(0, 20) || null
+      }
+    }
   };
 }
 
@@ -86,6 +187,15 @@ function applyLegacyState(
   Object.assign(migrated.wrong, toRecord(raw.wrong));
   Object.assign(migrated.favorites, toRecord(raw.favorites || raw.favorite || raw.marked || raw.mastered));
   Object.assign(migrated.answers, raw.done && typeof raw.done === "object" ? raw.done : {});
+  Object.keys(migrated.answers).forEach((questionId) => {
+    migrated.details[questionId] = {
+      ...ensureDetail(migrated, questionId),
+      attempts: 1,
+      lastSelectedAnswer: migrated.answers[questionId],
+      isFavorite: Boolean(migrated.favorites[questionId]),
+      isWrong: Boolean(migrated.wrong[questionId])
+    };
+  });
   if (raw.exam && typeof raw.exam === "object") {
     migrated.mockRuns.push({
       id: `legacy-${key}`,
