@@ -294,3 +294,54 @@ export function rightDockArrange(
 
   return next;
 }
+
+export function focusQuestionArrange(
+  configs: FloatingPanelConfig[],
+  state: FloatingLayoutState,
+  viewport: ViewportSize
+): Record<string, FloatingPanelState> {
+  const next: Record<string, FloatingPanelState> = {};
+  const configuredIds = new Set(configs.map((config) => config.id));
+  const primary = configs.find((config) => config.id === PRIMARY_PANEL_ID);
+  const topY = Math.max(DESKTOP_NAV_HEIGHT + 96, Math.round(viewport.height * 0.28), EDGE_GAP);
+
+  if (primary) {
+    const current = ensurePanelState(primary, state.panels[primary.id]);
+    const width = Math.min(920, Math.max(primary.minWidth || 520, Math.round(viewport.width * 0.46)));
+    const height = Math.min(520, Math.max(primary.minHeight || 300, Math.round(viewport.height * 0.45)));
+    next[primary.id] = {
+      ...current,
+      hidden: false,
+      collapsed: false,
+      rect: clampRect({
+        x: Math.round((viewport.width - width) / 2),
+        y: topY,
+        width,
+        height
+      }, viewport, primary.minWidth, primary.minHeight)
+    };
+  }
+
+  configs.forEach((config) => {
+    if (config.id === PRIMARY_PANEL_ID) return;
+    const current = ensurePanelState(config, state.panels[config.id]);
+    next[config.id] = {
+      ...current,
+      hidden: true,
+      collapsed: false,
+      rect: clampRect(current.rect || config.defaultRect, viewport, config.minWidth, config.minHeight)
+    };
+  });
+
+  Object.entries(state.panels).forEach(([id, current]) => {
+    if (id === PRIMARY_PANEL_ID || configuredIds.has(id)) return;
+    next[id] = {
+      ...current,
+      hidden: true,
+      collapsed: false,
+      rect: clampRect(current.rect, viewport)
+    };
+  });
+
+  return next;
+}

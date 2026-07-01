@@ -483,9 +483,16 @@ export function PracticePage({ subject }: PracticePageProps) {
           ] : [])
         ];
 
-        const hasStoredFloatingPanels = floatingConfigs.some((config) => Boolean(layout.state.panels[config.id]));
+        const questionRect = layout.state.panels.question?.rect;
+        const missingFloatingPanels = floatingConfigs.some((config) => !layout.state.panels[config.id]?.rect);
+        const badQuestionRect = !questionRect ||
+          questionRect.width < 360 ||
+          questionRect.x < 80 ||
+          questionRect.y < 96 ||
+          questionRect.x + questionRect.width > window.innerWidth - 8 ||
+          questionRect.y + Math.min(questionRect.height, 260) > window.innerHeight - 8;
         const enableFloating = () => {
-          if (!hasStoredFloatingPanels) layout.autoArrange(floatingConfigs);
+          if (missingFloatingPanels || badQuestionRect) layout.autoArrange(floatingConfigs);
           layout.setEnabled(true);
           setLayoutBarHidden(false);
         };
@@ -498,7 +505,7 @@ export function PracticePage({ subject }: PracticePageProps) {
             <span>布局</span>
             <button type="button" className={!floatingActive ? "active" : ""} onClick={() => { layout.setEnabled(false); setLayoutBarHidden(false); }}>经典布局</button>
             <button type="button" className={floatingActive ? "active" : ""} onClick={enableFloating}>浮动布局</button>
-            {floatingActive ? <button type="button" onClick={() => layout.autoArrange(floatingConfigs)}>整理窗口</button> : null}
+            {floatingActive ? <button type="button" onClick={() => layout.focusQuestion(floatingPanels.map((panel) => panel.config))}>整理窗口</button> : null}
             {floatingActive ? <button type="button" onClick={() => setLayoutBarHidden(true)}>隐藏栏</button> : null}
             <button type="button" onClick={resetFloatingLayout}>重置窗口</button>
           </div>

@@ -906,17 +906,23 @@ textarea {
   font-size: 13px;
 }
 .floating-taskbar {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
+  position: fixed !important;
+  inset: auto 18px 18px auto !important;
   z-index: 130;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: flex-end;
   gap: 8px;
   max-width: min(320px, calc(100vw - 36px));
+  max-height: min(58vh, calc(100vh - 160px));
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding: 4px;
+  overscroll-behavior: contain;
+  pointer-events: auto;
 }
 .floating-taskbar button {
+  flex: 0 0 auto;
   min-height: 36px;
   border-color: var(--primary-border);
   background: var(--primary);

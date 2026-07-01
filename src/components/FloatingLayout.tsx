@@ -1,9 +1,9 @@
 import { type PointerEvent as ReactPointerEvent, type ReactNode, useEffect, useRef, useState } from "react";
 import {
-  avoidOverlap,
   clampRect,
   emptyFloatingLayout,
   ensurePanelState,
+  focusQuestionArrange,
   type FloatingLayoutState,
   type FloatingPanelConfig,
   type FloatingPanelState,
@@ -23,6 +23,7 @@ interface FloatingLayoutApi {
   setEnabled: (enabled: boolean) => void;
   reset: () => void;
   autoArrange: (configs: FloatingPanelConfig[]) => void;
+  focusQuestion: (configs: FloatingPanelConfig[]) => void;
   updatePanel: (id: string, patch: Partial<FloatingPanelState>) => void;
   patchPanelRect: (id: string, rect: FloatingPanelState["rect"], configs?: FloatingPanelConfig[]) => void;
   bringToFront: (id: string) => void;
@@ -117,34 +118,38 @@ export function FloatingLayoutProvider({ subjectId, children }: FloatingLayoutPr
   function updatePanel(id: string, patch: Partial<FloatingPanelState>) {
     setState((current) => ({
       ...current,
-      panels: {
-        ...current.panels,
-        [id]: {
-          ...current.panels[id],
-          ...patch,
-          rect: patch.rect || current.panels[id]?.rect || { x: 16, y: 80, width: 260, height: 140 },
-          opacity: patch.opacity ?? current.panels[id]?.opacity ?? 1,
-          hidden: patch.hidden ?? current.panels[id]?.hidden ?? false,
-          collapsed: patch.collapsed ?? current.panels[id]?.collapsed ?? false,
-          zIndex: patch.zIndex ?? current.panels[id]?.zIndex ?? 1
-        }
-      }
+      panels: (() => {
+        const hiddenNonQuestionCount = Object.entries(current.panels)
+          .filter(([panelId, panel]) => panelId !== "question" && panel.hidden)
+          .length;
+        const shouldJoinFocusedLayout = id !== "question" &&
+          !current.panels[id] &&
+          Boolean(current.panels.question) &&
+          !current.panels.question.hidden &&
+          hiddenNonQuestionCount >= 3;
+        const hidden = current.panels[id]
+          ? patch.hidden ?? current.panels[id]?.hidden ?? false
+          : shouldJoinFocusedLayout || patch.hidden || false;
+        return {
+          ...current.panels,
+          [id]: {
+            ...current.panels[id],
+            ...patch,
+            rect: patch.rect || current.panels[id]?.rect || { x: 16, y: 80, width: 260, height: 140 },
+            opacity: patch.opacity ?? current.panels[id]?.opacity ?? 1,
+            hidden,
+            collapsed: patch.collapsed ?? current.panels[id]?.collapsed ?? false,
+            zIndex: patch.zIndex ?? current.panels[id]?.zIndex ?? 1
+          }
+        };
+      })()
     }));
   }
 
   function patchPanelRect(id: string, rect: FloatingPanelState["rect"], configs: FloatingPanelConfig[] = []) {
     setState((current) => {
       const config = configs.find((item) => item.id === id);
-      const others = Object.entries(current.panels)
-        .filter(([otherId, panel]) => otherId !== id && !panel.hidden)
-        .map(([, panel]) => panel.rect);
-      const nextRect = avoidOverlap(
-        clampRect(rect, viewport(), config?.minWidth, config?.minHeight),
-        others,
-        viewport(),
-        config?.minWidth,
-        config?.minHeight
-      );
+      const nextRect = clampRect(rect, viewport(), config?.minWidth, config?.minHeight);
       const existing = current.panels[id] || ensurePanelState(config || { id, defaultRect: nextRect });
       return {
         ...current,
@@ -200,6 +205,13 @@ export function FloatingLayoutProvider({ subjectId, children }: FloatingLayoutPr
     }));
   }
 
+  function focusQuestion(configs: FloatingPanelConfig[]) {
+    setState((current) => ({
+      ...current,
+      panels: focusQuestionArrange(configs, current, viewport())
+    }));
+  }
+
   function reset() {
     setState(emptyFloatingLayout());
   }
@@ -210,6 +222,7 @@ export function FloatingLayoutProvider({ subjectId, children }: FloatingLayoutPr
     setEnabled: (enabled) => setState((current) => ({ ...current, enabled })),
     reset,
     autoArrange,
+    focusQuestion,
     updatePanel,
     patchPanelRect,
     bringToFront,
