@@ -306,6 +306,25 @@ textarea {
   padding: 14px 16px;
   margin-bottom: 14px;
 }
+.layout-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.layout-controls span {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.layout-controls button {
+  min-height: 34px;
+  padding: 6px 10px;
+}
+.layout-controls button:disabled {
+  cursor: not-allowed;
+  opacity: .48;
+}
 .mode-tabs,
 .filters,
 .question-actions {
@@ -569,7 +588,12 @@ textarea {
   gap: 8px;
   margin: 14px 0;
 }
-.answer-card__summary div {
+.answer-card__summary.single {
+  grid-template-columns: 1fr;
+  margin: 0;
+}
+.answer-card__summary div,
+.answer-card__metric {
   padding: 9px;
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-sm);
@@ -712,6 +736,169 @@ textarea {
   color: var(--text-muted);
 }
 
+.floating-layout {
+  width: min(100% - 24px, 1500px);
+  min-height: calc(100vh - 56px);
+}
+.floating-command-bar {
+  position: sticky;
+  top: 66px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .94);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
+}
+.floating-command-bar > span {
+  color: var(--text-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.floating-stage {
+  min-height: calc(100vh - 150px);
+}
+.floating-panel {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 14px 38px rgba(15, 23, 42, .12);
+  backdrop-filter: blur(14px);
+}
+.floating-panel.collapsed {
+  min-height: 44px;
+}
+.floating-panel__bar {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 8px 6px 10px;
+  border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  cursor: move;
+  user-select: none;
+  touch-action: none;
+}
+.floating-panel.collapsed .floating-panel__bar {
+  border-bottom: 0;
+}
+.floating-panel__bar strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.floating-panel__minimize {
+  flex: 0 0 auto;
+  width: 28px;
+  min-height: 24px;
+  padding: 0 0 4px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+.floating-panel__minimize:hover {
+  background: #eaf1ff;
+  color: var(--primary);
+}
+.floating-panel__body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px;
+}
+.floating-panel .subject-head,
+.floating-panel .question-card,
+.floating-panel .mock-strip,
+.floating-panel .stat-card,
+.floating-panel .answer-card {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.floating-panel .subject-head h1 {
+  font-size: 20px;
+}
+.floating-panel .subject-head p {
+  font-size: 14px;
+}
+.floating-panel .stat-card {
+  min-height: auto;
+}
+.floating-panel .stat-card b {
+  font-size: 22px;
+}
+.floating-panel .stat-card span {
+  font-size: 12px;
+}
+.floating-panel .answer-card__metric {
+  padding: 7px;
+}
+.floating-panel .mode-tabs {
+  gap: 8px;
+}
+.floating-panel .mode-tabs button {
+  min-height: 34px;
+  padding: 6px 10px;
+}
+.floating-filter select,
+.floating-filter input {
+  width: 100%;
+}
+.floating-panel .question-card {
+  height: 100%;
+}
+.floating-panel .question-stem {
+  font-size: 18px;
+}
+.floating-panel .answer-card__section {
+  margin-top: 0;
+}
+.floating-answer-section p {
+  margin: 0 0 10px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.floating-taskbar {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 130;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: min(320px, calc(100vw - 36px));
+}
+.floating-taskbar button {
+  min-height: 36px;
+  border-color: var(--primary-border);
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+
 .markdown-content {
   min-width: 0;
   overflow-wrap: anywhere;
@@ -818,6 +1005,15 @@ textarea {
   .answer-card {
     position: static;
     max-height: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .layout-controls,
+  .floating-command-bar,
+  .floating-stage,
+  .floating-taskbar {
+    display: none;
   }
 }
 
