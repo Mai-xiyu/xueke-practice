@@ -41,6 +41,7 @@ interface PracticePageProps {
 
 const EMPTY_PROGRESS: ProgressState = { answers: {}, wrong: {}, favorites: {}, review: {}, details: {}, mockRuns: [] };
 const FLOATING_BREAKPOINT = 900;
+const FLOATING_MIN_HEIGHT = 820;
 
 const BASE_FLOATING_CONFIGS: FloatingPanelConfig[] = [
   { id: "subject", defaultRect: { x: 28, y: 76, width: 520, height: 96 }, minWidth: 220, minHeight: 86, priority: 1 },
@@ -103,9 +104,11 @@ function hasMeaningfulProgress(progress: ProgressState) {
 }
 
 function useDesktopFloating() {
-  const [desktop, setDesktop] = useState(() => (typeof window === "undefined" ? true : window.innerWidth >= FLOATING_BREAKPOINT));
+  const [desktop, setDesktop] = useState(() => (
+    typeof window === "undefined" ? true : window.innerWidth >= FLOATING_BREAKPOINT && window.innerHeight >= FLOATING_MIN_HEIGHT
+  ));
   useEffect(() => {
-    const update = () => setDesktop(window.innerWidth >= FLOATING_BREAKPOINT);
+    const update = () => setDesktop(window.innerWidth >= FLOATING_BREAKPOINT && window.innerHeight >= FLOATING_MIN_HEIGHT);
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -135,6 +138,7 @@ export function PracticePage({ subject }: PracticePageProps) {
   const [mockQuestions, setMockQuestions] = useState<Question[]>([]);
   const [mockSubmitted, setMockSubmitted] = useState(false);
   const [syncReady, setSyncReady] = useState(false);
+  const [layoutBarHidden, setLayoutBarHidden] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -170,6 +174,22 @@ export function PracticePage({ subject }: PracticePageProps) {
       });
     return () => { cancelled = true; };
   }, [subject.id]);
+
+  useEffect(() => {
+    try {
+      setLayoutBarHidden(localStorage.getItem(`studyhub:layout-toolbar:v1:${subject.id}`) === "hidden");
+    } catch {
+      setLayoutBarHidden(false);
+    }
+  }, [subject.id]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(`studyhub:layout-toolbar:v1:${subject.id}`, layoutBarHidden ? "hidden" : "visible");
+    } catch {
+      // Storage may be unavailable in private or restricted browsers.
+    }
+  }, [layoutBarHidden, subject.id]);
 
   const chapters = useMemo(() => uniqueSorted(questions.map((question) => question.chapter)), [questions]);
   const sources = useMemo(() => uniqueSorted(questions.map((question) => question.source)), [questions]);
@@ -463,13 +483,24 @@ export function PracticePage({ subject }: PracticePageProps) {
           ] : [])
         ];
 
+        const hasStoredFloatingPanels = floatingConfigs.some((config) => Boolean(layout.state.panels[config.id]));
+        const enableFloating = () => {
+          if (!hasStoredFloatingPanels) layout.autoArrange(floatingConfigs);
+          layout.setEnabled(true);
+          setLayoutBarHidden(false);
+        };
+        const resetFloatingLayout = () => {
+          layout.reset();
+          setLayoutBarHidden(false);
+        };
         const layoutControls = canFloat ? (
           <div className="layout-controls" aria-label="布局控制">
             <span>布局</span>
-            <button type="button" className={!floatingActive ? "active" : ""} onClick={() => layout.setEnabled(false)}>经典布局</button>
-            <button type="button" className={floatingActive ? "active" : ""} onClick={() => { layout.autoArrange(floatingConfigs); layout.setEnabled(true); }}>浮动布局</button>
-            <button type="button" onClick={() => layout.autoArrange(floatingConfigs)} disabled={!floatingActive}>自动排列</button>
-            <button type="button" onClick={layout.reset}>重置布局</button>
+            <button type="button" className={!floatingActive ? "active" : ""} onClick={() => { layout.setEnabled(false); setLayoutBarHidden(false); }}>经典布局</button>
+            <button type="button" className={floatingActive ? "active" : ""} onClick={enableFloating}>浮动布局</button>
+            {floatingActive ? <button type="button" onClick={() => layout.autoArrange(floatingConfigs)}>整理窗口</button> : null}
+            {floatingActive ? <button type="button" onClick={() => setLayoutBarHidden(true)}>隐藏栏</button> : null}
+            <button type="button" onClick={resetFloatingLayout}>重置窗口</button>
           </div>
         ) : null;
 
@@ -494,10 +525,14 @@ export function PracticePage({ subject }: PracticePageProps) {
 
         return (
           <main className="practice-layout floating-layout">
-            <section className="floating-command-bar">
-              {layoutControls}
-              <span>{subject.title} · 浮动布局</span>
-            </section>
+            {layoutBarHidden ? (
+              <button type="button" className="floating-command-toggle" onClick={() => setLayoutBarHidden(false)}>布局</button>
+            ) : (
+              <section className="floating-command-bar">
+                {layoutControls}
+                <span>{subject.title} · 浮动布局</span>
+              </section>
+            )}
             <div className="floating-stage" aria-label="浮动练习面板">
               {floatingPanels.map((panel) => (
                 <FloatingPanel

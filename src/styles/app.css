@@ -158,6 +158,7 @@ textarea {
   box-shadow: var(--shadow-md);
 }
 .nav-menu:hover .nav-menu__panel,
+.nav-menu.open .nav-menu__panel,
 .nav-menu:focus-within .nav-menu__panel {
   display: grid;
   gap: 4px;
@@ -761,6 +762,17 @@ textarea {
   font-size: 13px;
   white-space: nowrap;
 }
+.floating-command-toggle {
+  position: fixed;
+  top: 76px;
+  right: 18px;
+  z-index: 120;
+  min-height: 36px;
+  border-color: var(--primary-border);
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
 .floating-stage {
   min-height: calc(100vh - 150px);
 }
@@ -822,8 +834,12 @@ textarea {
 .floating-panel__body {
   flex: 1;
   min-height: 0;
-  overflow: auto;
+  overflow: hidden;
   padding: 10px;
+}
+.floating-panel[data-panel-id="question"] .floating-panel__body,
+.floating-panel[data-panel-id="answer-nearby"] .floating-panel__body {
+  overflow: auto;
 }
 .floating-panel .subject-head,
 .floating-panel .question-card,
@@ -867,10 +883,19 @@ textarea {
   width: 100%;
 }
 .floating-panel .question-card {
-  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .floating-panel .question-stem {
   font-size: 18px;
+}
+.floating-panel .question-actions {
+  margin-top: auto;
+  padding-top: 14px;
+}
+.floating-panel .analysis {
+  flex: 0 0 auto;
 }
 .floating-panel .answer-card__section {
   margin-top: 0;
@@ -990,6 +1015,7 @@ textarea {
     width: 100%;
     overflow-x: auto;
     justify-content: flex-start;
+    padding-bottom: 4px;
   }
   .stat-panel,
   .home-summary {
@@ -1018,6 +1044,37 @@ textarea {
 }
 
 @media (max-width: 640px) {
+  .top-nav__inner {
+    width: min(100% - 20px, 100%);
+    gap: 8px;
+    padding: 8px 0;
+  }
+  .brand {
+    min-height: 32px;
+  }
+  .top-nav__links {
+    gap: 6px;
+    scroll-snap-type: x proximity;
+  }
+  .top-nav__links > a,
+  .nav-menu__trigger,
+  .contribute-link,
+  .sync-badge {
+    min-height: 32px;
+    padding: 5px 9px;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+  .nav-menu__panel {
+    position: fixed;
+    top: 94px;
+    left: 10px;
+    right: 10px;
+    z-index: 220;
+    min-width: 0;
+    max-height: calc(100vh - 112px);
+    overflow: auto;
+  }
   .home-layout,
   .practice-layout {
     width: min(100% - 20px, 100%);
