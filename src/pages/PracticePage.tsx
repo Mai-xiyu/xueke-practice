@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 import {
   AnswerCard,
   AnswerCardLegend,
@@ -138,7 +138,6 @@ export function PracticePage({ subject }: PracticePageProps) {
   const [mockQuestions, setMockQuestions] = useState<Question[]>([]);
   const [mockSubmitted, setMockSubmitted] = useState(false);
   const [syncReady, setSyncReady] = useState(false);
-  const [layoutBarHidden, setLayoutBarHidden] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -174,22 +173,6 @@ export function PracticePage({ subject }: PracticePageProps) {
       });
     return () => { cancelled = true; };
   }, [subject.id]);
-
-  useEffect(() => {
-    try {
-      setLayoutBarHidden(localStorage.getItem(`studyhub:layout-toolbar:v1:${subject.id}`) === "hidden");
-    } catch {
-      setLayoutBarHidden(false);
-    }
-  }, [subject.id]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(`studyhub:layout-toolbar:v1:${subject.id}`, layoutBarHidden ? "hidden" : "visible");
-    } catch {
-      // Storage may be unavailable in private or restricted browsers.
-    }
-  }, [layoutBarHidden, subject.id]);
 
   const chapters = useMemo(() => uniqueSorted(questions.map((question) => question.chapter)), [questions]);
   const sources = useMemo(() => uniqueSorted(questions.map((question) => question.source)), [questions]);
@@ -392,22 +375,37 @@ export function PracticePage({ subject }: PracticePageProps) {
     </section>
   );
 
-  const modeTabs = (
-    <div className="mode-tabs">
-      {[
-        ["study", "学习模式"],
-        ["browse", "题库浏览"],
-        ["wrong", `错题本 ${wrongCount}`],
-        ["favorite", `收藏 ${favoriteCount}`],
-        ["review", `待复习 ${reviewCount}`]
-      ].map(([key, label]) => (
-        <button key={key} type="button" className={mode === key ? "active" : ""} onClick={() => { setMode(key as Mode); setIndex(0); }}>
-          {label}
-        </button>
-      ))}
-      <button type="button" className={mode === "mock" ? "active" : ""} onClick={startMock}>模拟考试</button>
-    </div>
-  );
+  function renderModeTabs(layoutSelect?: ReactNode) {
+    const items: Array<[Mode, string]> = [
+      ["study", "学习模式"],
+      ["mock", "模拟考试"],
+      ["browse", "题库浏览"],
+      ["wrong", `错题本 ${wrongCount}`],
+      ["favorite", `收藏 ${favoriteCount}`],
+      ["review", `待复习 ${reviewCount}`]
+    ];
+    return (
+      <div className="mode-tabs">
+        {items.map(([key, label]) => (
+          <button
+            key={key}
+            type="button"
+            className={mode === key ? "active" : ""}
+            onClick={() => {
+              if (key === "mock") startMock();
+              else {
+                setMode(key);
+                setIndex(0);
+              }
+            }}
+          >
+            {label}
+          </button>
+        ))}
+        {layoutSelect}
+      </div>
+    );
+  }
 
   const chapterFilter = (
     <select value={chapter} onChange={(event) => { setChapter(event.target.value); setIndex(0); }}>
@@ -495,6 +493,43 @@ export function PracticePage({ subject }: PracticePageProps) {
     <FloatingLayoutProvider subjectId={subject.id}>
       {(layout) => {
         const floatingActive = layout.enabled && canFloat;
+
+        const questionRect = layout.state.panels.question?.rect;
+        const missingFloatingPanels = floatingConfigs.some((config) => !layout.state.panels[config.id]?.rect);
+        const badQuestionRect = !questionRect ||
+          questionRect.width < 360 ||
+          questionRect.x < 80 ||
+          questionRect.y < 96 ||
+          questionRect.x + questionRect.width > window.innerWidth - 8 ||
+          questionRect.y + Math.min(questionRect.height, 260) > window.innerHeight - 8;
+        const enableFloating = () => {
+          if (missingFloatingPanels || badQuestionRect) layout.autoArrange(floatingConfigs);
+          layout.setEnabled(true);
+        };
+        const resetFloatingLayout = () => {
+          layout.reset();
+        };
+        const renderLayoutSelect = () => canFloat ? (
+          <label className="layout-select">
+            <select
+              aria-label="布局"
+              value={floatingActive ? "floating" : "classic"}
+              onChange={(event) => {
+                const action = event.target.value;
+                if (action === "classic") layout.setEnabled(false);
+                if (action === "floating") enableFloating();
+                if (action === "focus") layout.focusQuestion(floatingPanels.map((panel) => panel.config));
+                if (action === "reset") resetFloatingLayout();
+              }}
+            >
+              <option value="classic">布局：经典布局</option>
+              <option value="floating">布局：浮动布局</option>
+              {floatingActive ? <option value="focus">布局：整理窗口</option> : null}
+              <option value="reset">布局：重置布局</option>
+            </select>
+          </label>
+        ) : null;
+        const modeTabs = renderModeTabs(renderLayoutSelect());
         const floatingPanels = [
           { id: "subject", title: "题头", config: BASE_FLOATING_CONFIGS[0], node: subjectHead },
           ...statEntries.map((item, statIndex) => ({
@@ -534,41 +569,12 @@ export function PracticePage({ subject }: PracticePageProps) {
           ] : [])
         ];
 
-        const questionRect = layout.state.panels.question?.rect;
-        const missingFloatingPanels = floatingConfigs.some((config) => !layout.state.panels[config.id]?.rect);
-        const badQuestionRect = !questionRect ||
-          questionRect.width < 360 ||
-          questionRect.x < 80 ||
-          questionRect.y < 96 ||
-          questionRect.x + questionRect.width > window.innerWidth - 8 ||
-          questionRect.y + Math.min(questionRect.height, 260) > window.innerHeight - 8;
-        const enableFloating = () => {
-          if (missingFloatingPanels || badQuestionRect) layout.autoArrange(floatingConfigs);
-          layout.setEnabled(true);
-          setLayoutBarHidden(false);
-        };
-        const resetFloatingLayout = () => {
-          layout.reset();
-          setLayoutBarHidden(false);
-        };
-        const layoutControls = canFloat ? (
-          <div className="layout-controls" aria-label="布局控制">
-            <span>布局</span>
-            <button type="button" className={!floatingActive ? "active" : ""} onClick={() => { layout.setEnabled(false); setLayoutBarHidden(false); }}>经典布局</button>
-            <button type="button" className={floatingActive ? "active" : ""} onClick={enableFloating}>浮动布局</button>
-            {floatingActive ? <button type="button" onClick={() => layout.focusQuestion(floatingPanels.map((panel) => panel.config))}>整理窗口</button> : null}
-            {floatingActive ? <button type="button" onClick={() => setLayoutBarHidden(true)}>隐藏栏</button> : null}
-            <button type="button" onClick={resetFloatingLayout}>重置窗口</button>
-          </div>
-        ) : null;
-
         if (!floatingActive) {
           return (
             <main className={`practice-layout${mode === "browse" ? " no-card" : ""}`}>
               {subjectHead}
               <StatPanel total={questions.length} done={doneCount} wrong={wrongCount} extraLabel="题库/题型" extraValue={`${sources.length}/${types.length}`} />
               <section className="toolbar">
-                {layoutControls}
                 {modeTabs}
                 {filters}
               </section>
@@ -583,14 +589,6 @@ export function PracticePage({ subject }: PracticePageProps) {
 
         return (
           <main className="practice-layout floating-layout">
-            {layoutBarHidden ? (
-              <button type="button" className="floating-command-toggle" onClick={() => setLayoutBarHidden(false)}>布局</button>
-            ) : (
-              <section className="floating-command-bar">
-                {layoutControls}
-                <span>{subject.title} · 浮动布局</span>
-              </section>
-            )}
             <div className="floating-stage" aria-label="浮动练习面板">
               {floatingPanels.map((panel) => (
                 <FloatingPanel
