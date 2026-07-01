@@ -108,18 +108,22 @@ try {
   const arranged = await page.evaluate(() => {
     const rects = Array.from(document.querySelectorAll(".floating-panel")).map((item) => {
       const rect = item.getBoundingClientRect();
-      return { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
+      return { id: item.getAttribute("data-panel-id"), left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
     });
     const overlaps = rects.some((a, index) => rects.slice(index + 1).some((b) => (
       a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top
     )));
+    const taskbar = document.querySelector(".floating-taskbar")?.getBoundingClientRect();
     return {
       panelCount: rects.length,
+      hasQuestion: rects.some((rect) => rect.id === "question"),
+      hasTaskbar: Boolean(taskbar),
+      taskbarBottomGap: taskbar ? window.innerHeight - taskbar.bottom : null,
       overlaps,
       outOfBounds: rects.some((rect) => rect.left < 0 || rect.top < 0 || rect.right > window.innerWidth || rect.bottom > window.innerHeight)
     };
   });
-  if (arranged.panelCount < 10 || arranged.overlaps || arranged.outOfBounds) {
+  if (arranged.panelCount !== 1 || !arranged.hasQuestion || !arranged.hasTaskbar || (arranged.taskbarBottomGap ?? 999) > 28 || arranged.overlaps || arranged.outOfBounds) {
     throw new Error(`floating arrange check failed ${JSON.stringify(arranged)}`);
   }
 
