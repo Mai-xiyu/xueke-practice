@@ -46,9 +46,15 @@ try {
   await page.goto(`${base}/data_visualization_practice.html`, { waitUntil: "domcontentloaded" });
   await page.waitForSelector(".question-card");
   await page.locator(".option").first().click();
-  await page.getByText("提交/查看解析").click();
+  await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll("button"));
+    buttons.find((button) => button.textContent?.includes("提交"))?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
   await page.waitForSelector(".analysis");
-  await page.getByText("打开完整答题卡").click();
+  await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll("button"));
+    buttons.find((button) => button.textContent?.includes("完整答题卡"))?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
   await page.waitForSelector(".card-drawer");
   const practice = await page.evaluate(() => ({
     stats: document.querySelectorAll(".stat-card").length,
@@ -69,8 +75,76 @@ try {
     throw new Error(`practice check failed ${JSON.stringify(practice)}`);
   }
 
+  await page.evaluate(() => {
+    document.querySelector(".card-drawer__head button")?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  await page.waitForSelector(".card-drawer", { state: "detached" });
+  await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll(".layout-controls button"));
+    buttons.find((button) => button.textContent?.includes("浮动布局"))?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  await page.waitForSelector(".floating-panel");
+  const floating = await page.evaluate(() => ({
+    panels: document.querySelectorAll(".floating-panel").length,
+    hasQuestion: Array.from(document.querySelectorAll(".floating-panel__bar strong")).some((item) => item.textContent === "题目"),
+    hasTaskbar: Boolean(document.querySelector(".floating-taskbar"))
+  }));
+  if (floating.panels < 10 || !floating.hasQuestion || floating.hasTaskbar) {
+    throw new Error(`floating initial check failed ${JSON.stringify(floating)}`);
+  }
+
+  await page.evaluate(() => {
+    document.querySelector(".floating-panel__minimize")?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  await page.waitForSelector(".floating-taskbar");
+  await page.evaluate(() => {
+    document.querySelector(".floating-taskbar button")?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  await page.waitForFunction(() => !document.querySelector(".floating-taskbar"));
+  await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll(".layout-controls button"));
+    buttons.find((button) => button.textContent?.includes("自动排列"))?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  const arranged = await page.evaluate(() => {
+    const rects = Array.from(document.querySelectorAll(".floating-panel")).map((item) => {
+      const rect = item.getBoundingClientRect();
+      return { left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
+    });
+    const overlaps = rects.some((a, index) => rects.slice(index + 1).some((b) => (
+      a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top
+    )));
+    return {
+      panelCount: rects.length,
+      overlaps,
+      outOfBounds: rects.some((rect) => rect.left < 0 || rect.top < 0 || rect.right > window.innerWidth || rect.bottom > window.innerHeight)
+    };
+  });
+  if (arranged.panelCount < 10 || arranged.overlaps || arranged.outOfBounds) {
+    throw new Error(`floating arrange check failed ${JSON.stringify(arranged)}`);
+  }
+
+  const questionPanel = page.locator('[data-panel-id="question"]');
+  const beforeMove = await questionPanel.boundingBox();
+  if (!beforeMove) throw new Error("question floating panel not found");
+  await page.mouse.move(beforeMove.x + 80, beforeMove.y + 18);
+  await page.mouse.down();
+  await page.mouse.move(beforeMove.x + 130, beforeMove.y + 64);
+  await page.mouse.up();
+  const afterMove = await questionPanel.boundingBox();
+  if (!afterMove || (Math.abs(afterMove.x - beforeMove.x) < 10 && Math.abs(afterMove.y - beforeMove.y) < 10)) {
+    throw new Error(`floating drag check failed ${JSON.stringify({ beforeMove, afterMove })}`);
+  }
+
+  await page.mouse.move(afterMove.x + afterMove.width - 2, afterMove.y + afterMove.height - 24);
+  await page.mouse.down();
+  await page.mouse.move(afterMove.x + afterMove.width + 58, afterMove.y + afterMove.height + 34);
+  await page.mouse.up();
+  const afterResize = await questionPanel.boundingBox();
+  if (!afterResize || (afterResize.width <= afterMove.width + 20 && afterResize.height <= afterMove.height + 10)) {
+    throw new Error(`floating resize check failed ${JSON.stringify({ afterMove, afterResize })}`);
+  }
   await browser.close();
-  console.log(JSON.stringify({ ok: true, home, practice }, null, 2));
+  console.log(JSON.stringify({ ok: true, home, practice, floating, arranged }, null, 2));
 } finally {
   server.kill();
 }

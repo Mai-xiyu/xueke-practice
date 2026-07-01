@@ -8,6 +8,10 @@ interface AnswerCardProps {
   onJump: (id: string) => void;
 }
 
+interface AnswerWidgetProps extends AnswerCardProps {
+  title?: string;
+}
+
 type CardFilter = "all" | "todo" | "done" | "correct" | "wrong" | "marked" | "review";
 
 const order: QuestionType[] = ["single", "multiple", "judge", "fill", "short", "essay", "code", "comprehensive"];
@@ -55,19 +59,54 @@ function nearbyItems(items: AnswerCardItem[], currentId?: string) {
   return items.slice(start, end);
 }
 
-export function AnswerCard({ items, currentId, onJump }: AnswerCardProps) {
-  const [open, setOpen] = useState(false);
-  const [filter, setFilter] = useState<CardFilter>("all");
-  const [keyword, setKeyword] = useState("");
-  const currentIndex = Math.max(0, items.findIndex((item) => item.id === currentId));
-  const summary = useMemo(() => ({
+export function buildAnswerSummary(items: AnswerCardItem[]) {
+  return {
     done: items.filter((item) => item.done).length,
     correct: items.filter((item) => item.correct).length,
     wrong: items.filter((item) => item.wrong).length,
     marked: items.filter((item) => item.marked).length,
     review: items.filter((item) => item.reviewDue).length
-  }), [items]);
+  };
+}
+
+export function AnswerMetric({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="answer-card__metric">
+      <dt>{label}</dt>
+      <dd>{value}</dd>
+    </div>
+  );
+}
+
+export function NearbyQuestionGrid({ items, currentId, onJump }: AnswerCardProps) {
   const nearby = nearbyItems(items, currentId);
+  return (
+    <div className="answer-card__grid compact">
+      {nearby.map((item) => (
+        <button key={item.id} type="button" className={itemClass(item, currentId)} onClick={() => onJump(item.id)} aria-label={`跳转到第 ${item.label} 题`}>
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export function AnswerCardLegend() {
+  return (
+    <div className="answer-card__legend" aria-label="状态说明">
+      <span>白：未做</span>
+      <span>绿：正确</span>
+      <span>红：错误</span>
+      <span>★：收藏</span>
+      <span>●：待复习</span>
+    </div>
+  );
+}
+
+export function FullAnswerCardControl({ items, currentId, onJump, title = "打开完整答题卡" }: AnswerWidgetProps) {
+  const [open, setOpen] = useState(false);
+  const [filter, setFilter] = useState<CardFilter>("all");
+  const [keyword, setKeyword] = useState("");
   const fullItems = useMemo(() => items.filter((item) => filterItem(item, filter, keyword)), [filter, items, keyword]);
 
   function jump(id: string) {
@@ -77,37 +116,7 @@ export function AnswerCard({ items, currentId, onJump }: AnswerCardProps) {
 
   return (
     <>
-      <aside className="answer-card" aria-label="答题卡">
-        <div className="answer-card__head">
-          <h2>答题卡</h2>
-          <p>第 {items.length ? currentIndex + 1 : 0} / {items.length} 题</p>
-        </div>
-        <dl className="answer-card__summary">
-          <div><dt>已做</dt><dd>{summary.done}</dd></div>
-          <div><dt>正确</dt><dd>{summary.correct}</dd></div>
-          <div><dt>错误</dt><dd>{summary.wrong}</dd></div>
-          <div><dt>收藏</dt><dd>{summary.marked}</dd></div>
-          <div><dt>待复习</dt><dd>{summary.review}</dd></div>
-        </dl>
-        <section className="answer-card__section">
-          <h3>附近题号</h3>
-          <div className="answer-card__grid compact">
-            {nearby.map((item) => (
-              <button key={item.id} type="button" className={itemClass(item, currentId)} onClick={() => jump(item.id)} aria-label={`跳转到第 ${item.label} 题`}>
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </section>
-        <button type="button" className="answer-card__open" onClick={() => setOpen(true)}>打开完整答题卡</button>
-        <div className="answer-card__legend" aria-label="状态说明">
-          <span>白：未做</span>
-          <span>绿：正确</span>
-          <span>红：错误</span>
-          <span>★：收藏</span>
-          <span>●：待复习</span>
-        </div>
-      </aside>
+      <button type="button" className="answer-card__open" onClick={() => setOpen(true)}>{title}</button>
 
       {open ? (
         <div className="card-drawer" role="dialog" aria-modal="true" aria-label="完整答题卡">
@@ -150,5 +159,32 @@ export function AnswerCard({ items, currentId, onJump }: AnswerCardProps) {
         </div>
       ) : null}
     </>
+  );
+}
+
+export function AnswerCard({ items, currentId, onJump }: AnswerCardProps) {
+  const currentIndex = Math.max(0, items.findIndex((item) => item.id === currentId));
+  const summary = useMemo(() => buildAnswerSummary(items), [items]);
+
+  return (
+    <aside className="answer-card" aria-label="答题卡">
+      <div className="answer-card__head">
+        <h2>答题卡</h2>
+        <p>第 {items.length ? currentIndex + 1 : 0} / {items.length} 题</p>
+      </div>
+      <dl className="answer-card__summary">
+        <AnswerMetric label="已做" value={summary.done} />
+        <AnswerMetric label="正确" value={summary.correct} />
+        <AnswerMetric label="错误" value={summary.wrong} />
+        <AnswerMetric label="收藏" value={summary.marked} />
+        <AnswerMetric label="待复习" value={summary.review} />
+      </dl>
+      <section className="answer-card__section">
+        <h3>附近题号</h3>
+        <NearbyQuestionGrid items={items} currentId={currentId} onJump={onJump} />
+      </section>
+      <FullAnswerCardControl items={items} currentId={currentId} onJump={onJump} />
+      <AnswerCardLegend />
+    </aside>
   );
 }

@@ -1,7 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { AnswerCard } from "../components/AnswerCard";
+import {
+  AnswerCard,
+  AnswerCardLegend,
+  AnswerMetric,
+  buildAnswerSummary,
+  FullAnswerCardControl,
+  NearbyQuestionGrid
+} from "../components/AnswerCard";
+import { FloatingLayoutProvider, FloatingPanel, RestoreTray } from "../components/FloatingLayout";
 import { QuestionCard } from "../components/QuestionCard";
-import { StatPanel } from "../components/StatPanel";
+import { buildStatEntries, StatCard, StatPanel } from "../components/StatPanel";
 import {
   buildMockExam,
   isAnswerCorrect,
@@ -21,6 +29,7 @@ import {
   saveRemoteSnapshot
 } from "../lib/progress";
 import { loadQuestions } from "../lib/registry";
+import type { FloatingPanelConfig } from "../lib/floatingLayout";
 import type { AnswerCardItem, ProgressState, Question, QuestionType, Subject, SubjectDirectory } from "../lib/types";
 
 type Mode = "study" | "browse" | "wrong" | "favorite" | "review" | "mock";
@@ -31,6 +40,41 @@ interface PracticePageProps {
 }
 
 const EMPTY_PROGRESS: ProgressState = { answers: {}, wrong: {}, favorites: {}, review: {}, details: {}, mockRuns: [] };
+const FLOATING_BREAKPOINT = 900;
+
+const BASE_FLOATING_CONFIGS: FloatingPanelConfig[] = [
+  { id: "subject", defaultRect: { x: 28, y: 76, width: 520, height: 96 }, minWidth: 220, minHeight: 86, priority: 1 },
+  { id: "stat-total", defaultRect: { x: 28, y: 210, width: 170, height: 86 }, minWidth: 150, minHeight: 80, priority: 2 },
+  { id: "stat-done", defaultRect: { x: 210, y: 210, width: 170, height: 86 }, minWidth: 150, minHeight: 80, priority: 3 },
+  { id: "stat-wrong", defaultRect: { x: 392, y: 210, width: 170, height: 86 }, minWidth: 150, minHeight: 80, priority: 4 },
+  { id: "stat-accuracy", defaultRect: { x: 574, y: 210, width: 170, height: 86 }, minWidth: 150, minHeight: 80, priority: 5 },
+  { id: "stat-bank", defaultRect: { x: 756, y: 210, width: 170, height: 86 }, minWidth: 150, minHeight: 80, priority: 6 },
+  { id: "mode-tabs", defaultRect: { x: 28, y: 316, width: 550, height: 76 }, minWidth: 220, minHeight: 68, priority: 7 },
+  { id: "filter-chapter", defaultRect: { x: 28, y: 420, width: 250, height: 64 }, minWidth: 210, minHeight: 58, priority: 8 },
+  { id: "filter-type", defaultRect: { x: 294, y: 420, width: 250, height: 64 }, minWidth: 210, minHeight: 58, priority: 9 },
+  { id: "filter-source", defaultRect: { x: 560, y: 420, width: 250, height: 64 }, minWidth: 210, minHeight: 58, priority: 10 },
+  { id: "filter-search", defaultRect: { x: 826, y: 420, width: 280, height: 64 }, minWidth: 220, minHeight: 58, priority: 11 },
+  { id: "question", defaultRect: { x: 28, y: 520, width: 760, height: 560 }, minWidth: 420, minHeight: 260, priority: 12 }
+];
+
+const ANSWER_FLOATING_CONFIGS: FloatingPanelConfig[] = [
+  { id: "answer-done", defaultRect: { x: 1040, y: 120, width: 128, height: 88 }, minWidth: 112, minHeight: 80, priority: 20 },
+  { id: "answer-correct", defaultRect: { x: 1180, y: 120, width: 128, height: 88 }, minWidth: 112, minHeight: 80, priority: 21 },
+  { id: "answer-wrong", defaultRect: { x: 1040, y: 210, width: 128, height: 88 }, minWidth: 112, minHeight: 80, priority: 22 },
+  { id: "answer-marked", defaultRect: { x: 1180, y: 210, width: 128, height: 88 }, minWidth: 112, minHeight: 80, priority: 23 },
+  { id: "answer-review", defaultRect: { x: 1040, y: 300, width: 128, height: 88 }, minWidth: 112, minHeight: 80, priority: 24 },
+  { id: "answer-nearby", defaultRect: { x: 1040, y: 390, width: 270, height: 136 }, minWidth: 220, minHeight: 120, priority: 25 },
+  { id: "answer-full", defaultRect: { x: 1040, y: 575, width: 270, height: 64 }, minWidth: 220, minHeight: 58, priority: 26 },
+  { id: "answer-legend", defaultRect: { x: 1040, y: 678, width: 270, height: 70 }, minWidth: 220, minHeight: 62, priority: 27 }
+];
+
+const MOCK_FLOATING_CONFIG: FloatingPanelConfig = {
+  id: "mock-strip",
+  defaultRect: { x: 800, y: 76, width: 330, height: 120 },
+  minWidth: 280,
+  minHeight: 98,
+  priority: 18
+};
 
 function pageAppName() {
   return decodeURIComponent(location.pathname.split("/").pop() || "index.html");
@@ -56,6 +100,17 @@ function hasMeaningfulProgress(progress: ProgressState) {
     Object.keys(progress.details).length ||
     progress.mockRuns.length
   );
+}
+
+function useDesktopFloating() {
+  const [desktop, setDesktop] = useState(() => (typeof window === "undefined" ? true : window.innerWidth >= FLOATING_BREAKPOINT));
+  useEffect(() => {
+    const update = () => setDesktop(window.innerWidth >= FLOATING_BREAKPOINT);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return desktop;
 }
 
 export function PracticePage({ subject }: PracticePageProps) {
@@ -134,7 +189,7 @@ export function PracticePage({ subject }: PracticePageProps) {
       }
       return true;
     });
-  }, [chapter, keyword, mockQuestions, mode, progress.favorites, progress.wrong, questions, source, type]);
+  }, [chapter, keyword, mockQuestions, mode, progress.favorites, progress.wrong, progress.details, questions, source, type]);
 
   useEffect(() => {
     setIndex((current) => normalizeIndex(current, visibleQuestions.length));
@@ -145,6 +200,13 @@ export function PracticePage({ subject }: PracticePageProps) {
   const wrongCount = Object.keys(progress.wrong).length;
   const favoriteCount = Object.keys(progress.favorites).length;
   const reviewCount = questions.filter((question) => isReviewDue(progress.details[question.id])).length;
+  const statEntries = buildStatEntries({
+    total: questions.length,
+    done: doneCount,
+    wrong: wrongCount,
+    extraLabel: "题库/题型",
+    extraValue: `${sources.length}/${types.length}`
+  });
   const answerItems: AnswerCardItem[] = visibleQuestions.map((question, i) => ({
     id: question.id,
     index: i + 1,
@@ -157,6 +219,15 @@ export function PracticePage({ subject }: PracticePageProps) {
     reviewDue: isReviewDue(progress.details[question.id]),
     stem: question.stem
   }));
+  const answerSummary = buildAnswerSummary(answerItems);
+  const currentIndex = Math.max(0, visibleQuestions.findIndex((question) => question.id === current?.id));
+  const canFloat = useDesktopFloating();
+  const hasAnswerPanels = mode !== "browse" && visibleQuestions.length > 1;
+  const floatingConfigs = [
+    ...BASE_FLOATING_CONFIGS,
+    ...(mode === "mock" ? [MOCK_FLOATING_CONFIG] : []),
+    ...(hasAnswerPanels ? ANSWER_FLOATING_CONFIGS : [])
+  ];
 
   function draftValue(question: Question) {
     if (drafts[question.id] !== undefined) return drafts[question.id];
@@ -247,105 +318,210 @@ export function PracticePage({ subject }: PracticePageProps) {
     }));
   }
 
+  function jumpToQuestion(id: string) {
+    setIndex(Math.max(0, visibleQuestions.findIndex((question) => question.id === id)));
+  }
+
+  const subjectHead = (
+    <section className="subject-head">
+      <h1>{subject.title}练习系统</h1>
+      <p>{subject.description}</p>
+    </section>
+  );
+
+  const modeTabs = (
+    <div className="mode-tabs">
+      {[
+        ["study", "学习模式"],
+        ["browse", "题库浏览"],
+        ["wrong", `错题本 ${wrongCount}`],
+        ["favorite", `收藏 ${favoriteCount}`],
+        ["review", `待复习 ${reviewCount}`]
+      ].map(([key, label]) => (
+        <button key={key} type="button" className={mode === key ? "active" : ""} onClick={() => { setMode(key as Mode); setIndex(0); }}>
+          {label}
+        </button>
+      ))}
+      <button type="button" className={mode === "mock" ? "active" : ""} onClick={startMock}>模拟考试</button>
+    </div>
+  );
+
+  const chapterFilter = (
+    <select value={chapter} onChange={(event) => { setChapter(event.target.value); setIndex(0); }}>
+      <option value="">全部章节</option>
+      {chapters.map((item) => <option key={item}>{item}</option>)}
+    </select>
+  );
+
+  const typeFilter = (
+    <select value={type} onChange={(event) => { setType(event.target.value); setIndex(0); }}>
+      <option value="">全部题型</option>
+      {types.map((item) => <option key={item} value={item}>{TYPE_LABEL[item as QuestionType] || item}</option>)}
+    </select>
+  );
+
+  const sourceFilter = (
+    <select value={source} onChange={(event) => { setSource(event.target.value); setIndex(0); }}>
+      <option value="">全部来源</option>
+      {sources.map((item) => <option key={item}>{item}</option>)}
+    </select>
+  );
+
+  const searchFilter = (
+    <input value={keyword} onChange={(event) => { setKeyword(event.target.value); setIndex(0); }} placeholder="搜索题干 / 答案 / 标签" />
+  );
+
+  const filters = mode !== "mock" ? (
+    <div className="filters">
+      {chapterFilter}
+      {typeFilter}
+      {sourceFilter}
+      {searchFilter}
+    </div>
+  ) : null;
+
+  const mockStrip = mode === "mock" ? (
+    <section className="mock-strip">
+      <div>
+        <b>{subject.mockExam?.title || "随机练习卷"}</b>
+        <span>{mockQuestions.length} 题</span>
+      </div>
+      <button type="button" className="primary" onClick={submitMock}>交卷/记录成绩</button>
+      {mockSubmitted && progress.mockRuns[0] ? <strong>{progress.mockRuns[0].score} / {progress.mockRuns[0].totalScore}</strong> : null}
+    </section>
+  ) : null;
+
+  const questionPanel = current ? (
+    <QuestionCard
+      question={current}
+      index={index}
+      total={visibleQuestions.length}
+      value={draftValue(current)}
+      answered={progress.answers[current.id] !== undefined}
+      wrong={Boolean(progress.wrong[current.id])}
+      favorite={Boolean(progress.favorites[current.id])}
+      reveal={mode === "browse" || Boolean(revealed[current.id])}
+      detail={progress.details[current.id]}
+      memoryHintDraft={memoryHints[current.id] || ""}
+      onChange={(value) => updateDraft(current, value)}
+      onMemoryHintChange={(value) => setMemoryHints((prev) => ({ ...prev, [current.id]: value }))}
+      onSaveMemoryHint={() => updateMemoryHint(current)}
+      onSubmit={() => submit(current)}
+      onReset={() => reset(current)}
+      onFavorite={() => toggleFavorite(current)}
+      onPrev={() => setIndex((value) => normalizeIndex(value - 1, visibleQuestions.length))}
+      onNext={() => setIndex((value) => normalizeIndex(value + 1, visibleQuestions.length))}
+    />
+  ) : (
+    <section className="empty-state">没有匹配题目。</section>
+  );
+
   if (loadError) {
     return <main className="practice-layout"><section className="empty-state">题库加载失败：{loadError}</section></main>;
   }
 
   return (
-    <main className={`practice-layout${mode === "browse" ? " no-card" : ""}`}>
-      <section className="subject-head">
-        <h1>{subject.title}练习系统</h1>
-        <p>{subject.description}</p>
-      </section>
+    <FloatingLayoutProvider subjectId={subject.id}>
+      {(layout) => {
+        const floatingActive = layout.enabled && canFloat;
+        const floatingPanels = [
+          { id: "subject", title: "题头", config: BASE_FLOATING_CONFIGS[0], node: subjectHead },
+          ...statEntries.map((item, statIndex) => ({
+            id: `stat-${item.id}`,
+            title: item.label,
+            config: BASE_FLOATING_CONFIGS[statIndex + 1],
+            node: <StatCard label={item.label} value={item.value} />
+          })),
+          { id: "mode-tabs", title: "模式", config: BASE_FLOATING_CONFIGS[6], node: modeTabs },
+          ...(mode !== "mock" ? [
+            { id: "filter-chapter", title: "章节", config: BASE_FLOATING_CONFIGS[7], node: <div className="floating-filter">{chapterFilter}</div> },
+            { id: "filter-type", title: "题型", config: BASE_FLOATING_CONFIGS[8], node: <div className="floating-filter">{typeFilter}</div> },
+            { id: "filter-source", title: "来源", config: BASE_FLOATING_CONFIGS[9], node: <div className="floating-filter">{sourceFilter}</div> },
+            { id: "filter-search", title: "搜索", config: BASE_FLOATING_CONFIGS[10], node: <div className="floating-filter">{searchFilter}</div> }
+          ] : []),
+          ...(mode === "mock" && mockStrip ? [{ id: "mock-strip", title: "模拟考试", config: MOCK_FLOATING_CONFIG, node: mockStrip }] : []),
+          { id: "question", title: "题目", config: BASE_FLOATING_CONFIGS[11], node: questionPanel },
+          ...(hasAnswerPanels ? [
+            { id: "answer-done", title: "已做", config: ANSWER_FLOATING_CONFIGS[0], node: <dl className="answer-card__summary single"><AnswerMetric label="已做" value={answerSummary.done} /></dl> },
+            { id: "answer-correct", title: "正确", config: ANSWER_FLOATING_CONFIGS[1], node: <dl className="answer-card__summary single"><AnswerMetric label="正确" value={answerSummary.correct} /></dl> },
+            { id: "answer-wrong", title: "错误", config: ANSWER_FLOATING_CONFIGS[2], node: <dl className="answer-card__summary single"><AnswerMetric label="错误" value={answerSummary.wrong} /></dl> },
+            { id: "answer-marked", title: "收藏", config: ANSWER_FLOATING_CONFIGS[3], node: <dl className="answer-card__summary single"><AnswerMetric label="收藏" value={answerSummary.marked} /></dl> },
+            { id: "answer-review", title: "待复习", config: ANSWER_FLOATING_CONFIGS[4], node: <dl className="answer-card__summary single"><AnswerMetric label="待复习" value={answerSummary.review} /></dl> },
+            {
+              id: "answer-nearby",
+              title: "附近题号",
+              config: ANSWER_FLOATING_CONFIGS[5],
+              node: (
+                <section className="answer-card__section floating-answer-section">
+                  <p>第 {visibleQuestions.length ? currentIndex + 1 : 0} / {visibleQuestions.length} 题</p>
+                  <NearbyQuestionGrid items={answerItems} currentId={current?.id} onJump={jumpToQuestion} />
+                </section>
+              )
+            },
+            { id: "answer-full", title: "完整答题卡", config: ANSWER_FLOATING_CONFIGS[6], node: <FullAnswerCardControl items={answerItems} currentId={current?.id} onJump={jumpToQuestion} /> },
+            { id: "answer-legend", title: "图例", config: ANSWER_FLOATING_CONFIGS[7], node: <AnswerCardLegend /> }
+          ] : [])
+        ];
 
-      <StatPanel
-        total={questions.length}
-        done={doneCount}
-        wrong={wrongCount}
-        extraLabel="题库/题型"
-        extraValue={`${sources.length}/${types.length}`}
-      />
-
-      <section className="toolbar">
-        <div className="mode-tabs">
-          {[
-            ["study", "学习模式"],
-            ["browse", "题库浏览"],
-            ["wrong", `错题本 ${wrongCount}`],
-            ["favorite", `收藏 ${favoriteCount}`],
-            ["review", `待复习 ${reviewCount}`]
-          ].map(([key, label]) => (
-            <button key={key} type="button" className={mode === key ? "active" : ""} onClick={() => { setMode(key as Mode); setIndex(0); }}>
-              {label}
-            </button>
-          ))}
-          <button type="button" className={mode === "mock" ? "active" : ""} onClick={startMock}>模拟考试</button>
-        </div>
-        {mode !== "mock" ? (
-          <div className="filters">
-            <select value={chapter} onChange={(event) => { setChapter(event.target.value); setIndex(0); }}>
-              <option value="">全部章节</option>
-              {chapters.map((item) => <option key={item}>{item}</option>)}
-            </select>
-            <select value={type} onChange={(event) => { setType(event.target.value); setIndex(0); }}>
-              <option value="">全部题型</option>
-              {types.map((item) => <option key={item} value={item}>{TYPE_LABEL[item as QuestionType] || item}</option>)}
-            </select>
-            <select value={source} onChange={(event) => { setSource(event.target.value); setIndex(0); }}>
-              <option value="">全部来源</option>
-              {sources.map((item) => <option key={item}>{item}</option>)}
-            </select>
-            <input value={keyword} onChange={(event) => { setKeyword(event.target.value); setIndex(0); }} placeholder="搜索题干 / 答案 / 标签" />
+        const layoutControls = canFloat ? (
+          <div className="layout-controls" aria-label="布局控制">
+            <span>布局</span>
+            <button type="button" className={!floatingActive ? "active" : ""} onClick={() => layout.setEnabled(false)}>经典布局</button>
+            <button type="button" className={floatingActive ? "active" : ""} onClick={() => { layout.autoArrange(floatingConfigs); layout.setEnabled(true); }}>浮动布局</button>
+            <button type="button" onClick={() => layout.autoArrange(floatingConfigs)} disabled={!floatingActive}>自动排列</button>
+            <button type="button" onClick={layout.reset}>重置布局</button>
           </div>
-        ) : null}
-      </section>
+        ) : null;
 
-      {mode === "mock" ? (
-        <section className="mock-strip">
-          <div>
-            <b>{subject.mockExam?.title || "随机练习卷"}</b>
-            <span>{mockQuestions.length} 题</span>
-          </div>
-          <button type="button" className="primary" onClick={submitMock}>交卷/记录成绩</button>
-          {mockSubmitted && progress.mockRuns[0] ? <strong>{progress.mockRuns[0].score} / {progress.mockRuns[0].totalScore}</strong> : null}
-        </section>
-      ) : null}
+        if (!floatingActive) {
+          return (
+            <main className={`practice-layout${mode === "browse" ? " no-card" : ""}`}>
+              {subjectHead}
+              <StatPanel total={questions.length} done={doneCount} wrong={wrongCount} extraLabel="题库/题型" extraValue={`${sources.length}/${types.length}`} />
+              <section className="toolbar">
+                {layoutControls}
+                {modeTabs}
+                {filters}
+              </section>
+              {mockStrip}
+              <div className="practice-content">
+                <section className="question-zone">{questionPanel}</section>
+                {hasAnswerPanels ? <AnswerCard items={answerItems} currentId={current?.id} onJump={jumpToQuestion} /> : null}
+              </div>
+            </main>
+          );
+        }
 
-      <div className="practice-content">
-        <section className="question-zone">
-          {current ? (
-            <QuestionCard
-              question={current}
-              index={index}
-              total={visibleQuestions.length}
-              value={draftValue(current)}
-              answered={progress.answers[current.id] !== undefined}
-              wrong={Boolean(progress.wrong[current.id])}
-              favorite={Boolean(progress.favorites[current.id])}
-              reveal={mode === "browse" || Boolean(revealed[current.id])}
-              detail={progress.details[current.id]}
-              memoryHintDraft={memoryHints[current.id] || ""}
-              onChange={(value) => updateDraft(current, value)}
-              onMemoryHintChange={(value) => setMemoryHints((prev) => ({ ...prev, [current.id]: value }))}
-              onSaveMemoryHint={() => updateMemoryHint(current)}
-              onSubmit={() => submit(current)}
-              onReset={() => reset(current)}
-              onFavorite={() => toggleFavorite(current)}
-              onPrev={() => setIndex((value) => normalizeIndex(value - 1, visibleQuestions.length))}
-              onNext={() => setIndex((value) => normalizeIndex(value + 1, visibleQuestions.length))}
+        return (
+          <main className="practice-layout floating-layout">
+            <section className="floating-command-bar">
+              {layoutControls}
+              <span>{subject.title} · 浮动布局</span>
+            </section>
+            <div className="floating-stage" aria-label="浮动练习面板">
+              {floatingPanels.map((panel) => (
+                <FloatingPanel
+                  key={panel.id}
+                  id={panel.id}
+                  title={panel.title}
+                  config={panel.config}
+                  state={layout.state.panels[panel.id]}
+                  onUpdate={layout.updatePanel}
+                  onRect={(id, rect) => layout.patchPanelRect(id, rect, floatingConfigs)}
+                  onBringToFront={layout.bringToFront}
+                  onHide={layout.hidePanel}
+                >
+                  {panel.node}
+                </FloatingPanel>
+              ))}
+            </div>
+            <RestoreTray
+              items={floatingPanels.map((panel) => ({ id: panel.id, title: panel.title, hidden: Boolean(layout.state.panels[panel.id]?.hidden) }))}
+              onRestore={layout.restorePanel}
             />
-          ) : (
-            <section className="empty-state">没有匹配题目。</section>
-          )}
-        </section>
-        {mode !== "browse" && visibleQuestions.length > 1 ? (
-          <AnswerCard
-            items={answerItems}
-            currentId={current?.id}
-            onJump={(id) => setIndex(Math.max(0, visibleQuestions.findIndex((question) => question.id === id)))}
-          />
-        ) : null}
-      </div>
-    </main>
+          </main>
+        );
+      }}
+    </FloatingLayoutProvider>
   );
 }
