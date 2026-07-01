@@ -8,9 +8,13 @@ interface QuestionCardProps {
   total: number;
   value: unknown;
   answered: boolean;
+  pending?: boolean;
   wrong: boolean;
   favorite: boolean;
   reveal: boolean;
+  locked?: boolean;
+  showSubmit?: boolean;
+  allowReset?: boolean;
   detail?: QuestionProgress;
   memoryHintDraft: string;
   onChange: (value: unknown) => void;
@@ -32,7 +36,20 @@ function selected(value: unknown, key: string): boolean {
 }
 
 export function QuestionCard(props: QuestionCardProps) {
-  const { question, index, total, value, answered, wrong, favorite, reveal } = props;
+  const {
+    question,
+    index,
+    total,
+    value,
+    answered,
+    pending = false,
+    wrong,
+    favorite,
+    reveal,
+    locked = false,
+    showSubmit = true,
+    allowReset = true
+  } = props;
   const showAnswer = reveal;
   const correct = isAnswerCorrect(question, value);
   const canShowMemoryHint = showAnswer && props.detail?.memoryHint;
@@ -46,6 +63,7 @@ export function QuestionCard(props: QuestionCardProps) {
         {question.chapter ? <span>{question.chapter}</span> : null}
         <span>{TYPE_LABEL[question.type]}</span>
         {answered ? <span className={wrong ? "badge-danger" : "badge-success"}>{wrong ? "上次错误" : "已做"}</span> : null}
+        {!answered && pending ? <span className="badge-info">已选择</span> : null}
         {favorite ? <span className="badge-warning">已收藏</span> : null}
       </div>
       {canShowMemoryHint ? <p className="memory-hint">你的记忆提示：{props.detail?.memoryHint}</p> : null}
@@ -79,7 +97,9 @@ export function QuestionCard(props: QuestionCardProps) {
                 key={key}
                 type="button"
                 className={className}
+                disabled={locked}
                 onClick={() => {
+                  if (locked) return;
                   if (question.type === "multiple") {
                     const current = Array.isArray(value) ? value.map(String) : [];
                     props.onChange(current.includes(key) ? current.filter((item) => item !== key) : [...current, key].sort());
@@ -102,15 +122,16 @@ export function QuestionCard(props: QuestionCardProps) {
         <textarea
           className="text-answer"
           value={String(value ?? "")}
+          readOnly={locked}
           onChange={(event) => props.onChange(event.target.value)}
           placeholder={question.type === "fill" ? "填写答案" : "写下你的答案或思路"}
         />
       )}
 
       <div className="question-actions">
-        <button type="button" className="primary" onClick={props.onSubmit}>提交/查看解析</button>
+        {showSubmit ? <button type="button" className="primary" onClick={props.onSubmit}>提交/查看解析</button> : null}
         <button type="button" onClick={props.onFavorite}>{favorite ? "取消收藏" : "收藏本题"}</button>
-        <button type="button" onClick={props.onReset}>重做本题</button>
+        <button type="button" onClick={props.onReset} disabled={!allowReset}>重做本题</button>
         <button type="button" onClick={props.onPrev}>上一题</button>
         <button type="button" onClick={props.onNext}>下一题</button>
       </div>

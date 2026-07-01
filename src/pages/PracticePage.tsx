@@ -227,18 +227,22 @@ export function PracticePage({ subject }: PracticePageProps) {
     extraLabel: "题库/题型",
     extraValue: `${sources.length}/${types.length}`
   });
-  const answerItems: AnswerCardItem[] = visibleQuestions.map((question, i) => ({
-    id: question.id,
-    index: i + 1,
-    label: String(i + 1),
-    type: question.type,
-    done: progress.answers[question.id] !== undefined,
-    correct: progress.answers[question.id] !== undefined && !progress.wrong[question.id],
-    wrong: Boolean(progress.wrong[question.id]),
-    marked: Boolean(progress.favorites[question.id]),
-    reviewDue: isReviewDue(progress.details[question.id]),
-    stem: question.stem
-  }));
+  const answerItems: AnswerCardItem[] = visibleQuestions.map((question, i) => {
+    const state = answerState(question);
+    return {
+      id: question.id,
+      index: i + 1,
+      label: String(i + 1),
+      type: question.type,
+      pending: state.pending,
+      done: state.done,
+      correct: state.correct,
+      wrong: state.wrong,
+      marked: Boolean(progress.favorites[question.id]),
+      reviewDue: isReviewDue(progress.details[question.id]),
+      stem: question.stem
+    };
+  });
   const answerSummary = buildAnswerSummary(answerItems);
   const currentIndex = Math.max(0, visibleQuestions.findIndex((question) => question.id === current?.id));
   const canFloat = useDesktopFloating();
@@ -253,6 +257,34 @@ export function PracticePage({ subject }: PracticePageProps) {
     if (drafts[question.id] !== undefined) return drafts[question.id];
     if (mode === "wrong" || mode === "review") return question.type === "multiple" ? [] : "";
     return drafts[question.id] ?? progress.answers[question.id] ?? (question.type === "multiple" ? [] : "");
+  }
+
+  function hasAnswerValue(question: Question, value: unknown) {
+    if (question.type === "multiple") return Array.isArray(value) && value.length > 0;
+    if (value === null || value === undefined) return false;
+    return String(value).trim().length > 0;
+  }
+
+  function answerState(question: Question) {
+    const stored = progress.answers[question.id];
+    const draft = drafts[question.id];
+    const value = draft !== undefined ? draft : stored;
+    if (mode === "mock") {
+      const correct = isAnswerCorrect(question, value);
+      return {
+        pending: !mockSubmitted && hasAnswerValue(question, value),
+        done: mockSubmitted,
+        correct: mockSubmitted && correct,
+        wrong: mockSubmitted && !correct
+      };
+    }
+    const done = stored !== undefined;
+    return {
+      pending: !done && hasAnswerValue(question, draft),
+      done,
+      correct: done && !progress.wrong[question.id],
+      wrong: Boolean(progress.wrong[question.id])
+    };
   }
 
   function updateDraft(question: Question, value: unknown) {
@@ -320,22 +352,33 @@ export function PracticePage({ subject }: PracticePageProps) {
   }
 
   function submitMock() {
-    const { score, totalScore } = scoreMockExam(mockQuestions, progress.answers, subject.mockExam);
+    if (!mockQuestions.length || mockSubmitted) return;
+    const confirmed = window.confirm("确认交卷吗？交卷后将统一判分并显示答案解析。");
+    if (!confirmed) return;
+    const submittedAnswers = Object.fromEntries(mockQuestions.map((question) => [question.id, draftValue(question)]));
+    const { score, totalScore } = scoreMockExam(mockQuestions, submittedAnswers, subject.mockExam);
+    const submittedAt = new Date();
     setMockSubmitted(true);
-    setProgress((prev) => ({
-      ...prev,
-      mockRuns: [
-        {
-          id: `mock-${Date.now()}`,
-          title: subject.mockExam?.title || "随机练习卷",
-          questionIds: mockQuestions.map((question) => question.id),
-          score,
-          totalScore,
-          submittedAt: new Date().toISOString()
-        },
-        ...prev.mockRuns
-      ].slice(0, 20)
-    }));
+    setProgress((prev) => {
+      let next = prev;
+      mockQuestions.forEach((question) => {
+        next = recordQuestionAttempt(next, question.id, submittedAnswers[question.id], isAnswerCorrect(question, submittedAnswers[question.id]), submittedAt);
+      });
+      return {
+        ...next,
+        mockRuns: [
+          {
+            id: `mock-${Date.now()}`,
+            title: subject.mockExam?.title || "随机练习卷",
+            questionIds: mockQuestions.map((question) => question.id),
+            score,
+            totalScore,
+            submittedAt: submittedAt.toISOString()
+          },
+          ...next.mockRuns
+        ].slice(0, 20)
+      };
+    });
   }
 
   function jumpToQuestion(id: string) {
@@ -406,10 +449,14 @@ export function PracticePage({ subject }: PracticePageProps) {
         <b>{subject.mockExam?.title || "随机练习卷"}</b>
         <span>{mockQuestions.length} 题</span>
       </div>
-      <button type="button" className="primary" onClick={submitMock}>交卷/记录成绩</button>
+      <button type="button" className="primary" onClick={submitMock} disabled={!mockQuestions.length || mockSubmitted}>
+        {mockSubmitted ? "已交卷" : "交卷/记录成绩"}
+      </button>
       {mockSubmitted && progress.mockRuns[0] ? <strong>{progress.mockRuns[0].score} / {progress.mockRuns[0].totalScore}</strong> : null}
     </section>
   ) : null;
+
+  const currentState = current ? answerState(current) : null;
 
   const questionPanel = current ? (
     <QuestionCard
@@ -417,10 +464,14 @@ export function PracticePage({ subject }: PracticePageProps) {
       index={index}
       total={visibleQuestions.length}
       value={draftValue(current)}
-      answered={progress.answers[current.id] !== undefined}
-      wrong={Boolean(progress.wrong[current.id])}
+      answered={Boolean(currentState?.done)}
+      pending={Boolean(currentState?.pending)}
+      wrong={Boolean(currentState?.wrong)}
       favorite={Boolean(progress.favorites[current.id])}
-      reveal={mode === "browse" || Boolean(revealed[current.id])}
+      reveal={mode === "mock" ? mockSubmitted : mode === "browse" || Boolean(revealed[current.id])}
+      locked={mode === "mock" && mockSubmitted}
+      showSubmit={mode !== "mock"}
+      allowReset={mode !== "mock" || !mockSubmitted}
       detail={progress.details[current.id]}
       memoryHintDraft={memoryHints[current.id] || ""}
       onChange={(value) => updateDraft(current, value)}
