@@ -16,7 +16,7 @@ const expectedCounts = new Map([
   ["network-security", 215],
   ["data-collection", 95],
   ["data-visualization", 100],
-  ["data-structure", 188],
+  ["data-structure", 553],
   ["linux-course", 335],
   ["modern-history", 390],
   ["community", 158],
