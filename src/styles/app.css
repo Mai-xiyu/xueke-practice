@@ -344,6 +344,55 @@ textarea {
 .mock-strip span {
   color: var(--text-muted);
 }
+.mock-result {
+  padding: 24px;
+}
+.mock-result__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.mock-result__head p {
+  margin: 0 0 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.mock-result__head h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.mock-result__head strong {
+  color: var(--primary);
+  font-size: 32px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.mock-result__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.mock-result__grid div {
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+.mock-result__grid dt {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.mock-result__grid dd {
+  margin: 6px 0 0;
+  font-weight: 800;
+}
+.mock-result__note {
+  margin: 16px 0 0;
+  color: var(--text-muted);
+}
 .practice-content {
   display: grid;
   grid-template-columns: minmax(0, 860px) 286px;
@@ -677,6 +726,13 @@ textarea {
 .answer-card__open {
   width: 100%;
   margin-top: 14px;
+}
+.answer-card--numbers .answer-card__grid {
+  margin-top: 14px;
+}
+.answer-card--numbers .answer-card__legend {
+  border-top: 1px solid var(--border-soft);
+  padding-top: 10px;
 }
 .answer-card__legend {
   display: flex;
@@ -1103,6 +1159,7 @@ textarea {
   .home-head,
   .subject-head,
   .question-card,
+  .mock-result,
   .card-drawer__panel {
     padding: 18px;
   }
@@ -1123,6 +1180,13 @@ textarea {
   }
   .memory-input {
     flex-direction: column;
+  }
+  .mock-result__head,
+  .mock-result__grid {
+    grid-template-columns: 1fr;
+  }
+  .mock-result__head {
+    display: grid;
   }
   .option {
     align-items: flex-start;
