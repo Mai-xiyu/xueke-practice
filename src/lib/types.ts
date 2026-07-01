@@ -72,10 +72,15 @@ export interface ProgressState {
   mockRuns: Array<{
     id: string;
     title: string;
+    subjectTitle?: string;
     questionIds: string[];
     score: number;
     totalScore: number;
     submittedAt: string;
+    startedAt?: string;
+    durationSeconds?: number;
+    completed?: number;
+    total?: number;
   }>;
   migratedFrom?: string[];
   updatedAt?: string;

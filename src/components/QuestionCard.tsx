@@ -12,8 +12,12 @@ interface QuestionCardProps {
   wrong: boolean;
   favorite: boolean;
   reveal: boolean;
+  showAnalysis?: boolean;
+  showAnalysisButton?: boolean;
   locked?: boolean;
   showSubmit?: boolean;
+  showFavorite?: boolean;
+  showReset?: boolean;
   allowReset?: boolean;
   detail?: QuestionProgress;
   memoryHintDraft: string;
@@ -21,6 +25,7 @@ interface QuestionCardProps {
   onMemoryHintChange: (value: string) => void;
   onSaveMemoryHint: () => void;
   onSubmit: () => void;
+  onShowAnalysis: () => void;
   onReset: () => void;
   onFavorite: () => void;
   onPrev: () => void;
@@ -46,13 +51,17 @@ export function QuestionCard(props: QuestionCardProps) {
     wrong,
     favorite,
     reveal,
+    showAnalysis = reveal,
+    showAnalysisButton = false,
     locked = false,
     showSubmit = true,
+    showFavorite = true,
+    showReset = true,
     allowReset = true
   } = props;
   const showAnswer = reveal;
   const correct = isAnswerCorrect(question, value);
-  const canShowMemoryHint = showAnswer && props.detail?.memoryHint;
+  const canShowMemoryHint = showAnalysis && props.detail?.memoryHint;
   const imageIsReference = question.meta?.correctedFromImage === true;
 
   return (
@@ -130,13 +139,14 @@ export function QuestionCard(props: QuestionCardProps) {
 
       <div className="question-actions">
         {showSubmit ? <button type="button" className="primary" onClick={props.onSubmit}>提交/查看解析</button> : null}
-        <button type="button" onClick={props.onFavorite}>{favorite ? "取消收藏" : "收藏本题"}</button>
-        <button type="button" onClick={props.onReset} disabled={!allowReset}>重做本题</button>
+        {showAnalysisButton ? <button type="button" className="primary" onClick={props.onShowAnalysis}>答案解析</button> : null}
+        {showFavorite ? <button type="button" onClick={props.onFavorite}>{favorite ? "取消收藏" : "收藏本题"}</button> : null}
+        {showReset ? <button type="button" onClick={props.onReset} disabled={!allowReset}>重做本题</button> : null}
         <button type="button" onClick={props.onPrev}>上一题</button>
         <button type="button" onClick={props.onNext}>下一题</button>
       </div>
 
-      {showAnswer ? (
+      {showAnalysis ? (
         <section className={`analysis ${isObjective(question.type) ? (wrong || !correct ? "bad" : "ok") : ""}`}>
           <div className="analysis__result">
             <strong>{isObjective(question.type) ? (wrong || !correct ? "本题答错" : "本题答对") : "参考答案"}</strong>

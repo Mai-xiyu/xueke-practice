@@ -14,7 +14,7 @@ interface AnswerWidgetProps extends AnswerCardProps {
 
 type CardFilter = "all" | "todo" | "done" | "correct" | "wrong" | "marked" | "review";
 
-const order: QuestionType[] = ["single", "multiple", "judge", "fill", "short", "essay", "code", "comprehensive"];
+const order: QuestionType[] = ["single", "multiple", "fill", "judge", "short", "code", "essay", "comprehensive"];
 const filterLabels: Record<CardFilter, string> = {
   all: "全部",
   todo: "未做",
@@ -161,6 +161,27 @@ export function FullAnswerCardControl({ items, currentId, onJump, title = "打�
         </div>
       ) : null}
     </>
+  );
+}
+
+export function QuestionNumberCard({ items, currentId, onJump, title = "答题卡" }: AnswerWidgetProps) {
+  const currentIndex = Math.max(0, items.findIndex((item) => item.id === currentId));
+
+  return (
+    <aside className="answer-card answer-card--numbers" aria-label={title}>
+      <div className="answer-card__head">
+        <h2>{title}</h2>
+        <p>第 {items.length ? currentIndex + 1 : 0} / {items.length} 题</p>
+      </div>
+      <div className="answer-card__grid drawer-grid">
+        {items.map((item) => (
+          <button key={item.id} type="button" className={itemClass(item, currentId)} onClick={() => onJump(item.id)} title={item.stem}>
+            {item.label}
+          </button>
+        ))}
+      </div>
+      <AnswerCardLegend />
+    </aside>
   );
 }
 
