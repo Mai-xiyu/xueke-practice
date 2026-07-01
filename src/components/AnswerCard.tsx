@@ -29,6 +29,7 @@ function itemClass(item: AnswerCardItem, currentId?: string) {
   return [
     "answer-card__btn",
     item.id === currentId ? "active" : "",
+    item.pending ? "pending" : "",
     item.done ? "done" : "",
     item.correct ? "correct" : "",
     item.wrong ? "wrong" : "",
@@ -43,7 +44,7 @@ function filterItem(item: AnswerCardItem, filter: CardFilter, keyword: string) {
     const haystack = `${item.label} ${item.stem}`.toLowerCase();
     if (!haystack.includes(normalized)) return false;
   }
-  if (filter === "todo") return !item.done;
+  if (filter === "todo") return !item.done && !item.pending;
   if (filter === "done") return item.done;
   if (filter === "correct") return item.correct;
   if (filter === "wrong") return item.wrong;
@@ -95,6 +96,7 @@ export function AnswerCardLegend() {
   return (
     <div className="answer-card__legend" aria-label="状态说明">
       <span>白：未做</span>
+      <span>蓝：已选择</span>
       <span>绿：正确</span>
       <span>红：错误</span>
       <span>★：收藏</span>

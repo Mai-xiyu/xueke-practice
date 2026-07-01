@@ -395,6 +395,10 @@ textarea {
   background: var(--warning-soft);
   color: var(--warning);
 }
+.question-meta .badge-info {
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+}
 .memory-hint {
   margin: 16px 0 0;
   padding: 10px 12px;
@@ -458,6 +462,13 @@ textarea {
 .option:hover {
   background: var(--surface-soft);
   border-color: var(--primary-border);
+}
+.option:disabled {
+  cursor: default;
+}
+.option:disabled:hover {
+  background: var(--surface);
+  border-color: var(--border);
 }
 .option-letter {
   display: inline-flex;
@@ -634,6 +645,11 @@ textarea {
   border-color: var(--border);
   background: var(--surface-soft);
   color: var(--text);
+}
+.answer-card__btn.pending {
+  border-color: var(--primary-border);
+  background: var(--primary-soft);
+  color: var(--primary-hover);
 }
 .answer-card__btn.correct {
   border-color: var(--success-border);

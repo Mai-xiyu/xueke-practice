@@ -101,6 +101,7 @@ export interface AnswerCardItem {
   index: number;
   label: string;
   type: QuestionType;
+  pending: boolean;
   done: boolean;
   correct: boolean;
   wrong: boolean;
