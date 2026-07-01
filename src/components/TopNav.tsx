@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Subject, SubjectDirectory } from "../lib/types";
 
 interface TopNavProps {
@@ -6,6 +7,7 @@ interface TopNavProps {
 }
 
 export function TopNav({ directory, activeSubject }: TopNavProps) {
+  const [openCollege, setOpenCollege] = useState<string | null>(null);
   const subjectsByCollege = new Map<string, Subject[]>();
   directory.subjects.forEach((subject) => {
     const list = subjectsByCollege.get(subject.college) || [];
@@ -27,8 +29,15 @@ export function TopNav({ directory, activeSubject }: TopNavProps) {
             if (!subjects.length) return null;
             const active = activeSubject?.college === college.id;
             return (
-              <div className={`nav-menu${active ? " active" : ""}`} key={college.id}>
-                <button type="button" className="nav-menu__trigger">{college.title}</button>
+              <div className={`nav-menu${active ? " active" : ""}${openCollege === college.id ? " open" : ""}`} key={college.id}>
+                <button
+                  type="button"
+                  className="nav-menu__trigger"
+                  aria-expanded={openCollege === college.id}
+                  onClick={() => setOpenCollege((current) => (current === college.id ? null : college.id))}
+                >
+                  {college.title}
+                </button>
                 <div className="nav-menu__panel" role="menu">
                   {subjects.map((subject) => (
                     <a
@@ -36,6 +45,7 @@ export function TopNav({ directory, activeSubject }: TopNavProps) {
                       className={activeSubject?.id === subject.id ? "active" : ""}
                       href={subject.href}
                       role="menuitem"
+                      onClick={() => setOpenCollege(null)}
                     >
                       <span>{subject.title}</span>
                       <small>{subject.mark}</small>

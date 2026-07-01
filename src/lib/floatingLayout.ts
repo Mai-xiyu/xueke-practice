@@ -39,10 +39,12 @@ const EDGE_GAP = 12;
 const GRID_GAP = 16;
 const DOCK_WIDTH = 220;
 const PRIMARY_PANEL_ID = "question";
-const TOP_DOCK_Y = 150;
+const CONTENT_MAX_WIDTH = 1180;
+const DESKTOP_NAV_HEIGHT = 132;
+const PANEL_GAP = 16;
 
 export function floatingLayoutKey(subjectId: string): string {
-  return `studyhub:layout:v1:${subjectId}`;
+  return `studyhub:layout:v2:${subjectId}`;
 }
 
 export function emptyFloatingLayout(): FloatingLayoutState {
@@ -141,68 +143,153 @@ export function rightDockArrange(
 ): Record<string, FloatingPanelState> {
   const next: Record<string, FloatingPanelState> = {};
   const primary = configs.find((config) => config.id === PRIMARY_PANEL_ID);
-  const sorted = configs
-    .filter((config) => config.id !== PRIMARY_PANEL_ID)
-    .sort((a, b) => (a.priority || 0) - (b.priority || 0));
-  const dockColumns = viewport.width >= 1280 ? 3 : 2;
-  const dockAreaWidth = DOCK_WIDTH * dockColumns + GRID_GAP * (dockColumns - 1);
-  const desiredPrimaryWidth = Math.min(
-    760,
-    Math.max(420, viewport.width - dockAreaWidth - GRID_GAP * 2 - EDGE_GAP * 2)
-  );
-  let primaryRight = EDGE_GAP;
+  const visibleWidth = Math.max(720, viewport.width - EDGE_GAP * 2);
+  const contentWidth = Math.min(CONTENT_MAX_WIDTH, visibleWidth);
+  const contentLeft = Math.max(EDGE_GAP, Math.round((viewport.width - contentWidth) / 2));
+  const sidebarWidth = viewport.width >= 1180 ? 270 : 230;
+  const mainWidth = Math.max(520, contentWidth - sidebarWidth - PANEL_GAP);
+  const sidebarX = contentLeft + mainWidth + PANEL_GAP;
+  const topY = Math.max(DESKTOP_NAV_HEIGHT + 18, EDGE_GAP);
+
+  function applyPanel(config: FloatingPanelConfig, rect: FloatingRect) {
+    const current = ensurePanelState(config, state.panels[config.id]);
+    if (current.hidden) {
+      next[config.id] = current;
+      return;
+    }
+    next[config.id] = {
+      ...current,
+      rect: clampRect(rect, viewport, config.minWidth, config.minHeight)
+    };
+  }
+
+  function configById(id: string) {
+    return configs.find((config) => config.id === id);
+  }
+
+  function placeGrid(ids: string[], y: number, preferredWidth: number, height: number, minWidth: number) {
+    const columns = Math.max(1, Math.floor((mainWidth + PANEL_GAP) / (minWidth + PANEL_GAP)));
+    const width = Math.max(minWidth, Math.floor((mainWidth - PANEL_GAP * (columns - 1)) / columns));
+    ids.forEach((id, index) => {
+      const config = configById(id);
+      if (!config) return;
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      applyPanel(config, {
+        x: contentLeft + column * (width + PANEL_GAP),
+        y: y + row * (height + PANEL_GAP),
+        width: Math.min(preferredWidth, width),
+        height
+      });
+    });
+    return y + Math.ceil(ids.filter((id) => Boolean(configById(id))).length / columns) * (height + PANEL_GAP);
+  }
+
+  const subject = configById("subject");
+  if (subject) {
+    applyPanel(subject, { x: contentLeft, y: topY, width: mainWidth, height: 120 });
+  }
+
+  const statIds = ["stat-total", "stat-done", "stat-wrong", "stat-accuracy", "stat-bank"];
+  const statTop = topY + 136;
+  const afterStats = placeGrid(statIds, statTop, 220, 100, 148);
+
+  const modeTabs = configById("mode-tabs");
+  const modeTop = afterStats;
+  if (modeTabs) {
+    applyPanel(modeTabs, { x: contentLeft, y: modeTop, width: mainWidth, height: 96 });
+  }
+
+  const filterIds = ["filter-chapter", "filter-type", "filter-source", "filter-search"];
+  const filtersTop = modeTop + (modeTabs ? 112 : 0);
+  const afterFilters = placeGrid(filterIds, filtersTop, 360, 96, 210);
 
   if (primary) {
-    const current = ensurePanelState(primary, state.panels[primary.id]);
+    const questionTop = afterFilters + 4;
+    const questionHeight = Math.max(260, Math.min(620, viewport.height - questionTop - EDGE_GAP));
+    applyPanel(primary, { x: contentLeft, y: questionTop, width: mainWidth, height: questionHeight });
+  }
+
+  const mockStrip = configById("mock-strip");
+  if (mockStrip) {
+    applyPanel(mockStrip, { x: sidebarX, y: topY, width: sidebarWidth, height: 120 });
+  }
+
+  let sidebarY = topY;
+
+  const metricIds = ["answer-done", "answer-correct", "answer-wrong", "answer-marked", "answer-review"];
+  const metricWidth = Math.floor((sidebarWidth - PANEL_GAP) / 2);
+  let metricIndex = 0;
+  metricIds.forEach((id) => {
+    const config = configById(id);
+    if (!config) return;
+    const current = ensurePanelState(config, state.panels[config.id]);
     if (current.hidden) {
-      next[primary.id] = current;
-    } else {
-      const width = desiredPrimaryWidth;
-      next[primary.id] = {
-        ...current,
-        rect: clampRect({ x: EDGE_GAP, y: 220, width, height: Math.min(560, viewport.height - 260) }, viewport, 420, 220)
-      };
-      primaryRight = next[primary.id].rect.x + next[primary.id].rect.width;
+      next[config.id] = current;
+      return;
     }
+    const column = metricIndex % 2;
+    const row = Math.floor(metricIndex / 2);
+    applyPanel(config, {
+      x: sidebarX + column * (metricWidth + PANEL_GAP),
+      y: topY + row * (100 + PANEL_GAP),
+      width: metricWidth,
+      height: 100
+    });
+    metricIndex += 1;
+  });
+  if (metricIndex > 0) {
+    sidebarY = topY + Math.ceil(metricIndex / 2) * (100 + PANEL_GAP);
   }
 
-  const minDockX = Math.min(viewport.width - DOCK_WIDTH - EDGE_GAP, primaryRight + GRID_GAP);
-  const columns: Array<{ x: number; y: number }> = [];
-  for (let index = 0; index < dockColumns; index += 1) {
-    const x = viewport.width - EDGE_GAP - DOCK_WIDTH - index * (DOCK_WIDTH + GRID_GAP);
-    if (x >= minDockX || !columns.length) {
-      columns.push({ x, y: Math.max(TOP_DOCK_Y, EDGE_GAP) });
+  ["answer-nearby", "answer-full", "answer-legend"].forEach((id) => {
+    const config = configById(id);
+    if (!config) return;
+    const current = ensurePanelState(config, state.panels[config.id]);
+    if (current.hidden) {
+      next[config.id] = current;
+      return;
     }
-  }
-  if (!columns.length) {
-    columns.push({ x: Math.max(EDGE_GAP, viewport.width - DOCK_WIDTH - EDGE_GAP), y: Math.max(TOP_DOCK_Y, EDGE_GAP) });
-  }
+    const minHeight = current.collapsed ? 44 : config.minHeight || DEFAULT_MIN_HEIGHT;
+    const height = Math.max(minHeight, current.collapsed ? 44 : config.defaultRect.height);
+    const availableHeight = Math.max(minHeight, viewport.height - sidebarY - EDGE_GAP);
+    const rect = clampRect({ x: sidebarX, y: sidebarY, width: sidebarWidth, height: Math.min(height, availableHeight) }, viewport, config.minWidth, minHeight);
+    next[config.id] = { ...current, rect };
+    sidebarY = rect.y + rect.height + GRID_GAP;
+  });
 
-  sorted.forEach((config) => {
+  const sidebarConfigs = configs
+    .filter((config) => !next[config.id] && (config.id.startsWith("answer-") || config.id === "answer" || (config.id === "mock-strip" && !next[config.id])))
+    .sort((a, b) => (a.priority || 0) - (b.priority || 0));
+
+  sidebarConfigs.forEach((config) => {
     const current = ensurePanelState(config, state.panels[config.id]);
     if (current.hidden) {
       next[config.id] = current;
       return;
     }
 
-    const width = Math.max(config.minWidth || DEFAULT_MIN_WIDTH, Math.min(DOCK_WIDTH, config.defaultRect.width));
+    const width = Math.max(config.minWidth || DEFAULT_MIN_WIDTH, Math.min(sidebarWidth, config.defaultRect.width));
     const height = Math.max(config.minHeight || DEFAULT_MIN_HEIGHT, current.collapsed ? 44 : config.defaultRect.height);
     const minHeight = current.collapsed ? 44 : config.minHeight || DEFAULT_MIN_HEIGHT;
-    const column = columns.reduce((best, item) => {
-      const bestOverflow = Math.max(0, best.y + height + EDGE_GAP - viewport.height);
-      const itemOverflow = Math.max(0, item.y + height + EDGE_GAP - viewport.height);
-      if (itemOverflow !== bestOverflow) return itemOverflow < bestOverflow ? item : best;
-      return item.y < best.y ? item : best;
-    });
-    const availableHeight = Math.max(minHeight, viewport.height - column.y - EDGE_GAP);
+    const availableHeight = Math.max(minHeight, viewport.height - sidebarY - EDGE_GAP);
     const arrangedHeight = Math.min(height, availableHeight);
-    const rect = clampRect({ x: column.x, y: column.y, width, height: arrangedHeight }, viewport, config.minWidth, minHeight);
+    const rect = clampRect({ x: sidebarX, y: sidebarY, width, height: arrangedHeight }, viewport, config.minWidth, minHeight);
     next[config.id] = { ...current, rect };
-    column.y = rect.y + rect.height + GRID_GAP;
+    sidebarY = rect.y + rect.height + GRID_GAP;
 
-    if (column.y + minHeight + EDGE_GAP > viewport.height) {
-      column.y = Math.max(TOP_DOCK_Y, EDGE_GAP);
+    if (sidebarY + minHeight + EDGE_GAP > viewport.height) {
+      sidebarY = topY;
     }
+  });
+
+  configs.forEach((config) => {
+    if (next[config.id]) return;
+    const current = ensurePanelState(config, state.panels[config.id]);
+    next[config.id] = {
+      ...current,
+      rect: clampRect(current.rect || config.defaultRect, viewport, config.minWidth, config.minHeight)
+    };
   });
 
   return next;

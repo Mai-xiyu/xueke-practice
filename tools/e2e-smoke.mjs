@@ -103,7 +103,7 @@ try {
   await page.waitForFunction(() => !document.querySelector(".floating-taskbar"));
   await page.evaluate(() => {
     const buttons = Array.from(document.querySelectorAll(".layout-controls button"));
-    buttons.find((button) => button.textContent?.includes("自动排列"))?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    buttons.find((button) => button.textContent?.includes("整理窗口"))?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
   const arranged = await page.evaluate(() => {
     const rects = Array.from(document.querySelectorAll(".floating-panel")).map((item) => {
