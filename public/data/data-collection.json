@@ -1604,5 +1604,1009 @@
     ],
     "analysis": "来自 PPT 最后一页“测试案例”的步骤。",
     "answer": "一般步骤包括：导入自动化测试模块并启动浏览器驱动；访问测试网页；定位页面元素；执行点击、输入等测试操作；最后关闭浏览器并释放资源。"
+  },
+  {
+    "id": "DC-RXF-202607-001",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "robots",
+    "type": "single",
+    "stem": "robots.txt 协议主要用于告诉爬虫什么内容可以抓取、什么内容不建议抓取，它属于哪类规则？",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "抓取礼貌规则",
+      "B": "数据库事务规则",
+      "C": "浏览器渲染规则",
+      "D": "操作系统权限规则"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "robots.txt 是约定俗成的 Robots Exclusion Protocol，用来声明爬虫访问边界。"
+  },
+  {
+    "id": "DC-RXF-202607-002",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "single",
+    "stem": "在 requests 库中，用于获取资源的常用方法是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "requests.get()",
+      "B": "requests.delete()",
+      "C": "requests.patch()",
+      "D": "requests.head()"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "GET 通常用于获取资源；DELETE 删除资源，PATCH 局部更新资源，HEAD 获取响应头。"
+  },
+  {
+    "id": "DC-RXF-202607-003",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "single",
+    "stem": "在 requests 响应对象中，用于获取 HTTP 状态码的属性是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "response.status_code",
+      "B": "response.headers",
+      "C": "response.cookies",
+      "D": "response.content"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "response.status_code 表示 HTTP 状态码，200 通常表示请求成功。"
+  },
+  {
+    "id": "DC-RXF-202607-004",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "single",
+    "stem": "在 requests 响应对象中，用于把响应解析为 JSON 对象的方法是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "response.json()",
+      "B": "response.text()",
+      "C": "response.content()",
+      "D": "response.headers()"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "response.json() 会尝试将响应体按 JSON 解析。"
+  },
+  {
+    "id": "DC-RXF-202607-005",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "single",
+    "stem": "在 requests 响应对象中，用于获取二进制内容的属性是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "response.content",
+      "B": "response.text",
+      "C": "response.status_code",
+      "D": "response.cookies"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "response.content 返回 bytes，适合图片、文件等二进制内容。"
+  },
+  {
+    "id": "DC-RXF-202607-006",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "single",
+    "stem": "使用 requests 安装第三方库的常用命令是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "pip install requests",
+      "B": "npm install requests",
+      "C": "python install requests",
+      "D": "conda run requests"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件给出的 requests 安装语句是 pip install requests。"
+  },
+  {
+    "id": "DC-RXF-202607-007",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "XPath",
+    "type": "single",
+    "stem": "XPath 的核心用途是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "通过路径表达式定位 XML/HTML 节点",
+      "B": "启动浏览器驱动",
+      "C": "管理 Redis 队列",
+      "D": "压缩图片资源"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "XPath 是用于匹配 XML/HTML 节点的路径语法，常配合 lxml 使用。"
+  },
+  {
+    "id": "DC-RXF-202607-008",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "XPath",
+    "type": "single",
+    "stem": "课件中安装 lxml 的命令是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "pip install lxml",
+      "B": "pip install xpath",
+      "C": "npm install lxml",
+      "D": "python -m xpath"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "XPath 示例中使用 lxml，安装命令为 pip install lxml。"
+  },
+  {
+    "id": "DC-RXF-202607-009",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "single",
+    "stem": "BeautifulSoup 更适合的场景是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "结构清晰的静态网页解析",
+      "B": "浏览器自动化测试",
+      "C": "Redis 分布式任务调度",
+      "D": "操作系统进程管理"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "BeautifulSoup 语法简单、容错性强，适合结构清晰的静态页面解析。"
+  },
+  {
+    "id": "DC-RXF-202607-010",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "single",
+    "stem": "BeautifulSoup 中，为避免 Python 关键字冲突，应使用哪个参数按 class 筛选？",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "class_",
+      "B": "class",
+      "C": "className",
+      "D": "cssClass"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "class 是 Python 关键字，BeautifulSoup 使用 class_ 参数。"
+  },
+  {
+    "id": "DC-RXF-202607-011",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "single",
+    "stem": "读取 HTML 标签属性时，为避免属性不存在导致 KeyError，推荐使用（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "tag.get('attr')",
+      "B": "tag['attr']",
+      "C": "tag.attr()",
+      "D": "tag.find_attr()"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "tag.get('attr') 在属性缺失时安全返回 None。"
+  },
+  {
+    "id": "DC-RXF-202607-012",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "动态页面",
+    "type": "single",
+    "stem": "当页面内容由 AJAX 动态加载，requests 获取的原始 HTML 中找不到目标元素时，常见解决方案是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "结合 Selenium 或 Playwright 模拟浏览器渲染",
+      "B": "只修改文件扩展名",
+      "C": "删除 User-Agent",
+      "D": "关闭网络连接"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "动态渲染页面通常需要浏览器自动化或直接找真实接口。课件给出的方案是结合 Selenium 或 Playwright。"
+  },
+  {
+    "id": "DC-RXF-202607-013",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 中适合简单场景、数据量较少的轻量级爬虫类型是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "AirSpider",
+      "B": "TaskSpider",
+      "C": "BatchSpider",
+      "D": "Scheduler"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件说明 AirSpider 是轻量级爬虫，适合简单场景和少量数据。"
+  },
+  {
+    "id": "DC-RXF-202607-014",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 中基于 Redis、适合海量数据并支持断点续爬的爬虫类型是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "Spider",
+      "B": "AirSpider",
+      "C": "BeautifulSoup",
+      "D": "XPath"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "Spider 是 Feapder 的分布式爬虫类型，基于 Redis。"
+  },
+  {
+    "id": "DC-RXF-202607-015",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 中主要用于对接任务表的任务型爬虫是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "TaskSpider",
+      "B": "AirSpider",
+      "C": "Response",
+      "D": "ItemBuffer"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "TaskSpider 支持对接任务表，如 MySQL、Redis 等。"
+  },
+  {
+    "id": "DC-RXF-202607-016",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 中主要用于周期性采集任务的分布式批次爬虫是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "BatchSpider",
+      "B": "AirSpider",
+      "C": "urllib",
+      "D": "pyquery"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "BatchSpider 主要面向周期性采集的批次任务。"
+  },
+  {
+    "id": "DC-RXF-202607-017",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 创建 AirSpider 示例中，课件给出的命令形式是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "feapder create -s air_spider_demo 1",
+      "B": "feapder run air_spider_demo",
+      "C": "scrapy startproject air_spider_demo",
+      "D": "python create air_spider_demo"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件示例：feapder create -s air_spider_demo 1。"
+  },
+  {
+    "id": "DC-RXF-202607-018",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 中 item 的作用更接近（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "数据库表映射和入库逻辑相关对象",
+      "B": "浏览器驱动",
+      "C": "网页样式文件",
+      "D": "HTTP 状态码"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件说明 item 与数据库表映射、数据入库逻辑相关。"
+  },
+  {
+    "id": "DC-RXF-202607-019",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder Request 参数 priority 的含义是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "请求优先级，数值越小越优先",
+      "B": "响应体大小，越大越优先",
+      "C": "网页编码方式",
+      "D": "数据库端口号"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件说明 priority 为请求优先级，越小越优先，默认 300。"
+  },
+  {
+    "id": "DC-RXF-202607-020",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 中 request_buffer 的主要作用是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "批量将请求任务存储到任务队列",
+      "B": "解析 HTML 注释",
+      "C": "渲染 JavaScript",
+      "D": "生成浏览器截图"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "request_buffer 是请求任务缓冲队列，批量将请求任务存储到任务队列。"
+  },
+  {
+    "id": "DC-RXF-202607-021",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "single",
+    "stem": "Feapder 中 item_buffer 的主要作用是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "批量将采集数据存储到数据库",
+      "B": "保存浏览器书签",
+      "C": "修改网页 CSS",
+      "D": "启动 ChromeDriver"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "item_buffer 是数据缓冲队列，负责批量将数据存储到数据库。"
+  },
+  {
+    "id": "DC-RXF-202607-022",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Scrapy",
+    "type": "single",
+    "stem": "Scrapy 中负责接收 Request、整理排队并在引擎需要时返回请求的是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "Scheduler",
+      "B": "Item Pipeline",
+      "C": "Spider",
+      "D": "Downloader Middleware"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "Scheduler 调度器负责请求队列管理。"
+  },
+  {
+    "id": "DC-RXF-202607-023",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Scrapy",
+    "type": "single",
+    "stem": "Scrapy 中负责下载请求并把 Response 交还给引擎的组件是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "Downloader",
+      "B": "Item Pipeline",
+      "C": "settings.py",
+      "D": "items.py"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "Downloader 下载器负责下载引擎发送的 Requests 并返回 Responses。"
+  },
+  {
+    "id": "DC-RXF-202607-024",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Scrapy",
+    "type": "single",
+    "stem": "Scrapy 中负责处理 Spider 产出的 Item，并进行过滤、分析、存储等后处理的是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "Item Pipeline",
+      "B": "Scheduler",
+      "C": "Spider Middleware",
+      "D": "robots.txt"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "Item Pipeline 负责处理 Spider 获取到的 Item，并执行后期处理和存储。"
+  },
+  {
+    "id": "DC-RXF-202607-025",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Selenium",
+    "type": "single",
+    "stem": "Selenium 在网络数据采集中主要用于（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "模拟浏览器行为处理动态页面",
+      "B": "替代数据库事务",
+      "C": "压缩静态图片",
+      "D": "管理操作系统用户"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "Selenium 是 Web 自动化测试工具，可结合浏览器工具模拟用户操作和页面渲染。"
+  },
+  {
+    "id": "DC-RXF-202607-026",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "multiple",
+    "stem": "下列属于 requests 响应对象常用属性或方法的有（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "status_code",
+      "B": "text",
+      "C": "json()",
+      "D": "cookies"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "课件列出 status_code、text、content、json()、headers、cookies 等常用响应成员。"
+  },
+  {
+    "id": "DC-RXF-202607-027",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "XPath",
+    "type": "multiple",
+    "stem": "下列属于 XPath 解析方式特点的有（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "支持层级筛选",
+      "B": "支持属性和条件定位",
+      "C": "适合批量提取节点数据",
+      "D": "完全不依赖网页结构"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C"
+    ],
+    "analysis": "XPath 支持层级、索引、属性、多条件等定位方式，但路径通常依赖网页结构，页面改版可能失效。"
+  },
+  {
+    "id": "DC-RXF-202607-028",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "multiple",
+    "stem": "BeautifulSoup 的核心对象包括（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "Tag",
+      "B": "NavigableString",
+      "C": "BeautifulSoup",
+      "D": "Comment"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "课件列出 BeautifulSoup 的四类核心对象：Tag、NavigableString、BeautifulSoup、Comment。"
+  },
+  {
+    "id": "DC-RXF-202607-029",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "multiple",
+    "stem": "Feapder 课件中提到的爬虫类型包括（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "AirSpider",
+      "B": "Spider",
+      "C": "TaskSpider",
+      "D": "BatchSpider"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "Feapder 内置 AirSpider、Spider、TaskSpider、BatchSpider 四种爬虫类型。"
+  },
+  {
+    "id": "DC-RXF-202607-030",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Scrapy",
+    "type": "multiple",
+    "stem": "Scrapy 框架中常见组件包括（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "Engine",
+      "B": "Scheduler",
+      "C": "Downloader",
+      "D": "Item Pipeline"
+    },
+    "correct": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "analysis": "Scrapy 框架包含引擎、调度器、下载器、Spider、Item Pipeline、中间件等组件。"
+  },
+  {
+    "id": "DC-RXF-202607-031",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "robots",
+    "type": "judge",
+    "stem": "robots.txt 协议是一种约定俗成的抓取礼貌规则，而不是数据库强制约束。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "robots.txt 通过文本规则告诉爬虫哪些路径可抓或不建议抓，属于爬虫访问约定。"
+  },
+  {
+    "id": "DC-RXF-202607-032",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "judge",
+    "stem": "requests 是 Python 的第三方 HTTP 请求库，课件中说明它相比 urllib 更便捷。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件说明 requests 是基于 urllib 改写而来的第三方请求库，更人性化、便捷。"
+  },
+  {
+    "id": "DC-RXF-202607-033",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "judge",
+    "stem": "response.text 用于获取响应的二进制内容。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "response.text 获取文本内容；二进制内容应使用 response.content。"
+  },
+  {
+    "id": "DC-RXF-202607-034",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "XPath",
+    "type": "judge",
+    "stem": "XPath 路径通常依赖网页结构，网页改版可能导致原表达式失效。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件将“路径依赖网页结构，网页改版容易失效”列为 XPath 的缺点。"
+  },
+  {
+    "id": "DC-RXF-202607-035",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "judge",
+    "stem": "BeautifulSoup 的容错性较强，可以处理一些不规范的 HTML。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件说明 BeautifulSoup 能自动修复不规范 HTML，容错性强。"
+  },
+  {
+    "id": "DC-RXF-202607-036",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "judge",
+    "stem": "BeautifulSoup 中直接使用 find(class='xxx') 是推荐写法。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "class 是 Python 关键字，应使用 class_='xxx'。"
+  },
+  {
+    "id": "DC-RXF-202607-037",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "judge",
+    "stem": "直接使用 tag['attr'] 读取不存在的属性可能抛出 KeyError。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "属性可能不存在时推荐使用 tag.get('attr')。"
+  },
+  {
+    "id": "DC-RXF-202607-038",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "judge",
+    "stem": "AirSpider 主要用于海量数据的分布式采集场景。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "AirSpider 是轻量级爬虫；Feapder 的 Spider 更适合基于 Redis 的分布式和海量数据场景。"
+  },
+  {
+    "id": "DC-RXF-202607-039",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "judge",
+    "stem": "Feapder Request 参数 priority 数值越小，优先级越高。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件说明 priority 越小越优先，默认值为 300。"
+  },
+  {
+    "id": "DC-RXF-202607-040",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "judge",
+    "stem": "在 Feapder 中，REQUEST_FILTER_ENABLE 与 request 去重有关。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "课件中 REQUEST_FILTER_ENABLE 表示 request 去重开关。"
+  },
+  {
+    "id": "DC-RXF-202607-041",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "fill",
+    "stem": "requests 库获取响应头信息的属性是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answers": [
+      "response.headers",
+      "headers"
+    ],
+    "analysis": "课件列出 response.headers 用于获取响应头信息。"
+  },
+  {
+    "id": "DC-RXF-202607-042",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Requests",
+    "type": "fill",
+    "stem": "requests 库获取 Cookie 信息的属性是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answers": [
+      "response.cookies",
+      "cookies"
+    ],
+    "analysis": "课件列出 response.cookies 用于获取 Cookie 信息。"
+  },
+  {
+    "id": "DC-RXF-202607-043",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "XPath",
+    "type": "fill",
+    "stem": "安装 lxml 库的命令是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answers": [
+      "pip install lxml"
+    ],
+    "analysis": "课件中 XPath 使用 lxml，安装命令为 pip install lxml。"
+  },
+  {
+    "id": "DC-RXF-202607-044",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "fill",
+    "stem": "课件中安装 feapder 指定版本的命令是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answers": [
+      "pip install feapder==1.7.6",
+      "pip install feapder ==1.7.6",
+      "pip install feapder== 1.7.6"
+    ],
+    "analysis": "课件给出的命令为 pip install feapder ==1.7.6。"
+  },
+  {
+    "id": "DC-RXF-202607-045",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "fill",
+    "stem": "BeautifulSoup 中按 class 属性筛选时，为避免 Python 关键字冲突，应写成（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answers": [
+      "class_",
+      "class_='xxx'",
+      "class_=\"xxx\""
+    ],
+    "analysis": "BeautifulSoup 使用 class_ 参数代替 class。"
+  },
+  {
+    "id": "DC-RXF-202607-046",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "fill",
+    "stem": "Feapder 创建 item 的命令格式是（ ）。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answers": [
+      "feapder create -i <item_name>",
+      "feapder create - i <item_name>",
+      "feapder create -i item_name"
+    ],
+    "analysis": "课件说明创建 item 的命令为 feapder create -i <item_name>。"
+  },
+  {
+    "id": "DC-RXF-202607-047",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Cookie与Session",
+    "type": "short",
+    "stem": "简述使用 cookie 模拟登录后访问受限数据的一般流程。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answer": "一般流程是：先提交用户名和密码完成登录；服务器返回并记录 cookie；后续请求携带 cookie 访问需要登录态的 URL；服务器根据 cookie 识别会话并返回登录后才能看到的数据。"
+  },
+  {
+    "id": "DC-RXF-202607-048",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "解析库",
+    "type": "short",
+    "stem": "简述 XPath 与 BeautifulSoup 在网页解析中的主要区别。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answer": "XPath 通过路径表达式定位 XML/HTML 节点，速度快、支持层级和多条件筛选，适合企业级批量爬虫，但依赖页面结构。BeautifulSoup 将网页源码解析成树形对象，语法简单、可读性好、容错性强，适合静态页面和入门场景，但复杂深层数据提取会较繁琐，速度也通常慢于 XPath。"
+  },
+  {
+    "id": "DC-RXF-202607-049",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "short",
+    "stem": "简述 Feapder 中 AirSpider、Spider、TaskSpider、BatchSpider 的适用场景。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answer": "AirSpider 是轻量级爬虫，适合简单场景和少量数据；Spider 是基于 Redis 的分布式爬虫，适合海量数据、断点续爬和自动入库；TaskSpider 是任务型爬虫，适合对接 MySQL、Redis 等任务表；BatchSpider 是分布式批次爬虫，适合周期性采集任务。"
+  },
+  {
+    "id": "DC-RXF-202607-050",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Scrapy",
+    "type": "short",
+    "stem": "简述 Scrapy 中 Engine、Scheduler、Downloader、Spider、Item Pipeline 的基本职责。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answer": "Engine 负责各组件之间的通信和数据流转；Scheduler 接收并排队 Request，在引擎需要时返回请求；Downloader 负责下载请求并返回 Response；Spider 解析 Response、提取 Item 并产生后续 URL；Item Pipeline 处理 Spider 产出的 Item，完成清洗、过滤、存储等后处理。"
+  },
+  {
+    "id": "DC-RXF-202607-051",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "Feapder",
+    "type": "short",
+    "stem": "简述 Feapder BatchSpider 中处理无效任务的一般思路。",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answer": "对任务有效性进行判断；请求失败或解析异常时可在 exception_request 中切换 cookie 等信息并重新 yield request；超过最大重试次数时可在 failed_request 中处理失败请求，并将任务状态更新为 -1，避免无效任务一直重试。"
+  },
+  {
+    "id": "DC-RXF-202607-052",
+    "source": "requests+xpath+feapder基础知识(1).pptx",
+    "chapter": "动态页面",
+    "type": "short",
+    "stem": "为什么 requests 抓取动态页面时可能找不到目标元素？应如何处理？",
+    "tags": [
+      "PPT",
+      "2026-07导入"
+    ],
+    "answer": "requests 获取的是服务端返回的原始 HTML，不会执行浏览器中的 JavaScript。如果页面元素由 AJAX 或前端脚本动态渲染，原始 HTML 中可能没有目标内容。处理方法包括分析真实接口直接请求数据，或使用 Selenium、Playwright 等工具模拟浏览器渲染后再定位元素。"
   }
 ]

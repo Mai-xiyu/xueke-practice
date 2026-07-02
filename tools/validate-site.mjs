@@ -14,7 +14,7 @@ const validTypes = new Set(["single", "multiple", "judge", "fill", "short", "ess
 const expectedCounts = new Map([
   ["route-switching", 372],
   ["network-security", 215],
-  ["data-collection", 95],
+  ["data-collection", 147],
   ["data-visualization", 100],
   ["data-structure", 553],
   ["linux-course", 335],
