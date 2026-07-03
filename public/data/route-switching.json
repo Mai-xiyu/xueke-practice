@@ -8670,12 +8670,12 @@
   },
   {
     "id": "RS-EDU-3551358-COMP",
-    "source": "头歌路由交换配置题",
+    "source": "路由交换配置题",
     "chapter": "第9章 VLAN",
     "type": "comprehensive",
-    "stem": "VLAN 基本配置：根据头歌“VLAN基本配置”实训，完成 VLAN 创建、命名、Access 口划分、Trunk 口配置、Native VLAN/允许 VLAN 设置、抓包验证与配置导出。",
+    "stem": "VLAN 基本配置：完成 VLAN 创建、命名、Access 口划分、Trunk 口配置、Native VLAN/允许 VLAN 设置，并写出验证与保存配置的方法。",
     "tags": [],
-    "analysis": "参考答案：\n1. 关卡结构：第1关是 VLAN 基础知识测试；第2关是“VLAN的基本配置”。配置题重点是静态 VLAN 规划、创建 VLAN、配置 Trunk、配置 Access 口、测试同/不同 VLAN 连通性。\n2. 通用命令：\nSwitch(config)# vlan <vlan-id>\nSwitch(config-vlan)# name <vlan-name>\nSwitch(config-if)# switchport trunk encapsulation dot1q\nSwitch(config-if)# switchport mode trunk\nSwitch(config-if)# switchport trunk native vlan <vlan-id>\nSwitch(config-if)# switchport trunk allowed vlan all\nSwitch(config-if)# switchport mode access\nSwitch(config-if)# switchport access vlan <vlan-id>\nSwitch# show vlan brief\nSwitch# show interfaces trunk\n3. GNS3 仿真交换机注意点：用 c3725 + NM-16ESM 模拟交换机，创建 VLAN 需要先进入 vlan database，这和真实交换机全局模式下 vlan <id> 略有不同。\n4. SW1 示例：\nSW1(config)# no ip routing\nSW1# vlan database\nSW1(vlan)# vlan 2 name v2\nSW1(vlan)# vlan 3 name v3\nSW1(config)# int f1/1\nSW1(config-if)# switchport mode access\nSW1(config-if)# switchport access vlan 1\nSW1(config)# int f1/2\nSW1(config-if)# switchport mode access\nSW1(config-if)# switchport access vlan 3\nSW1(config)# int f1/3\nSW1(config-if)# switchport mode access\nSW1(config-if)# switchport access vlan 2\nSW1(config)# int f1/0\nSW1(config-if)# no shutdown\nSW1(config-if)# switchport mode trunk\nSW1(config-if)# switchport trunk encapsulation dot1q\nSW1(config-if)# switchport trunk native vlan 3\nSW1(config-if)# switchport trunk allowed vlan all\n5. PC 地址与验证：PC1-PC6 配置在 192.168.1.0/24，同 VLAN 主机可 ping 通，不同 VLAN 默认不能二层互通。抓 Trunk 链路 ICMP 包可看到 802.1Q 标签；Native VLAN 3 的报文不带 VLAN Tag。\n6. 保存与导出：所有交换机执行 write，稍等后用 Tools -> Import/Export 导出到 VLAN_BaseCfg。",
+    "analysis": "参考答案：\n1. 实验目标：第1关是 VLAN 基础知识测试；第2关是“VLAN的基本配置”。配置题重点是静态 VLAN 规划、创建 VLAN、配置 Trunk、配置 Access 口、测试同/不同 VLAN 连通性。\n2. 通用命令：\nSwitch(config)# vlan <vlan-id>\nSwitch(config-vlan)# name <vlan-name>\nSwitch(config-if)# switchport trunk encapsulation dot1q\nSwitch(config-if)# switchport mode trunk\nSwitch(config-if)# switchport trunk native vlan <vlan-id>\nSwitch(config-if)# switchport trunk allowed vlan all\nSwitch(config-if)# switchport mode access\nSwitch(config-if)# switchport access vlan <vlan-id>\nSwitch# show vlan brief\nSwitch# show interfaces trunk\n3. GNS3 仿真交换机注意点：用 c3725 + NM-16ESM 模拟交换机，创建 VLAN 需要先进入 vlan database，这和真实交换机全局模式下 vlan <id> 略有不同。\n4. SW1 示例：\nSW1(config)# no ip routing\nSW1# vlan database\nSW1(vlan)# vlan 2 name v2\nSW1(vlan)# vlan 3 name v3\nSW1(config)# int f1/1\nSW1(config-if)# switchport mode access\nSW1(config-if)# switchport access vlan 1\nSW1(config)# int f1/2\nSW1(config-if)# switchport mode access\nSW1(config-if)# switchport access vlan 3\nSW1(config)# int f1/3\nSW1(config-if)# switchport mode access\nSW1(config-if)# switchport access vlan 2\nSW1(config)# int f1/0\nSW1(config-if)# no shutdown\nSW1(config-if)# switchport mode trunk\nSW1(config-if)# switchport trunk encapsulation dot1q\nSW1(config-if)# switchport trunk native vlan 3\nSW1(config-if)# switchport trunk allowed vlan all\n5. PC 地址与验证：PC1-PC6 配置在 192.168.1.0/24，同 VLAN 主机可 ping 通，不同 VLAN 默认不能二层互通。抓 Trunk 链路 ICMP 包可看到 802.1Q 标签；Native VLAN 3 的报文不带 VLAN Tag。\n6. 保存与导出：所有交换机执行 write，稍等后用 Tools -> Import/Export 导出到 VLAN_BaseCfg。",
     "meta": {
       "meta": {
         "doc": 5,
@@ -8691,12 +8691,12 @@
   },
   {
     "id": "RS-EDU-3551359-COMP",
-    "source": "头歌路由交换配置题",
+    "source": "路由交换配置题",
     "chapter": "第9章 VLAN",
     "type": "comprehensive",
-    "stem": "VLAN 间通信实验：根据头歌“VLAN间的通信实验”，分别完成单臂路由和三层交换机 SVI 两种跨 VLAN 通信配置，并说明关键命令、网关规划和验证方法。",
+    "stem": "VLAN 间通信实验：分别完成单臂路由和三层交换机 SVI 两种跨 VLAN 通信配置，并说明关键命令、网关规划和验证方法。",
     "tags": [],
-    "analysis": "参考答案：\n1. 关卡结构：第1关 VLAN 间通信测试；第2关“利用单臂路由实现 VLAN 间通信”；第3关“利用三层交换实现 VLAN 间通信”。\n2. 单臂路由规划：SW1/SW2 上划分 VLAN 1、2、3；交换机互联口和 SW1 连接 R1 的接口配置为 Trunk；R1 物理接口不配置 IP，在子接口配置 802.1Q 封装和各 VLAN 网关。\n3. 单臂路由关键命令：\nSW1(config)# int f1/0\nSW1(config-if)# no shutdown\nSW1(config-if)# switchport mode trunk\nSW1(config-if)# switchport trunk allowed vlan all\nR1(config)# int f0/0\nR1(config-if)# no shutdown\nR1(config)# int f0/0.1\nR1(config-subif)# encapsulation dot1Q 1\nR1(config-subif)# ip add 192.168.1.254 255.255.255.0\nR1(config)# int f0/0.2\nR1(config-subif)# encapsulation dot1Q 2\nR1(config-subif)# ip add 192.168.2.254 255.255.255.0\nR1(config)# int f0/0.3\nR1(config-subif)# encapsulation dot1Q 3\nR1(config-subif)# ip add 192.168.3.254 255.255.255.0\nPC1/PC2/PC3 默认网关分别指向 192.168.1.254、192.168.2.254、192.168.3.254。\n4. 三层交换方案：在三层交换机 SW3 上启用三层转发，创建 VLAN 2/3，并配置 SVI 作为各 VLAN 网关：\nSW3(config)# ip routing\nSW3# vlan database\nSW3(vlan)# vlan 2 name v2\nSW3(vlan)# vlan 3 name v3\nSW3(config)# interface vlan 1\nSW3(config-if)# ip address 192.168.1.254 255.255.255.0\nSW3(config-if)# no shutdown\nSW3(config)# interface vlan 2\nSW3(config-if)# ip address 192.168.2.254 255.255.255.0\nSW3(config-if)# no shutdown\nSW3(config)# interface vlan 3\nSW3(config-if)# ip address 192.168.3.254 255.255.255.0\nSW3(config-if)# no shutdown\n5. 验证：show vlan-switch brief / show vlan brief、show int switchport、show ip interface brief、show ip route；PC1、PC2、PC3 之间互 ping。单臂路由导出 VLAN_SingleRoute，三层交换导出 VLAN_L3Switch。",
+    "analysis": "参考答案：\n1. 实验目标：第1关 VLAN 间通信测试；第2关“利用单臂路由实现 VLAN 间通信”；第3关“利用三层交换实现 VLAN 间通信”。\n2. 单臂路由规划：SW1/SW2 上划分 VLAN 1、2、3；交换机互联口和 SW1 连接 R1 的接口配置为 Trunk；R1 物理接口不配置 IP，在子接口配置 802.1Q 封装和各 VLAN 网关。\n3. 单臂路由关键命令：\nSW1(config)# int f1/0\nSW1(config-if)# no shutdown\nSW1(config-if)# switchport mode trunk\nSW1(config-if)# switchport trunk allowed vlan all\nR1(config)# int f0/0\nR1(config-if)# no shutdown\nR1(config)# int f0/0.1\nR1(config-subif)# encapsulation dot1Q 1\nR1(config-subif)# ip add 192.168.1.254 255.255.255.0\nR1(config)# int f0/0.2\nR1(config-subif)# encapsulation dot1Q 2\nR1(config-subif)# ip add 192.168.2.254 255.255.255.0\nR1(config)# int f0/0.3\nR1(config-subif)# encapsulation dot1Q 3\nR1(config-subif)# ip add 192.168.3.254 255.255.255.0\nPC1/PC2/PC3 默认网关分别指向 192.168.1.254、192.168.2.254、192.168.3.254。\n4. 三层交换方案：在三层交换机 SW3 上启用三层转发，创建 VLAN 2/3，并配置 SVI 作为各 VLAN 网关：\nSW3(config)# ip routing\nSW3# vlan database\nSW3(vlan)# vlan 2 name v2\nSW3(vlan)# vlan 3 name v3\nSW3(config)# interface vlan 1\nSW3(config-if)# ip address 192.168.1.254 255.255.255.0\nSW3(config-if)# no shutdown\nSW3(config)# interface vlan 2\nSW3(config-if)# ip address 192.168.2.254 255.255.255.0\nSW3(config-if)# no shutdown\nSW3(config)# interface vlan 3\nSW3(config-if)# ip address 192.168.3.254 255.255.255.0\nSW3(config-if)# no shutdown\n5. 验证：show vlan-switch brief / show vlan brief、show int switchport、show ip interface brief、show ip route；PC1、PC2、PC3 之间互 ping。单臂路由导出 VLAN_SingleRoute，三层交换导出 VLAN_L3Switch。",
     "meta": {
       "meta": {
         "doc": 5,
@@ -8712,12 +8712,12 @@
   },
   {
     "id": "RS-EDU-3551357-COMP",
-    "source": "头歌路由交换配置题",
+    "source": "路由交换配置题",
     "chapter": "第8章 以太网交换机基础",
     "type": "comprehensive",
-    "stem": "交换机基础与端口安全：根据头歌“交换机的基本配置”任务列表，说明交换机二层转发原理、端口模式、端口镜像与端口安全配置思路；若考试以配置题出现，写出典型命令和排错验证命令。",
+    "stem": "交换机基础与端口安全：说明交换机二层转发原理、端口模式、端口镜像与端口安全配置思路；若考试以配置题出现，写出典型命令和排错验证命令。",
     "tags": [],
-    "analysis": "参考答案：\n1. 关卡结构：第1关“交换机基础知识测试题”；第2关“交换机基本配置”；第3关“镜像端口与端口安全性配置实验”。实际抓取时第2/3关左侧学习内容串到了 Java 数组练习，但任务标题和实验环境指向交换机配置题，因此只按网络配置题准备，不纳入 Java 内容。\n2. 二层交换核心：交换机根据源 MAC 学习 MAC 地址表，根据目的 MAC 查表转发；未知单播/广播/组播会泛洪；每个端口隔离冲突域，VLAN 隔离广播域。\n3. 基本配置：\nSwitch(config)# hostname SW1\nSwitch(config)# enable secret <password>\nSwitch(config)# line console 0\nSwitch(config-line)# password <password>\nSwitch(config-line)# login\nSwitch(config)# line vty 0 4\nSwitch(config-line)# login local\nSwitch(config-line)# transport input ssh\n4. 接口与 VLAN：\nSwitch(config)# interface f0/1\nSwitch(config-if)# switchport mode access\nSwitch(config-if)# switchport access vlan <id>\nSwitch(config-if)# speed auto\nSwitch(config-if)# duplex auto\n5. 端口镜像：\nSwitch(config)# monitor session 1 source interface f0/1\nSwitch(config)# monitor session 1 destination interface f0/2\n用抓包主机接目的端口验证镜像流量。\n6. 端口安全：\nSwitch(config-if)# switchport mode access\nSwitch(config-if)# switchport port-security\nSwitch(config-if)# switchport port-security maximum 1\nSwitch(config-if)# switchport port-security mac-address sticky\nSwitch(config-if)# switchport port-security violation shutdown\n7. 验证与排错：show mac address-table、show interfaces status、show running-config interface、show monitor session、show port-security、show port-security interface；若接口 err-disable，检查违规 MAC 数量和 violation 模式。",
+    "analysis": "参考答案：\n1. 实验目标：第1关“交换机基础知识测试题”；第2关“交换机基本配置”；第3关“镜像端口与端口安全性配置实验”。2. 二层交换核心：交换机根据源 MAC 学习 MAC 地址表，根据目的 MAC 查表转发；未知单播/广播/组播会泛洪；每个端口隔离冲突域，VLAN 隔离广播域。\n3. 基本配置：\nSwitch(config)# hostname SW1\nSwitch(config)# enable secret <password>\nSwitch(config)# line console 0\nSwitch(config-line)# password <password>\nSwitch(config-line)# login\nSwitch(config)# line vty 0 4\nSwitch(config-line)# login local\nSwitch(config-line)# transport input ssh\n4. 接口与 VLAN：\nSwitch(config)# interface f0/1\nSwitch(config-if)# switchport mode access\nSwitch(config-if)# switchport access vlan <id>\nSwitch(config-if)# speed auto\nSwitch(config-if)# duplex auto\n5. 端口镜像：\nSwitch(config)# monitor session 1 source interface f0/1\nSwitch(config)# monitor session 1 destination interface f0/2\n用抓包主机接目的端口验证镜像流量。\n6. 端口安全：\nSwitch(config-if)# switchport mode access\nSwitch(config-if)# switchport port-security\nSwitch(config-if)# switchport port-security maximum 1\nSwitch(config-if)# switchport port-security mac-address sticky\nSwitch(config-if)# switchport port-security violation shutdown\n7. 验证与排错：show mac address-table、show interfaces status、show running-config interface、show monitor session、show port-security、show port-security interface；若接口 err-disable，检查违规 MAC 数量和 violation 模式。",
     "meta": {
       "meta": {
         "doc": 5,
@@ -8733,12 +8733,12 @@
   },
   {
     "id": "RS-EDU-3551354-COMP",
-    "source": "头歌路由交换配置题",
+    "source": "路由交换配置题",
     "chapter": "第7章 BGP协议",
     "type": "comprehensive",
-    "stem": "BGP 属性操作实验：根据头歌“BGP属性操作实验”，说明 AS_PATH、NEXT_HOP、LOCAL_PREF、COMMUNITY、MED 的作用、典型配置命令、选路影响和验证方法。",
+    "stem": "BGP 属性操作实验：说明 AS_PATH、NEXT_HOP、LOCAL_PREF、COMMUNITY、MED 的作用、典型配置命令、选路影响和验证方法。",
     "tags": [],
-    "analysis": "参考答案：\n1. 关卡结构：第1关 BGP 路径属性基础；第2关 AS_PATH；第3关 NEXT_HOP；第4关 LOCAL_PREF；第5关 COMMUNITY；第6关 MED。\n2. AS_PATH：用于防环和影响跨 AS 选路，越短越优。过滤和 prepend 示例：\nR3(config)# ip as-path access-list 1 deny _65001_\nR3(config)# ip as-path access-list 1 permit .*\nR3(config)# router bgp 65005\nR3(config-router)# neighbor 192.168.4.5 filter-list 1 out\nR3(config)# ip as-path access-list 2 permit _65001_\nR3(config)# route-map chgPATH permit 10\nR3(config-route-map)# match as-path 2\nR3(config-route-map)# set as-path prepend 65005 65005 65005\nR3(config-router)# neighbor 192.168.4.5 route-map chgPATH out\n3. NEXT_HOP：BGP 路由下一跳必须在 IGP 中可达；IBGP 传递 EBGP 路由时常用 next-hop-self：\nneighbor <peer-ip> next-hop-self\n跨跳邻居按实验需要配置 ebgp-multihop。\n4. LOCAL_PREF：本 AS 内部出口优选，值越大越优，通常入方向 route-map 设置：\nroute-map PREFER_ISP1 permit 10\n set local-preference 200\nrouter bgp <as>\n neighbor <peer> route-map PREFER_ISP1 in\n5. COMMUNITY：对路由打标签，便于后续策略匹配；常见命令包括 set community、ip community-list、match community、send-community。\n6. MED：告诉相邻 AS 进入本 AS 的优先入口，值越小越优；常用 route-map set metric <value>。\n7. 验证：show ip bgp、show ip bgp <prefix>、show ip bgp summary、show ip bgp neighbors advertised-routes、show route-map、show ip as-path-access-list。",
+    "analysis": "参考答案：\n1. 实验目标：第1关 BGP 路径属性基础；第2关 AS_PATH；第3关 NEXT_HOP；第4关 LOCAL_PREF；第5关 COMMUNITY；第6关 MED。\n2. AS_PATH：用于防环和影响跨 AS 选路，越短越优。过滤和 prepend 示例：\nR3(config)# ip as-path access-list 1 deny _65001_\nR3(config)# ip as-path access-list 1 permit .*\nR3(config)# router bgp 65005\nR3(config-router)# neighbor 192.168.4.5 filter-list 1 out\nR3(config)# ip as-path access-list 2 permit _65001_\nR3(config)# route-map chgPATH permit 10\nR3(config-route-map)# match as-path 2\nR3(config-route-map)# set as-path prepend 65005 65005 65005\nR3(config-router)# neighbor 192.168.4.5 route-map chgPATH out\n3. NEXT_HOP：BGP 路由下一跳必须在 IGP 中可达；IBGP 传递 EBGP 路由时常用 next-hop-self：\nneighbor <peer-ip> next-hop-self\n跨跳邻居按实验需要配置 ebgp-multihop。\n4. LOCAL_PREF：本 AS 内部出口优选，值越大越优，通常入方向 route-map 设置：\nroute-map PREFER_ISP1 permit 10\n set local-preference 200\nrouter bgp <as>\n neighbor <peer> route-map PREFER_ISP1 in\n5. COMMUNITY：对路由打标签，便于后续策略匹配；常见命令包括 set community、ip community-list、match community、send-community。\n6. MED：告诉相邻 AS 进入本 AS 的优先入口，值越小越优；常用 route-map set metric <value>。\n7. 验证：show ip bgp、show ip bgp <prefix>、show ip bgp summary、show ip bgp neighbors advertised-routes、show route-map、show ip as-path-access-list。",
     "meta": {
       "meta": {
         "doc": 5,
@@ -8754,12 +8754,12 @@
   },
   {
     "id": "RS-EDU-3551355-COMP",
-    "source": "头歌路由交换配置题",
+    "source": "路由交换配置题",
     "chapter": "第7章 BGP协议",
     "type": "comprehensive",
-    "stem": "中小型企业网络 BGP 配置与规划：根据头歌“中小型企业网络BGP配置与规划”，完成接口地址、企业内网 OSPF/IBGP、企业到 ISP 的 EBGP、路由过滤和优先 ISP1 策略。",
+    "stem": "中小型企业网络 BGP 配置与规划：完成接口地址、企业内网 OSPF/IBGP、企业到 ISP 的 EBGP、路由过滤和优先 ISP1 策略。",
     "tags": [],
-    "analysis": "参考答案：\n1. 关卡结构：第1关配置路由器 IP 地址；第2关企业内网 OSPF 和 IBGP；第3关配置 EBGP 实现企业网与 Internet 互连；第4关配置路由过滤；第5关配置策略路由，使企业访问 Internet 优先选择 ISP1。\n2. 接口地址示例：\nRTA(config)# int f0/0\nRTA(config-if)# ip add 192.168.12.1 255.255.255.252\nRTA(config-if)# no shutdown\nRTA(config)# int f0/1\nRTA(config-if)# ip add 192.168.12.5 255.255.255.252\nRTA(config)# int lo0\nRTA(config-if)# ip add 1.1.1.1 255.255.255.255\n3. 企业内网：运行 OSPF 发布内部链路和 loopback，使 IBGP 更新源可达；IBGP 邻居可用 loopback 建立，配置 update-source loopback 和必要的 next-hop-self。\n4. EBGP：企业边界路由器与 ISP 直连口建立 EBGP：\nrouter bgp <enterprise-as>\n neighbor <isp-peer-ip> remote-as <isp-as>\n network <enterprise-prefix> mask <mask>\n5. 路由过滤：用 prefix-list / distribute-list / filter-list 控制对 ISP 的发布和接收，避免企业成为 ISP1 与 ISP2 之间的中转 AS：\nip prefix-list ONLY_LOCAL permit <enterprise-prefix>/<len>\nroute-map EXPORT_ONLY_LOCAL permit 10\n match ip address prefix-list ONLY_LOCAL\nrouter bgp <as>\n neighbor <isp-peer> route-map EXPORT_ONLY_LOCAL out\n6. 优先 ISP1：用 route-map 提高从 ISP1 学到路由的 LOCAL_PREF：\nroute-map PREFER_ISP1 permit 10\n set local-preference 200\nrouter bgp <as>\n neighbor <isp1-peer> route-map PREFER_ISP1 in\n7. 验证：show ip interface brief、show ip ospf neighbor、show ip route、show ip bgp summary、show ip bgp、show route-map；所有路由器 write 后导出 BGP_Prj1。",
+    "analysis": "参考答案：\n1. 实验目标：第1关配置路由器 IP 地址；第2关企业内网 OSPF 和 IBGP；第3关配置 EBGP 实现企业网与 Internet 互连；第4关配置路由过滤；第5关配置策略路由，使企业访问 Internet 优先选择 ISP1。\n2. 接口地址示例：\nRTA(config)# int f0/0\nRTA(config-if)# ip add 192.168.12.1 255.255.255.252\nRTA(config-if)# no shutdown\nRTA(config)# int f0/1\nRTA(config-if)# ip add 192.168.12.5 255.255.255.252\nRTA(config)# int lo0\nRTA(config-if)# ip add 1.1.1.1 255.255.255.255\n3. 企业内网：运行 OSPF 发布内部链路和 loopback，使 IBGP 更新源可达；IBGP 邻居可用 loopback 建立，配置 update-source loopback 和必要的 next-hop-self。\n4. EBGP：企业边界路由器与 ISP 直连口建立 EBGP：\nrouter bgp <enterprise-as>\n neighbor <isp-peer-ip> remote-as <isp-as>\n network <enterprise-prefix> mask <mask>\n5. 路由过滤：用 prefix-list / distribute-list / filter-list 控制对 ISP 的发布和接收，避免企业成为 ISP1 与 ISP2 之间的中转 AS：\nip prefix-list ONLY_LOCAL permit <enterprise-prefix>/<len>\nroute-map EXPORT_ONLY_LOCAL permit 10\n match ip address prefix-list ONLY_LOCAL\nrouter bgp <as>\n neighbor <isp-peer> route-map EXPORT_ONLY_LOCAL out\n6. 优先 ISP1：用 route-map 提高从 ISP1 学到路由的 LOCAL_PREF：\nroute-map PREFER_ISP1 permit 10\n set local-preference 200\nrouter bgp <as>\n neighbor <isp1-peer> route-map PREFER_ISP1 in\n7. 验证：show ip interface brief、show ip ospf neighbor、show ip route、show ip bgp summary、show ip bgp、show route-map；所有路由器 write 后导出 BGP_Prj1。",
     "meta": {
       "meta": {
         "doc": 5,
@@ -8775,12 +8775,12 @@
   },
   {
     "id": "RS-EDU-3551356-COMP",
-    "source": "头歌路由交换配置题",
+    "source": "路由交换配置题",
     "chapter": "第7章 BGP协议",
     "type": "comprehensive",
-    "stem": "大型企业网络 ISP 接入：根据头歌“大型企业网络的ISP接入”，设计企业内部 OSPF、BGP 联盟/路由反射和 ISP 接入方案，说明如何降低 IBGP 全互联复杂度并写出关键配置。",
+    "stem": "大型企业网络 ISP 接入：设计企业内部 OSPF、BGP 联盟/路由反射和 ISP 接入方案，说明如何降低 IBGP 全互联复杂度并写出关键配置。",
     "tags": [],
-    "analysis": "参考答案：\n1. 关卡结构：第1关路由联盟与反射基础；第2关企业网络 IGP 路由配置；第3关路由联盟与反射的规则与配置。\n2. IGP 底座：企业内部运行 OSPF，发布路由器互联链路和 loopback，保证所有 BGP router-id / update-source 可达。示例：\nRTE(config)# router ospf 1\nRTE(config-router)# network 5.5.5.5 0.0.0.0 area 0\nRTE(config-router)# network 192.168.0.36 0.0.0.3 area 0\n3. ISP 与边缘静态路由示例：\nRTA(config)# ip route 13.13.13.13 255.255.255.255 100.1.1.2\nRTM(config)# ip route 1.1.1.1 255.255.255.255 100.1.1.1\nRTH(config)# ip route 14.14.14.14 255.255.255.255 200.1.1.2\nRTN(config)# ip route 8.8.8.8 255.255.255.255 200.1.1.1\n4. 联盟：把一个大型 AS 拆成多个 Sub-AS，对外仍呈现统一 AS，降低 IBGP 全互联规模：\nrouter bgp <sub-as>\n bgp confederation identifier <public-as>\n bgp confederation peers <other-sub-as>\n neighbor <peer-loopback> remote-as <sub-as-or-peer-sub-as>\n neighbor <peer-loopback> update-source lo0\n5. 路由反射：在较大的 Sub-AS 中选择 RR，让客户机只与 RR 建 IBGP：\nrouter bgp <as>\n neighbor <client-loopback> remote-as <same-as>\n neighbor <client-loopback> update-source lo0\n neighbor <client-loopback> route-reflector-client\n6. 规划要点：BGP 邻居使用 loopback 地址，loopback 也作为 BGP router-id；先完成 OSPF/静态路由可达性，再建立 BGP；设备较多时分批启动。\n7. 验证：show ip route、show ip ospf neighbor、show ip bgp summary、show ip bgp、show running-config | section bgp；完成后 write 并导出 BGP_Prj2。",
+    "analysis": "参考答案：\n1. 实验目标：第1关路由联盟与反射基础；第2关企业网络 IGP 路由配置；第3关路由联盟与反射的规则与配置。\n2. IGP 底座：企业内部运行 OSPF，发布路由器互联链路和 loopback，保证所有 BGP router-id / update-source 可达。示例：\nRTE(config)# router ospf 1\nRTE(config-router)# network 5.5.5.5 0.0.0.0 area 0\nRTE(config-router)# network 192.168.0.36 0.0.0.3 area 0\n3. ISP 与边缘静态路由示例：\nRTA(config)# ip route 13.13.13.13 255.255.255.255 100.1.1.2\nRTM(config)# ip route 1.1.1.1 255.255.255.255 100.1.1.1\nRTH(config)# ip route 14.14.14.14 255.255.255.255 200.1.1.2\nRTN(config)# ip route 8.8.8.8 255.255.255.255 200.1.1.1\n4. 联盟：把一个大型 AS 拆成多个 Sub-AS，对外仍呈现统一 AS，降低 IBGP 全互联规模：\nrouter bgp <sub-as>\n bgp confederation identifier <public-as>\n bgp confederation peers <other-sub-as>\n neighbor <peer-loopback> remote-as <sub-as-or-peer-sub-as>\n neighbor <peer-loopback> update-source lo0\n5. 路由反射：在较大的 Sub-AS 中选择 RR，让客户机只与 RR 建 IBGP：\nrouter bgp <as>\n neighbor <client-loopback> remote-as <same-as>\n neighbor <client-loopback> update-source lo0\n neighbor <client-loopback> route-reflector-client\n6. 规划要点：BGP 邻居使用 loopback 地址，loopback 也作为 BGP router-id；先完成 OSPF/静态路由可达性，再建立 BGP；设备较多时分批启动。\n7. 验证：show ip route、show ip ospf neighbor、show ip bgp summary、show ip bgp、show running-config | section bgp；完成后 write 并导出 BGP_Prj2。",
     "meta": {
       "meta": {
         "doc": 5,
