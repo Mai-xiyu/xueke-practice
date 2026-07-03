@@ -36,7 +36,15 @@ function assertArray(value, message) {
   if (!Array.isArray(value)) fail(message);
 }
 
+function assertNoGarbledText(subject, question) {
+  const text = JSON.stringify(question);
+  if (/\?{3,}/.test(text)) {
+    fail(`${subject.id}: ${question.id} contains garbled placeholder text`);
+  }
+}
+
 function checkQuestion(subject, question, index, seen) {
+  assertNoGarbledText(subject, question);
   for (const key of ["id", "source", "chapter", "type", "stem"]) {
     if (!question[key]) fail(`${subject.id}: question ${index + 1} missing ${key}`);
   }
