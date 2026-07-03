@@ -1,4 +1,5 @@
 import { answerText, isAnswerCorrect, isChoice, isObjective, TYPE_LABEL } from "../lib/questions";
+import { MASTERY_LABEL, masteryLevel } from "../lib/progress";
 import type { Question, QuestionProgress } from "../lib/types";
 import { MarkdownText } from "./MarkdownText";
 
@@ -19,6 +20,7 @@ interface QuestionCardProps {
   showFavorite?: boolean;
   showReset?: boolean;
   allowReset?: boolean;
+  showUncertain?: boolean;
   detail?: QuestionProgress;
   memoryHintDraft: string;
   onChange: (value: unknown) => void;
@@ -26,6 +28,7 @@ interface QuestionCardProps {
   onSaveMemoryHint: () => void;
   onSubmit: () => void;
   onShowAnalysis: () => void;
+  onUncertain?: () => void;
   onReset: () => void;
   onFavorite: () => void;
   onPrev: () => void;
@@ -39,6 +42,36 @@ function optionEntries(question: Question) {
 function selected(value: unknown, key: string): boolean {
   return Array.isArray(value) ? value.includes(key) : value === key;
 }
+
+// Extracts per-option reasons from analyses written as "A：xxx" lines.
+function optionReasons(question: Question): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (!question.analysis || !question.options) return out;
+  question.analysis.split(/\n+/).forEach((line) => {
+    const match = line.trim().match(/^([A-H])\s*[：:、.．]\s*(.+)$/);
+    if (!match || !(match[1] in (question.options || {}))) return;
+    const reason = match[2].trim();
+    if (/^(正确|错误)[。.!！]?$/.test(reason)) return;
+    out[match[1]] = reason;
+  });
+  return out;
+}
+
+// First sentence of the analysis, used as a short hint before the full analysis is expanded.
+function analysisSnippet(analysis?: string): string {
+  const text = String(analysis || "").replace(/\s+/g, " ").trim();
+  if (!text) return "";
+  const match = text.match(/^[^。！？!?]*[。！？!?]?/);
+  const first = (match ? match[0] : text).trim();
+  if (!first) return "";
+  return first.length > 90 ? `${first.slice(0, 88)}…` : first;
+}
+
+const MASTERY_CLASS: Record<string, string> = {
+  weak: "badge-danger",
+  learning: "badge-info",
+  mastered: "badge-success"
+};
 
 export function QuestionCard(props: QuestionCardProps) {
   const {
@@ -57,12 +90,17 @@ export function QuestionCard(props: QuestionCardProps) {
     showSubmit = true,
     showFavorite = true,
     showReset = true,
-    allowReset = true
+    allowReset = true,
+    showUncertain = false
   } = props;
   const showAnswer = reveal;
   const correct = isAnswerCorrect(question, value);
   const canShowMemoryHint = showAnalysis && props.detail?.memoryHint;
   const imageIsReference = question.meta?.correctedFromImage === true;
+  const mastery = masteryLevel(props.detail);
+  const needsReview = question.meta?.needsReview === true;
+  const reasons = showAnswer ? optionReasons(question) : {};
+  const snippet = showAnswer && !showAnalysis ? analysisSnippet(question.analysis) : "";
 
   return (
     <article className="question-card">
@@ -71,9 +109,11 @@ export function QuestionCard(props: QuestionCardProps) {
         {question.source ? <span>{question.source}</span> : null}
         {question.chapter ? <span>{question.chapter}</span> : null}
         <span>{TYPE_LABEL[question.type]}</span>
+        {mastery !== "new" ? <span className={MASTERY_CLASS[mastery]}>{MASTERY_LABEL[mastery]}</span> : null}
         {answered ? <span className={wrong ? "badge-danger" : "badge-success"}>{wrong ? "上次错误" : "已做"}</span> : null}
         {!answered && pending ? <span className="badge-info">已选择</span> : null}
         {favorite ? <span className="badge-warning">已收藏</span> : null}
+        {needsReview ? <span className="badge-warning" title="该题在题库审计中被标记，答案或选项可能有误">待人工复核</span> : null}
       </div>
       {canShowMemoryHint ? <p className="memory-hint">你的记忆提示：{props.detail?.memoryHint}</p> : null}
       <div className="question-stem">
@@ -95,6 +135,7 @@ export function QuestionCard(props: QuestionCardProps) {
           {optionEntries(question).map(([key, text]) => {
             const picked = selected(value, key);
             const isRight = question.correct?.includes(key);
+            const reason = showAnswer && (isRight || picked) ? reasons[key] : "";
             const className = [
               "option",
               picked ? "picked" : "",
@@ -120,6 +161,7 @@ export function QuestionCard(props: QuestionCardProps) {
                 <b className="option-letter">{key}</b>
                 <div className="option-text">
                   <MarkdownText value={text} compact />
+                  {reason ? <span className="option-reason"><MarkdownText value={reason} compact /></span> : null}
                 </div>
                 {showAnswer && isRight ? <em>正确答案</em> : null}
                 {showAnswer && picked && !isRight ? <em>你的选择</em> : null}
@@ -133,13 +175,32 @@ export function QuestionCard(props: QuestionCardProps) {
           value={String(value ?? "")}
           readOnly={locked}
           onChange={(event) => props.onChange(event.target.value)}
-          placeholder={question.type === "fill" ? "填写答案" : "写下你的答案或思路"}
+          placeholder={question.type === "fill" ? "先主动回忆再填写答案" : "先写下你的答案或思路，再对照解析"}
         />
       )}
 
+      {showAnswer && !showAnalysis && isObjective(question.type) ? (
+        <section className={`quick-feedback ${correct ? "ok" : "bad"}`}>
+          <strong>{correct ? "答对了" : "答错了"}</strong>
+          <span className="quick-feedback__answer">
+            正确答案：<MarkdownText value={answerText(question) || "见解析"} compact />
+          </span>
+          {snippet ? (
+            <span className="quick-feedback__hint">
+              <MarkdownText value={snippet} compact />
+            </span>
+          ) : null}
+        </section>
+      ) : null}
+
       <div className="question-actions">
-        {showSubmit ? <button type="button" className="primary" onClick={props.onSubmit}>提交/查看解析</button> : null}
-        {showAnalysisButton ? <button type="button" className="primary" onClick={props.onShowAnalysis}>答案解析</button> : null}
+        {showSubmit ? <button type="button" className="primary" onClick={props.onSubmit}>提交答案</button> : null}
+        {showUncertain && !showAnswer ? (
+          <button type="button" className="uncertain" onClick={props.onUncertain} title="不计对错，加入待复习队列并显示答案">
+            我不确定
+          </button>
+        ) : null}
+        {showAnalysisButton ? <button type="button" className={showAnswer ? "" : "primary"} onClick={props.onShowAnalysis}>答案解析</button> : null}
         {showFavorite ? <button type="button" onClick={props.onFavorite}>{favorite ? "取消收藏" : "收藏本题"}</button> : null}
         {showReset ? <button type="button" onClick={props.onReset} disabled={!allowReset}>重做本题</button> : null}
         <button type="button" onClick={props.onPrev}>上一题</button>

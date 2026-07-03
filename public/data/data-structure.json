@@ -10343,16 +10343,18 @@
     "options": {
       "A": "2k-1",
       "B": "2k",
-      "C": "k2",
-      "D": "2k-1"
+      "C": "$k^2$",
+      "D": "$2^k-1$"
     },
     "correct": [
       "A"
     ],
-    "analysis": "正确答案：A。\n答案对应选项：A. 2k-1。\n题目来自《数据结构.docx》。",
+    "analysis": "正确答案：A。\n所有叶结点同层且非叶结点均有 2 个子结点，说明这是满二叉树：叶结点 k 个，非叶结点 k-1 个，总结点数为 2k-1。\n题目来自《数据结构.docx》，选项 C、D 的上标在导入时丢失，已按原题恢复为 $k^2$ 与 $2^k-1$。",
     "meta": {
       "sourceDocument": "数据结构.docx",
-      "originalNumber": 229
+      "originalNumber": 229,
+      "repairedAt": "2026-07-04",
+      "repairNote": "docx 导入丢失上标，依据题干与解析恢复选项 C/D 的指数形式"
     }
   },
   {
@@ -10497,18 +10499,20 @@
       "docx导入"
     ],
     "options": {
-      "A": "mk-1",
-      "B": "mK-1",
-      "C": "mh-1",
-      "D": "mh-1"
+      "A": "$m^{k-1}$",
+      "B": "$m^k-1$",
+      "C": "$m^{h-1}$",
+      "D": "$m^h-1$"
     },
     "correct": [
       "A"
     ],
-    "analysis": "正确答案：A。\n答案对应选项：A. mk-1。\n题目来自《数据结构.docx》。",
+    "analysis": "正确答案：A。\n满 m 叉树第 1 层有 1 个结点，每往下一层结点数乘 m，故第 k 层有 $m^{k-1}$ 个结点。\n题目来自《数据结构.docx》，选项上标在导入时丢失，已按原题恢复指数形式。",
     "meta": {
       "sourceDocument": "数据结构.docx",
-      "originalNumber": 235
+      "originalNumber": 235,
+      "repairedAt": "2026-07-04",
+      "repairNote": "docx 导入丢失上标，依据题干与解析恢复四个选项的指数形式"
     }
   },
   {

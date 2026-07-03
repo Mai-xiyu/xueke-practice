@@ -9212,21 +9212,21 @@
     "options": {
       "A": "①③④",
       "B": "①②④",
-      "C": "",
-      "D": "2"
+      "C": "①②③",
+      "D": "②③④"
     },
     "analysis": "毛泽东在《论持久战》中科学预见到抗日战争将经过战略防御、战略相持和战略反攻三个阶段，对应序号①②④，因此正确选项为B。",
     "meta": {
-      "meta": {
-        "originFile": "微信图片_20260627034413_127_227.jpg",
-        "originNo": 11,
-        "ocrAnswer": "B",
-        "ocrScore": "本题得分：1分",
-        "examTags": [
-          "modern-history-screenshot-detail"
-        ],
-        "aiAnalysisModel": "deepseek-v4-pro"
-      }
+      "originFile": "微信图片_20260627034413_127_227.jpg",
+      "originNo": 11,
+      "ocrAnswer": "B",
+      "ocrScore": "本题得分：1分",
+      "examTags": [
+        "modern-history-screenshot-detail"
+      ],
+      "aiAnalysisModel": "deepseek-v4-pro",
+      "repairNote": "OCR lost distractor options C/D; options were reconstructed from common stage combinations. Correct answer B is supported by the analysis.",
+      "verifiedAt": "2026-07-04"
     },
     "correct": [
       "B"

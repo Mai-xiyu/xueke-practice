@@ -8,6 +8,7 @@
     "build": "vite build && node tools/generate-legacy-pages.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "validate": "node tools/validate-site.mjs",
+    "audit": "node tools/audit-question-banks.mjs",
     "import:markdown": "node tools/import-markdown-bank.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

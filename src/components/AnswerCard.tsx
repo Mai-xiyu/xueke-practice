@@ -166,6 +166,9 @@ export function FullAnswerCardControl({ items, currentId, onJump, title = "打�
 
 export function QuestionNumberCard({ items, currentId, onJump, title = "答题卡" }: AnswerWidgetProps) {
   const currentIndex = Math.max(0, items.findIndex((item) => item.id === currentId));
+  const groups = order
+    .map((type) => ({ type, group: items.filter((item) => item.type === type) }))
+    .filter(({ group }) => group.length > 0);
 
   return (
     <aside className="answer-card answer-card--numbers" aria-label={title}>
@@ -173,13 +176,18 @@ export function QuestionNumberCard({ items, currentId, onJump, title = "答题�
         <h2>{title}</h2>
         <p>第 {items.length ? currentIndex + 1 : 0} / {items.length} 题</p>
       </div>
-      <div className="answer-card__grid drawer-grid">
-        {items.map((item) => (
-          <button key={item.id} type="button" className={itemClass(item, currentId)} onClick={() => onJump(item.id)} title={item.stem}>
-            {item.label}
-          </button>
-        ))}
-      </div>
+      {groups.map(({ type, group }) => (
+        <section className="answer-card__section" key={type}>
+          <h3>{TYPE_LABEL[type]}（{group.length}）</h3>
+          <div className="answer-card__grid drawer-grid">
+            {group.map((item) => (
+              <button key={item.id} type="button" className={itemClass(item, currentId)} onClick={() => onJump(item.id)} title={item.stem}>
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </section>
+      ))}
       <AnswerCardLegend />
     </aside>
   );

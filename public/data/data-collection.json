@@ -347,7 +347,12 @@
     "type": "short",
     "stem": "什么是 XPath？举例说明两种常用表达式。",
     "tags": [],
-    "answer": "XPath 是在 XML/HTML 树形文档中定位节点或节点集的路径表达式语言。常用表达式：//div 选取所有 div；//a/@href 选取所有 a 标签的 href 属性；//input[@id=\"kw\"]/@placeholder 按属性定位输入框并取属性值。"
+    "answer": "XPath 是在 XML/HTML 树形文档中定位节点或节点集的路径表达式语言。常用表达式：//div 选取所有 div；//a/@href 选取所有 a 标签的 href 属性；//input[@id=\"kw\"]/@placeholder 按属性定位输入框并取属性值。",
+    "analysis": "XPath 是在 XML/HTML 树形文档中定位节点或节点集的路径表达式语言。常用表达式：//div 选取所有 div；//a/@href 选取所有 a 标签的 href 属性；//input[@id=\"kw\"]/@placeholder 按属性定位输入框并取属性值。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "A-Q2",
@@ -356,7 +361,12 @@
     "type": "short",
     "stem": "简述爬虫的概念及主要功能。",
     "tags": [],
-    "answer": "爬虫是按照一定规则自动访问网络资源并采集数据的程序。主要功能包括：发送 HTTP 请求、获取页面或接口响应、解析 HTML/JSON/XML、抽取目标字段、翻页/调度任务、去重、保存到文件或数据库。"
+    "answer": "爬虫是按照一定规则自动访问网络资源并采集数据的程序。主要功能包括：发送 HTTP 请求、获取页面或接口响应、解析 HTML/JSON/XML、抽取目标字段、翻页/调度任务、去重、保存到文件或数据库。",
+    "analysis": "爬虫是按照一定规则自动访问网络资源并采集数据的程序。主要功能包括：发送 HTTP 请求、获取页面或接口响应、解析 HTML/JSON/XML、抽取目标字段、翻页/调度任务、去重、保存到文件或数据库。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "A-Q3",
@@ -365,7 +375,12 @@
     "type": "short",
     "stem": "列举 feapder 框架的内置爬虫，并简述特点。",
     "tags": [],
-    "answer": "AirSpider：轻量级，适合简单小规模任务；Spider：分布式，通常依赖 Redis，适合大规模采集、断点续爬；TaskSpider：任务型爬虫，可从任务表/队列获取种子任务；BatchSpider：批次/周期性爬虫，适合定时增量或批量更新任务。部分旧资料可能只写 AirSpider、Spider、BatchSpider。"
+    "answer": "AirSpider：轻量级，适合简单小规模任务；Spider：分布式，通常依赖 Redis，适合大规模采集、断点续爬；TaskSpider：任务型爬虫，可从任务表/队列获取种子任务；BatchSpider：批次/周期性爬虫，适合定时增量或批量更新任务。部分旧资料可能只写 AirSpider、Spider、BatchSpider。",
+    "analysis": "AirSpider：轻量级，适合简单小规模任务；Spider：分布式，通常依赖 Redis，适合大规模采集、断点续爬；TaskSpider：任务型爬虫，可从任务表/队列获取种子任务；BatchSpider：批次/周期性爬虫，适合定时增量或批量更新任务。部分旧资料可能只写 AirSpider、Spider、BatchSpider。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "A-Q4",
@@ -374,7 +389,12 @@
     "type": "short",
     "stem": "简述 Scrapy 的优点。",
     "tags": [],
-    "answer": "Scrapy 是高层次爬虫框架，优点包括：异步并发请求、调度器和下载器分离、Spider 负责解析、Item Pipeline 统一处理数据、支持中间件、支持 XPath/CSS Selector、可扩展、日志和命令行工具完善。"
+    "answer": "Scrapy 是高层次爬虫框架，优点包括：异步并发请求、调度器和下载器分离、Spider 负责解析、Item Pipeline 统一处理数据、支持中间件、支持 XPath/CSS Selector、可扩展、日志和命令行工具完善。",
+    "analysis": "Scrapy 是高层次爬虫框架，优点包括：异步并发请求、调度器和下载器分离、Spider 负责解析、Item Pipeline 统一处理数据、支持中间件、支持 XPath/CSS Selector、可扩展、日志和命令行工具完善。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "A-C1",
@@ -391,9 +411,12 @@
           "xpath",
           "placeholder"
         ]
-      }
+      },
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
     },
-    "answer": "import requests\nfrom lxml import etree\n\nurl = \"https://www.baidu.com\"\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0\"\n}\nresp = requests.get(url, headers=headers, timeout=10)\nresp.encoding = resp.apparent_encoding\nhtml = etree.HTML(resp.text)\nplaceholder = html.xpath('//input[@id=\"kw\"]/@placeholder')[0]\nprint(placeholder)"
+    "answer": "import requests\nfrom lxml import etree\n\nurl = \"https://www.baidu.com\"\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0\"\n}\nresp = requests.get(url, headers=headers, timeout=10)\nresp.encoding = resp.apparent_encoding\nhtml = etree.HTML(resp.text)\nplaceholder = html.xpath('//input[@id=\"kw\"]/@placeholder')[0]\nprint(placeholder)",
+    "analysis": "import requests\nfrom lxml import etree\n\nurl = \"https://www.baidu.com\"\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0\"\n}\nresp = requests.get(url, headers=headers, timeout=10)\nresp.encoding = resp.apparent_encoding\nhtml = etree.HTML(resp.text)\nplaceholder = html.xpath('//input[@id=\"kw\"]/@placeholder')[0]\nprint(placeholder)"
   },
   {
     "id": "A-C2",
@@ -402,7 +425,12 @@
     "type": "short",
     "stem": "请使用图或自然语言描述 Scrapy 框架工作流程。",
     "tags": [],
-    "answer": "核心流程：Spider 产生初始 Request → Engine 交给 Scheduler 入队 → Scheduler 按策略出队 → Engine 交给 Downloader 下载 → Response 回到 Engine → Engine 交给 Spider 解析 → Spider 产出新的 Request 或 Item → Request 回到 Scheduler，Item 进入 Item Pipeline 清洗、去重、保存。Downloader Middleware/Spider Middleware 分别在下载和解析前后扩展处理。"
+    "answer": "核心流程：Spider 产生初始 Request → Engine 交给 Scheduler 入队 → Scheduler 按策略出队 → Engine 交给 Downloader 下载 → Response 回到 Engine → Engine 交给 Spider 解析 → Spider 产出新的 Request 或 Item → Request 回到 Scheduler，Item 进入 Item Pipeline 清洗、去重、保存。Downloader Middleware/Spider Middleware 分别在下载和解析前后扩展处理。",
+    "analysis": "核心流程：Spider 产生初始 Request → Engine 交给 Scheduler 入队 → Scheduler 按策略出队 → Engine 交给 Downloader 下载 → Response 回到 Engine → Engine 交给 Spider 解析 → Spider 产出新的 Request 或 Item → Request 回到 Scheduler，Item 进入 Item Pipeline 清洗、去重、保存。Downloader Middleware/Spider Middleware 分别在下载和解析前后扩展处理。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "B-S1",
@@ -597,7 +625,7 @@
       "C": "IP地址",
       "D": "服务器"
     },
-    "analysis": "URL 的 host 是主机名/服务器地址，可能是域名也可能是 IP。四个选项中“服务器”更贴近。\n若老师把 Host 简化为 IP 地址，可本地改答案为 C。\nA：错误。\nB：错误。\nC：错误。\nD：正确。",
+    "analysis": "URL 的 host 是主机名或服务器地址，可能是域名也可能是 IP。四个选项中“服务器”更贴近。若教师采用“Host 可解析为 IP 地址”的简化口径，则 C 也可能被视为相关表述；本题按原解析保留 D。\nA：错误。\nB：错误。\nC：错误。\nD：正确。",
     "correct": [
       "D"
     ]
@@ -753,7 +781,12 @@
     "type": "short",
     "stem": "请简单介绍什么是原生类库 lxml，并简述其功能。",
     "tags": [],
-    "answer": "lxml 是 Python 中高性能的 HTML/XML 解析库，底层基于 libxml2/libxslt。它可将网页解析为树形结构，支持 XPath、CSS 选择器、节点遍历、属性提取、文本提取、XML/HTML 清洗与格式化。"
+    "answer": "lxml 是 Python 中高性能的 HTML/XML 解析库，底层基于 libxml2/libxslt。它可将网页解析为树形结构，支持 XPath、CSS 选择器、节点遍历、属性提取、文本提取、XML/HTML 清洗与格式化。",
+    "analysis": "lxml 是 Python 中高性能的 HTML/XML 解析库，底层基于 libxml2/libxslt。它可将网页解析为树形结构，支持 XPath、CSS 选择器、节点遍历、属性提取、文本提取、XML/HTML 清洗与格式化。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "B-Q2",
@@ -762,7 +795,12 @@
     "type": "short",
     "stem": "简述如何处理网站的分页爬取。",
     "tags": [],
-    "answer": "常见方法：观察 URL 参数中的 page/offset/start；构造循环或递归请求；解析“下一页”链接；设置终止条件（无数据、无下一页、达到最大页）；对 URL 或数据去重；控制请求频率；异常重试；最后统一保存数据。"
+    "answer": "常见方法：观察 URL 参数中的 page/offset/start；构造循环或递归请求；解析“下一页”链接；设置终止条件（无数据、无下一页、达到最大页）；对 URL 或数据去重；控制请求频率；异常重试；最后统一保存数据。",
+    "analysis": "常见方法：观察 URL 参数中的 page/offset/start；构造循环或递归请求；解析“下一页”链接；设置终止条件（无数据、无下一页、达到最大页）；对 URL 或数据去重；控制请求频率；异常重试；最后统一保存数据。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "B-Q3",
@@ -771,7 +809,12 @@
     "type": "short",
     "stem": "简述 feapder 框架中 Spider 爬虫及 BatchSpider 的区别。",
     "tags": [],
-    "answer": "Spider 面向分布式、持续采集，通常适合大规模任务、断点续爬和自动入库；BatchSpider 面向周期性批次任务，会按批次/时间周期组织采集，适合定时增量或周期性全量更新。"
+    "answer": "Spider 面向分布式、持续采集，通常适合大规模任务、断点续爬和自动入库；BatchSpider 面向周期性批次任务，会按批次/时间周期组织采集，适合定时增量或周期性全量更新。",
+    "analysis": "Spider 面向分布式、持续采集，通常适合大规模任务、断点续爬和自动入库；BatchSpider 面向周期性批次任务，会按批次/时间周期组织采集，适合定时增量或周期性全量更新。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "B-Q4",
@@ -780,7 +823,12 @@
     "type": "short",
     "stem": "列举三种常见的数据存储方式及其适用场景。",
     "tags": [],
-    "answer": "CSV/Excel：适合小规模、表格型、人工查看数据；JSON：适合半结构化、键值对、接口数据；MySQL/PostgreSQL：适合结构化、强一致、可查询关系数据；MongoDB：适合文档型半结构化数据；Redis：适合缓存、去重、队列和临时状态。"
+    "answer": "CSV/Excel：适合小规模、表格型、人工查看数据；JSON：适合半结构化、键值对、接口数据；MySQL/PostgreSQL：适合结构化、强一致、可查询关系数据；MongoDB：适合文档型半结构化数据；Redis：适合缓存、去重、队列和临时状态。",
+    "analysis": "CSV/Excel：适合小规模、表格型、人工查看数据；JSON：适合半结构化、键值对、接口数据；MySQL/PostgreSQL：适合结构化、强一致、可查询关系数据；MongoDB：适合文档型半结构化数据；Redis：适合缓存、去重、队列和临时状态。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "B-C1",
@@ -797,9 +845,12 @@
           "storeCity",
           "storeProvince"
         ]
-      }
+      },
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
     },
-    "answer": "import requests\n\nurl = \"https://www.tissotwatches.cn/physicalstore/index/ajaxSearchStore/\"\nparams = {\n    \"storeCity\": \"苏州\",\n    \"storeProvince\": \"江苏\",\n}\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0\"\n}\nresp = requests.get(url, params=params, headers=headers, timeout=10)\nresp.encoding = resp.apparent_encoding\nprint(resp.text)"
+    "answer": "import requests\n\nurl = \"https://www.tissotwatches.cn/physicalstore/index/ajaxSearchStore/\"\nparams = {\n    \"storeCity\": \"苏州\",\n    \"storeProvince\": \"江苏\",\n}\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0\"\n}\nresp = requests.get(url, params=params, headers=headers, timeout=10)\nresp.encoding = resp.apparent_encoding\nprint(resp.text)",
+    "analysis": "import requests\n\nurl = \"https://www.tissotwatches.cn/physicalstore/index/ajaxSearchStore/\"\nparams = {\n    \"storeCity\": \"苏州\",\n    \"storeProvince\": \"江苏\",\n}\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0\"\n}\nresp = requests.get(url, params=params, headers=headers, timeout=10)\nresp.encoding = resp.apparent_encoding\nprint(resp.text)"
   },
   {
     "id": "B-C2",
@@ -817,9 +868,12 @@
           "Item",
           "item.db_save"
         ]
-      }
+      },
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
     },
-    "answer": "import feapder\nfrom feapder import Item\n\nclass ZhihuHotItem(Item):\n    __tablename__ = \"zhihu_hot\"\n    __unique_key__ = [\"title\"]\n\nclass ZhihuHotSpider(feapder.AirSpider):\n    def start_requests(self):\n        yield feapder.Request(\n            \"https://www.zhihu.com/hot\",\n            headers={\"User-Agent\": \"Mozilla/5.0\"},\n        )\n\n    def parse(self, request, response):\n        # XPath/正则按实际页面结构调整；考试可写自然语言描述提取规则\n        cards = response.xpath('//section')\n        for card in cards:\n            title = card.xpath('.//h2//text()').extract_first(default='').strip()\n            heat = ''.join(card.xpath('.//*[contains(text(), \"热\")]/text()').extract())\n            if title:\n                item = ZhihuHotItem()\n                item[\"title\"] = title\n                item[\"heat\"] = heat\n                item.db_save()\n\nif __name__ == \"__main__\":\n    ZhihuHotSpider().start()"
+    "answer": "import feapder\nfrom feapder import Item\n\nclass ZhihuHotItem(Item):\n    __tablename__ = \"zhihu_hot\"\n    __unique_key__ = [\"title\"]\n\nclass ZhihuHotSpider(feapder.AirSpider):\n    def start_requests(self):\n        yield feapder.Request(\n            \"https://www.zhihu.com/hot\",\n            headers={\"User-Agent\": \"Mozilla/5.0\"},\n        )\n\n    def parse(self, request, response):\n        # XPath/正则按实际页面结构调整；考试可写自然语言描述提取规则\n        cards = response.xpath('//section')\n        for card in cards:\n            title = card.xpath('.//h2//text()').extract_first(default='').strip()\n            heat = ''.join(card.xpath('.//*[contains(text(), \"热\")]/text()').extract())\n            if title:\n                item = ZhihuHotItem()\n                item[\"title\"] = title\n                item[\"heat\"] = heat\n                item.db_save()\n\nif __name__ == \"__main__\":\n    ZhihuHotSpider().start()",
+    "analysis": "import feapder\nfrom feapder import Item\n\nclass ZhihuHotItem(Item):\n    __tablename__ = \"zhihu_hot\"\n    __unique_key__ = [\"title\"]\n\nclass ZhihuHotSpider(feapder.AirSpider):\n    def start_requests(self):\n        yield feapder.Request(\n            \"https://www.zhihu.com/hot\",\n            headers={\"User-Agent\": \"Mozilla/5.0\"},\n        )\n\n    def parse(self, request, response):\n        # XPath/正则按实际页面结构调整；考试可写自然语言描述提取规则\n        cards = response.xpath('//section')\n        for card in cards:\n            title = card.xpath('.//h2//text()').extract_first(default='').strip()\n            heat = ''.join(card.xpath('.//*[contains(text(), \"热\")]/text()').extract())\n            if title:\n                item = ZhihuHotItem()\n                item[\"title\"] = title\n                item[\"heat\"] = heat\n                item.db_save()\n\nif __name__ == \"__main__\":\n    ZhihuHotSpider().start()"
   },
   {
     "id": "J-A-S1",
@@ -2577,7 +2631,12 @@
       "PPT",
       "2026-07导入"
     ],
-    "answer": "一般流程是：先提交用户名和密码完成登录；服务器返回并记录 cookie；后续请求携带 cookie 访问需要登录态的 URL；服务器根据 cookie 识别会话并返回登录后才能看到的数据。"
+    "answer": "一般流程是：先提交用户名和密码完成登录；服务器返回并记录 cookie；后续请求携带 cookie 访问需要登录态的 URL；服务器根据 cookie 识别会话并返回登录后才能看到的数据。",
+    "analysis": "一般流程是：先提交用户名和密码完成登录；服务器返回并记录 cookie；后续请求携带 cookie 访问需要登录态的 URL；服务器根据 cookie 识别会话并返回登录后才能看到的数据。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "DC-RXF-202607-048",
@@ -2589,7 +2648,12 @@
       "PPT",
       "2026-07导入"
     ],
-    "answer": "XPath 通过路径表达式定位 XML/HTML 节点，速度快、支持层级和多条件筛选，适合企业级批量爬虫，但依赖页面结构。BeautifulSoup 将网页源码解析成树形对象，语法简单、可读性好、容错性强，适合静态页面和入门场景，但复杂深层数据提取会较繁琐，速度也通常慢于 XPath。"
+    "answer": "XPath 通过路径表达式定位 XML/HTML 节点，速度快、支持层级和多条件筛选，适合企业级批量爬虫，但依赖页面结构。BeautifulSoup 将网页源码解析成树形对象，语法简单、可读性好、容错性强，适合静态页面和入门场景，但复杂深层数据提取会较繁琐，速度也通常慢于 XPath。",
+    "analysis": "XPath 通过路径表达式定位 XML/HTML 节点，速度快、支持层级和多条件筛选，适合企业级批量爬虫，但依赖页面结构。BeautifulSoup 将网页源码解析成树形对象，语法简单、可读性好、容错性强，适合静态页面和入门场景，但复杂深层数据提取会较繁琐，速度也通常慢于 XPath。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "DC-RXF-202607-049",
@@ -2601,7 +2665,12 @@
       "PPT",
       "2026-07导入"
     ],
-    "answer": "AirSpider 是轻量级爬虫，适合简单场景和少量数据；Spider 是基于 Redis 的分布式爬虫，适合海量数据、断点续爬和自动入库；TaskSpider 是任务型爬虫，适合对接 MySQL、Redis 等任务表；BatchSpider 是分布式批次爬虫，适合周期性采集任务。"
+    "answer": "AirSpider 是轻量级爬虫，适合简单场景和少量数据；Spider 是基于 Redis 的分布式爬虫，适合海量数据、断点续爬和自动入库；TaskSpider 是任务型爬虫，适合对接 MySQL、Redis 等任务表；BatchSpider 是分布式批次爬虫，适合周期性采集任务。",
+    "analysis": "AirSpider 是轻量级爬虫，适合简单场景和少量数据；Spider 是基于 Redis 的分布式爬虫，适合海量数据、断点续爬和自动入库；TaskSpider 是任务型爬虫，适合对接 MySQL、Redis 等任务表；BatchSpider 是分布式批次爬虫，适合周期性采集任务。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "DC-RXF-202607-050",
@@ -2613,7 +2682,12 @@
       "PPT",
       "2026-07导入"
     ],
-    "answer": "Engine 负责各组件之间的通信和数据流转；Scheduler 接收并排队 Request，在引擎需要时返回请求；Downloader 负责下载请求并返回 Response；Spider 解析 Response、提取 Item 并产生后续 URL；Item Pipeline 处理 Spider 产出的 Item，完成清洗、过滤、存储等后处理。"
+    "answer": "Engine 负责各组件之间的通信和数据流转；Scheduler 接收并排队 Request，在引擎需要时返回请求；Downloader 负责下载请求并返回 Response；Spider 解析 Response、提取 Item 并产生后续 URL；Item Pipeline 处理 Spider 产出的 Item，完成清洗、过滤、存储等后处理。",
+    "analysis": "Engine 负责各组件之间的通信和数据流转；Scheduler 接收并排队 Request，在引擎需要时返回请求；Downloader 负责下载请求并返回 Response；Spider 解析 Response、提取 Item 并产生后续 URL；Item Pipeline 处理 Spider 产出的 Item，完成清洗、过滤、存储等后处理。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "DC-RXF-202607-051",
@@ -2625,7 +2699,12 @@
       "PPT",
       "2026-07导入"
     ],
-    "answer": "对任务有效性进行判断；请求失败或解析异常时可在 exception_request 中切换 cookie 等信息并重新 yield request；超过最大重试次数时可在 failed_request 中处理失败请求，并将任务状态更新为 -1，避免无效任务一直重试。"
+    "answer": "对任务有效性进行判断；请求失败或解析异常时可在 exception_request 中切换 cookie 等信息并重新 yield request；超过最大重试次数时可在 failed_request 中处理失败请求，并将任务状态更新为 -1，避免无效任务一直重试。",
+    "analysis": "对任务有效性进行判断；请求失败或解析异常时可在 exception_request 中切换 cookie 等信息并重新 yield request；超过最大重试次数时可在 failed_request 中处理失败请求，并将任务状态更新为 -1，避免无效任务一直重试。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "DC-RXF-202607-052",
@@ -2637,7 +2716,12 @@
       "PPT",
       "2026-07导入"
     ],
-    "answer": "requests 获取的是服务端返回的原始 HTML，不会执行浏览器中的 JavaScript。如果页面元素由 AJAX 或前端脚本动态渲染，原始 HTML 中可能没有目标内容。处理方法包括分析真实接口直接请求数据，或使用 Selenium、Playwright 等工具模拟浏览器渲染后再定位元素。"
+    "answer": "requests 获取的是服务端返回的原始 HTML，不会执行浏览器中的 JavaScript。如果页面元素由 AJAX 或前端脚本动态渲染，原始 HTML 中可能没有目标内容。处理方法包括分析真实接口直接请求数据，或使用 Selenium、Playwright 等工具模拟浏览器渲染后再定位元素。",
+    "analysis": "requests 获取的是服务端返回的原始 HTML，不会执行浏览器中的 JavaScript。如果页面元素由 AJAX 或前端脚本动态渲染，原始 HTML 中可能没有目标内容。处理方法包括分析真实接口直接请求数据，或使用 Selenium、Playwright 等工具模拟浏览器渲染后再定位元素。",
+    "meta": {
+      "analysisFilled": true,
+      "analysisFilledNote": "Analysis was filled from the reference answer."
+    }
   },
   {
     "id": "DC-TB-202607-001",

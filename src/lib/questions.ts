@@ -141,6 +141,27 @@ export function shuffle<T>(items: T[], seed = Date.now()): T[] {
   return out;
 }
 
+// Interleaved practice: round-robin across type groups so consecutive questions
+// switch between formats, which improves discrimination and long-term retention.
+export function interleaveByType(questions: Question[]): Question[] {
+  const groups = new Map<QuestionType, Question[]>();
+  questions.forEach((question) => {
+    const list = groups.get(question.type) || [];
+    list.push(question);
+    groups.set(question.type, list);
+  });
+  if (groups.size <= 1) return [...questions];
+  const buckets = [...groups.values()];
+  const out: Question[] = [];
+  const longest = Math.max(...buckets.map((bucket) => bucket.length));
+  for (let round = 0; round < longest; round += 1) {
+    buckets.forEach((bucket) => {
+      if (round < bucket.length) out.push(bucket[round]);
+    });
+  }
+  return out;
+}
+
 export function buildMockExam(questions: Question[], config?: MockExamConfig, seed = Date.now()): Question[] {
   if (!config || !config.sections?.length) {
     return shuffle(questions, seed).slice(0, Math.min(50, questions.length));
@@ -161,15 +182,34 @@ export function buildMockExam(questions: Question[], config?: MockExamConfig, se
   return picked;
 }
 
+export interface MockTypeScore {
+  type: QuestionType;
+  correct: number;
+  total: number;
+  score: number;
+  totalScore: number;
+}
+
 export function scoreMockExam(questions: Question[], answers: Record<string, unknown>, config?: MockExamConfig) {
   const scoreByType = new Map<QuestionType, number>();
   config?.sections?.forEach((section) => scoreByType.set(section.type, section.score || 1));
   let score = 0;
   let totalScore = 0;
+  const byType = new Map<QuestionType, MockTypeScore>();
   questions.forEach((question) => {
     const point = scoreByType.get(question.type) || 1;
+    const correct = isAnswerCorrect(question, answers[question.id]);
     totalScore += point;
-    if (isAnswerCorrect(question, answers[question.id])) score += point;
+    if (correct) score += point;
+    const entry = byType.get(question.type) || { type: question.type, correct: 0, total: 0, score: 0, totalScore: 0 };
+    entry.total += 1;
+    entry.totalScore += point;
+    if (correct) {
+      entry.correct += 1;
+      entry.score += point;
+    }
+    byType.set(question.type, entry);
   });
-  return { score, totalScore };
+  const typeScores = QUESTION_TYPES.map((type) => byType.get(type)).filter((entry): entry is MockTypeScore => Boolean(entry));
+  return { score, totalScore, typeScores };
 }
