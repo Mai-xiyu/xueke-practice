@@ -1,15 +1,14 @@
 [
   {
     "id": "hm-down-img-001",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "25. 已知函数 $f(u,v)=uv$，其中 $u=x+y, v=x-y$，则 $\\frac{\\partial f}{\\partial x}+\\frac{\\partial f}{\\partial y}$ =（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_001.jpg",
     "analysis": "$f=(x+y)(x-y)=x^2-y^2$，所以 $f_x=2x$、$f_y=-2y$，相加得 $2x-2y$。",
     "meta": {
       "meta": {
@@ -18,7 +17,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_001.jpg"
+      "formulaTextConverted": true
     },
     "answer": "D",
     "options": {
@@ -33,15 +32,14 @@
   },
   {
     "id": "hm-down-img-002",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "24. 平面曲线弧的极坐标方程为 $\\rho=\\rho(\\theta)$，$\\theta\\in[\\alpha,\\beta]$，则曲线弧长公式 $S=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_002.jpg",
     "analysis": "极坐标曲线 $\\rho=\\rho(\\theta)$ 的弧长微元为 $ds=\\sqrt{\\rho^2+(\\rho^\\prime)^2}\\,d\\theta$。",
     "meta": {
       "meta": {
@@ -50,7 +48,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_002.jpg"
+      "formulaTextConverted": true
     },
     "answer": "C",
     "options": {
@@ -65,15 +63,14 @@
   },
   {
     "id": "hm-down-img-003",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "24. 平面曲线弧的极坐标方程为 $\\rho=\\rho(\\theta)$，$\\theta\\in[\\alpha,\\beta]$，则曲线弧长公式 $S=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_003.jpg",
     "analysis": "同类题：极坐标弧长公式为 $S=\\int_\\alpha^\\beta\\sqrt{\\rho^2(\\theta)+\\rho^{\\prime 2}(\\theta)}\\,d\\theta$。",
     "meta": {
       "meta": {
@@ -82,7 +79,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_003.jpg"
+      "formulaTextConverted": true
     },
     "answer": "C",
     "options": {
@@ -97,15 +94,14 @@
   },
   {
     "id": "hm-down-img-004",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "23. 抛物线 $y^2=x$ 与 $y=x^2$ 所围成图形的面积等于（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_004.jpg",
     "analysis": "两曲线在 $(0,0)$、$(1,1)$ 相交，面积为 $\\int_0^1(\\sqrt{x}-x^2)\\,dx=\\frac{2}{3}-\\frac{1}{3}=\\frac{1}{3}$。",
     "meta": {
       "meta": {
@@ -114,7 +110,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_004.jpg"
+      "formulaTextConverted": true
     },
     "answer": "A",
     "options": {
@@ -129,66 +125,101 @@
   },
   {
     "id": "hm-down-img-005",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 5：22.（4.0分）二元函数z=x²-y²+3x²+3y²-9x",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_005.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "22. 二元函数 $z=x^3-y^3+3x^2+3y^2-9x$ 的极大值点是（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "驻点由 $z_x=3x^2+6x-9=0$、$z_y=-3y^2+6y=0$ 得到。点 $(-3,2)$ 处二阶判别满足极大值条件。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 5：22.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n:!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n22.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n的极大值点是(\n)。\nA (1,2)\nB(-3,0)\n(1.0)\nC\n(-3，2)\nD",
         "originalName": "微信图片_20260628134906_86_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$(1,2)$",
+      "B": "$(-3,0)$",
+      "C": "$(1,0)$",
+      "D": "$(-3,2)$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-006",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 6：21. (4.0分)",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_006.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "21. 设 $D$ 为由圆周 $x^2+y^2=4$ 与 $y$ 轴围成的右半圆闭区域，则区域 $D$ 的面积为（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "半径为 2 的半圆面积为 $\\frac12\\pi r^2=2\\pi$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 6：21. (4.0分)\n!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n21. (4.0分)\n计算二重积分x²do:其中D是由圆周x²+y²=4\nD\n及以轴所围成的闭区域面积为昕萌\nA\nB",
         "originalName": "微信图片_20260628134907_87_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$\\pi$",
+      "B": "$1$",
+      "C": "$0$",
+      "D": "$2\\pi$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-007",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 7：20.（4.0分）设直线L：",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_007.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "20. 设直线 $L_1:\\frac{x-1}{1}=\\frac{y}{-4}=\\frac{z+3}{1}$ 与 $L_2:\\frac{x}{2}=\\frac{y+2}{-2}=\\frac{z}{-1}$，则两直线的夹角为（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "两直线方向向量分别为 $(1,-4,1)$ 与 $(2,-2,-1)$，用夹角公式 $\\cos\\theta=\\frac{|a\\cdot b|}{|a||b|}$ 求得夹角。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 7：20.（4.0分）设直线L：\n:!!! 5G\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\nX-1\n2+3\n20.（4.0分）设直线L：\n-4\ny+2\n则两直线的夹角为(\n).\n萌2\n(8.0)\nA\nB\nD\n-6",
         "originalName": "微信图片_20260628134909_88_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "B",
+    "options": {
+      "A": "$\\frac{\\pi}{2}$",
+      "B": "$\\frac{\\pi}{4}$",
+      "C": "$0$",
+      "D": "$\\frac{\\pi}{6}$"
+    },
+    "correct": [
+      "B"
+    ]
   },
   {
     "id": "hm-down-img-008",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "19. $\\int_a^b f^\\prime(x)\\,dx=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_008.jpg",
     "analysis": "由牛顿-莱布尼茨公式，定积分 $\\int_a^b f^\\prime(x)dx=f(b)-f(a)$，不加任意常数。",
     "meta": {
       "meta": {
@@ -197,7 +228,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_008.jpg"
+      "formulaTextConverted": true
     },
     "answer": "C",
     "options": {
@@ -212,32 +243,43 @@
   },
   {
     "id": "hm-down-img-009",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 9：18.(4.0分)",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_009.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "18. 计算二重积分 $\\iint_D x\\sqrt{y}\\,d\\sigma$，其中 $D$ 是由两条抛物线 $y=\\sqrt{x}$ 与 $y=x^2$ 所围成的闭区域，则积分值为（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "由 $y=\\sqrt{x}$ 得 $x=y^2$，由 $y=x^2$ 得 $x=\\sqrt{y}$，在 $0\\le y\\le1$ 上积分为 $\\int_0^1\\int_{y^2}^{\\sqrt y}x\\sqrt y\\,dx\\,dy=\\frac{6}{55}$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 9：18.(4.0分)\n:!!!5GA\n41\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n18.(4.0分)\n计算二重积分x√vd:其中D是由两条抛物线\ny=√x=x²o所围成的闭区萌域\nA\n55\nB",
         "originalName": "微信图片_20260628134912_90_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "C",
+    "options": {
+      "A": "$\\frac{55}{6}$",
+      "B": "$\\frac{1}{2}$",
+      "C": "$\\frac{6}{55}$",
+      "D": "其他"
+    },
+    "correct": [
+      "C"
+    ]
   },
   {
     "id": "hm-down-img-010",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "17. 向量 $\\vec a=(1,2,2)$ 的模等于（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_010.jpg",
     "analysis": "$|\\vec a|=\\sqrt{1^2+2^2+2^2}=3$。",
     "meta": {
       "meta": {
@@ -246,7 +288,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_010.jpg"
+      "formulaTextConverted": true
     },
     "answer": "A",
     "options": {
@@ -261,66 +303,101 @@
   },
   {
     "id": "hm-down-img-011",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 11：16.（4.0分）二元函数z=x²-y²+3x²+3y²-9x",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_011.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "16. 二元函数 $z=x^3-y^3+3x^2+3y^2-9x$ 的极小值点是（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "由一阶偏导求驻点，再用二阶充分条件判断。点 $(1,0)$ 处为极小值点。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 11：16.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n16.（4.0分）二元函数z=x²-y²+3x²+3y²-9x\n的极小值点是(\nD。\nA (1.0)\n(-3,0)\nB\n(1, 2)\nC\n(-3, 2)\nD",
         "originalName": "微信图片_20260628134914_92_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "A",
+    "options": {
+      "A": "$(1,0)$",
+      "B": "$(-3,0)$",
+      "C": "$(1,2)$",
+      "D": "$(-3,2)$"
+    },
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "hm-down-img-012",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 12：15.（4.0分）z=e\"在点(1，2)处的全微分等于",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_012.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "15. $z=e^{xy}$ 在点 $(1,2)$ 处的全微分等于（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "$dz=z_xdx+z_ydy=ye^{xy}dx+xe^{xy}dy$，代入 $(1,2)$ 得 $2e^2dx+e^2dy$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 12：15.（4.0分）z=e\"在点(1，2)处的全微分等于\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n15.（4.0分）z=e\"在点(1，2)处的全微分等于\n)。\nA2e²dx+e²dy\nB2edx+2e²dy\ne²dx+2e²dy\ne²dx+2edy\nD",
         "originalName": "微信图片_20260628134916_93_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "A",
+    "options": {
+      "A": "$2e^2\\,dx+e^2\\,dy$",
+      "B": "$2e\\,dx+2e^2\\,dy$",
+      "C": "$e^2\\,dx+2e^2\\,dy$",
+      "D": "$e^2\\,dx+2e\\,dy$"
+    },
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "hm-down-img-013",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 13：14．（4.0分）下列方程中有一个是一阶微分方程，",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_013.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "14. 下列方程中有一个是一阶微分方程，它是（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "A、B、C 含二阶导数，D 只含 $dx,dy$ 和一阶微分形式，因此是一阶微分方程。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 13：14．（4.0分）下列方程中有一个是一阶微分方程，\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n14．（4.0分）下列方程中有一个是一阶微分方程，\n它是（\n).\nA\n（y)²+5（y)-y²+7=0\nB\nxy\"+y'+y=0\n（y-xy）²=x²y\n（x²-y²)dx+（x²+y²)ay=0",
         "originalName": "微信图片_20260628134917_94_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$(y^{\\prime\\prime})^2+5(y^\\prime)^4-y^5+7=0$",
+      "B": "$xy^{\\prime\\prime}+y^\\prime+y=0$",
+      "C": "$(y-xy^\\prime)^2=x^2yy^{\\prime\\prime}$",
+      "D": "$(x^2-y^2)\\,dx+(x^2+y^2)\\,dy=0$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-014",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "13. 设 $g(x)$ 为偶函数，则 $\\int_{-2}^{2} g(x)\\,dx=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_014.jpg",
     "analysis": "偶函数在对称区间上的积分等于右半区间积分的 2 倍。",
     "meta": {
       "meta": {
@@ -329,7 +406,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_014.jpg"
+      "formulaTextConverted": true
     },
     "answer": "D",
     "options": {
@@ -344,15 +421,14 @@
   },
   {
     "id": "hm-down-img-015",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "12. 点 $(2,1,1)$ 到平面 $x+y-z+1=0$ 的距离为（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_015.jpg",
     "analysis": "点到平面距离 $d=\\frac{|Ax_0+By_0+Cz_0+D|}{\\sqrt{A^2+B^2+C^2}}=\\frac{|2+1-1+1|}{\\sqrt3}=\\sqrt3$。",
     "meta": {
       "meta": {
@@ -361,7 +437,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_015.jpg"
+      "formulaTextConverted": true
     },
     "answer": "D",
     "options": {
@@ -376,15 +452,14 @@
   },
   {
     "id": "hm-down-img-016",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "11. $\\frac{d}{dx}\\int_a^x f(t)\\,dt=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_016.jpg",
     "analysis": "变上限积分求导：若 $F(x)=\\int_a^x f(t)dt$，则 $F^\\prime(x)=f(x)$。",
     "meta": {
       "meta": {
@@ -393,7 +468,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_016.jpg"
+      "formulaTextConverted": true
     },
     "answer": "D",
     "options": {
@@ -408,49 +483,72 @@
   },
   {
     "id": "hm-down-img-017",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 17：10.（4.0分）D",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_017.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "10. $D$ 是由直线 $y=1$、$x-y+3=0$ 与 $x+y-3=0$ 所围成的区域，则 $\\iint_D d\\sigma=$（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "$\\iint_D d\\sigma$ 表示区域面积。三条直线围成三角形，按底高或顶点坐标计算面积为 4。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 17：10.（4.0分）D\n:!!! 5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n10.（4.0分）D\n由直线\ny=1,x-y+3=0与x+y-3=0所围成的区\n域，则』dg=(\n).\nD\nA\nB\nC\nD",
         "originalName": "微信图片_20260628134926_98_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "B",
+    "options": {
+      "A": "$0$",
+      "B": "$4$",
+      "C": "$2$",
+      "D": "$3$"
+    },
+    "correct": [
+      "B"
+    ]
   },
   {
     "id": "hm-down-img-018",
-    "source": "选择题截图",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
-    "type": "comprehensive",
-    "stem": "学习通截图题 18：9.（4.0分）设|a=4,它与x轴的夹角",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_018.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "type": "single",
+    "stem": "9. 设 $|\\vec a|=4$，它与 $x$ 轴的夹角为 $\\frac{\\pi}{4}$，则 $\\vec a$ 在 $x$ 轴上的投影为（ ）。",
+    "tags": [
+      "公式文字化",
+      "截图转写"
+    ],
+    "analysis": "向量在轴上的投影为 $|\\vec a|\\cos\\theta=4\\cos\\frac{\\pi}{4}=2\\sqrt2$。",
     "meta": {
       "meta": {
         "searchText": "学习通截图题 18：9.（4.0分）设|a=4,它与x轴的夹角\n:!!!5GA\n40\n拷贝\n粘贴\n全选\n摘录\n单选题（共25题，100.0分）\n9.（4.0分）设|a=4,它与x轴的夹角\n在x轴上的投影为(\n李昕明\nA4\nB\nC\nD\n2√2",
         "originalName": "微信图片_20260628134927_99_102.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。"
+    "answer": "D",
+    "options": {
+      "A": "$4$",
+      "B": "$2$",
+      "C": "$\\pi$",
+      "D": "$2\\sqrt2$"
+    },
+    "correct": [
+      "D"
+    ]
   },
   {
     "id": "hm-down-img-019",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "8. 定积分 $\\int_2^e \\ln x\\,dx=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_019.jpg",
     "analysis": "$\\int \\ln x\\,dx=x\\ln x-x$，代入 $2$ 到 $e$ 得 $(e\\ln e-e)-(2\\ln2-2)=2-2\\ln2$。",
     "meta": {
       "meta": {
@@ -459,7 +557,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_019.jpg"
+      "formulaTextConverted": true
     },
     "answer": "D",
     "options": {
@@ -474,15 +572,14 @@
   },
   {
     "id": "hm-down-img-020",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "7. $z=5xy^2$ 的全微分是（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_020.jpg",
     "analysis": "$dz=z_xdx+z_ydy$，$z_x=5y^2$，$z_y=10xy$。",
     "meta": {
       "meta": {
@@ -491,7 +588,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_020.jpg"
+      "formulaTextConverted": true
     },
     "answer": "D",
     "options": {
@@ -506,15 +603,14 @@
   },
   {
     "id": "hm-down-img-021",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "6. 平面曲线的直角坐标方程为 $y=f(x)$，$x\\in[a,b]$，由 $\\pi\\int_a^b y^2\\,dx$ 可得出曲线 $y=f(x)$ 在 $x\\in[a,b]$ 上绕 $x$ 轴旋转所得的（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_021.jpg",
     "analysis": "$V=\\pi\\int_a^b [f(x)]^2dx$ 是曲线 $y=f(x)$ 与 $x$ 轴围成区域绕 $x$ 轴旋转的体积公式。",
     "meta": {
       "meta": {
@@ -523,7 +619,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_021.jpg"
+      "formulaTextConverted": true
     },
     "answer": "B",
     "options": {
@@ -538,15 +634,14 @@
   },
   {
     "id": "hm-down-img-022",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "5. 定积分 $\\int_0^{\\pi/2} x\\sin x\\,dx=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_022.jpg",
     "analysis": "分部积分：$\\int x\\sin xdx=-x\\cos x+\\sin x$，代入 $0$ 到 $\\pi/2$ 得 $1$。",
     "meta": {
       "meta": {
@@ -555,7 +650,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_022.jpg"
+      "formulaTextConverted": true
     },
     "answer": "A",
     "options": {
@@ -570,15 +665,14 @@
   },
   {
     "id": "hm-down-img-023",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "4. 向量 $\\vec a=(1,2,2)$ 与 $\\vec b=(2,-2,2)$ 的数量积等于（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_023.jpg",
     "analysis": "$\\vec a\\cdot\\vec b=1\\cdot2+2\\cdot(-2)+2\\cdot2=2$。",
     "meta": {
       "meta": {
@@ -587,7 +681,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_023.jpg"
+      "formulaTextConverted": true
     },
     "answer": "D",
     "options": {
@@ -602,15 +696,14 @@
   },
   {
     "id": "hm-down-img-024",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "3. 向量 $\\vec a=(1,2,2)$ 的模等于（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_024.jpg",
     "analysis": "$|\\vec a|=\\sqrt{1^2+2^2+2^2}=3$。",
     "meta": {
       "meta": {
@@ -619,7 +712,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_024.jpg"
+      "formulaTextConverted": true
     },
     "answer": "A",
     "options": {
@@ -634,15 +727,14 @@
   },
   {
     "id": "hm-down-img-025",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "2. 点 $(1,2,1)$ 到平面 $2x+2y-z-2=0$ 的距离为（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_025.jpg",
     "analysis": "$d=\\frac{|2\\cdot1+2\\cdot2-1-2|}{\\sqrt{2^2+2^2+(-1)^2}}=\\frac{3}{3}=1$。",
     "meta": {
       "meta": {
@@ -651,7 +743,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_025.jpg"
+      "formulaTextConverted": true
     },
     "answer": "C",
     "options": {
@@ -666,15 +758,14 @@
   },
   {
     "id": "hm-down-img-026",
-    "source": "高数下册期末资料截图校正",
+    "source": "高数下册期末资料文字校正",
     "chapter": "学习通截图题",
     "type": "single",
     "stem": "1. 设 $g(x)$ 为奇函数，则 $\\int_{-2}^{4}g(x)\\,dx=$（ ）。",
     "tags": [
       "公式校正",
-      "截图来源"
+      "公式文字化"
     ],
-    "image": "assets/higher_math_down/math_down_026.jpg",
     "analysis": "奇函数在对称区间 $[-2,2]$ 上积分为 0，所以 $\\int_{-2}^{4}g(x)dx=\\int_2^4g(x)dx$。",
     "meta": {
       "meta": {
@@ -683,7 +774,7 @@
       },
       "correctedFromImage": true,
       "correctedAt": "2026-07-01",
-      "originalImage": "assets/higher_math_down/math_down_026.jpg"
+      "formulaTextConverted": true
     },
     "answer": "A",
     "options": {
@@ -698,97 +789,118 @@
   },
   {
     "id": "hm-down-img-027",
-    "source": "纸质卷图片",
-    "chapter": "2023-2024 A卷纸质卷",
+    "source": "高数下册期末资料 OCR 摘录",
+    "chapter": "期末卷文字摘录",
     "type": "comprehensive",
-    "stem": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 1 页。",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_027.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "stem": "2023-2024 学年第 2 学期高等数学 A 期末考试试卷第 1 页 OCR 摘录：一、填空题：1. 二元函数 $z=\\ln(y^2-2x+1)$ 的定义域；2. 设向量 $a=(2,1,2)$，$b=(4,-1,10)$，$c=b-\\lambda a$，且 $a\\perp c$，求 $\\lambda$；3. 经过点 $(4,0,-2)$ 和 $(5,1,7)$ 且平行于 $x$ 轴的平面方程；4. 求全微分；5. 判断级数条件收敛的参数范围。二、单项选择题：含一阶微分方程通解、极限、空间直线与平面关系等。",
+    "tags": [
+      "公式文字化",
+      "OCR 摘录",
+      "待人工校对"
+    ],
+    "analysis": "用于替代整页图片，避免在题库中直接展示公式截图。",
     "meta": {
       "meta": {
         "searchText": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 1 页。\n新疆师范大学2023-2024学年第2学期\n考试类型：（闭卷）考试\n考试时间：120分钟\n装订线\n学号\n姓名\n年级专业\n题号\n总分\n得分\n评阅人\n得分\n一、填空题（本大题共5小题，每小题3分，共15分）\n1.二元函数z=Iln(y²-2+1)的定义域为_\n2.设向量a=（2.1.2），b=（4.-1.10），=b-a，且a⊥c，则=\n3.经过(4.0,-2)和(5.7)且平行于轴的平面方程为\n4.设\ncdu\n条件时级数条件收敛。\n得分\n二、单项选择题（本大题共5小题，每小题3分，共15分）\n1.微分方程2(xy+x)y'=y的通解是\n（）\nA,",
         "originalName": "微信图片_20260629224235.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "见原图高亮或纸质资料。数学公式以图片为准。"
+    "answer": "按原卷逐题复习。该题由整页截图转为文字摘要，公式细节需按纸质资料或课堂资料人工校对。"
   },
   {
     "id": "hm-down-img-028",
-    "source": "纸质卷图片",
-    "chapter": "2023-2024 A卷纸质卷",
+    "source": "高数下册期末资料 OCR 摘录",
+    "chapter": "期末卷文字摘录",
     "type": "comprehensive",
-    "stem": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 2 页。",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_028.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "stem": "2023-2024 学年第 2 学期高等数学 A 期末考试试卷第 2 页 OCR 摘录：选择题包含空间直线与平面位置关系、闭区域 $a^2\\le x^2+y^2\\le b^2$ 上的二重积分、级数收敛性判断等；计算题包含微分方程特解、二重积分计算等。",
+    "tags": [
+      "公式文字化",
+      "OCR 摘录",
+      "待人工校对"
+    ],
+    "analysis": "用于替代整页图片，保留知识点方向而不展示截图。",
     "meta": {
       "meta": {
         "searchText": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 2 页。\n（）\nA.直线L平行于平面π\nB.直线L在平面π上\nC.直线L垂直于平面π\nD.直线L与平面π斜交\n4.D是闭区域(（x,y)la²≤x²+y²≤b²}，则{√x²+y²do=\n（）\n(b²-a)\n(b²-a”)\n(b²-a)B.\nA.\n5.下列级数收敛的是\n（）\nA.\nc.\nD.\n(n+1)(n+4)\n2n(n+1)\n+1\n21-]\n得分\n三、计算题（本大题共7小题，每小题7分，共49分）\n1.求微分方程y+y=c满足初始条件x=0’y=2的特解。\n2.计算二重积分[+dxdy，其中D=（x,y)x²+y²≤,x+y≥}°",
         "originalName": "微信图片_2026-06-29_224242_065.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "见原图高亮或纸质资料。数学公式以图片为准。"
+    "answer": "按原卷逐题复习。该题由整页截图转为文字摘要，公式细节需按纸质资料或课堂资料人工校对。"
   },
   {
     "id": "hm-down-img-029",
-    "source": "纸质卷图片",
-    "chapter": "2023-2024 A卷纸质卷",
+    "source": "高数下册期末资料 OCR 摘录",
+    "chapter": "期末卷文字摘录",
     "type": "comprehensive",
-    "stem": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 3 页。",
-    "tags": [],
-    "image": "assets/higher_math_down/math_down_029.jpg",
-    "analysis": "该题来自用户提供的《高数下册期末资料.zip》。为避免数学公式、上下标和积分符号被 OCR 误改，题面以图片为准；OCR 摘要仅用于检索。",
+    "stem": "2023-2024 学年第 2 学期高等数学 A 期末考试试卷第 3 页 OCR 摘录：计算题包含曲线积分 $\\int_L (x+y)dx+(x-y)dy$、二重积分换序或区域积分、级数敛散性与条件/绝对收敛判断、函数展开为幂级数并求成立区间等。",
+    "tags": [
+      "公式文字化",
+      "OCR 摘录",
+      "待人工校对"
+    ],
+    "analysis": "用于替代整页图片，避免题库依赖整页截图。",
     "meta": {
       "meta": {
         "searchText": "2023-2024 学年第 2 学期高等数学A期末考试试卷图片第 3 页。\n4.求曲线积分{x+y)d+（x-yd，其中L沿x²+y²=a²（x≥0,y≥0)，逆时针方\n向。\n装订线\n5.计算[√+x²-ydxdy，其中D是由y=，x=-1及y=1所围成的区\n域。\n6.判断级数（I\"的敛散性，并指出是条件收敛还是绝对收敛。\nn+1\n7.将函数\n展开成，的幂级数，并求其成立的区间。\n（1-x)（2-x)",
         "originalName": "微信图片_2026-06-29_224247_308.jpg"
-      }
+      },
+      "formulaTextConverted": true
     },
-    "answer": "见原图高亮或纸质资料。数学公式以图片为准。"
+    "answer": "按原卷逐题复习。该题由整页截图转为文字摘要，公式细节需按纸质资料或课堂资料人工校对。"
   },
   {
     "id": "hm-down-doc-a",
-    "source": "Word复习资料",
+    "source": "高数下册期末资料文字校正",
     "chapter": "Word复习资料",
     "type": "short",
     "stem": "复习1(5).docx：高数下册期末测试卷A卷，包含选择题、填空题、计算题和应用题。",
-    "tags": [],
+    "tags": [
+      "公式文字化"
+    ],
     "analysis": "Word 内大量公式是对象/图片形式，抽纯文本会丢失关键公式。页面将其作为复习资料索引保留，正式练习以截图题和纸质卷图片为准。",
     "meta": {
       "meta": {
         "searchText": "复习1 A卷 选择题 填空题 计算题 应用题 高等数学下册 期末"
-      }
+      },
+      "formulaTextConverted": true
     },
     "answer": "按原 Word 资料复习；公式未强行转文本。"
   },
   {
     "id": "hm-down-doc-b",
-    "source": "Word复习资料",
+    "source": "高数下册期末资料文字校正",
     "chapter": "Word复习资料",
     "type": "short",
     "stem": "复习2(5).docx：期末测试卷B卷，包含选择题、填空题、计算题和应用题。",
-    "tags": [],
+    "tags": [
+      "公式文字化"
+    ],
     "analysis": "该文件适合用作模拟卷结构参考。公式题建议打开原 Word 或结合截图复习，避免公式识别误差。",
     "meta": {
       "meta": {
         "searchText": "复习2 B卷 选择题 填空题 计算题 应用题 高等数学下册 期末"
-      }
+      },
+      "formulaTextConverted": true
     },
     "answer": "按原 Word 资料复习；公式未强行转文本。"
   },
   {
     "id": "hm-down-doc-review",
-    "source": "Word复习资料",
+    "source": "高数下册期末资料文字校正",
     "chapter": "Word复习资料",
     "type": "short",
     "stem": "高数下册  复习.docx：复习提纲，包含选择题与计算题方向。",
-    "tags": [],
+    "tags": [
+      "公式文字化"
+    ],
     "analysis": "该资料用于复习范围提示。系统保留为资料卡，可配合图片题面进行自测。",
     "meta": {
       "meta": {
         "searchText": "复习提纲 选择题 计算题 向量 多元函数 重积分 曲线积分 曲面积分 级数 微分方程"
-      }
+      },
+      "formulaTextConverted": true
     },
     "answer": "按原 Word 资料复习；公式未强行转文本。"
   }
