@@ -200,7 +200,7 @@ export function rightDockArrange(
     applyPanel(modeTabs, { x: contentLeft, y: modeTop, width: mainWidth, height: 96 });
   }
 
-  const filterIds = ["filter-chapter", "filter-type", "filter-source", "filter-search"];
+  const filterIds = ["filter-chapter", "filter-type", "filter-source", "filter-search", "filter-order"];
   const filtersTop = modeTop + (modeTabs ? 112 : 0);
   const afterFilters = placeGrid(filterIds, filtersTop, 360, 96, 210);
 

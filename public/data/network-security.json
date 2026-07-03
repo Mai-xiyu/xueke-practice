@@ -25,15 +25,19 @@
     "stem": "密码学的安全性主要依赖于？",
     "tags": [],
     "options": {
-      "A": "加密和解密算法的保密",
-      "B": "密钥的保密，而算法可以公开",
+      "A": "密钥的保密，而算法可以公开",
+      "B": "加密和解密算法的保密",
       "C": "明文的长度和复杂性",
       "D": "密文的不可读性"
     },
     "analysis": "现代密码遵循 Kerckhoffs 原则：算法可公开，安全性主要依赖密钥保密。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q003",
@@ -43,15 +47,19 @@
     "stem": "密码学在哪个阶段被明确地描述为从“艺术”转变为“科学”？",
     "tags": [],
     "options": {
-      "A": "第一阶段（古代到1949年）",
-      "B": "第二阶段（1949年到1975年）",
+      "A": "第二阶段（1949年到1975年）",
+      "B": "第一阶段（古代到1949年）",
       "C": "第三阶段（1976年以后）",
       "D": "第四阶段（1990年以后）"
     },
     "analysis": "1949年香农理论奠定现代密码学基础，密码学由经验艺术转向科学。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q004",
@@ -61,15 +69,19 @@
     "stem": "古典密码与现代密码的一个核心区别在于？",
     "tags": [],
     "options": {
-      "A": "古典密码使用数字，现代密码使用字母",
-      "B": "古典密码没有坚实的数学理论基础，而现代密码建立在严格的数学和计算复杂性之上",
+      "A": "古典密码没有坚实的数学理论基础，而现代密码建立在严格的数学和计算复杂性之上",
+      "B": "古典密码使用数字，现代密码使用字母",
       "C": "古典密码用于军事，现代密码用于商业",
       "D": "古典密码的加密速度比现代密码快"
     },
     "analysis": "现代密码以数学结构、信息论和计算复杂性为基础。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q005",
@@ -151,15 +163,19 @@
     "stem": "在一个人员流动较大的组织中，使用受限算法会带来什么问题？",
     "tags": [],
     "options": {
-      "A": "加密速度会变慢",
-      "B": "离职人员可能泄露算法细节，导致整个系统需要重新设计",
+      "A": "离职人员可能泄露算法细节，导致整个系统需要重新设计",
+      "B": "加密速度会变慢",
       "C": "算法会自动失效",
       "D": "需要更长的密钥"
     },
     "analysis": "受限算法依赖算法保密，一旦算法泄露就要重构系统。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q010",
@@ -187,15 +203,19 @@
     "stem": "乘积密码的基本设计思想是什么？",
     "tags": [],
     "options": {
-      "A": "使用极大的密钥空间来抵抗暴力破解",
-      "B": "将两种或两种以上的基本密码操作（如替换和置换）组合在一起",
+      "A": "将两种或两种以上的基本密码操作（如替换和置换）组合在一起",
+      "B": "使用极大的密钥空间来抵抗暴力破解",
       "C": "通过增加加密轮数来线性地提高安全性",
       "D": "将多个不同的明文混合在一起进行加密"
     },
     "analysis": "乘积密码组合替换、置换等基本操作并多轮迭代。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q012",
@@ -205,15 +225,19 @@
     "stem": "乘积密码的设计哲学与以下哪项比喻最为贴切？",
     "tags": [],
     "options": {
-      "A": "制造一把结构极其复杂、无法复制的锁芯",
-      "B": "建造一堵由多种不同材料层层交替构成的坚固墙壁",
+      "A": "建造一堵由多种不同材料层层交替构成的坚固墙壁",
+      "B": "制造一把结构极其复杂、无法复制的锁芯",
       "C": "设计一个只有一个极其隐蔽入口的迷宫",
       "D": "创造一种只有特定接收器才能解码的复杂信号"
     },
     "analysis": "乘积密码强调多层、多种操作交替组合形成整体强度。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q013",
@@ -259,15 +283,19 @@
     "stem": "在三重DES中，使用两个独立密钥（K1, K2）的密钥选项是？",
     "tags": [],
     "options": {
-      "A": "密钥选项 1：K1 = K2 = K3",
-      "B": "密钥选项 2：K1 ≠ K2, K3 = K1",
+      "A": "密钥选项 2：K1 ≠ K2, K3 = K1",
+      "B": "密钥选项 1：K1 = K2 = K3",
       "C": "密钥选项 3：K1, K2, K3 互不相同",
       "D": "密钥选项 4：K1 = K3, K2 不同"
     },
     "analysis": "两密钥3DES通常为 K1、K2、K1，即 K1≠K2 且 K3=K1。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q016",
@@ -277,15 +305,19 @@
     "stem": "字母频率分析法对下面哪种密码算法最有效",
     "tags": [],
     "options": {
-      "A": "置换密码",
-      "B": "单表代换密码",
+      "A": "单表代换密码",
+      "B": "置换密码",
       "C": "多表代换密码",
       "D": "序列密码"
     },
     "analysis": "单表代换保持自然语言字母频率对应关系。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q017",
@@ -313,15 +345,19 @@
     "stem": "消息认证所包含的两个重要方面是？",
     "tags": [],
     "options": {
-      "A": "加密与解密",
-      "B": "验证内容完整性与验证来源真实性",
+      "A": "验证内容完整性与验证来源真实性",
+      "B": "加密与解密",
       "C": "访问控制与身份识别",
       "D": "防止窃听与防止重放"
     },
     "analysis": "消息认证关注完整性和来源真实性。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q019",
@@ -331,15 +367,19 @@
     "stem": "消息认证主要用于防止哪种类型的攻击？",
     "tags": [],
     "options": {
-      "A": "被动攻击",
-      "B": "主动攻击",
+      "A": "主动攻击",
+      "B": "被动攻击",
       "C": "病毒攻击",
       "D": "拒绝服务攻击"
     },
     "analysis": "认证主要防止伪造、篡改、重放等主动攻击。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q020",
@@ -367,15 +407,19 @@
     "stem": "HMAC（基于哈希的消息认证码）相比于普通哈希函数，其核心优势在于？",
     "tags": [],
     "options": {
-      "A": "计算速度更快",
-      "B": "能够抵抗长度扩展攻击等特定密码学攻击",
+      "A": "能够抵抗长度扩展攻击等特定密码学攻击",
+      "B": "计算速度更快",
       "C": "生成的摘要（Digest）更短",
       "D": "不需要使用密钥"
     },
     "analysis": "HMAC是带密钥认证结构，可抵抗普通哈希直接拼接带来的长度扩展等攻击。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q022",
@@ -403,15 +447,19 @@
     "stem": "生成数字签名时，对消息进行处理的常用方法是？",
     "tags": [],
     "options": {
-      "A": "使用接收者的公钥对整条消息加密",
-      "B": "使用发送者的私钥对整条消息加密，或对消息摘要（一种函数值）加密",
+      "A": "使用发送者的私钥对整条消息加密，或对消息摘要（一种函数值）加密",
+      "B": "使用接收者的公钥对整条消息加密",
       "C": "使用发送者的公钥对整条消息加密",
       "D": "使用接收者的私钥对消息摘要加密"
     },
     "analysis": "数字签名通常是发送者用私钥对消息摘要签名。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q024",
@@ -421,15 +469,19 @@
     "stem": "生成数字签名的典型过程是：",
     "tags": [],
     "options": {
-      "A": "用接收者的公钥加密消息",
-      "B": "用发送者的私钥加密消息的哈希值",
+      "A": "用发送者的私钥加密消息的哈希值",
+      "B": "用接收者的公钥加密消息",
       "C": "用接收者的私钥加密消息",
       "D": "用发送者的公钥加密消息的哈希值"
     },
     "analysis": "典型流程是消息求哈希，再用发送者私钥签名。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q025",
@@ -457,15 +509,19 @@
     "stem": "RSA算法的安全性主要基于以下哪个数学难题？",
     "tags": [],
     "options": {
-      "A": "离散对数问题",
-      "B": "大整数质因数分解问题",
+      "A": "大整数质因数分解问题",
+      "B": "离散对数问题",
       "C": "椭圆曲线离散对数问题",
       "D": "背包问题"
     },
     "analysis": "RSA安全性依赖大整数质因数分解困难。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q027",
@@ -475,15 +531,19 @@
     "stem": "在一个四人共享同一对称密钥的群里，A收到一条用该密钥加密的消息。A成功解密后，能否认定该消息一定来源于B？",
     "tags": [],
     "options": {
-      "A": "能，因为加密密钥是保密的，只有B知道。",
-      "B": "不能，因为C或D同样拥有密钥，可以加密消息并冒充B。",
+      "A": "不能，因为C或D同样拥有密钥，可以加密消息并冒充B。",
+      "B": "能，因为加密密钥是保密的，只有B知道。",
       "C": "能，因为解密成功就验证了来源。",
       "D": "不能，因为对称加密算法不能保证完整性。"
     },
     "analysis": "多人共享同一密钥时任何持钥者都能生成合法密文。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q028",
@@ -493,15 +553,19 @@
     "stem": "Hash函数的“抗碰撞性”是指（）",
     "tags": [],
     "options": {
-      "A": "两个相同的输入不会产生碰撞。",
-      "B": "要找到两个不同的输入x和y，使得H(x) = H(y)，在计算上是不可行的。",
+      "A": "要找到两个不同的输入x和y，使得H(x) = H(y)，在计算上是不可行的。",
+      "B": "两个相同的输入不会产生碰撞。",
       "C": "哈希值不会与输入值相同。",
       "D": "哈希算法内部不会发生数据冲突。"
     },
     "analysis": "抗碰撞性是难以找到任意两个不同输入产生同一哈希值。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q029",
@@ -529,15 +593,19 @@
     "stem": "TCSEC标准的另一个广为人知的名称是什么？",
     "tags": [],
     "options": {
-      "A": "通用准则 (Common Criteria)",
-      "B": "橙皮书 (Orange Book)",
+      "A": "橙皮书 (Orange Book)",
+      "B": "通用准则 (Common Criteria)",
       "C": "红皮书 (Red Book)",
       "D": "绿皮书 (Green Book)"
     },
     "analysis": "TCSEC俗称橙皮书。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q031",
@@ -583,15 +651,19 @@
     "stem": "以下哪种情况属于典型的被动攻击？",
     "tags": [],
     "options": {
-      "A": "向网站服务器发送大量垃圾请求使其瘫痪",
-      "B": "使用软件捕获网络中传输的数据包",
+      "A": "使用软件捕获网络中传输的数据包",
+      "B": "向网站服务器发送大量垃圾请求使其瘫痪",
       "C": "伪造电子邮件地址发送钓鱼邮件",
       "D": "修改数据库中的用户金额"
     },
     "analysis": "抓包窃听通常不改变通信，属于被动攻击。",
     "correct": [
-      "B"
-    ]
+      "A"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q034",
@@ -602,14 +674,18 @@
     "tags": [],
     "options": {
       "A": "假冒",
-      "B": "授权侵犯",
-      "C": "物理侵入",
+      "B": "物理侵入",
+      "C": "授权侵犯",
       "D": "业务欺骗"
     },
     "analysis": "合法账号访问未授权资源属于授权侵犯/越权访问。",
     "correct": [
-      "B"
-    ]
+      "C"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q035",
@@ -638,14 +714,18 @@
     "tags": [],
     "options": {
       "A": "防火墙",
-      "B": "数据加密",
-      "C": "入侵检测系统",
+      "B": "入侵检测系统",
+      "C": "数据加密",
       "D": "访问控制列表"
     },
     "analysis": "数据被非法获取后仍不可读，依赖加密。",
     "correct": [
-      "B"
-    ]
+      "C"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q037",
@@ -656,14 +736,18 @@
     "tags": [],
     "options": {
       "A": "解密算法",
-      "B": "加密算法",
-      "C": "密钥",
+      "B": "密钥",
+      "C": "加密算法",
       "D": "密码方案"
     },
     "analysis": "加密算法在密钥控制下把明文转换为密文。",
     "correct": [
-      "B"
-    ]
+      "C"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q038",
@@ -674,14 +758,18 @@
     "tags": [],
     "options": {
       "A": "利用加密算法的数学弱点进行破解",
-      "B": "尝试所有可能的密钥直到找到正确的那个",
-      "C": "分析密文的统计规律来推测明文",
+      "B": "分析密文的统计规律来推测明文",
+      "C": "尝试所有可能的密钥直到找到正确的那个",
       "D": "通过社会工程学手段获取密钥"
     },
     "analysis": "穷举攻击就是遍历可能密钥。",
     "correct": [
-      "B"
-    ]
+      "C"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q039",
@@ -710,14 +798,18 @@
     "tags": [],
     "options": {
       "A": "无条件安全",
-      "B": "计算上安全",
-      "C": "可证明安全",
-      "D": "绝对安全"
+      "B": "可证明安全",
+      "C": "绝对安全",
+      "D": "计算上安全"
     },
     "analysis": "这是计算上安全的典型描述。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q041",
@@ -746,14 +838,18 @@
     "tags": [],
     "options": {
       "A": "为用户分配一个唯一的系统标识符",
-      "B": "验证实体所声称身份的真实性",
-      "C": "决定用户拥有何种访问资源的权限",
-      "D": "记录用户的所有操作日志以备审计"
+      "B": "决定用户拥有何种访问资源的权限",
+      "C": "记录用户的所有操作日志以备审计",
+      "D": "验证实体所声称身份的真实性"
     },
     "analysis": "鉴别验证身份声明是否真实。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q043",
@@ -764,14 +860,18 @@
     "tags": [],
     "options": {
       "A": "完全避免了所有安全风险",
-      "B": "大大简化了大规模网络中的密钥和信任管理",
-      "C": "认证速度总是最快",
-      "D": "无需任何预先的信任关系设置"
+      "B": "认证速度总是最快",
+      "C": "无需任何预先的信任关系设置",
+      "D": "大大简化了大规模网络中的密钥和信任管理"
     },
     "analysis": "可信第三方可降低多对多信任和密钥管理复杂度。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q044",
@@ -782,14 +882,18 @@
     "tags": [],
     "options": {
       "A": "降低网络带宽消耗。",
-      "B": "实现单点登录（SSO），减轻用户和管理员负担。",
-      "C": "提高加密和解密算法的计算速度。",
-      "D": "强制所有用户使用相同强度的密码。"
+      "B": "提高加密和解密算法的计算速度。",
+      "C": "强制所有用户使用相同强度的密码。",
+      "D": "实现单点登录（SSO），减轻用户和管理员负担。"
     },
     "analysis": "Kerberos通过票据实现单点登录。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q045",
@@ -800,14 +904,18 @@
     "tags": [],
     "options": {
       "A": "用户密码从不通过网络传输。",
-      "B": "服务票据是针对特定服务的，不能用于访问其他服务。",
-      "C": "票据具有很短的有效期以防止重放攻击。",
-      "D": "认证器是一次性的。"
+      "B": "票据具有很短的有效期以防止重放攻击。",
+      "C": "认证器是一次性的。",
+      "D": "服务票据是针对特定服务的，不能用于访问其他服务。"
     },
     "analysis": "服务票据被限定到特定服务，体现限定信任。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q046",
@@ -836,14 +944,18 @@
     "tags": [],
     "options": {
       "A": "智能卡的制造成本一定更低",
-      "B": "智能卡具有微处理器（CPU）和操作系统，能进行数据处理和计算",
-      "C": "普通存储IC卡的数据存储容量一定更大",
-      "D": "只有智能卡需要与读卡器接触才能工作"
+      "B": "普通存储IC卡的数据存储容量一定更大",
+      "C": "只有智能卡需要与读卡器接触才能工作",
+      "D": "智能卡具有微处理器（CPU）和操作系统，能进行数据处理和计算"
     },
     "analysis": "智能卡可在卡内进行计算和安全处理。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q048",
@@ -854,14 +966,18 @@
     "tags": [],
     "options": {
       "A": "为所有网站提供最高强度的加密连接。",
-      "B": "作为信任的起点和锚点，是所有信任链验证的最终源头。",
-      "C": "直接加密用户浏览器与web服务器之间的通信数据。",
-      "D": "存储所有已签发服务器的私钥信息。"
+      "B": "直接加密用户浏览器与web服务器之间的通信数据。",
+      "C": "存储所有已签发服务器的私钥信息。",
+      "D": "作为信任的起点和锚点，是所有信任链验证的最终源头。"
     },
     "analysis": "根证书是证书链验证的信任锚。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q049",
@@ -890,14 +1006,18 @@
     "tags": [],
     "options": {
       "A": "网站服务器本身的安全配置。",
-      "B": "操作系统中或浏览器内预置的受信任根证书颁发机构（Root CA）的证书。",
-      "C": "互联网服务提供商（ISP）的网络认证。",
-      "D": "网站服务器的IP地址是否在官方公布的范围内。"
+      "B": "互联网服务提供商（ISP）的网络认证。",
+      "C": "网站服务器的IP地址是否在官方公布的范围内。",
+      "D": "操作系统中或浏览器内预置的受信任根证书颁发机构（Root CA）的证书。"
     },
     "analysis": "客户端信任库中的根CA证书是最终信任锚。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q051",
@@ -908,14 +1028,18 @@
     "tags": [],
     "options": {
       "A": "证书颁发机构 (CA)",
-      "B": "注册机构 (RA)",
-      "C": "目录服务 (Repository)",
-      "D": "最终用户 (End User)"
+      "B": "目录服务 (Repository)",
+      "C": "最终用户 (End User)",
+      "D": "注册机构 (RA)"
     },
     "analysis": "RA负责注册受理和身份审核。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q052",
@@ -926,14 +1050,18 @@
     "tags": [],
     "options": {
       "A": "提供了更高的安全性",
-      "B": "简化了客户端的部署和管理",
-      "C": "加密强度更高",
-      "D": "完全避免了中间人攻击"
+      "B": "加密强度更高",
+      "C": "完全避免了中间人攻击",
+      "D": "简化了客户端的部署和管理"
     },
     "analysis": "单向认证只验证一方，部署更简单。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q053",
@@ -944,14 +1072,18 @@
     "tags": [],
     "options": {
       "A": "双向认证",
-      "B": "第三方认证",
-      "C": "匿名认证",
-      "D": "单向认证"
+      "B": "匿名认证",
+      "C": "单向认证",
+      "D": "第三方认证"
     },
     "analysis": "网站信任微信/支付宝作为第三方身份提供方。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q054",
@@ -998,14 +1130,18 @@
     "tags": [],
     "options": {
       "A": "标识(Identification)",
-      "B": "鉴别(Authentication)",
-      "C": "授权(Authorization)",
-      "D": "审计(Auditing)"
+      "B": "授权(Authorization)",
+      "C": "审计(Auditing)",
+      "D": "鉴别(Authentication)"
     },
     "analysis": "密码用于证明身份真实性。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q057",
@@ -1052,14 +1188,18 @@
     "tags": [],
     "options": {
       "A": "防火墙隔离",
-      "B": "信任建立与服务",
-      "C": "网络加速",
-      "D": "漏洞扫描"
+      "B": "网络加速",
+      "C": "漏洞扫描",
+      "D": "信任建立与服务"
     },
     "analysis": "PKI核心是建立和管理公钥信任体系。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q060",
@@ -1070,14 +1210,18 @@
     "tags": [],
     "options": {
       "A": "CA和RA是平级机构，可以互相签发证书。",
-      "B": "RA是CA的逻辑功能延伸和代理，代表CA与用户进行交互。",
-      "C": "RA负责最终决定是否签发证书，CA只负责执行签名操作。",
-      "D": "一个RA只能为一个CA服务，一个CA也只能有一个RA。"
+      "B": "RA负责最终决定是否签发证书，CA只负责执行签名操作。",
+      "C": "一个RA只能为一个CA服务，一个CA也只能有一个RA。",
+      "D": "RA是CA的逻辑功能延伸和代理，代表CA与用户进行交互。"
     },
     "analysis": "RA通常作为CA的注册审核代理。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q061",
@@ -1142,14 +1286,18 @@
     "tags": [],
     "options": {
       "A": "需要频繁审计某一文件被哪些用户访问过的系统",
-      "B": "需要快速判断某一用户对某资源是否有权限的系统",
-      "C": "需要集中管理所有客体访问权限的系统",
-      "D": "需要频繁撤销某一客体对所有主体权限的系统"
+      "B": "需要集中管理所有客体访问权限的系统",
+      "C": "需要频繁撤销某一客体对所有主体权限的系统",
+      "D": "需要快速判断某一用户对某资源是否有权限的系统"
     },
     "analysis": "能力表以主体为中心，便于判断某用户拥有哪些权限。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q065",
@@ -1160,14 +1308,18 @@
     "tags": [],
     "options": {
       "A": "尽可能多地给用户分配权限以提高工作效率",
-      "B": "只给角色分配完成其任务所必须的最小权限集",
-      "C": "让用户自动获得系统中的所有默认权限",
-      "D": "根据用户的资历级别分配权限"
+      "B": "让用户自动获得系统中的所有默认权限",
+      "C": "根据用户的资历级别分配权限",
+      "D": "只给角色分配完成其任务所必须的最小权限集"
     },
     "analysis": "角色只应具备完成任务所需最小权限。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q066",
@@ -1178,14 +1330,18 @@
     "tags": [],
     "options": {
       "A": "逐个修改相应用户的权限",
-      "B": "修改该职位对应角色的权限分配",
-      "C": "重新定义所有操作类型",
-      "D": "更改目标的安全级别"
+      "B": "重新定义所有操作类型",
+      "C": "更改目标的安全级别",
+      "D": "修改该职位对应角色的权限分配"
     },
     "analysis": "RBAC通过角色解耦用户和权限。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q067",
@@ -1196,14 +1352,18 @@
     "tags": [],
     "options": {
       "A": "提供一种固定不变的强加密算法",
-      "B": "定义一种支持多种认证方法的通用认证框架",
-      "C": "替代所有的物理身份认证方式",
-      "D": "专门用于有线网络的身份验证"
+      "B": "替代所有的物理身份认证方式",
+      "C": "专门用于有线网络的身份验证",
+      "D": "定义一种支持多种认证方法的通用认证框架"
     },
     "analysis": "EAP是可承载多种认证方法的框架。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q068",
@@ -1214,14 +1374,18 @@
     "tags": [],
     "options": {
       "A": "能力表（CL）的实现",
-      "B": "访问控制列表（ACL）的简化实现",
-      "C": "基于角色的访问控制（RBAC）",
-      "D": "强制访问控制（MAC）"
+      "B": "基于角色的访问控制（RBAC）",
+      "C": "强制访问控制（MAC）",
+      "D": "访问控制列表（ACL）的简化实现"
     },
     "analysis": "Unix权限以文件为中心记录访问权限，可看作简化ACL。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q069",
@@ -1232,14 +1396,18 @@
     "tags": [],
     "options": {
       "A": "由系统强制实施，用户无法更改",
-      "B": "由数据的所有者自主决定其他用户对其资源的访问权限",
-      "C": "基于安全标签和系统安全策略来限制访问",
-      "D": "访问权限由中央管理员统一分配，用户无权干预"
+      "B": "基于安全标签和系统安全策略来限制访问",
+      "C": "访问权限由中央管理员统一分配，用户无权干预",
+      "D": "由数据的所有者自主决定其他用户对其资源的访问权限"
     },
     "analysis": "DAC由资源所有者自主授权。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q070",
@@ -1250,14 +1418,18 @@
     "tags": [],
     "options": {
       "A": "权限管理过于复杂",
-      "B": "权限可能被用户任意扩散，无法防止特洛伊木马等攻击",
-      "C": "访问决策速度太慢",
-      "D": "无法实现基本的权限管理"
+      "B": "访问决策速度太慢",
+      "C": "无法实现基本的权限管理",
+      "D": "权限可能被用户任意扩散，无法防止特洛伊木马等攻击"
     },
     "analysis": "MAC由系统强制执行安全标签策略，限制权限任意扩散。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q071",
@@ -1268,14 +1440,18 @@
     "tags": [],
     "options": {
       "A": "该网站的加载速度非常快",
-      "B": "你与该网站之间的连接是私密的，并且已通过TLS加密",
-      "C": "该网站的内容一定是合法且真实的",
-      "D": "该网站没有使用任何Cookie"
+      "B": "该网站的内容一定是合法且真实的",
+      "C": "该网站没有使用任何Cookie",
+      "D": "你与该网站之间的连接是私密的，并且已通过TLS加密"
     },
     "analysis": "锁图标通常表示HTTPS/TLS连接和证书验证通过。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q072",
@@ -1304,14 +1480,18 @@
     "tags": [],
     "options": {
       "A": "ssh 192.168.1.100 -u xiaoming",
-      "B": "ssh xiaoming@192.168.1.100",
-      "C": "ssh connect 192.168.1.100 -l xiaoming",
-      "D": "ssh login xiaoming/192.168.1.100"
+      "B": "ssh connect 192.168.1.100 -l xiaoming",
+      "C": "ssh login xiaoming/192.168.1.100",
+      "D": "ssh xiaoming@192.168.1.100"
     },
     "analysis": "SSH常用格式是 ssh 用户名@主机。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q074",
@@ -1340,14 +1520,18 @@
     "tags": [],
     "options": {
       "A": "显著提升网页的加载和渲染速度",
-      "B": "对Web服务器和浏览器之间的通信进行加密和认证",
-      "C": "压缩传输数据以节省带宽",
-      "D": "允许服务器向客户端推送实时通知"
+      "B": "压缩传输数据以节省带宽",
+      "C": "允许服务器向客户端推送实时通知",
+      "D": "对Web服务器和浏览器之间的通信进行加密和认证"
     },
     "analysis": "HTTPS通过TLS提供加密、完整性和服务器认证。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q076",
@@ -1358,14 +1542,18 @@
     "tags": [],
     "options": {
       "A": "21",
-      "B": "22",
-      "C": "23",
-      "D": "80"
+      "B": "23",
+      "C": "80",
+      "D": "22"
     },
     "analysis": "SSH默认TCP 22端口。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q077",
@@ -1376,14 +1564,18 @@
     "tags": [],
     "options": {
       "A": "基于用户的身份认证",
-      "B": "基于端口的访问控制",
-      "C": "基于IP地址的过滤",
-      "D": "基于MAC地址的绑定"
+      "B": "基于IP地址的过滤",
+      "C": "基于MAC地址的绑定",
+      "D": "基于端口的访问控制"
     },
     "analysis": "802.1X是基于端口的网络接入控制。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q078",
@@ -1412,14 +1604,18 @@
     "tags": [],
     "options": {
       "A": "80",
-      "B": "443",
-      "C": "8080",
-      "D": "53"
+      "B": "8080",
+      "C": "53",
+      "D": "443"
     },
     "analysis": "HTTPS默认TCP 443端口。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q081",
@@ -1430,14 +1626,18 @@
     "tags": [],
     "options": {
       "A": "使用了过于简单的用户密码",
-      "B": "初始化向量（IV）太短且以明文传输，导致密钥流重用",
-      "C": "加密算法RC4本身存在无法修复的后门",
-      "D": "无法支持超过100兆的网络带宽"
+      "B": "加密算法RC4本身存在无法修复的后门",
+      "C": "无法支持超过100兆的网络带宽",
+      "D": "初始化向量（IV）太短且以明文传输，导致密钥流重用"
     },
     "analysis": "WEP的IV短且明文传输，容易重复并导致密钥流重用。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q082",
@@ -1448,14 +1648,18 @@
     "tags": [],
     "options": {
       "A": "WPA",
-      "B": "WPA2",
-      "C": "802.1x",
-      "D": "TLS"
+      "B": "802.1x",
+      "C": "TLS",
+      "D": "WPA2"
     },
     "analysis": "WPA是过渡方案，WPA2对应IEEE 802.11i正式替代WEP。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q083",
@@ -1466,14 +1670,18 @@
     "tags": [],
     "options": {
       "A": "WAPI是IEEE 802.11i标准的官方组成部分，被全球广泛采用。",
-      "B": "WAPI是中国提出的自主知识产权标准，与IEEE 802.11系列标准并行，主要在中国强制推行。",
-      "C": "WAPI已被WPA3协议完全吸收并取代，不再具有使用价值。",
-      "D": "WAPI是Wi-Fi联盟为替代WEP而推出的临时过渡方案。"
+      "B": "WAPI已被WPA3协议完全吸收并取代，不再具有使用价值。",
+      "C": "WAPI是Wi-Fi联盟为替代WEP而推出的临时过渡方案。",
+      "D": "WAPI是中国提出的自主知识产权标准，与IEEE 802.11系列标准并行，主要在中国强制推行。"
     },
     "analysis": "WAPI是中国提出的无线局域网安全标准，与802.11i体系不同。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q084",
@@ -1502,14 +1710,18 @@
     "tags": [],
     "options": {
       "A": "信号强度不足",
-      "B": "网络的未认证入侵",
-      "C": "设备硬件老化",
-      "D": "传输速度过慢"
+      "B": "设备硬件老化",
+      "C": "传输速度过慢",
+      "D": "网络的未认证入侵"
     },
     "analysis": "无线介质开放，主要威胁是未授权接入和伪装接入。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q086",
@@ -1520,14 +1732,18 @@
     "tags": [],
     "options": {
       "A": "开启标识符广播以增强信号",
-      "B": "进行现场勘查，调整信道和信号强度",
-      "C": "为所有员工电脑安装杀毒软件",
-      "D": "将路由器默认密码改得更复杂"
+      "B": "为所有员工电脑安装杀毒软件",
+      "C": "将路由器默认密码改得更复杂",
+      "D": "进行现场勘查，调整信道和信号强度"
     },
     "analysis": "竞争信号问题应通过勘测、信道规划和功率控制处理。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q087",
@@ -1556,14 +1772,18 @@
     "tags": [],
     "options": {
       "A": "使用流密码还是分组密码",
-      "B": "依赖“共享密钥”还是信赖“数字身份”",
-      "C": "追求全球兼容还是区域标准",
-      "D": "采用软件升级还是硬件绑定"
+      "B": "追求全球兼容还是区域标准",
+      "C": "采用软件升级还是硬件绑定",
+      "D": "依赖“共享密钥”还是信赖“数字身份”"
     },
     "analysis": "该题考查共享密钥/数字身份认证路线差异。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q089",
@@ -1592,14 +1812,18 @@
     "tags": [],
     "options": {
       "A": "提高无线网络的传输速率和带宽",
-      "B": "替代原有的有线等效保密（WEP）协议，提供强大的安全性和数据保密性",
-      "C": "增加无线信号的覆盖范围和穿透能力",
-      "D": "管理无线网络的频段分配和信道选择"
+      "B": "增加无线信号的覆盖范围和穿透能力",
+      "C": "管理无线网络的频段分配和信道选择",
+      "D": "替代原有的有线等效保密（WEP）协议，提供强大的安全性和数据保密性"
     },
     "analysis": "RSN是802.11i提出的强健安全网络，用于替代WEP。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q091",
@@ -1628,14 +1852,18 @@
     "tags": [],
     "options": {
       "A": "对称加密算法（如AES）",
-      "B": "公钥基础设施（PKI）和X.509数字证书",
-      "C": "安全哈希算法（如SHA-256）",
-      "D": "防火墙和入侵检测系统（IDS）"
+      "B": "安全哈希算法（如SHA-256）",
+      "C": "防火墙和入侵检测系统（IDS）",
+      "D": "公钥基础设施（PKI）和X.509数字证书"
     },
     "analysis": "S/MIME依赖X.509证书和PKI。",
     "correct": [
-      "B"
-    ]
+      "D"
+    ],
+    "meta": {
+      "optionRebalanced": true,
+      "rebalanceNote": "Option labels were rebalanced to reduce answer-position bias; option meanings and correct answer text were not changed."
+    }
   },
   {
     "id": "Q093",

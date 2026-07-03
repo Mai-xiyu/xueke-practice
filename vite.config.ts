@@ -47,6 +47,28 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, "index.html")
+      },
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          if (id.includes("/react/") || id.includes("/react-dom/") || id.includes("\\react\\") || id.includes("\\react-dom\\")) {
+            return "react-vendor";
+          }
+          if (
+            id.includes("react-markdown") ||
+            id.includes("remark-") ||
+            id.includes("rehype-") ||
+            id.includes("katex") ||
+            id.includes("micromark") ||
+            id.includes("unified") ||
+            id.includes("mdast-") ||
+            id.includes("hast-") ||
+            id.includes("unist-")
+          ) {
+            return "markdown-vendor";
+          }
+          return "vendor";
+        }
       }
     }
   },

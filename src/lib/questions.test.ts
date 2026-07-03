@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { buildMockExam, isAnswerCorrect, normalizeOptions, normalizeType } from "./questions";
+import { buildMockExam, interleaveByType, isAnswerCorrect, normalizeOptions, normalizeType, scoreMockExam } from "./questions";
 import type { Question } from "./types";
+
+function makeQuestion(id: string, type: Question["type"]): Question {
+  return { id, source: "s", chapter: "c", type, stem: id, correct: ["A"], options: { A: "a", B: "b" }, tags: [] };
+}
 
 describe("question helpers", () => {
   it("normalizes legacy type aliases", () => {
@@ -28,5 +32,33 @@ describe("question helpers", () => {
     const exam = buildMockExam(questions, { sections: [{ type: "single", count: 1 }, { type: "judge", count: 1 }] }, 1);
     expect(exam).toHaveLength(2);
     expect(exam.map((question) => question.type).sort()).toEqual(["judge", "single"]);
+  });
+
+  it("interleaves questions across type groups", () => {
+    const questions = [
+      makeQuestion("s1", "single"),
+      makeQuestion("s2", "single"),
+      makeQuestion("s3", "single"),
+      makeQuestion("j1", "judge"),
+      makeQuestion("j2", "judge")
+    ];
+    const mixed = interleaveByType(questions);
+    expect(mixed.map((question) => question.id)).toEqual(["s1", "j1", "s2", "j2", "s3"]);
+    expect(interleaveByType(questions.slice(0, 2)).map((question) => question.id)).toEqual(["s1", "s2"]);
+  });
+
+  it("reports per-type scores for mock exams", () => {
+    const questions = [makeQuestion("s1", "single"), makeQuestion("s2", "single"), makeQuestion("j1", "judge")];
+    const { score, totalScore, typeScores } = scoreMockExam(
+      questions,
+      { s1: "A", s2: "B", j1: "A" },
+      { sections: [{ type: "single", count: 2, score: 2 }, { type: "judge", count: 1, score: 1 }] }
+    );
+    expect(score).toBe(3);
+    expect(totalScore).toBe(5);
+    expect(typeScores).toEqual([
+      { type: "single", correct: 1, total: 2, score: 2, totalScore: 4 },
+      { type: "judge", correct: 1, total: 1, score: 1, totalScore: 1 }
+    ]);
   });
 });

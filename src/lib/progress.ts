@@ -131,6 +131,54 @@ export function isReviewDue(detail: QuestionProgress | undefined, now = new Date
   return new Date(detail.nextReviewAt).getTime() <= now.getTime();
 }
 
+export type MasteryLevel = "new" | "weak" | "learning" | "mastered";
+
+export const MASTERY_LABEL: Record<MasteryLevel, string> = {
+  new: "未学",
+  weak: "薄弱",
+  learning: "学习中",
+  mastered: "已掌握"
+};
+
+export function masteryLevel(detail: QuestionProgress | undefined): MasteryLevel {
+  if (!detail || detail.attempts === 0) {
+    return detail?.confidence === 2 ? "weak" : "new";
+  }
+  if (detail.isWrong || detail.correctStreak === 0) return "weak";
+  if (detail.correctStreak >= 3) return "mastered";
+  return "learning";
+}
+
+// Review queue ordering: weak questions first, then by earliest due time, so the
+// most fragile memories get refreshed before comfortably scheduled ones.
+export function compareReviewPriority(a: QuestionProgress | undefined, b: QuestionProgress | undefined): number {
+  const weakRank = (detail: QuestionProgress | undefined) => (masteryLevel(detail) === "weak" ? 0 : 1);
+  const rankDiff = weakRank(a) - weakRank(b);
+  if (rankDiff !== 0) return rankDiff;
+  const dueA = a?.nextReviewAt ? new Date(a.nextReviewAt).getTime() : Number.MAX_SAFE_INTEGER;
+  const dueB = b?.nextReviewAt ? new Date(b.nextReviewAt).getTime() : Number.MAX_SAFE_INTEGER;
+  return dueA - dueB;
+}
+
+// "我不确定": the question enters the review queue on a short interval without
+// being counted as an attempt or a wrong answer.
+export function markUncertain(state: ProgressState, questionId: string, now = new Date()): ProgressState {
+  const detail = ensureDetail(state, questionId);
+  return {
+    ...state,
+    review: { ...state.review, [questionId]: true },
+    details: {
+      ...state.details,
+      [questionId]: {
+        ...detail,
+        correctStreak: 0,
+        confidence: 2,
+        nextReviewAt: new Date(now.getTime() + 10 * MINUTE).toISOString()
+      }
+    }
+  };
+}
+
 export function recordQuestionAttempt(
   state: ProgressState,
   questionId: string,

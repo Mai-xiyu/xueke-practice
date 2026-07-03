@@ -13,17 +13,24 @@ import { QuestionCard } from "../components/QuestionCard";
 import { buildStatEntries, StatCard, StatPanel } from "../components/StatPanel";
 import {
   buildMockExam,
+  interleaveByType,
   isChoice,
+  isObjective,
   isAnswerCorrect,
   questionMatches,
   scoreMockExam,
+  shuffle,
   TYPE_LABEL,
-  uniqueSorted
+  uniqueSorted,
+  type MockTypeScore
 } from "../lib/questions";
 import {
+  compareReviewPriority,
   isReviewDue,
   loadLocalProgress,
   loadRemoteSnapshot,
+  markUncertain,
+  masteryLevel,
   migrateSnapshotProgress,
   recordQuestionAttempt,
   saveLocalProgress,
@@ -35,6 +42,7 @@ import type { FloatingPanelConfig } from "../lib/floatingLayout";
 import type { AnswerCardItem, ProgressState, Question, QuestionType, Subject, SubjectDirectory } from "../lib/types";
 
 type Mode = "study" | "browse" | "wrong" | "favorite" | "review" | "mock";
+type QuestionOrder = "default" | "interleave" | "random";
 
 interface PracticePageProps {
   directory: SubjectDirectory;
@@ -56,6 +64,8 @@ interface MockResult {
   startedAt: string;
   submittedAt: string;
   durationSeconds: number;
+  typeScores: MockTypeScore[];
+  wrongIds: string[];
 }
 
 const BASE_FLOATING_CONFIGS: FloatingPanelConfig[] = [
@@ -70,7 +80,8 @@ const BASE_FLOATING_CONFIGS: FloatingPanelConfig[] = [
   { id: "filter-type", defaultRect: { x: 294, y: 420, width: 250, height: 64 }, minWidth: 210, minHeight: 58, priority: 9 },
   { id: "filter-source", defaultRect: { x: 560, y: 420, width: 250, height: 64 }, minWidth: 210, minHeight: 58, priority: 10 },
   { id: "filter-search", defaultRect: { x: 826, y: 420, width: 280, height: 64 }, minWidth: 220, minHeight: 58, priority: 11 },
-  { id: "question", defaultRect: { x: 28, y: 520, width: 760, height: 560 }, minWidth: 420, minHeight: 260, priority: 12 }
+  { id: "question", defaultRect: { x: 28, y: 520, width: 760, height: 560 }, minWidth: 420, minHeight: 260, priority: 12 },
+  { id: "filter-order", defaultRect: { x: 826, y: 500, width: 280, height: 64 }, minWidth: 210, minHeight: 58, priority: 13 }
 ];
 
 const ANSWER_FLOATING_CONFIGS: FloatingPanelConfig[] = [
@@ -161,6 +172,8 @@ export function PracticePage({ subject }: PracticePageProps) {
   const [type, setType] = useState("");
   const [source, setSource] = useState("");
   const [keyword, setKeyword] = useState("");
+  const [order, setOrder] = useState<QuestionOrder>("default");
+  const [orderSeed, setOrderSeed] = useState(() => Date.now());
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState<ProgressState>(() => {
     try {
@@ -179,6 +192,26 @@ export function PracticePage({ subject }: PracticePageProps) {
   const [mockResult, setMockResult] = useState<MockResult | null>(null);
   const [mockReviewing, setMockReviewing] = useState(false);
   const [syncReady, setSyncReady] = useState(false);
+
+  // Snapshot the wrong/review queue when entering those modes, so answering a
+  // question does not immediately remove it from the list before the user sees feedback.
+  const [queueIds, setQueueIds] = useState<string[] | null>(null);
+  useEffect(() => {
+    if (mode === "wrong") {
+      setQueueIds(questions.filter((question) => progress.wrong[question.id]).map((question) => question.id));
+    } else if (mode === "review") {
+      setQueueIds(
+        questions
+          .filter((question) => isReviewDue(progress.details[question.id]))
+          .sort((left, right) => compareReviewPriority(progress.details[left.id], progress.details[right.id]))
+          .map((question) => question.id)
+      );
+    } else {
+      setQueueIds(null);
+    }
+    // progress is intentionally not a dependency: the queue is a snapshot taken on mode entry.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode, questions]);
 
   useEffect(() => {
     let cancelled = false;
@@ -220,20 +253,31 @@ export function PracticePage({ subject }: PracticePageProps) {
   const types = useMemo(() => typeOptions(questions), [questions]);
 
   const visibleQuestions = useMemo(() => {
-    const base = mode === "mock" && mockQuestions.length ? mockQuestions : questions;
-    return base.filter((question) => {
-      if (mode === "wrong" && !progress.wrong[question.id]) return false;
+    const matchesFilters = (question: Question) =>
+      (!chapter || question.chapter === chapter) &&
+      (!type || question.type === type) &&
+      (!source || question.source === source) &&
+      questionMatches(question, keyword);
+
+    if (mode === "mock") return mockQuestions.length ? mockQuestions : [];
+    if (mode === "wrong" || mode === "review") {
+      if (!queueIds) return [];
+      const byId = new Map(questions.map((question) => [question.id, question]));
+      return queueIds
+        .map((id) => byId.get(id))
+        .filter((question): question is Question => Boolean(question))
+        .filter(matchesFilters);
+    }
+    const filtered = questions.filter((question) => {
       if (mode === "favorite" && !progress.favorites[question.id]) return false;
-      if (mode === "review" && !isReviewDue(progress.details[question.id])) return false;
-      if (mode !== "mock") {
-        if (chapter && question.chapter !== chapter) return false;
-        if (type && question.type !== type) return false;
-        if (source && question.source !== source) return false;
-        if (!questionMatches(question, keyword)) return false;
-      }
-      return true;
+      return matchesFilters(question);
     });
-  }, [chapter, keyword, mockQuestions, mode, progress.favorites, progress.wrong, progress.details, questions, source, type]);
+    if (mode === "study" || mode === "browse") {
+      if (order === "interleave") return interleaveByType(filtered);
+      if (order === "random") return shuffle(filtered, orderSeed);
+    }
+    return filtered;
+  }, [chapter, keyword, mockQuestions, mode, order, orderSeed, progress.favorites, queueIds, questions, source, type]);
 
   useEffect(() => {
     setIndex((current) => normalizeIndex(current, visibleQuestions.length));
@@ -244,12 +288,13 @@ export function PracticePage({ subject }: PracticePageProps) {
   const wrongCount = Object.keys(progress.wrong).length;
   const favoriteCount = Object.keys(progress.favorites).length;
   const reviewCount = questions.filter((question) => isReviewDue(progress.details[question.id])).length;
+  const masteredCount = questions.filter((question) => masteryLevel(progress.details[question.id]) === "mastered").length;
   const statEntries = buildStatEntries({
     total: questions.length,
     done: doneCount,
     wrong: wrongCount,
-    extraLabel: "题库/题型",
-    extraValue: `${sources.length}/${types.length}`
+    extraLabel: "今日复习/已掌握",
+    extraValue: `${reviewCount}/${masteredCount}`
   });
   const answerItems: AnswerCardItem[] = visibleQuestions.map((question, i) => {
     const state = answerState(question);
@@ -332,7 +377,9 @@ export function PracticePage({ subject }: PracticePageProps) {
 
   function updateAnswer(question: Question, value: unknown) {
     updateDraft(question, value);
-    if (mode === "study" && isChoice(question.type)) {
+    // Single/judge questions give instant feedback; multiple-choice needs an
+    // explicit submit so picking the first option is not judged prematurely.
+    if (mode === "study" && isChoice(question.type) && question.type !== "multiple") {
       submit(question, value, false);
     }
   }
@@ -342,6 +389,12 @@ export function PracticePage({ subject }: PracticePageProps) {
       submit(question, draftValue(question), true);
       return;
     }
+    setAnalysisRevealed((prev) => ({ ...prev, [question.id]: true }));
+  }
+
+  function markQuestionUncertain(question: Question) {
+    setProgress((prev) => markUncertain(prev, question.id));
+    setRevealed((prev) => ({ ...prev, [question.id]: true }));
     setAnalysisRevealed((prev) => ({ ...prev, [question.id]: true }));
   }
 
@@ -415,11 +468,14 @@ export function PracticePage({ subject }: PracticePageProps) {
     const confirmed = window.confirm("确认交卷吗？交卷后将统一判分并显示答案解析。");
     if (!confirmed) return;
     const submittedAnswers = Object.fromEntries(mockQuestions.map((question) => [question.id, draftValue(question)]));
-    const { score, totalScore } = scoreMockExam(mockQuestions, submittedAnswers, subject.mockExam);
+    const { score, totalScore, typeScores } = scoreMockExam(mockQuestions, submittedAnswers, subject.mockExam);
     const submittedAt = new Date();
     const startedAt = mockStartedAt || submittedAt.toISOString();
     const completed = mockQuestions.filter((question) => hasAnswerValue(question, submittedAnswers[question.id])).length;
     const durationSeconds = Math.max(0, Math.round((submittedAt.getTime() - new Date(startedAt).getTime()) / 1000));
+    const wrongIds = mockQuestions
+      .filter((question) => !isAnswerCorrect(question, submittedAnswers[question.id]))
+      .map((question) => question.id);
     const result: MockResult = {
       title: subject.mockExam?.title || "随机练习卷",
       subjectTitle: subject.title,
@@ -429,7 +485,9 @@ export function PracticePage({ subject }: PracticePageProps) {
       total: mockQuestions.length,
       startedAt,
       submittedAt: submittedAt.toISOString(),
-      durationSeconds
+      durationSeconds,
+      typeScores,
+      wrongIds
     };
     setMockSubmitted(true);
     setMockResult(result);
@@ -466,6 +524,11 @@ export function PracticePage({ subject }: PracticePageProps) {
     setIndex(Math.max(0, visibleQuestions.findIndex((question) => question.id === id)));
   }
 
+  function reviewMockQuestion(id: string) {
+    setMockReviewing(true);
+    setIndex(Math.max(0, mockQuestions.findIndex((question) => question.id === id)));
+  }
+
   const subjectHead = (
     <section className="subject-head">
       <h1>{subject.title}练习系统</h1>
@@ -480,7 +543,7 @@ export function PracticePage({ subject }: PracticePageProps) {
       ["browse", "题库浏览"],
       ["wrong", `错题本 ${wrongCount}`],
       ["favorite", `收藏 ${favoriteCount}`],
-      ["review", `待复习 ${reviewCount}`]
+      ["review", `今日复习 ${reviewCount}`]
     ];
     return (
       <div className="mode-tabs">
@@ -530,12 +593,30 @@ export function PracticePage({ subject }: PracticePageProps) {
     <input value={keyword} onChange={(event) => { setKeyword(event.target.value); setIndex(0); }} placeholder="搜索题干 / 答案 / 标签" />
   );
 
+  const orderFilter = mode === "study" || mode === "browse" ? (
+    <select
+      value={order}
+      aria-label="练习顺序"
+      onChange={(event) => {
+        const next = event.target.value as QuestionOrder;
+        if (next === "random") setOrderSeed(Date.now());
+        setOrder(next);
+        setIndex(0);
+      }}
+    >
+      <option value="default">顺序：题库顺序</option>
+      <option value="interleave">顺序：题型交错</option>
+      <option value="random">顺序：随机打乱</option>
+    </select>
+  ) : null;
+
   const filters = mode !== "mock" ? (
     <div className="filters">
       {chapterFilter}
       {typeFilter}
       {sourceFilter}
       {searchFilter}
+      {orderFilter}
     </div>
   ) : null;
 
@@ -581,7 +662,43 @@ export function PracticePage({ subject }: PracticePageProps) {
           <dd>{formatDateTime(mockResult.submittedAt)}</dd>
         </div>
       </dl>
-      <p className="mock-result__note">已统一判分并锁定本次答案。点击考试回顾后显示题目、答案与解析。</p>
+      <section className="mock-result__types">
+        <h3>题型得分</h3>
+        <table>
+          <thead>
+            <tr><th>题型</th><th>答对</th><th>得分</th><th>正确率</th></tr>
+          </thead>
+          <tbody>
+            {mockResult.typeScores.map((entry) => (
+              <tr key={entry.type}>
+                <td>{TYPE_LABEL[entry.type]}</td>
+                <td>{entry.correct} / {entry.total}</td>
+                <td>{entry.score} / {entry.totalScore}</td>
+                <td>{entry.total ? Math.round((entry.correct / entry.total) * 100) : 0}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+      {mockResult.wrongIds.length ? (
+        <section className="mock-result__wrong">
+          <h3>错题回顾（{mockResult.wrongIds.length} 题）</h3>
+          <div className="mock-result__wrong-list">
+            {mockResult.wrongIds.map((id) => {
+              const questionIndex = mockQuestions.findIndex((question) => question.id === id);
+              if (questionIndex < 0) return null;
+              return (
+                <button key={id} type="button" onClick={() => reviewMockQuestion(id)}>
+                  第 {questionIndex + 1} 题 · {TYPE_LABEL[mockQuestions[questionIndex].type]}
+                </button>
+              );
+            })}
+          </div>
+          <p className="mock-result__note">错题已进入错题本和复习队列，建议交卷后立即重看一遍。</p>
+        </section>
+      ) : (
+        <p className="mock-result__note">全部答对，太棒了！</p>
+      )}
       <div className="question-actions">
         <button type="button" className="primary" onClick={() => setMockReviewing(true)}>考试回顾</button>
         <button type="button" onClick={startMock}>重新组卷</button>
@@ -603,26 +720,36 @@ export function PracticePage({ subject }: PracticePageProps) {
       favorite={Boolean(progress.favorites[current.id])}
       reveal={mode === "mock" ? mockSubmitted && mockReviewing : mode === "browse" || Boolean(revealed[current.id])}
       showAnalysis={mode === "mock" ? mockSubmitted && mockReviewing : mode === "browse" || Boolean(analysisRevealed[current.id])}
-      showAnalysisButton={mode === "study" && !analysisRevealed[current.id]}
+      showAnalysisButton={mode !== "mock" && mode !== "browse" && !analysisRevealed[current.id]}
       locked={mode === "mock" && mockSubmitted}
-      showSubmit={mode === "wrong" || mode === "favorite" || mode === "review"}
+      showSubmit={mode === "wrong" || mode === "favorite" || mode === "review" || (mode === "study" && (current.type === "multiple" || !isChoice(current.type)))}
       showFavorite={mode !== "mock"}
       showReset={mode !== "mock"}
       allowReset={mode !== "mock"}
+      showUncertain={mode !== "mock" && mode !== "browse"}
       detail={progress.details[current.id]}
       memoryHintDraft={memoryHints[current.id] || ""}
       onChange={(value) => updateAnswer(current, value)}
       onMemoryHintChange={(value) => setMemoryHints((prev) => ({ ...prev, [current.id]: value }))}
       onSaveMemoryHint={() => updateMemoryHint(current)}
-      onSubmit={() => submit(current)}
+      onSubmit={() => submit(current, draftValue(current), !isObjective(current.type))}
       onShowAnalysis={() => showQuestionAnalysis(current)}
+      onUncertain={() => markQuestionUncertain(current)}
       onReset={() => reset(current)}
       onFavorite={() => toggleFavorite(current)}
       onPrev={() => setIndex((value) => normalizeIndex(value - 1, visibleQuestions.length))}
       onNext={() => setIndex((value) => normalizeIndex(value + 1, visibleQuestions.length))}
     />
   ) : (
-    <section className="empty-state">没有匹配题目。</section>
+    <section className="empty-state">
+      {mode === "review"
+        ? "今日没有到期的复习题。答错或标记“我不确定”的题目会按记忆间隔自动进入这里。"
+        : mode === "wrong"
+          ? "错题本是空的，继续保持！"
+          : mode === "favorite"
+            ? "还没有收藏的题目。在题目下方点击“收藏本题”即可加入。"
+            : "没有匹配题目。"}
+    </section>
   );
   const mainPanel = showMockResult ? mockResultPanel : questionPanel;
 
@@ -684,7 +811,8 @@ export function PracticePage({ subject }: PracticePageProps) {
             { id: "filter-chapter", title: "章节", config: BASE_FLOATING_CONFIGS[7], node: <div className="floating-filter">{chapterFilter}</div> },
             { id: "filter-type", title: "题型", config: BASE_FLOATING_CONFIGS[8], node: <div className="floating-filter">{typeFilter}</div> },
             { id: "filter-source", title: "来源", config: BASE_FLOATING_CONFIGS[9], node: <div className="floating-filter">{sourceFilter}</div> },
-            { id: "filter-search", title: "搜索", config: BASE_FLOATING_CONFIGS[10], node: <div className="floating-filter">{searchFilter}</div> }
+            { id: "filter-search", title: "搜索", config: BASE_FLOATING_CONFIGS[10], node: <div className="floating-filter">{searchFilter}</div> },
+            ...(orderFilter ? [{ id: "filter-order", title: "顺序", config: BASE_FLOATING_CONFIGS[12], node: <div className="floating-filter">{orderFilter}</div> }] : [])
           ] : []),
           ...(mode === "mock" && mockStrip ? [{ id: "mock-strip", title: "模拟考试", config: MOCK_FLOATING_CONFIG, node: mockStrip }] : []),
           { id: "question", title: showMockResult ? "考试结果" : "题目", config: BASE_FLOATING_CONFIGS[11], node: mainPanel },
@@ -721,7 +849,7 @@ export function PracticePage({ subject }: PracticePageProps) {
           return (
             <main className={`practice-layout${mode === "browse" ? " no-card" : ""}`}>
               {subjectHead}
-              <StatPanel total={questions.length} done={doneCount} wrong={wrongCount} extraLabel="题库/题型" extraValue={`${sources.length}/${types.length}`} />
+              <StatPanel total={questions.length} done={doneCount} wrong={wrongCount} extraLabel="今日复习/已掌握" extraValue={`${reviewCount}/${masteredCount}`} />
               <section className="toolbar">
                 {modeTabs}
                 {filters}
