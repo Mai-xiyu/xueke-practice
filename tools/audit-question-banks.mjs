@@ -85,6 +85,10 @@ function auditQuestion(subject, question) {
     const optionKeys = Object.keys(options);
     const correct = Array.isArray(question.correct) ? question.correct.map(String) : [];
 
+    if (question.type === "judge" && (options.A !== "对" || options.B !== "错" || optionKeys.length !== 2)) {
+      pushIssue("error", "judge-options-not-canonical", subjectId, id, "judge question options must be canonical: A=对, B=错", true);
+    }
+
     if (!correct.length) pushIssue("error", "missing-correct", subjectId, id, "choice question missing correct", true);
     const badKeys = correct.filter((key) => !optionKeys.includes(key));
     if (badKeys.length) pushIssue("error", "correct-not-in-options", subjectId, id, `correct contains keys not in options: ${badKeys.join(",")}`, true);
