@@ -689,7 +689,7 @@ button.uncertain:hover {
   gap: 6px;
   margin-bottom: 14px;
 }
-.analysis__result div {
+.analysis__result > div:not(.analysis__answer-block) {
   display: flex;
   align-items: baseline;
   gap: 4px;
@@ -697,6 +697,14 @@ button.uncertain:hover {
 }
 .analysis__result strong {
   font-size: 17px;
+}
+.analysis__answer-block {
+  display: block;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: #fff;
 }
 .analysis__block {
   padding-top: 12px;

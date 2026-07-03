@@ -67,6 +67,18 @@ function analysisSnippet(analysis?: string): string {
   return first.length > 90 ? `${first.slice(0, 88)}…` : first;
 }
 
+function displayAnswerText(question: Question): string {
+  if (isChoice(question.type)) {
+    const correct = question.correct || [];
+    if (!correct.length) return answerText(question);
+    return correct.map((key) => {
+      const optionText = question.options?.[key];
+      return optionText ? `${key}. ${optionText}` : key;
+    }).join("\n");
+  }
+  return answerText(question);
+}
+
 const MASTERY_CLASS: Record<string, string> = {
   weak: "badge-danger",
   learning: "badge-info",
@@ -101,6 +113,7 @@ export function QuestionCard(props: QuestionCardProps) {
   const needsReview = question.meta?.needsReview === true;
   const reasons = showAnswer ? optionReasons(question) : {};
   const snippet = showAnswer && !showAnalysis ? analysisSnippet(question.analysis) : "";
+  const correctAnswer = displayAnswerText(question) || "见解析";
 
   return (
     <article className="question-card">
@@ -182,9 +195,10 @@ export function QuestionCard(props: QuestionCardProps) {
       {showAnswer && !showAnalysis && isObjective(question.type) ? (
         <section className={`quick-feedback ${correct ? "ok" : "bad"}`}>
           <strong>{correct ? "答对了" : "答错了"}</strong>
-          <span className="quick-feedback__answer">
-            正确答案：<MarkdownText value={answerText(question) || "见解析"} compact />
-          </span>
+          <div className="quick-feedback__answer">
+            <span>正确答案：</span>
+            <MarkdownText value={correctAnswer} compact />
+          </div>
           {snippet ? (
             <span className="quick-feedback__hint">
               <MarkdownText value={snippet} compact />
@@ -211,14 +225,22 @@ export function QuestionCard(props: QuestionCardProps) {
         <section className={`analysis ${isObjective(question.type) ? (wrong || !correct ? "bad" : "ok") : ""}`}>
           <div className="analysis__result">
             <strong>{isObjective(question.type) ? (wrong || !correct ? "本题答错" : "本题答对") : "参考答案"}</strong>
-            <div>
-              <span>你的答案：</span>
-              <MarkdownText value={String(Array.isArray(value) ? value.join("") : value || "未填写")} compact />
-            </div>
-            <div>
-              <span>正确答案：</span>
-              <MarkdownText value={answerText(question) || "见解析"} compact />
-            </div>
+            {isObjective(question.type) ? (
+              <>
+                <div>
+                  <span>你的答案：</span>
+                  <MarkdownText value={String(Array.isArray(value) ? value.join("") : value || "未填写")} compact />
+                </div>
+                <div>
+                  <span>正确答案：</span>
+                  <MarkdownText value={correctAnswer} compact />
+                </div>
+              </>
+            ) : (
+              <div className="analysis__answer-block">
+                <MarkdownText value={correctAnswer} />
+              </div>
+            )}
           </div>
           <div className="analysis__block">
             <h3>解析</h3>
