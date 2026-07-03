@@ -50,8 +50,16 @@ function checkQuestion(subject, question, index, seen) {
   if (["single", "multiple", "judge"].includes(question.type)) {
     if (!question.options || !Object.keys(question.options).length) fail(`${subject.id}: ${question.id} choice question missing options`);
     assertArray(question.correct, `${subject.id}: ${question.id} correct must be array`);
+    if (!question.correct.length) fail(`${subject.id}: ${question.id} choice question missing correct answer`);
+    const optionKeys = new Set(Object.keys(question.options));
+    question.correct.forEach((key) => {
+      if (!optionKeys.has(String(key))) fail(`${subject.id}: ${question.id} correct answer not in options: ${key}`);
+    });
   }
-  if (question.type === "fill") assertArray(question.answers, `${subject.id}: ${question.id} answers must be array`);
+  if (question.type === "fill") {
+    assertArray(question.answers, `${subject.id}: ${question.id} answers must be array`);
+    if (!question.answers.length) fail(`${subject.id}: ${question.id} fill question missing answers`);
+  }
   if (["short", "essay", "code", "comprehensive"].includes(question.type) && typeof question.answer !== "string") {
     fail(`${subject.id}: ${question.id} subjective question missing answer string`);
   }
