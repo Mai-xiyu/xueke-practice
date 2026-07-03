@@ -859,6 +859,9 @@ button.uncertain:hover {
   z-index: 100;
   display: grid;
   justify-items: end;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 .card-drawer__backdrop {
   position: absolute;
@@ -873,14 +876,18 @@ button.uncertain:hover {
   position: relative;
   z-index: 1;
   width: min(560px, 100%);
-  height: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   padding: 20px;
   background: var(--surface);
   box-shadow: -16px 0 40px rgba(15, 23, 42, .12);
 }
 .card-drawer__head {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -890,6 +897,7 @@ button.uncertain:hover {
   margin: 0;
 }
 .card-drawer__filters {
+  flex: 0 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -900,8 +908,12 @@ button.uncertain:hover {
 }
 .card-drawer__body {
   flex: 1;
-  overflow: auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
   padding-right: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 .drawer-grid {
   grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
