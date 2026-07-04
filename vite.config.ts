@@ -9,6 +9,7 @@ const legacyPages = [
   "network_data_collection_practice.html",
   "data_visualization_practice.html",
   "data_structure_practice.html",
+  "java_programming_practice.html",
   "linux_practice.html",
   "modern_history_practice.html",
   "community_practice.html",

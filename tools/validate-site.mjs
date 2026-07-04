@@ -17,6 +17,7 @@ const expectedCounts = new Map([
   ["data-collection", 282],
   ["data-visualization", 100],
   ["data-structure", 553],
+  ["java-programming", 14],
   ["linux-course", 335],
   ["modern-history", 390],
   ["community", 158],
@@ -126,3 +127,4 @@ for (const subjectId of markdownBanks.keys()) {
 }
 const markdownQuestionCount = [...markdownBanks.values()].reduce((sum, items) => sum + items.length, 0);
 console.log(`markdown contributions: ${markdownFiles.length} files, ${markdownQuestionCount} questions`);
+
