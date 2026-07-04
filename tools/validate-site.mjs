@@ -17,7 +17,7 @@ const expectedCounts = new Map([
   ["data-collection", 282],
   ["data-visualization", 100],
   ["data-structure", 553],
-  ["java-programming", 14],
+  ["java-programming", 137],
   ["linux-course", 335],
   ["modern-history", 390],
   ["community", 158],
