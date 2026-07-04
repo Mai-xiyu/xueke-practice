@@ -71,6 +71,17 @@
       "dataFile": "data/data-structure.json"
     },
     {
+      "id": "java-programming",
+      "title": "Java程序设计",
+      "mark": "JV",
+      "href": "java_programming_practice.html",
+      "accent": "data",
+      "description": "头歌面向对象程序设计 Java 实训作业题库，覆盖 Java 概述、语言基础、面向对象、常用 API、异常、多线程和 IO 流。",
+      "order": 45,
+      "college": "computer-science",
+      "dataFile": "data/java-programming.json"
+    },
+    {
       "id": "linux-course",
       "title": "Linux课程",
       "mark": "LX",
