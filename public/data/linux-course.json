@@ -575,13 +575,21 @@
     "id": "linux-作业1-030",
     "source": "超星Linux课程作业1",
     "chapter": "作业1",
-    "type": "short",
+    "type": "single",
     "stem": "用户编写了一个文本文件a.txt,想将该文件名称改为txt.a,下列( )命令可以实现。",
     "tags": [
-      "题源选项缺失"
+      "题源选项修正"
     ],
-    "analysis": "题源选项缺失有效答案，已改为说明型题，避免错误标准答案污染练习记录。",
-    "answer": "原单选题问“将 a.txt 改名为 txt.a”，正确命令应为 `mv a.txt txt.a`，但原选项中没有 `mv`，因此该题不应作为单选题自动判分。"
+    "options": {
+      "A": "mv a.txt txt.a",
+      "B": "rm a.txt txt.a",
+      "C": "cat a.txt > txt.a",
+      "D": "echo a.txt > txt.a"
+    },
+    "analysis": "Linux 中重命名或移动文件使用 `mv` 命令，`mv a.txt txt.a` 表示把当前目录下的 `a.txt` 改名为 `txt.a`。原题选项缺失 `mv`，这里已补入正确选项。",
+    "correct": [
+      "A"
+    ]
   },
   {
     "id": "linux-作业1-031",
