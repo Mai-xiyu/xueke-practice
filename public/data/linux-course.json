@@ -78,7 +78,8 @@
     "type": "single",
     "stem": "find -name *.txt’ -amin +5 -exec rm ‘{ }’ \\命令的功能是( )。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "题源答案已核对"
     ],
     "options": {
       "A": "删除当前目录下所有5分钟内没有被访问过的.txt文件。",
@@ -86,10 +87,13 @@
       "C": "删除指定目录下所有5分钟内没有被访问过的.txt文件。",
       "D": "删除当前目录下所有5分钟之前没有被访问过的.txt文件。"
     },
-    "analysis": "-amin +5 表示最后访问时间早于 5 分钟前；未指定路径时 find 默认从当前目录查找。",
+    "analysis": "find 的 -amin +5 表示最后访问时间早于 5 分钟前；未指定路径时默认从当前目录查找。因此应删除当前目录下扩展名为 .txt 且 5 分钟以前未被访问过的文件。题源隐藏答案给 A，但语义与 -amin +5 不符。",
     "correct": [
       "D"
-    ]
+    ],
+    "meta": {
+      "sourceAnswerConflict": "题源给 A；按 find -amin +5 语义修正并保留为 D。"
+    }
   },
   {
     "id": "linux-作业1-006",
@@ -1218,7 +1222,8 @@
     "type": "single",
     "stem": "大部分主要的Linux系统文件是存放在下面的( )目录之中的。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "答案修正"
     ],
     "options": {
       "A": "/lib",
@@ -1226,9 +1231,9 @@
       "C": "/root",
       "D": "/tmp"
     },
-    "analysis": "/lib 存放系统运行所需的共享库等核心文件。",
+    "analysis": "/bin 保存系统启动和基本使用所需的常用二进制命令；/lib 主要保存共享库和内核模块。本题按“主要系统命令文件”理解，答案为 /bin。",
     "correct": [
-      "A"
+      "B"
     ]
   },
   {
@@ -1641,7 +1646,7 @@
       "答案补全"
     ],
     "options": {
-      "A": "pplication",
+      "A": "Application",
       "B": "Kernel",
       "C": "File System",
       "D": "Shell"
@@ -2518,7 +2523,8 @@
     "type": "single",
     "stem": "( )命令用来只更新已经安装过的rpm软件包。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "题源答案已核对"
     ],
     "options": {
       "A": "rpm -e *.rpm",
@@ -2526,10 +2532,13 @@
       "C": "rpm -F *.rpm",
       "D": "rpm -U *.rpm"
     },
-    "analysis": "rpm -F 只刷新已安装的软件包。",
+    "analysis": "rpm -F（freshen）只升级已经安装过的软件包；rpm -U 会升级，未安装时也可能执行安装。因此“只更新已经安装过的 rpm 包”应选 rpm -F。",
     "correct": [
       "C"
-    ]
+    ],
+    "meta": {
+      "sourceAnswerConflict": "题源给 D；按 rpm -F freshen 语义保留为 C。"
+    }
   },
   {
     "id": "linux-作业2-028",
@@ -2778,7 +2787,8 @@
     "type": "single",
     "stem": "以下( )命令可以终止一个用户的所有进程。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "题源答案已核对"
     ],
     "options": {
       "A": "skill",
@@ -2786,10 +2796,13 @@
       "C": "kill",
       "D": "skillall"
     },
-    "analysis": "skill 可按用户等条件向进程发送信号。",
+    "analysis": "skill 可按用户、终端或命令名发送信号，例如 skill -u 用户名；killall 主要按进程名终止进程，不是“某一用户的所有进程”的精确命令。",
     "correct": [
       "A"
-    ]
+    ],
+    "meta": {
+      "sourceAnswerConflict": "题源给 B；按命令语义保留为 A。"
+    }
   },
   {
     "id": "linux-作业2-041",
@@ -3098,7 +3111,8 @@
     "type": "single",
     "stem": "在Linux中,( )可以标识接在IDE0上的slave硬盘的第2个扩展分区。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "题源答案已核对"
     ],
     "options": {
       "A": "/dev/hdb6",
@@ -3106,10 +3120,13 @@
       "C": "/dev/hd1b2",
       "D": "/dev/hdb2"
     },
-    "analysis": "IDE0 从盘为 hdb，扩展分区内逻辑分区从 5 开始。",
+    "analysis": "IDE0 上的 slave 硬盘为 /dev/hdb。传统分区编号中 1-4 是主分区或扩展分区本身，逻辑分区从 5 开始，因此第 2 个逻辑分区为 /dev/hdb6。",
     "correct": [
       "A"
-    ]
+    ],
+    "meta": {
+      "sourceAnswerConflict": "题源给 D；按 IDE 设备命名和逻辑分区编号保留为 A。"
+    }
   },
   {
     "id": "linux-作业2-057",
@@ -3538,7 +3555,8 @@
     "type": "single",
     "stem": "假设用户所使用的计算机系统上有两块IDE硬盘,Linux系统位于第一块硬盘上,查询第二块硬盘的分区情况命令是( )。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "答案修正"
     ],
     "options": {
       "A": "fdisk -l /dev/hda1",
@@ -3546,9 +3564,9 @@
       "C": "fdisk -l /dev/hdb2",
       "D": "fdisk -l /dev/hda"
     },
-    "analysis": "IDE 第一块硬盘设备名为 /dev/hda。",
+    "analysis": "第一块 IDE 硬盘通常为 /dev/hda，第二块 IDE 硬盘通常为 /dev/hdb；查看第二块硬盘分区情况应使用 fdisk -l /dev/hdb。",
     "correct": [
-      "D"
+      "B"
     ]
   },
   {
@@ -3918,7 +3936,8 @@
     "type": "single",
     "stem": "( )命令用来只更新已经安装过的rpm软件包?",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "题源答案已核对"
     ],
     "options": {
       "A": "rpm -U *.rpm",
@@ -3926,10 +3945,13 @@
       "C": "rpm -F *.rpm",
       "D": "rpm -q *.rpm"
     },
-    "analysis": "rpm -F 只刷新已安装的软件包。",
+    "analysis": "rpm -F 只更新系统中已经安装的软件包；rpm -U 既可升级也可安装新包。本题关键词是“只更新已经安装过的”，应选 rpm -F。",
     "correct": [
       "C"
-    ]
+    ],
+    "meta": {
+      "sourceAnswerConflict": "题源给 A；按 rpm -F freshen 语义保留为 C。"
+    }
   },
   {
     "id": "linux-作业2-098",
@@ -4478,7 +4500,8 @@
     "type": "single",
     "stem": "假设用户所使用的计算机系统上有两块IDE硬盘，Linux系统位于第一块硬盘上，查询第二块硬盘的分区情况命令是( )。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "答案修正"
     ],
     "options": {
       "A": "fdisk -l /dev/hdb",
@@ -4486,9 +4509,9 @@
       "C": "fdisk -l /dev/hda",
       "D": "fdisk -l /dev/hda1"
     },
-    "analysis": "IDE 第一块硬盘设备名为 /dev/hda。",
+    "analysis": "IDE 硬盘传统命名中，第一块硬盘通常为 /dev/hda，第二块硬盘通常为 /dev/hdb；查看整块硬盘分区表应使用 fdisk -l /dev/hdb。",
     "correct": [
-      "C"
+      "A"
     ]
   },
   {
@@ -4778,7 +4801,8 @@
     "type": "single",
     "stem": "使用( )命令可以设置开机启动FTP服务。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "题源选项修正"
     ],
     "options": {
       "A": "systemctl restart vsftpd",
@@ -4786,7 +4810,7 @@
       "C": "systemctl stop vsftpd",
       "D": "systemctl enable vsftpd"
     },
-    "analysis": "该题选项将 enable 误写为 enble；按题源意图为 systemctl enable vsftpd。",
+    "analysis": "设置服务开机自启使用 systemctl enable 服务名；启动一次服务才使用 systemctl start。题源选项中 enble 是拼写错误，已按有效命令修正为 enable。",
     "correct": [
       "D"
     ]
@@ -5398,7 +5422,8 @@
     "type": "single",
     "stem": "使用( )命令可以设置开机启动FTP服务。",
     "tags": [
-      "答案补全"
+      "答案补全",
+      "题源选项修正"
     ],
     "options": {
       "A": "systemctl enable vsftpd",
@@ -5406,7 +5431,7 @@
       "C": "systemctl restart vsftpd",
       "D": "systemctl start vsftpd"
     },
-    "analysis": "该题选项将 enable 误写为 enble；按题源意图为 systemctl enable vsftpd。",
+    "analysis": "设置 FTP 服务开机启动应使用 systemctl enable vsftpd。题源选项中 enble 是拼写错误，已按有效命令修正。",
     "correct": [
       "A"
     ]
