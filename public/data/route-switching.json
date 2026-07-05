@@ -8793,5 +8793,4009 @@
       }
     },
     "answer": "见参考答案"
+  },
+  {
+    "id": "rs-final-2021-single-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "以下哪个层级的网络设备可以分割广播域？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "物理层集线器",
+      "B": "数据链路层普通交换机",
+      "C": "网络层路由器",
+      "D": "中继器"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "以太网Trunk端口默认情况下，对哪个VLAN的数据帧不添加802.1Q标签？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "VLAN 0",
+      "B": "本征VLAN",
+      "C": "所有VLAN",
+      "D": "仅VLAN 10"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "思科设备中静态路由的默认管理距离（AD值）为？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "0",
+      "B": "1",
+      "C": "110",
+      "D": "120"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "RIP路由协议定义的最大有效跳数是？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "10",
+      "B": "15",
+      "C": "16",
+      "D": "32"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "以下属于链路状态型路由协议的是？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "RIP",
+      "B": "OSPF",
+      "C": "IGRP",
+      "D": "BGP"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "访问控制列表（ACL）的报文匹配规则是？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "自上而下逐条匹配，命中即停止",
+      "B": "自下而上逐条匹配，命中即停止",
+      "C": "全表匹配后取最严格规则",
+      "D": "全表匹配后取最宽松规则"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "PAT（端口地址转换）属于NAT技术中的哪一类？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "静态NAT",
+      "B": "动态NAT",
+      "C": "多对一地址转换",
+      "D": "一对一地址转换"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "STP生成树协议的核心作用是？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "提升链路传输带宽",
+      "B": "避免二层网络环路",
+      "C": "实现VLAN间路由",
+      "D": "同步VLAN配置"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "路由表中标记为字母C的路由条目属于？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "静态路由",
+      "B": "直连路由",
+      "C": "RIP动态路由",
+      "D": "OSPF动态路由"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-single-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "single",
+    "stem": "交换机端口中，能够同时传输多个VLAN数据帧的模式是？",
+    "tags": [
+      "真题卷",
+      "2021",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "Access模式",
+      "B": "Trunk模式",
+      "C": "镜像模式",
+      "D": "Console模式"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "基于端口的VLAN划分方式属于______层VLAN划分。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "数据链路（二层）"
+    ],
+    "analysis": "参考答案：数据链路（二层）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "思科设备中OSPF协议的默认管理距离是______。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "110"
+    ],
+    "analysis": "参考答案：110。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "标准IP访问控制列表的编号范围是______。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "1~99"
+    ],
+    "analysis": "参考答案：1~99。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "RIP v2通过______地址发送路由更新报文，支持VLSM与不连续子网。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "组播（224.0.0.9）"
+    ],
+    "analysis": "参考答案：组播（224.0.0.9）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "二层交换机的三大核心功能是地址学习、帧转发/过滤与______。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "环路避免"
+    ],
+    "analysis": "参考答案：环路避免。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "NAT技术最核心的作用是缓解______地址资源枯竭问题，同时隐藏内网拓扑。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "IPv4公网"
+    ],
+    "analysis": "参考答案：IPv4公网。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "路由表中0.0.0.0/0对应的路由条目称为______路由。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "默认（缺省）"
+    ],
+    "analysis": "参考答案：默认（缺省）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "STP协议选举根网桥的核心依据是______。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "网桥ID（桥优先级+MAC地址）"
+    ],
+    "analysis": "参考答案：网桥ID（桥优先级+MAC地址）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "单臂路由方案中，路由器物理接口需划分为多个______子接口承载不同VLAN。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "逻辑"
+    ],
+    "analysis": "参考答案：逻辑。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-fill-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "fill",
+    "stem": "链路聚合（Eth-Trunk）的核心优势是提升链路带宽与实现______。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "填空题"
+    ],
+    "answers": [
+      "链路冗余备份"
+    ],
+    "analysis": "参考答案：链路冗余备份。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "二层交换机可配置管理IP地址，实现远程Telnet/SSH登录管理。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "RIP v1支持可变长子网掩码（VLSM）与不连续子网。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "静态路由适用于拓扑结构频繁变动的大型企业网络。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "Trunk端口的本征VLAN默认为VLAN 1，本征VLAN的数据帧传输时不打标签。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "扩展ACL可同时基于源IP、目的IP、传输层协议、端口号过滤流量。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "OSPF在广播型多路访问网络中会选举DR与BDR，减少邻接关系数量。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "静态NAT为一对一地址映射，一个公网IP可同时对应多个内网主机IP。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "VTP协议用于交换机间同步VLAN配置，包含服务器、客户端、透明三种工作模式。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "路由器的每个三层接口都对应一个独立的广播域。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-judge-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "judge",
+    "stem": "标准ACL部署时应尽量靠近流量目的端，避免误拦截合法流量。（ ）",
+    "tags": [
+      "真题卷",
+      "2021",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2021）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-short-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "short",
+    "stem": "简述VLAN（虚拟局域网）的核心作用与主要优势。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "简答题"
+    ],
+    "answer": "VLAN核心作用是将物理局域网从逻辑上划分为多个独立广播域。优势：① 隔离广播风暴，提升带宽利用率；② 增强网络安全性，不同VLAN默认无法直接通信；③ 灵活划分工作组，不受物理位置限制；④ 简化网络管理，降低组网运维成本。\n核心差异：静态路由由管理员手动配置，无自动更新能力；动态路由通过路由协议自动学习、更新路由表。适用场景：静态路由适用于拓扑固定的小型网络，开销低、安全性高；动态路由适用于拓扑复杂的中大型网络，可自动适应拓扑变化，维护更简便。\nSTP工作流程：① 选举根网桥：全网网桥ID最小的交换机成为根网桥；② 选举根端口：非根网桥上选举到根网桥路径开销最小的端口；③ 选举指定端口：每个网段上选举到根网桥开销最小的端口；④ 阻塞非指定端口，形成无环树型拓扑。\n① 静态NAT：一对一固定映射，配置简单，适用于需要固定公网地址的内网服务器；② 动态NAT：多对多地址池映射，公网IP动态分配，适用于内外网主机数量相当的场景；③ PAT（端口地址转换）：多对一映射，通过端口号区分主机，大幅节省公网IP，是最常用的NAT类型。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-short-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "short",
+    "stem": "对比静态路由与动态路由的核心差异，并说明各自的适用场景。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "简答题"
+    ],
+    "answer": "VLAN核心作用是将物理局域网从逻辑上划分为多个独立广播域。优势：① 隔离广播风暴，提升带宽利用率；② 增强网络安全性，不同VLAN默认无法直接通信；③ 灵活划分工作组，不受物理位置限制；④ 简化网络管理，降低组网运维成本。\n核心差异：静态路由由管理员手动配置，无自动更新能力；动态路由通过路由协议自动学习、更新路由表。适用场景：静态路由适用于拓扑固定的小型网络，开销低、安全性高；动态路由适用于拓扑复杂的中大型网络，可自动适应拓扑变化，维护更简便。\nSTP工作流程：① 选举根网桥：全网网桥ID最小的交换机成为根网桥；② 选举根端口：非根网桥上选举到根网桥路径开销最小的端口；③ 选举指定端口：每个网段上选举到根网桥开销最小的端口；④ 阻塞非指定端口，形成无环树型拓扑。\n① 静态NAT：一对一固定映射，配置简单，适用于需要固定公网地址的内网服务器；② 动态NAT：多对多地址池映射，公网IP动态分配，适用于内外网主机数量相当的场景；③ PAT（端口地址转换）：多对一映射，通过端口号区分主机，大幅节省公网IP，是最常用的NAT类型。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-short-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "short",
+    "stem": "简述STP生成树协议的基本工作流程。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "简答题"
+    ],
+    "answer": "VLAN核心作用是将物理局域网从逻辑上划分为多个独立广播域。优势：① 隔离广播风暴，提升带宽利用率；② 增强网络安全性，不同VLAN默认无法直接通信；③ 灵活划分工作组，不受物理位置限制；④ 简化网络管理，降低组网运维成本。\n核心差异：静态路由由管理员手动配置，无自动更新能力；动态路由通过路由协议自动学习、更新路由表。适用场景：静态路由适用于拓扑固定的小型网络，开销低、安全性高；动态路由适用于拓扑复杂的中大型网络，可自动适应拓扑变化，维护更简便。\nSTP工作流程：① 选举根网桥：全网网桥ID最小的交换机成为根网桥；② 选举根端口：非根网桥上选举到根网桥路径开销最小的端口；③ 选举指定端口：每个网段上选举到根网桥开销最小的端口；④ 阻塞非指定端口，形成无环树型拓扑。\n① 静态NAT：一对一固定映射，配置简单，适用于需要固定公网地址的内网服务器；② 动态NAT：多对多地址池映射，公网IP动态分配，适用于内外网主机数量相当的场景；③ PAT（端口地址转换）：多对一映射，通过端口号区分主机，大幅节省公网IP，是最常用的NAT类型。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-short-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "short",
+    "stem": "简述NAT的三种主要类型及各自的技术特点。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "简答题"
+    ],
+    "answer": "VLAN核心作用是将物理局域网从逻辑上划分为多个独立广播域。优势：① 隔离广播风暴，提升带宽利用率；② 增强网络安全性，不同VLAN默认无法直接通信；③ 灵活划分工作组，不受物理位置限制；④ 简化网络管理，降低组网运维成本。\n核心差异：静态路由由管理员手动配置，无自动更新能力；动态路由通过路由协议自动学习、更新路由表。适用场景：静态路由适用于拓扑固定的小型网络，开销低、安全性高；动态路由适用于拓扑复杂的中大型网络，可自动适应拓扑变化，维护更简便。\nSTP工作流程：① 选举根网桥：全网网桥ID最小的交换机成为根网桥；② 选举根端口：非根网桥上选举到根网桥路径开销最小的端口；③ 选举指定端口：每个网段上选举到根网桥开销最小的端口；④ 阻塞非指定端口，形成无环树型拓扑。\n① 静态NAT：一对一固定映射，配置简单，适用于需要固定公网地址的内网服务器；② 动态NAT：多对多地址池映射，公网IP动态分配，适用于内外网主机数量相当的场景；③ PAT（端口地址转换）：多对一映射，通过端口号区分主机，大幅节省公网IP，是最常用的NAT类型。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-comprehensive-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "comprehensive",
+    "stem": "（15分）某企业办公网络包含两台二层交换机S1、S2：\nS1的Fa0/1端口连接PC1，属于VLAN 10；Fa0/2端口连接PC2，属于VLAN 20\nS2的Fa0/1端口连接PC3，属于VLAN 10；Fa0/2端口连接PC4，属于VLAN 20\n两台交换机通过Fa0/24端口级联，要求同VLAN主机跨交换机互通\n请写出完整的配置命令：\n（1）S1的VLAN创建、端口划分与级联端口配置\n（2）S2的VLAN创建、端口划分与级联端口配置",
+    "tags": [
+      "真题卷",
+      "2021",
+      "综合"
+    ],
+    "answer": "（1）S1配置：\nPlaintext / Switch>enable / Switch#configure terminal / Switch(config)#hostname S1 / S1(config)#vlan 10 / S1(config-vlan)#name VLAN10 / S1(config-vlan)#vlan 20 / S1(config-vlan)#name VLAN20 / S1(config-vlan)#exit / S1(config)#interface fastEthernet 0/1 / S1(config-if)#switchport mode access / S1(config-if)#switchport access vlan 10 / S1(config-if)#interface fastEthernet 0/2 / S1(config-if)#switchport mode access / S1(config-if)#switchport access vlan 20 / S1(config-if)#interface fastEthernet 0/24 / S1(config-if)#switchport mode trunk / S1(config-if)#switchport trunk allowed vlan all / S1(config-if)#end / S1#write\n（2）S2配置：\nPlaintext / Switch>enable / Switch#configure terminal / Switch(config)#hostname S2 / S2(config)#vlan 10 / S2(config-vlan)#name VLAN10 / S2(config-vlan)#vlan 20 / S2(config-vlan)#name VLAN20 / S2(config-vlan)#exit / S2(config)#interface fastEthernet 0/1 / S2(config-if)#switchport mode access / S2(config-if)#switchport access vlan 10 / S2(config-if)#interface fastEthernet 0/2 / S2(config-if)#switchport mode access / S2(config-if)#switchport access vlan 20 / S2(config-if)#interface fastEthernet 0/24 / S2(config-if)#switchport mode trunk / S2(config-if)#switchport trunk allowed vlan all / S2(config-if)#end / S2#write\n（1）静态路由配置：\nR1：\nPlaintext / R1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2\nR2：\nPlaintext / R2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1 / R2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1\n（2）RIP v2配置：\nR1：\nPlaintext / R1(config)#router rip / R1(config-router)#version 2 / R1(config-router)#no auto-summary / R1(config-router)#network 192.168.1.0 / R1(config-router)#network 192.168.2.0 / R1(config-router)#network 10.0.0.0 / R1(config-router)#end\nR2：\nPlaintext / R2(config)#router rip / R2(config-router)#version 2 / R2(config-router)#no auto-summary / R2(config-router)#network 192.168.3.0 / R2(config-router)#network 10.0.0.0 / R2(config-router)#end\n（3）优缺点：静态路由开销小、安全性高、路由可控，但拓扑变化需手动修改，维护成本高，适合小型固定网络；RIP动态路由可自动适应拓扑变化，维护简单，但路由更新有开销、收敛慢、跳数限制网络规模，适合中小型网络。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2021-comprehensive-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2021）",
+    "chapter": "2021期末真题",
+    "type": "comprehensive",
+    "stem": "（25分）某小型网络拓扑如下：\n路由器R1连接两个内网网段：192.168.1.0/24、192.168.2.0/24\n路由器R2连接内网网段：192.168.3.0/24\nR1与R2通过Serial 0/0/0串口直连，互联网段为10.0.0.0/30；R1串口地址为10.0.0.1，R2串口地址为10.0.0.2\n请完成以下任务：\n（1）通过静态路由实现全网IP互通，写出两台路由器的完整配置命令；\n（2）改用RIP v2动态路由实现全网互通，写出两台路由器的完整配置命令；\n（3）简要对比两种路由方案的优缺点。",
+    "tags": [
+      "真题卷",
+      "2021",
+      "综合"
+    ],
+    "answer": "（1）S1配置：\nPlaintext / Switch>enable / Switch#configure terminal / Switch(config)#hostname S1 / S1(config)#vlan 10 / S1(config-vlan)#name VLAN10 / S1(config-vlan)#vlan 20 / S1(config-vlan)#name VLAN20 / S1(config-vlan)#exit / S1(config)#interface fastEthernet 0/1 / S1(config-if)#switchport mode access / S1(config-if)#switchport access vlan 10 / S1(config-if)#interface fastEthernet 0/2 / S1(config-if)#switchport mode access / S1(config-if)#switchport access vlan 20 / S1(config-if)#interface fastEthernet 0/24 / S1(config-if)#switchport mode trunk / S1(config-if)#switchport trunk allowed vlan all / S1(config-if)#end / S1#write\n（2）S2配置：\nPlaintext / Switch>enable / Switch#configure terminal / Switch(config)#hostname S2 / S2(config)#vlan 10 / S2(config-vlan)#name VLAN10 / S2(config-vlan)#vlan 20 / S2(config-vlan)#name VLAN20 / S2(config-vlan)#exit / S2(config)#interface fastEthernet 0/1 / S2(config-if)#switchport mode access / S2(config-if)#switchport access vlan 10 / S2(config-if)#interface fastEthernet 0/2 / S2(config-if)#switchport mode access / S2(config-if)#switchport access vlan 20 / S2(config-if)#interface fastEthernet 0/24 / S2(config-if)#switchport mode trunk / S2(config-if)#switchport trunk allowed vlan all / S2(config-if)#end / S2#write\n（1）静态路由配置：\nR1：\nPlaintext / R1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2\nR2：\nPlaintext / R2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1 / R2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1\n（2）RIP v2配置：\nR1：\nPlaintext / R1(config)#router rip / R1(config-router)#version 2 / R1(config-router)#no auto-summary / R1(config-router)#network 192.168.1.0 / R1(config-router)#network 192.168.2.0 / R1(config-router)#network 10.0.0.0 / R1(config-router)#end\nR2：\nPlaintext / R2(config)#router rip / R2(config-router)#version 2 / R2(config-router)#no auto-summary / R2(config-router)#network 192.168.3.0 / R2(config-router)#network 10.0.0.0 / R2(config-router)#end\n（3）优缺点：静态路由开销小、安全性高、路由可控，但拓扑变化需手动修改，维护成本高，适合小型固定网络；RIP动态路由可自动适应拓扑变化，维护简单，但路由更新有开销、收敛慢、跳数限制网络规模，适合中小型网络。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2021"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "OSPF协议中，链路状态通告的英文缩写是？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "LSA",
+      "B": "LSU",
+      "C": "LSR",
+      "D": "Hello"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "扩展IP访问控制列表的编号范围是？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "1~99",
+      "B": "100~199",
+      "C": "200~299",
+      "D": "300~399"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "以下哪种NAT类型可以实现多个内网主机共用一个公网IP？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "静态NAT",
+      "B": "动态NAT",
+      "C": "PAT",
+      "D": "一对一NAT"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "OSPF单区域配置时，骨干区域的编号是？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "Area 0",
+      "B": "Area 1",
+      "C": "Area 10",
+      "D": "Area 100"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "以下关于Trunk端口的描述，错误的是？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "可以传输多个VLAN的数据",
+      "B": "本征VLAN数据不打标签",
+      "C": "只能属于一个VLAN",
+      "D": "通常用于交换机之间的级联"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "路由器转发数据包时，优先匹配路由表中哪类路由？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "掩码最长的路由",
+      "B": "管理距离最小的路由",
+      "C": "度量值最小的路由",
+      "D": "默认路由"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "以下哪个是OSPF协议的组播更新地址？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "224.0.0.5",
+      "B": "224.0.0.9",
+      "C": "224.0.0.10",
+      "D": "224.0.0.1"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "标准ACL主要基于什么信息过滤数据包？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "源IP地址",
+      "B": "目的IP地址",
+      "C": "源端口号",
+      "D": "目的端口号"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "NAT技术中，内网主机的私有IP地址被称为？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "本地地址",
+      "B": "全局地址",
+      "C": "内部本地地址",
+      "D": "内部全局地址"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-single-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "single",
+    "stem": "以下哪种技术可以实现VLAN之间的三层通信？",
+    "tags": [
+      "真题卷",
+      "2022",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "STP",
+      "B": "VTP",
+      "C": "三层交换",
+      "D": "链路聚合"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "OSPF协议通过______报文发现和维持邻居关系。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "Hello"
+    ],
+    "analysis": "参考答案：Hello。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "部署ACL后，每个接口的每个方向最多只能应用______个ACL。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "1"
+    ],
+    "analysis": "参考答案：1。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "NAT中，转换后的公网IP地址被称为______地址。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "内部全局"
+    ],
+    "analysis": "参考答案：内部全局。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "三层交换机通过______技术实现VLAN间的高速路由转发。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "ASIC硬件转发"
+    ],
+    "analysis": "参考答案：ASIC硬件转发。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "OSPF度量值Cost的默认计算依据是______。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "链路带宽"
+    ],
+    "analysis": "参考答案：链路带宽。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "扩展ACL部署时，应尽量靠近流量______端，减少无效转发。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "源"
+    ],
+    "analysis": "参考答案：源。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "动态NAT配置中，公网可用IP的集合称为______。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "NAT地址池"
+    ],
+    "analysis": "参考答案：NAT地址池。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "OSPF路由器的邻居状态中，完全邻接的状态是______。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "Full"
+    ],
+    "analysis": "参考答案：Full。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "访问控制列表末尾默认隐含一条______规则。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "拒绝所有（deny any）"
+    ],
+    "analysis": "参考答案：拒绝所有（deny any）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-fill-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "fill",
+    "stem": "能够实现内网访问外网、外网无法主动访问内网的NAT类型是______。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "填空题"
+    ],
+    "answers": [
+      "PAT（端口地址转换）"
+    ],
+    "analysis": "参考答案：PAT（端口地址转换）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "OSPF是距离矢量型路由协议，以跳数作为度量值。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "扩展ACL可以精确控制特定协议、特定端口的网络流量。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "静态NAT无法节省公网IP地址，仅实现地址转换功能。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "OSPF单区域网络中，所有路由器都属于Area 0骨干区域。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "ACL应用在接口的in方向，是对流出该接口的流量进行过滤。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "PAT技术通过不同的端口号区分不同内网主机的流量。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "三层交换机的路由转发性能低于普通路由器。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "OSPF协议支持无类路由，支持VLSM与CIDR。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "NAT技术可以完全保障内网主机的网络安全。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-judge-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "judge",
+    "stem": "一个VLAN对应一个广播域，也对应一个三层IP网段。（ ）",
+    "tags": [
+      "真题卷",
+      "2022",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2022）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-short-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "short",
+    "stem": "简述OSPF协议的主要特点与优势。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "简答题"
+    ],
+    "answer": "OSPF特点：① 链路状态型协议，无路由环路；② 支持无类路由、VLSM与CIDR；③ 以带宽为度量值，选路更合理；④ 支持区域划分，适配大型网络；⑤ 组播发送更新，带宽开销小；⑥ 收敛速度快，支持等价负载分担。\n区别：标准ACL仅基于源IP过滤，编号1~99，控制粒度粗；扩展ACL基于源IP、目的IP、协议、端口过滤，编号100~199，控制粒度细。部署原则：标准ACL靠近目的端，避免误过滤；扩展ACL靠近源端，减少无效流量转发。\nPAT工作原理：多个内网私有IP映射到同一个公网IP，通过传输层端口号区分不同主机流量；内网访问外网时，NAT设备将源IP+源端口转换为公网IP+唯一端口号；回程流量根据端口映射回对应内网主机，实现多主机共用一个公网IP。\n差异：① 转发方式：路由器基于CPU软件转发，三层交换机基于ASIC硬件转发，速率差距显著；② 接口类型：三层交换机以以太网接口为主，路由器支持广域网接口；③ 功能侧重：三层交换机侧重局域网高速VLAN间路由，路由器侧重跨网互联与丰富的广域网功能。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-short-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "short",
+    "stem": "简述标准ACL与扩展ACL的区别及部署原则。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "简答题"
+    ],
+    "answer": "OSPF特点：① 链路状态型协议，无路由环路；② 支持无类路由、VLSM与CIDR；③ 以带宽为度量值，选路更合理；④ 支持区域划分，适配大型网络；⑤ 组播发送更新，带宽开销小；⑥ 收敛速度快，支持等价负载分担。\n区别：标准ACL仅基于源IP过滤，编号1~99，控制粒度粗；扩展ACL基于源IP、目的IP、协议、端口过滤，编号100~199，控制粒度细。部署原则：标准ACL靠近目的端，避免误过滤；扩展ACL靠近源端，减少无效流量转发。\nPAT工作原理：多个内网私有IP映射到同一个公网IP，通过传输层端口号区分不同主机流量；内网访问外网时，NAT设备将源IP+源端口转换为公网IP+唯一端口号；回程流量根据端口映射回对应内网主机，实现多主机共用一个公网IP。\n差异：① 转发方式：路由器基于CPU软件转发，三层交换机基于ASIC硬件转发，速率差距显著；② 接口类型：三层交换机以以太网接口为主，路由器支持广域网接口；③ 功能侧重：三层交换机侧重局域网高速VLAN间路由，路由器侧重跨网互联与丰富的广域网功能。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-short-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "short",
+    "stem": "简述PAT端口地址转换的工作原理。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "简答题"
+    ],
+    "answer": "OSPF特点：① 链路状态型协议，无路由环路；② 支持无类路由、VLSM与CIDR；③ 以带宽为度量值，选路更合理；④ 支持区域划分，适配大型网络；⑤ 组播发送更新，带宽开销小；⑥ 收敛速度快，支持等价负载分担。\n区别：标准ACL仅基于源IP过滤，编号1~99，控制粒度粗；扩展ACL基于源IP、目的IP、协议、端口过滤，编号100~199，控制粒度细。部署原则：标准ACL靠近目的端，避免误过滤；扩展ACL靠近源端，减少无效流量转发。\nPAT工作原理：多个内网私有IP映射到同一个公网IP，通过传输层端口号区分不同主机流量；内网访问外网时，NAT设备将源IP+源端口转换为公网IP+唯一端口号；回程流量根据端口映射回对应内网主机，实现多主机共用一个公网IP。\n差异：① 转发方式：路由器基于CPU软件转发，三层交换机基于ASIC硬件转发，速率差距显著；② 接口类型：三层交换机以以太网接口为主，路由器支持广域网接口；③ 功能侧重：三层交换机侧重局域网高速VLAN间路由，路由器侧重跨网互联与丰富的广域网功能。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-short-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "short",
+    "stem": "简述三层交换机与传统路由器在VLAN间路由上的差异。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "简答题"
+    ],
+    "answer": "OSPF特点：① 链路状态型协议，无路由环路；② 支持无类路由、VLSM与CIDR；③ 以带宽为度量值，选路更合理；④ 支持区域划分，适配大型网络；⑤ 组播发送更新，带宽开销小；⑥ 收敛速度快，支持等价负载分担。\n区别：标准ACL仅基于源IP过滤，编号1~99，控制粒度粗；扩展ACL基于源IP、目的IP、协议、端口过滤，编号100~199，控制粒度细。部署原则：标准ACL靠近目的端，避免误过滤；扩展ACL靠近源端，减少无效流量转发。\nPAT工作原理：多个内网私有IP映射到同一个公网IP，通过传输层端口号区分不同主机流量；内网访问外网时，NAT设备将源IP+源端口转换为公网IP+唯一端口号；回程流量根据端口映射回对应内网主机，实现多主机共用一个公网IP。\n差异：① 转发方式：路由器基于CPU软件转发，三层交换机基于ASIC硬件转发，速率差距显著；② 接口类型：三层交换机以以太网接口为主，路由器支持广域网接口；③ 功能侧重：三层交换机侧重局域网高速VLAN间路由，路由器侧重跨网互联与丰富的广域网功能。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-comprehensive-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "comprehensive",
+    "stem": "（18分）某企业单区域OSPF网络拓扑如下：\n路由器R1、R2、R3同属于OSPF Area 0\nR1直连网段：192.168.1.0/24、10.0.1.0/30（与R2互联）\nR2直连网段：10.0.1.0/30、10.0.2.0/30（与R3互联）\nR3直连网段：192.168.3.0/24、10.0.2.0/30\n互联地址：R1的S0/0/0为10.0.1.1，R2的S0/0/0为10.0.1.2；R2的S0/0/1为10.0.2.1，R3的S0/0/0为10.0.2.2\n请完成：\n（1）写出三台路由器的OSPF基本配置命令，实现全网互通；\n（2）简述OSPF邻居建立的完整状态过程。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "综合"
+    ],
+    "answer": "（1）OSPF配置：\nR1：\nPlaintext / R1(config)#router ospf 1 / R1(config-router)#router-id 1.1.1.1 / R1(config-router)#network 192.168.1.0 0.0.0.255 area 0 / R1(config-router)#network 10.0.1.0 0.0.0.3 area 0 / R1(config-router)#end\nR2：\nPlaintext / R2(config)#router ospf 1 / R2(config-router)#router-id 2.2.2.2 / R2(config-router)#network 10.0.1.0 0.0.0.3 area 0 / R2(config-router)#network 10.0.2.0 0.0.0.3 area 0 / R2(config-router)#end\nR3：\nPlaintext / R3(config)#router ospf 1 / R3(config-router)#router-id 3.3.3.3 / R3(config-router)#network 192.168.3.0 0.0.0.255 area 0 / R3(config-router)#network 10.0.2.0 0.0.0.3 area 0 / R3(config-router)#end\n（2）邻居状态过程：Down → Init → 2-Way → ExStart → Exchange → Loading → Full。\n完整配置：\nPlaintext / R1(config)#interface fastEthernet 0/0 / R1(config-if)#ip address 192.168.10.1 255.255.255.0 / R1(config-if)#ip nat inside / R1(config-if)#interface serial 0/0/0 / R1(config-if)#ip address 202.103.0.2 255.255.255.252 / R1(config-if)#ip nat outside / R1(config-if)#exit /  / // PAT配置 / R1(config)#access-list 1 permit 192.168.10.0 0.0.0.255 / R1(config)#ip nat inside source list 1 interface serial 0/0/0 overload /  / // 扩展ACL配置 / R1(config)#access-list 100 deny tcp 192.168.10.0 0.0.0.255 host 202.103.0.10 eq 53 / R1(config)#access-list 100 permit ip any any /  / // 应用ACL / R1(config)#interface fastEthernet 0/0 / R1(config-if)#ip access-group 100 in / R1(config-if)#end / R1#write",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2022-comprehensive-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2022）",
+    "chapter": "2022期末真题",
+    "type": "comprehensive",
+    "stem": "（22分）某企业边界路由器R1连接内网与公网：\n内网网段：192.168.10.0/24，连接Fa0/0接口（inside区域）\n公网接口：S0/0/0，公网固定IP为202.103.0.2（outside区域）\n公网DNS服务器地址：202.103.0.10\n需求：\n（1）配置PAT实现内网所有主机访问公网，公网地址使用接口地址；\n（2）配置扩展ACL，禁止内网192.168.10.0/24网段访问公网DNS的TCP 53端口，允许其他所有流量；\n（3）将ACL应用在对应接口的正确方向。",
+    "tags": [
+      "真题卷",
+      "2022",
+      "综合"
+    ],
+    "answer": "（1）OSPF配置：\nR1：\nPlaintext / R1(config)#router ospf 1 / R1(config-router)#router-id 1.1.1.1 / R1(config-router)#network 192.168.1.0 0.0.0.255 area 0 / R1(config-router)#network 10.0.1.0 0.0.0.3 area 0 / R1(config-router)#end\nR2：\nPlaintext / R2(config)#router ospf 1 / R2(config-router)#router-id 2.2.2.2 / R2(config-router)#network 10.0.1.0 0.0.0.3 area 0 / R2(config-router)#network 10.0.2.0 0.0.0.3 area 0 / R2(config-router)#end\nR3：\nPlaintext / R3(config)#router ospf 1 / R3(config-router)#router-id 3.3.3.3 / R3(config-router)#network 192.168.3.0 0.0.0.255 area 0 / R3(config-router)#network 10.0.2.0 0.0.0.3 area 0 / R3(config-router)#end\n（2）邻居状态过程：Down → Init → 2-Way → ExStart → Exchange → Loading → Full。\n完整配置：\nPlaintext / R1(config)#interface fastEthernet 0/0 / R1(config-if)#ip address 192.168.10.1 255.255.255.0 / R1(config-if)#ip nat inside / R1(config-if)#interface serial 0/0/0 / R1(config-if)#ip address 202.103.0.2 255.255.255.252 / R1(config-if)#ip nat outside / R1(config-if)#exit /  / // PAT配置 / R1(config)#access-list 1 permit 192.168.10.0 0.0.0.255 / R1(config)#ip nat inside source list 1 interface serial 0/0/0 overload /  / // 扩展ACL配置 / R1(config)#access-list 100 deny tcp 192.168.10.0 0.0.0.255 host 202.103.0.10 eq 53 / R1(config)#access-list 100 permit ip any any /  / // 应用ACL / R1(config)#interface fastEthernet 0/0 / R1(config-if)#ip access-group 100 in / R1(config-if)#end / R1#write",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2022"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "以下哪种VTP模式不能创建、修改或删除VLAN？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "服务器模式",
+      "B": "客户端模式",
+      "C": "透明模式",
+      "D": "以上都不能"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "STP协议中，根端口存在于哪类设备上？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "根网桥",
+      "B": "非根网桥",
+      "C": "所有交换机",
+      "D": "集线器"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "单臂路由实现VLAN间通信的核心瓶颈是？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "路由器CPU性能",
+      "B": "路由器与交换机之间的链路带宽",
+      "C": "VLAN数量限制",
+      "D": "IP地址不足"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "链路聚合（LACP）的标准协议是？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "IEEE 802.1Q",
+      "B": "IEEE 802.3ad",
+      "C": "IEEE 802.1D",
+      "D": "IEEE 802.1w"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "VTP协议的作用是？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "防止二层环路",
+      "B": "同步交换机间的VLAN配置",
+      "C": "实现VLAN间路由",
+      "D": "提升链路带宽"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "RSTP快速生成树协议是对STP的改进，其标准是？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "802.1D",
+      "B": "802.1w",
+      "C": "802.1s",
+      "D": "802.1Q"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "三层交换机实现VLAN间路由的配置方式是？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "单臂路由",
+      "B": "创建SVI（VLANIF）接口",
+      "C": "配置物理子接口",
+      "D": "配置Trunk接口"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "STP协议中，端口从阻塞状态到转发状态默认需要多少秒？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "15秒",
+      "B": "30秒",
+      "C": "50秒",
+      "D": "60秒"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "以下关于VTP透明模式的描述，正确的是？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "不能创建本地VLAN",
+      "B": "会转发VTP通告",
+      "C": "会同步VTP服务器的VLAN信息",
+      "D": "不能转发VTP通告"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-single-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "single",
+    "stem": "以下哪种技术可以同时实现链路冗余与带宽提升？",
+    "tags": [
+      "真题卷",
+      "2023",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "STP",
+      "B": "VTP",
+      "C": "链路聚合",
+      "D": "VLAN"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "VTP协议的三种工作模式是服务器模式、客户端模式和______。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "透明模式"
+    ],
+    "analysis": "参考答案：透明模式。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "RSTP将STP的五种端口状态简化为丢弃、学习和______三种。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "转发"
+    ],
+    "analysis": "参考答案：转发。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "三层交换机中，对应每个VLAN的三层虚拟接口称为______接口。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "SVI（交换虚拟接口/VLANIF）"
+    ],
+    "analysis": "参考答案：SVI（交换虚拟接口/VLANIF）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "STP协议中，端口状态为______时，既不接收转发数据，也不学习MAC地址。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "阻塞（Blocking）"
+    ],
+    "analysis": "参考答案：阻塞（Blocking）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "链路聚合的两种模式是手动静态聚合和______动态聚合。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "LACP"
+    ],
+    "analysis": "参考答案：LACP。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "VTP域名不匹配的交换机之间______同步VLAN信息。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "无法"
+    ],
+    "analysis": "参考答案：无法。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "单臂路由中，路由器子接口需要封装______协议，识别VLAN标签。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "802.1Q"
+    ],
+    "analysis": "参考答案：802.1Q。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "STP中，所有端口均为指定端口的交换机是______。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "根网桥"
+    ],
+    "analysis": "参考答案：根网桥。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "RSTP中，______端口可以快速切换到转发状态，用于连接终端设备。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "边缘（Edge）"
+    ],
+    "analysis": "参考答案：边缘（Edge）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-fill-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "fill",
+    "stem": "链路聚合组中的所有成员端口必须具备相同的______、双工模式、VLAN配置。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "填空题"
+    ],
+    "answers": [
+      "速率"
+    ],
+    "analysis": "参考答案：速率。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "VTP客户端模式可以创建本地VLAN，只是不会同步给其他交换机。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "RSTP相比传统STP，大幅缩短了网络收敛时间。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "三层交换机的SVI接口不需要配置IP地址即可实现VLAN间路由。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "STP通过阻塞冗余端口，在物理冗余的基础上构建逻辑无环网络。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "链路聚合后的总带宽等于所有成员端口带宽之和。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "VTP本征VLAN不匹配会导致VTP信息同步失败。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "单臂路由方案中，路由器与交换机相连的端口需要配置为Access模式。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "根网桥上的所有端口都是指定端口，不存在根端口。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "透明模式的交换机不参与VTP同步，也不转发VTP通告。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-judge-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "judge",
+    "stem": "链路聚合可以避免STP阻塞冗余链路，同时实现带宽叠加。（ ）",
+    "tags": [
+      "真题卷",
+      "2023",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2023）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-short-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "short",
+    "stem": "简述VTP三种工作模式的特点。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "简答题"
+    ],
+    "answer": "① 服务器模式：可创建、修改、删除VLAN，发送并同步VTP通告，是VTP域的配置源；② 客户端模式：不能创建修改VLAN，仅接收同步服务器的VTP通告，适用于接入层；③ 透明模式：可创建本地VLAN，不同步VTP信息，但转发收到的VTP通告，适用于独立管理的交换机。\n差异：① STP有5种端口状态，默认收敛时间50秒；RSTP简化为3种状态，秒级收敛；② RSTP新增边缘端口、点对点链路快速收敛机制；③ RSTP引入替代端口、备份端口，拓扑变化时可快速切换；④ RSTP向下兼容STP，但混合部署无法发挥快速收敛优势。\n工作原理：路由器一个物理接口划分为多个逻辑子接口，每个子接口对应一个VLAN，封装802.1Q标签，作为对应VLAN的网关，实现VLAN间三层转发。优点：成本低，无需三层交换机；缺点：物理链路为瓶颈，转发性能低，不适合高流量场景。\n优势：① 带宽叠加，总带宽为成员端口之和；② 链路冗余，单条链路故障不影响业务，自动切换；③ 负载分担，流量可在成员链路间分配。应用场景：交换机级联、交换机与服务器/路由器互联，需要高带宽与高可靠性的场景。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-short-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "short",
+    "stem": "对比传统STP与RSTP的核心差异。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "简答题"
+    ],
+    "answer": "① 服务器模式：可创建、修改、删除VLAN，发送并同步VTP通告，是VTP域的配置源；② 客户端模式：不能创建修改VLAN，仅接收同步服务器的VTP通告，适用于接入层；③ 透明模式：可创建本地VLAN，不同步VTP信息，但转发收到的VTP通告，适用于独立管理的交换机。\n差异：① STP有5种端口状态，默认收敛时间50秒；RSTP简化为3种状态，秒级收敛；② RSTP新增边缘端口、点对点链路快速收敛机制；③ RSTP引入替代端口、备份端口，拓扑变化时可快速切换；④ RSTP向下兼容STP，但混合部署无法发挥快速收敛优势。\n工作原理：路由器一个物理接口划分为多个逻辑子接口，每个子接口对应一个VLAN，封装802.1Q标签，作为对应VLAN的网关，实现VLAN间三层转发。优点：成本低，无需三层交换机；缺点：物理链路为瓶颈，转发性能低，不适合高流量场景。\n优势：① 带宽叠加，总带宽为成员端口之和；② 链路冗余，单条链路故障不影响业务，自动切换；③ 负载分担，流量可在成员链路间分配。应用场景：交换机级联、交换机与服务器/路由器互联，需要高带宽与高可靠性的场景。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-short-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "short",
+    "stem": "简述单臂路由的工作原理与优缺点。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "简答题"
+    ],
+    "answer": "① 服务器模式：可创建、修改、删除VLAN，发送并同步VTP通告，是VTP域的配置源；② 客户端模式：不能创建修改VLAN，仅接收同步服务器的VTP通告，适用于接入层；③ 透明模式：可创建本地VLAN，不同步VTP信息，但转发收到的VTP通告，适用于独立管理的交换机。\n差异：① STP有5种端口状态，默认收敛时间50秒；RSTP简化为3种状态，秒级收敛；② RSTP新增边缘端口、点对点链路快速收敛机制；③ RSTP引入替代端口、备份端口，拓扑变化时可快速切换；④ RSTP向下兼容STP，但混合部署无法发挥快速收敛优势。\n工作原理：路由器一个物理接口划分为多个逻辑子接口，每个子接口对应一个VLAN，封装802.1Q标签，作为对应VLAN的网关，实现VLAN间三层转发。优点：成本低，无需三层交换机；缺点：物理链路为瓶颈，转发性能低，不适合高流量场景。\n优势：① 带宽叠加，总带宽为成员端口之和；② 链路冗余，单条链路故障不影响业务，自动切换；③ 负载分担，流量可在成员链路间分配。应用场景：交换机级联、交换机与服务器/路由器互联，需要高带宽与高可靠性的场景。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-short-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "short",
+    "stem": "简述链路聚合技术的核心优势与应用场景。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "简答题"
+    ],
+    "answer": "① 服务器模式：可创建、修改、删除VLAN，发送并同步VTP通告，是VTP域的配置源；② 客户端模式：不能创建修改VLAN，仅接收同步服务器的VTP通告，适用于接入层；③ 透明模式：可创建本地VLAN，不同步VTP信息，但转发收到的VTP通告，适用于独立管理的交换机。\n差异：① STP有5种端口状态，默认收敛时间50秒；RSTP简化为3种状态，秒级收敛；② RSTP新增边缘端口、点对点链路快速收敛机制；③ RSTP引入替代端口、备份端口，拓扑变化时可快速切换；④ RSTP向下兼容STP，但混合部署无法发挥快速收敛优势。\n工作原理：路由器一个物理接口划分为多个逻辑子接口，每个子接口对应一个VLAN，封装802.1Q标签，作为对应VLAN的网关，实现VLAN间三层转发。优点：成本低，无需三层交换机；缺点：物理链路为瓶颈，转发性能低，不适合高流量场景。\n优势：① 带宽叠加，总带宽为成员端口之和；② 链路冗余，单条链路故障不影响业务，自动切换；③ 负载分担，流量可在成员链路间分配。应用场景：交换机级联、交换机与服务器/路由器互联，需要高带宽与高可靠性的场景。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-comprehensive-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "comprehensive",
+    "stem": "（20分）某企业局域网包含核心三层交换机SW1，接入交换机SW2：\nSW1为VTP服务器，域名XJNU，创建VLAN 10、VLAN 20、VLAN 30\nSW2为VTP客户端，自动同步VLAN信息\nSW1与SW2通过Fa0/23、Fa0/24两条链路做LACP模式聚合，聚合链路为Trunk模式，允许所有VLAN通过\nSW2的Fa0/1划入VLAN 10，Fa0/2划入VLAN 20\n请写出：\n（1）核心交换机SW1的VTP、VLAN、链路聚合与Trunk配置\n（2）接入交换机SW2的VTP、链路聚合、端口划分配置",
+    "tags": [
+      "真题卷",
+      "2023",
+      "综合"
+    ],
+    "answer": "（1）SW1配置：\nPlaintext / Switch(config)#hostname SW1 / SW1(config)#vtp mode server / SW1(config)#vtp domain XJNU / SW1(config)#vlan 10 / SW1(config-vlan)#vlan 20 / SW1(config-vlan)#vlan 30 / SW1(config-vlan)#exit /  / // 链路聚合配置 / SW1(config)#interface port-channel 1 / SW1(config-if)#switchport mode trunk / SW1(config-if)#switchport trunk allowed vlan all / SW1(config-if)#interface fastEthernet 0/23 / SW1(config-if)#channel-group 1 mode active / SW1(config-if)#interface fastEthernet 0/24 / SW1(config-if)#channel-group 1 mode active / SW1(config-if)#end\n（2）SW2配置：\nPlaintext / Switch(config)#hostname SW2 / SW2(config)#vtp mode client / SW2(config)#vtp domain XJNU /  / // 链路聚合配置 / SW2(config)#interface port-channel 1 / SW2(config-if)#switchport mode trunk / SW2(config-if)#switchport trunk allowed vlan all / SW2(config-if)#interface fastEthernet 0/23 / SW2(config-if)#channel-group 1 mode passive / SW2(config-if)#interface fastEthernet 0/24 / SW2(config-if)#channel-group 1 mode passive /  / // 端口划分 / SW2(config-if)#interface fastEthernet 0/1 / SW2(config-if)#switchport mode access / SW2(config-if)#switchport access vlan 10 / SW2(config-if)#interface fastEthernet 0/2 / SW2(config-if)#switchport mode access / SW2(config-if)#switchport access vlan 20 / SW2(config-if)#end\n（1）SVI接口配置：\nPlaintext / SW1(config)#interface vlan 10 / SW1(config-if)#ip address 192.168.10.254 255.255.255.0 / SW1(config-if)#no shutdown / SW1(config-if)#interface vlan 20 / SW1(config-if)#ip address 192.168.20.254 255.255.255.0 / SW1(config-if)#no shutdown / SW1(config-if)#interface vlan 30 / SW1(config-if)#ip address 192.168.30.254 255.255.255.0 / SW1(config-if)#no shutdown / SW1(config-if)#end\n（2）优势：基于硬件芯片转发，转发速率远高于单臂路由；无单链路瓶颈，性能更高；扩展性更强，支持更多VLAN；部署更简洁，无需额外路由器。\n（3）排查思路：① 检查主机网关配置是否正确；② 检查SVI接口状态是否为up；③ 检查交换机Trunk链路是否允许对应VLAN通过；④ 检查主机所属VLAN是否正确；⑤ 检查三层交换机IP路由功能是否开启。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2023-comprehensive-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2023）",
+    "chapter": "2023期末真题",
+    "type": "comprehensive",
+    "stem": "（20分）基于上述拓扑，通过三层交换机SVI接口实现VLAN间路由：\nVLAN 10网段：192.168.10.0/24，网关：192.168.10.254\nVLAN 20网段：192.168.20.0/24，网关：192.168.20.254\nVLAN 30网段：192.168.30.0/24，网关：192.168.30.254\n请完成：\n（1）写出三层交换机SW1的SVI接口配置命令；\n（2）简述该方案相比单臂路由的优势；\n（3）若VLAN 10主机无法访问VLAN 20主机，列出至少3条故障排查思路。",
+    "tags": [
+      "真题卷",
+      "2023",
+      "综合"
+    ],
+    "answer": "（1）SW1配置：\nPlaintext / Switch(config)#hostname SW1 / SW1(config)#vtp mode server / SW1(config)#vtp domain XJNU / SW1(config)#vlan 10 / SW1(config-vlan)#vlan 20 / SW1(config-vlan)#vlan 30 / SW1(config-vlan)#exit /  / // 链路聚合配置 / SW1(config)#interface port-channel 1 / SW1(config-if)#switchport mode trunk / SW1(config-if)#switchport trunk allowed vlan all / SW1(config-if)#interface fastEthernet 0/23 / SW1(config-if)#channel-group 1 mode active / SW1(config-if)#interface fastEthernet 0/24 / SW1(config-if)#channel-group 1 mode active / SW1(config-if)#end\n（2）SW2配置：\nPlaintext / Switch(config)#hostname SW2 / SW2(config)#vtp mode client / SW2(config)#vtp domain XJNU /  / // 链路聚合配置 / SW2(config)#interface port-channel 1 / SW2(config-if)#switchport mode trunk / SW2(config-if)#switchport trunk allowed vlan all / SW2(config-if)#interface fastEthernet 0/23 / SW2(config-if)#channel-group 1 mode passive / SW2(config-if)#interface fastEthernet 0/24 / SW2(config-if)#channel-group 1 mode passive /  / // 端口划分 / SW2(config-if)#interface fastEthernet 0/1 / SW2(config-if)#switchport mode access / SW2(config-if)#switchport access vlan 10 / SW2(config-if)#interface fastEthernet 0/2 / SW2(config-if)#switchport mode access / SW2(config-if)#switchport access vlan 20 / SW2(config-if)#end\n（1）SVI接口配置：\nPlaintext / SW1(config)#interface vlan 10 / SW1(config-if)#ip address 192.168.10.254 255.255.255.0 / SW1(config-if)#no shutdown / SW1(config-if)#interface vlan 20 / SW1(config-if)#ip address 192.168.20.254 255.255.255.0 / SW1(config-if)#no shutdown / SW1(config-if)#interface vlan 30 / SW1(config-if)#ip address 192.168.30.254 255.255.255.0 / SW1(config-if)#no shutdown / SW1(config-if)#end\n（2）优势：基于硬件芯片转发，转发速率远高于单臂路由；无单链路瓶颈，性能更高；扩展性更强，支持更多VLAN；部署更简洁，无需额外路由器。\n（3）排查思路：① 检查主机网关配置是否正确；② 检查SVI接口状态是否为up；③ 检查交换机Trunk链路是否允许对应VLAN通过；④ 检查主机所属VLAN是否正确；⑤ 检查三层交换机IP路由功能是否开启。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2023"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "OSPF多区域网络中，所有非骨干区域必须直接连接到哪个区域？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "Area 1",
+      "B": "Area 0",
+      "C": "Area 10",
+      "D": "任意区域"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "将RIP路由重分布进OSPF时，默认的度量值类型是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "Type 1",
+      "B": "Type 2",
+      "C": "直连类型",
+      "D": "静态类型"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "以下哪种广域网协议是思科私有协议？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "PPP",
+      "B": "HDLC",
+      "C": "Frame Relay",
+      "D": "ATM"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "路由重分布的核心作用是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "防止路由环路",
+      "B": "实现不同路由协议之间的路由信息共享",
+      "C": "提升路由收敛速度",
+      "D": "减少路由表规模"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "OSPF区域边界路由器的英文缩写是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "ASBR",
+      "B": "ABR",
+      "C": "DR",
+      "D": "BDR"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "PPP协议中，用于身份认证的协议是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "LCP",
+      "B": "NCP",
+      "C": "PAP/CHAP",
+      "D": "HDLC"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "以下关于OSPF多区域的描述，错误的是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "减少LSA泛洪范围",
+      "B": "降低路由器资源消耗",
+      "C": "非骨干区域可以直接互通",
+      "D": "骨干区域必须连续"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "管理距离最小的路由类型是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "直连路由",
+      "B": "静态路由",
+      "C": "OSPF",
+      "D": "RIP"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "CHAP认证相比PAP认证的优势是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "配置更简单",
+      "B": "明文传输密码",
+      "C": "加密传输，安全性更高",
+      "D": "支持双向认证"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-single-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "single",
+    "stem": "扩展ACL中，禁止所有主机访问Web服务的正确语句是？",
+    "tags": [
+      "真题卷",
+      "2024",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "access-list 1 deny any eq 80",
+      "B": "access-list 100 deny tcp any any eq 80",
+      "C": "access-list 100 deny ip any any eq 80",
+      "D": "access-list 1 deny tcp any eq 80"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "OSPF中，连接不同区域的路由器称为______。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "区域边界路由器（ABR）"
+    ],
+    "analysis": "参考答案：区域边界路由器（ABR）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "PPP协议分为两个层次：链路控制协议LCP和______。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "网络控制协议（NCP）"
+    ],
+    "analysis": "参考答案：网络控制协议（NCP）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "路由重分布时，______路由默认不需要指定度量值。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "直连与静态"
+    ],
+    "analysis": "参考答案：直连与静态。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "OSPF中，引入外部路由的路由器称为______。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "自治系统边界路由器（ASBR）"
+    ],
+    "analysis": "参考答案：自治系统边界路由器（ASBR）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "CHAP认证采用______次握手机制，认证过程不传输明文密码。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "三"
+    ],
+    "analysis": "参考答案：三。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "路由重分布可能引发的最主要风险是______。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "路由环路"
+    ],
+    "analysis": "参考答案：路由环路。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "HDLC默认不支持认证，______协议支持认证与多网络层协议。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "PPP"
+    ],
+    "analysis": "参考答案：PPP。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "OSPF Totally Stub区域的特点是不允许Type 5 LSA和______进入。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "Type 3 LSA（汇总LSA）"
+    ],
+    "analysis": "参考答案：Type 3 LSA（汇总LSA）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "路由选路时，先比较______，再比较度量值。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "管理距离"
+    ],
+    "analysis": "参考答案：管理距离。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-fill-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "fill",
+    "stem": "PAP认证采用______次握手，密码明文传输，安全性低。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "填空题"
+    ],
+    "answers": [
+      "两"
+    ],
+    "analysis": "参考答案：两。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "OSPF非骨干区域之间可以直接传递路由信息，无需经过骨干区域。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "路由重分布只能在不同路由协议之间进行，同协议不同进程不能重分布。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "PPP协议可以在异步串行线路和同步串行线路上运行。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "ABR可以同时属于多个OSPF区域，其中至少一个是骨干区域。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "CHAP认证只能由主认证方发起，被认证方不能主动发起。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "重分布后的外部OSPF路由，Type 1类型的优先级高于Type 2。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "HDLC是标准协议，所有厂商的HDLC都可以直接互通。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "路由重分布时，通常需要手动设置度量值，保证路由选路合理。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "Stub区域允许Type 3 LSA进入，不允许Type 5 LSA进入。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-judge-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "judge",
+    "stem": "管理距离用于判断同一目的地不同路由协议的优先级。（ ）",
+    "tags": [
+      "真题卷",
+      "2024",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2024）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-short-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "short",
+    "stem": "简述OSPF划分多区域的目的与优势。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "简答题"
+    ],
+    "answer": "目的：解决单区域OSPF网络规模过大、LSA泛洪范围广、路由器负载高的问题。优势：① 缩小LSA泛洪范围，降低路由器CPU与内存消耗；② 拓扑变化仅影响本区域，提升网络稳定性；③ 可通过特殊区域精简路由表；④ 便于分级管理，适配大型企业网络。\nPPP组成：① LCP链路控制协议：负责链路建立、配置、测试与断开；② NCP网络控制协议：负责配置不同网络层协议；③ 认证协议：PAP/CHAP，用于身份验证。工作过程：链路建立→LCP协商→认证阶段→NCP网络层协商→链路维持→链路终止。\n应用场景：多路由协议共存、不同厂商设备互联、网络合并、路由协议迁移等场景。注意事项：① 避免双向重分布引发路由环路与次优路径；② 合理设置重分布后的度量值；③ 配合路由过滤控制传播范围；④ 优先在边界路由器部署重分布。\n差异：① PAP：两次握手，明文传输用户名密码，安全性低，由被认证方发起；② CHAP：三次握手，仅传输哈希摘要，不传输明文密码，安全性高，由主认证方发起，支持周期性重认证。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-short-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "short",
+    "stem": "简述PPP协议的组成与工作过程。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "简答题"
+    ],
+    "answer": "目的：解决单区域OSPF网络规模过大、LSA泛洪范围广、路由器负载高的问题。优势：① 缩小LSA泛洪范围，降低路由器CPU与内存消耗；② 拓扑变化仅影响本区域，提升网络稳定性；③ 可通过特殊区域精简路由表；④ 便于分级管理，适配大型企业网络。\nPPP组成：① LCP链路控制协议：负责链路建立、配置、测试与断开；② NCP网络控制协议：负责配置不同网络层协议；③ 认证协议：PAP/CHAP，用于身份验证。工作过程：链路建立→LCP协商→认证阶段→NCP网络层协商→链路维持→链路终止。\n应用场景：多路由协议共存、不同厂商设备互联、网络合并、路由协议迁移等场景。注意事项：① 避免双向重分布引发路由环路与次优路径；② 合理设置重分布后的度量值；③ 配合路由过滤控制传播范围；④ 优先在边界路由器部署重分布。\n差异：① PAP：两次握手，明文传输用户名密码，安全性低，由被认证方发起；② CHAP：三次握手，仅传输哈希摘要，不传输明文密码，安全性高，由主认证方发起，支持周期性重认证。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-short-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "short",
+    "stem": "简述路由重分布的应用场景与注意事项。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "简答题"
+    ],
+    "answer": "目的：解决单区域OSPF网络规模过大、LSA泛洪范围广、路由器负载高的问题。优势：① 缩小LSA泛洪范围，降低路由器CPU与内存消耗；② 拓扑变化仅影响本区域，提升网络稳定性；③ 可通过特殊区域精简路由表；④ 便于分级管理，适配大型企业网络。\nPPP组成：① LCP链路控制协议：负责链路建立、配置、测试与断开；② NCP网络控制协议：负责配置不同网络层协议；③ 认证协议：PAP/CHAP，用于身份验证。工作过程：链路建立→LCP协商→认证阶段→NCP网络层协商→链路维持→链路终止。\n应用场景：多路由协议共存、不同厂商设备互联、网络合并、路由协议迁移等场景。注意事项：① 避免双向重分布引发路由环路与次优路径；② 合理设置重分布后的度量值；③ 配合路由过滤控制传播范围；④ 优先在边界路由器部署重分布。\n差异：① PAP：两次握手，明文传输用户名密码，安全性低，由被认证方发起；② CHAP：三次握手，仅传输哈希摘要，不传输明文密码，安全性高，由主认证方发起，支持周期性重认证。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-short-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "short",
+    "stem": "对比PAP与CHAP两种认证方式的差异。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "简答题"
+    ],
+    "answer": "目的：解决单区域OSPF网络规模过大、LSA泛洪范围广、路由器负载高的问题。优势：① 缩小LSA泛洪范围，降低路由器CPU与内存消耗；② 拓扑变化仅影响本区域，提升网络稳定性；③ 可通过特殊区域精简路由表；④ 便于分级管理，适配大型企业网络。\nPPP组成：① LCP链路控制协议：负责链路建立、配置、测试与断开；② NCP网络控制协议：负责配置不同网络层协议；③ 认证协议：PAP/CHAP，用于身份验证。工作过程：链路建立→LCP协商→认证阶段→NCP网络层协商→链路维持→链路终止。\n应用场景：多路由协议共存、不同厂商设备互联、网络合并、路由协议迁移等场景。注意事项：① 避免双向重分布引发路由环路与次优路径；② 合理设置重分布后的度量值；③ 配合路由过滤控制传播范围；④ 优先在边界路由器部署重分布。\n差异：① PAP：两次握手，明文传输用户名密码，安全性低，由被认证方发起；② CHAP：三次握手，仅传输哈希摘要，不传输明文密码，安全性高，由主认证方发起，支持周期性重认证。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-comprehensive-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "comprehensive",
+    "stem": "（20分）某企业OSPF多区域网络拓扑：\nR1为ABR路由器，同时属于Area 0和Area 1\nR1直连Area 0网段：10.0.0.0/30（与R2互联）\nR1直连Area 1网段：192.168.1.0/24、192.168.2.0/24\nR2属于Area 0，直连网段192.168.3.0/24\n互联地址：R1的S0/0/0为10.0.0.1，R2的S0/0/0为10.0.0.2\n请完成：\n（1）写出R1的OSPF多区域配置命令；\n（2）写出R2的OSPF单区域配置命令；\n（3）将Area 1配置为Stub区域，写出对应配置。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "综合"
+    ],
+    "answer": "（1）R1配置：\nPlaintext / R1(config)#router ospf 1 / R1(config-router)#router-id 1.1.1.1 / R1(config-router)#network 10.0.0.0 0.0.0.3 area 0 / R1(config-router)#network 192.168.1.0 0.0.0.255 area 1 / R1(config-router)#network 192.168.2.0 0.0.0.255 area 1\n（2）R2配置：\nPlaintext / R2(config)#router ospf 1 / R2(config-router)#router-id 2.2.2.2 / R2(config-router)#network 10.0.0.0 0.0.0.3 area 0 / R2(config-router)#network 192.168.3.0 0.0.0.255 area 0\n（3）Stub区域配置：\nR1上配置：\nPlaintext / R1(config)#router ospf 1 / R1(config-router)#area 1 stub\nArea 1内所有路由器均需配置stub命令。\n（1）R2双向重分布配置：\nPlaintext / // RIP重分布进OSPF / R2(config)#router ospf 1 / R2(config-router)#redistribute rip subnets metric 10 metric-type 2 /  / // OSPF重分布进RIP / R2(config)#router rip / R2(config-router)#version 2 / R2(config-router)#redistribute ospf 1 metric 5\n（2）问题与规避：可能引发路由环路、次优路径、路由表膨胀。规避方法：使用路由过滤（distribute-list/prefix-list）控制路由传播；设置合理的度量值与管理距离；避免多点双向重分布；使用路由标记（tag）匹配过滤。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2024-comprehensive-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2024）",
+    "chapter": "2024期末真题",
+    "type": "comprehensive",
+    "stem": "（20分）某网络同时运行RIP与OSPF两种路由协议：\nR1运行RIP，直连网段172.16.1.0/24、172.16.2.0/24\nR2同时运行RIP与OSPF，作为重分布边界设备\nR2与R3运行OSPF Area 0，互联网段10.0.0.0/30\nR3直连网段192.168.10.0/24\n需求：\n（1）实现全网路由互通，写出R2上的双向路由重分布配置命令；\n（2）说明路由重分布可能引发的问题及规避方法。",
+    "tags": [
+      "真题卷",
+      "2024",
+      "综合"
+    ],
+    "answer": "（1）R1配置：\nPlaintext / R1(config)#router ospf 1 / R1(config-router)#router-id 1.1.1.1 / R1(config-router)#network 10.0.0.0 0.0.0.3 area 0 / R1(config-router)#network 192.168.1.0 0.0.0.255 area 1 / R1(config-router)#network 192.168.2.0 0.0.0.255 area 1\n（2）R2配置：\nPlaintext / R2(config)#router ospf 1 / R2(config-router)#router-id 2.2.2.2 / R2(config-router)#network 10.0.0.0 0.0.0.3 area 0 / R2(config-router)#network 192.168.3.0 0.0.0.255 area 0\n（3）Stub区域配置：\nR1上配置：\nPlaintext / R1(config)#router ospf 1 / R1(config-router)#area 1 stub\nArea 1内所有路由器均需配置stub命令。\n（1）R2双向重分布配置：\nPlaintext / // RIP重分布进OSPF / R2(config)#router ospf 1 / R2(config-router)#redistribute rip subnets metric 10 metric-type 2 /  / // OSPF重分布进RIP / R2(config)#router rip / R2(config-router)#version 2 / R2(config-router)#redistribute ospf 1 metric 5\n（2）问题与规避：可能引发路由环路、次优路径、路由表膨胀。规避方法：使用路由过滤（distribute-list/prefix-list）控制路由传播；设置合理的度量值与管理距离；避免多点双向重分布；使用路由标记（tag）匹配过滤。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2024"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "以下哪项不是三层交换机的特点？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "硬件高速转发",
+      "B": "支持广域网接口",
+      "C": "实现VLAN间路由",
+      "D": "支持动态路由协议"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "以下哪种LSA类型仅在本区域内泛洪？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "Type 1",
+      "B": "Type 3",
+      "C": "Type 4",
+      "D": "Type 5"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：A。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "以下关于NAT的描述，正确的是？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "可以提升网络传输速度",
+      "B": "可以完全替代防火墙",
+      "C": "可以隐藏内网拓扑结构",
+      "D": "可以解决所有IP地址不足问题"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "交换机MAC地址表的默认老化时间是？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "100秒",
+      "B": "300秒",
+      "C": "600秒",
+      "D": "1200秒"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "以下哪种技术可以实现双层VLAN标签封装，用于二层VPN？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "VLAN聚合",
+      "B": "QinQ",
+      "C": "VXLAN",
+      "D": "Super VLAN"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "路由表中出现两条同目的网段的OSPF路由，说明？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "配置错误",
+      "B": "实现等价负载分担",
+      "C": "管理距离不同",
+      "D": "度量值不同"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "以下关于STP与链路聚合的描述，正确的是？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "链路聚合会被STP阻塞",
+      "B": "STP与链路聚合不能同时使用",
+      "C": "聚合链路在STP中视为一条逻辑链路",
+      "D": "聚合链路的每个成员端口独立参与STP计算"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "以下哪个命令可以查看路由器的完整路由表？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "show ip interface brief",
+      "B": "show ip route",
+      "C": "show running-config",
+      "D": "show arp"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：B。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "扩展ACL无法过滤以下哪种信息？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "ICMP报文",
+      "B": "TCP端口",
+      "C": "UDP端口",
+      "D": "应用层数据内容"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "参考答案：D。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-single-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "single",
+    "stem": "企业边界路由器配置PAT后，内网主机访问公网，公网设备看到的源地址是？",
+    "tags": [
+      "真题卷",
+      "2025",
+      "单项选择题"
+    ],
+    "options": {
+      "A": "内网主机私有IP",
+      "B": "路由器内网接口IP",
+      "C": "路由器公网接口IP",
+      "D": "随机公网IP"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "参考答案：C。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "OSPF Type 1 LSA的名称是______，由每个路由器生成，描述自身直连链路状态。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "路由器LSA（Router LSA）"
+    ],
+    "analysis": "参考答案：路由器LSA（Router LSA）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "交换机端口安全功能中，默认的违规动作是______。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "关闭端口（shutdown）"
+    ],
+    "analysis": "参考答案：关闭端口（shutdown）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "查看交换机VLAN配置概览的命令是______。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "show vlan brief"
+    ],
+    "analysis": "参考答案：show vlan brief。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "静态路由配置时，指定出接口相比指定下一跳，路由优先级______。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "更高（管理距离更小）"
+    ],
+    "analysis": "参考答案：更高（管理距离更小）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "实现双层VLAN标签封装，俗称“双层VLAN”的技术是______。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "QinQ（802.1Q-in-Q）"
+    ],
+    "analysis": "参考答案：QinQ（802.1Q-in-Q）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "OSPF网络中，______LSA用于向自治系统内通告外部路由信息。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "Type 5（自治系统外部LSA）"
+    ],
+    "analysis": "参考答案：Type 5（自治系统外部LSA）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "交换机端口安全默认最多允许学习______个MAC地址。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "1"
+    ],
+    "analysis": "参考答案：1。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "测试网络层连通性的常用命令是______。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "ping"
+    ],
+    "analysis": "参考答案：ping。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "内网服务器映射到公网提供服务，通常使用______NAT实现。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "静态（端口映射/目的NAT）"
+    ],
+    "analysis": "参考答案：静态（端口映射/目的NAT）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-fill-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "fill",
+    "stem": "追踪数据包转发路径的常用命令是______。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "填空题"
+    ],
+    "answers": [
+      "tracert（traceroute）"
+    ],
+    "analysis": "参考答案：tracert（traceroute）。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "三层交换机同时具备二层交换与三层路由功能。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "OSPF Type 5 LSA可以在整个OSPF自治系统内泛洪，包括所有特殊区域。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "端口安全功能可以限制端口接入的主机数量，提升网络安全性。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "等价路由可以实现流量负载分担，提升链路利用率。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-005",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "交换机Access端口可以接收带VLAN标签的数据帧。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-006",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "NAT可以隐藏内网IP，一定程度上提升内网安全性。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-007",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "VTP修剪功能可以减少Trunk链路上的无用广播流量。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-008",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "路由器转发数据包时，会修改数据包的源IP与目的IP地址。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-009",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "链路聚合的成员端口可以属于不同的VLAN。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "参考答案：错。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-judge-010",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "judge",
+    "stem": "tracert命令可以定位数据包转发路径中的故障节点。（ ）",
+    "tags": [
+      "真题卷",
+      "2025",
+      "判断题"
+    ],
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "参考答案：对。题目来自新疆师范大学《路由与交换技术》期末考试试卷（2025）。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-short-001",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "short",
+    "stem": "简述交换机端口安全的工作原理与应用场景。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "简答题"
+    ],
+    "answer": "工作原理：限制端口学习的MAC地址数量，仅允许指定MAC地址的主机接入；违规时触发保护动作（关闭端口/限制流量/告警）。应用场景：办公网接入端口，防止非授权设备接入；防范MAC地址泛洪攻击；提升接入层网络安全性。\n① Type 1：路由器LSA，每个路由器生成，描述自身直连链路状态与开销，仅在本区域泛洪；② Type 3：网络汇总LSA，由ABR生成，向其他区域通告本区域的网段路由；③ Type 5：自治系统外部LSA，由ASBR生成，通告域外外部路由，可在整个自治系统泛洪。\nVLAN规划原则：① 按业务/部门划分，便于管理与权限控制；② 一个VLAN对应一个IP网段，地址规划连续；③ 核心业务与普通业务分离，服务器区单独划分；④ VLAN编号预留扩容空间，避免频繁调整；⑤ 结合安全策略，不同VLAN部署对应访问控制。\n排查思路：由近及远、由下至上逐层排查。① 物理层：检查线缆、接口状态、指示灯；② 数据链路层：检查VLAN、Trunk配置、MAC地址表；③ 网络层：检查IP地址、网关、路由表、连通性。常用命令：ping、tracert、show ip route、show interface、show vlan、arp。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-short-002",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "short",
+    "stem": "简述OSPF中Type 1、Type 3、Type 5三类LSA的作用。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "简答题"
+    ],
+    "answer": "工作原理：限制端口学习的MAC地址数量，仅允许指定MAC地址的主机接入；违规时触发保护动作（关闭端口/限制流量/告警）。应用场景：办公网接入端口，防止非授权设备接入；防范MAC地址泛洪攻击；提升接入层网络安全性。\n① Type 1：路由器LSA，每个路由器生成，描述自身直连链路状态与开销，仅在本区域泛洪；② Type 3：网络汇总LSA，由ABR生成，向其他区域通告本区域的网段路由；③ Type 5：自治系统外部LSA，由ASBR生成，通告域外外部路由，可在整个自治系统泛洪。\nVLAN规划原则：① 按业务/部门划分，便于管理与权限控制；② 一个VLAN对应一个IP网段，地址规划连续；③ 核心业务与普通业务分离，服务器区单独划分；④ VLAN编号预留扩容空间，避免频繁调整；⑤ 结合安全策略，不同VLAN部署对应访问控制。\n排查思路：由近及远、由下至上逐层排查。① 物理层：检查线缆、接口状态、指示灯；② 数据链路层：检查VLAN、Trunk配置、MAC地址表；③ 网络层：检查IP地址、网关、路由表、连通性。常用命令：ping、tracert、show ip route、show interface、show vlan、arp。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-short-003",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "short",
+    "stem": "简述企业网络中VLAN的规划原则。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "简答题"
+    ],
+    "answer": "工作原理：限制端口学习的MAC地址数量，仅允许指定MAC地址的主机接入；违规时触发保护动作（关闭端口/限制流量/告警）。应用场景：办公网接入端口，防止非授权设备接入；防范MAC地址泛洪攻击；提升接入层网络安全性。\n① Type 1：路由器LSA，每个路由器生成，描述自身直连链路状态与开销，仅在本区域泛洪；② Type 3：网络汇总LSA，由ABR生成，向其他区域通告本区域的网段路由；③ Type 5：自治系统外部LSA，由ASBR生成，通告域外外部路由，可在整个自治系统泛洪。\nVLAN规划原则：① 按业务/部门划分，便于管理与权限控制；② 一个VLAN对应一个IP网段，地址规划连续；③ 核心业务与普通业务分离，服务器区单独划分；④ VLAN编号预留扩容空间，避免频繁调整；⑤ 结合安全策略，不同VLAN部署对应访问控制。\n排查思路：由近及远、由下至上逐层排查。① 物理层：检查线缆、接口状态、指示灯；② 数据链路层：检查VLAN、Trunk配置、MAC地址表；③ 网络层：检查IP地址、网关、路由表、连通性。常用命令：ping、tracert、show ip route、show interface、show vlan、arp。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
+  },
+  {
+    "id": "rs-final-2025-short-004",
+    "source": "新疆师范大学《路由与交换技术》期末考试试卷（2025）",
+    "chapter": "2025期末真题",
+    "type": "short",
+    "stem": "简述路由故障的基本排查思路与常用命令。",
+    "tags": [
+      "真题卷",
+      "2025",
+      "简答题"
+    ],
+    "answer": "工作原理：限制端口学习的MAC地址数量，仅允许指定MAC地址的主机接入；违规时触发保护动作（关闭端口/限制流量/告警）。应用场景：办公网接入端口，防止非授权设备接入；防范MAC地址泛洪攻击；提升接入层网络安全性。\n① Type 1：路由器LSA，每个路由器生成，描述自身直连链路状态与开销，仅在本区域泛洪；② Type 3：网络汇总LSA，由ABR生成，向其他区域通告本区域的网段路由；③ Type 5：自治系统外部LSA，由ASBR生成，通告域外外部路由，可在整个自治系统泛洪。\nVLAN规划原则：① 按业务/部门划分，便于管理与权限控制；② 一个VLAN对应一个IP网段，地址规划连续；③ 核心业务与普通业务分离，服务器区单独划分；④ VLAN编号预留扩容空间，避免频繁调整；⑤ 结合安全策略，不同VLAN部署对应访问控制。\n排查思路：由近及远、由下至上逐层排查。① 物理层：检查线缆、接口状态、指示灯；② 数据链路层：检查VLAN、Trunk配置、MAC地址表；③ 网络层：检查IP地址、网关、路由表、连通性。常用命令：ping、tracert、show ip route、show interface、show vlan、arp。",
+    "analysis": "主观题参考答案已放入答案区；评分以要点覆盖为准。",
+    "meta": {
+      "origin": "docx-final-exam",
+      "year": "2025"
+    }
   }
 ]

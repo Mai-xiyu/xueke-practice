@@ -9,7 +9,37 @@
       "description": "路由基础、RIP、OSPF、BGP、ACL、NAT、VLAN、STP、VRRP，以及去年考试题。",
       "order": 10,
       "college": "computer-science",
-      "dataFile": "data/route-switching.json"
+      "dataFile": "data/route-switching.json",
+      "mockExam": {
+        "title": "路由交换期末模拟考试",
+        "sections": [
+          {
+            "type": "single",
+            "count": 10,
+            "score": 2
+          },
+          {
+            "type": "fill",
+            "count": 10,
+            "score": 1
+          },
+          {
+            "type": "judge",
+            "count": 10,
+            "score": 1
+          },
+          {
+            "type": "short",
+            "count": 4,
+            "score": 5
+          },
+          {
+            "type": "comprehensive",
+            "count": 2,
+            "score": 20
+          }
+        ]
+      }
     },
     {
       "id": "network-security",
@@ -68,7 +98,37 @@
       "description": "数据结构题库练习、题库浏览、错题复盘和模拟测试。",
       "order": 40,
       "college": "computer-science",
-      "dataFile": "data/data-structure.json"
+      "dataFile": "data/data-structure.json",
+      "mockExam": {
+        "title": "数据结构期末模拟考试",
+        "sections": [
+          {
+            "type": "single",
+            "count": 10,
+            "score": 2
+          },
+          {
+            "type": "fill",
+            "count": 10,
+            "score": 2
+          },
+          {
+            "type": "short",
+            "count": 4,
+            "score": 5
+          },
+          {
+            "type": "comprehensive",
+            "count": 3,
+            "score": 8
+          },
+          {
+            "type": "code",
+            "count": 2,
+            "score": 8
+          }
+        ]
+      }
     },
     {
       "id": "java-programming",
