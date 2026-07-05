@@ -582,7 +582,8 @@
     "type": "single",
     "stem": "用户编写了一个文本文件a.txt,想将该文件名称改为txt.a,下列( )命令可以实现。",
     "tags": [
-      "题源选项修正"
+      "题源选项修正",
+      "题源答案错误"
     ],
     "options": {
       "A": "mv a.txt txt.a",
@@ -590,10 +591,13 @@
       "C": "cat a.txt > txt.a",
       "D": "echo a.txt > txt.a"
     },
-    "analysis": "Linux 中重命名或移动文件使用 `mv` 命令，`mv a.txt txt.a` 表示把当前目录下的 `a.txt` 改名为 `txt.a`。原题选项缺失 `mv`，这里已补入正确选项。",
+    "analysis": "Linux 中重命名或移动文件使用 `mv` 命令，`mv a.txt txt.a` 表示把当前目录下的 `a.txt` 改名为 `txt.a`。题源曾把 `cat a.txt > txt.a` 标为正确，但该命令只是把 `a.txt` 的内容复制或重定向到 `txt.a`，不会删除或改名原文件，因此不能算“文件名称改为 txt.a”。原题没有有效正确选项，这里已补入 `mv` 并以 A 作为知识点正确答案。",
     "correct": [
       "A"
-    ]
+    ],
+    "meta": {
+      "sourceAnswerConflict": "题源隐藏答案给 B；按 Linux 命令语义修正为 A。B 只是复制内容，不是重命名。"
+    }
   },
   {
     "id": "linux-作业1-031",
