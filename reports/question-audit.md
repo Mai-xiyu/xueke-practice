@@ -7,11 +7,11 @@ Scope: public/data/*.json (11 banks)
 
 | Bank | File | Questions | Empty analysis | Single distribution | Issues |
 | --- | --- | ---: | ---: | --- | ---: |
-| 路由交换 | data/route-switching.json | 372 | 0 | A:92 B:92 C:76 D:61 | 0 |
+| 路由交换 | data/route-switching.json | 550 | 0 | A:100 B:119 C:90 D:62 | 0 |
 | 网络安全 | data/network-security.json | 215 | 0 | A:47 B:47 C:47 D:44 | 0 |
 | 数据采集 | data/data-collection.json | 282 | 0 | A:38 B:37 C:31 D:23 | 0 |
 | 数据可视化 | data/data-visualization.json | 100 | 0 | A:16 B:14 C:13 D:7 | 0 |
-| 数据结构 | data/data-structure.json | 553 | 0 | A:84 B:120 C:124 D:100 | 0 |
+| 数据结构 | data/data-structure.json | 663 | 0 | A:96 B:134 C:134 D:104 | 0 |
 | Java程序设计 | data/java-programming.json | 137 | 0 | A:24 B:24 C:24 D:23 | 0 |
 | Linux课程 | data/linux-course.json | 335 | 0 | A:75 B:68 C:74 D:83 | 0 |
 | 中国近代史 | data/modern-history.json | 390 | 0 | A:55 B:48 C:50 D:52 | 0 |
