@@ -6339,7 +6339,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出左对齐递增实心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n*\n**\n***\n****\n*****\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
@@ -6354,7 +6354,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出左对齐递增空心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n*\n**\n* *\n*  *\n*****\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
@@ -6369,7 +6369,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出右对齐递减实心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n*****\n ****\n  ***\n   **\n    *\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
@@ -6384,7 +6384,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出右对齐递减空心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n*****\n *  *\n  * *\n   **\n    *\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
@@ -6399,7 +6399,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出左对齐递减实心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n*****\n****\n***\n**\n*\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
@@ -6414,7 +6414,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出左对齐递减空心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n*****\n*  *\n* *\n**\n*\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
@@ -6429,7 +6429,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出右对齐递增实心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n    *\n   **\n  ***\n ****\n*****\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
@@ -6444,7 +6444,7 @@
     "type": "short",
     "stem": "Shell脚本：读取行数 n，输出右对齐递增空心直角三角形。",
     "tags": [],
-    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。",
+    "analysis": "模拟考试简答题从 8 种三角形脚本中随机抽 1 题。以 n=5 为例，执行后终端显示：\n\n```text\n请输入行数：5\n    *\n   **\n  * *\n *  *\n*****\n```",
     "meta": {
       "meta": {
         "examPool": "linux-triangle"
