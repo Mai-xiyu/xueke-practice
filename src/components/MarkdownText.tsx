@@ -14,9 +14,15 @@ function escapeMarker(marker: string): string {
 }
 
 function preserveLeadingMarkdownLiterals(text: string, compact: boolean): string {
+  let inFence = false;
   return text
     .split("\n")
     .map((line) => {
+      if (/^\s*(```|~~~)/.test(line)) {
+        inFence = !inFence;
+        return line;
+      }
+      if (inFence) return line;
       let next = line.replace(/^(\s*)(>+)(?=\s|$)/, (_, leading: string, signs: string) => `${leading}${escapeMarker(signs)}`);
       if (!compact) return next;
       next = next.replace(/^(\s*)(#{1,6})(?=\s|$)/, (_, leading: string, signs: string) => `${leading}${escapeMarker(signs)}`);

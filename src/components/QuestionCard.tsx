@@ -67,6 +67,38 @@ function analysisSnippet(analysis?: string): string {
   return first.length > 90 ? `${first.slice(0, 88)}…` : first;
 }
 
+function hasMarkdownFence(text: string): boolean {
+  return /(^|\n)\s*(```|~~~)/.test(text);
+}
+
+function codeFenceLanguage(text: string): string {
+  const value = text.trim();
+  if (/^#!.*\b(?:bash|sh)\b/.test(value) || /\b(?:do|done|fi|then)\b/.test(value)) return "bash";
+  if (/^\s*(?:def|from\s+\S+\s+import|import\s+\S+)/m.test(value)) return "python";
+  if (/^\s*(?:public\s+class|class\s+\w+|import\s+java\.)/m.test(value)) return "java";
+  if (/^\s*#include\b/m.test(value)) return "c";
+  return "";
+}
+
+function looksLikeCodeAnswer(question: Question, text: string): boolean {
+  if (question.type === "code") return true;
+  const value = text.trim();
+  if (!value.includes("\n")) return false;
+  return [
+    /^#!\/(?:usr\/bin\/env\s+)?(?:bash|sh|python|node)\b/,
+    /\b(?:for|while|if)\s+.*;\s*do\b/,
+    /\b(?:done|then|fi)\b/,
+    /^\s*(?:def|class|public\s+class|import\s+java\.|#include\b)/m
+  ].some((pattern) => pattern.test(value));
+}
+
+function formatReferenceAnswer(question: Question, text: string): string {
+  const value = text.trim();
+  if (!value || hasMarkdownFence(value) || !looksLikeCodeAnswer(question, value)) return text;
+  const language = codeFenceLanguage(value);
+  return `\`\`\`${language}\n${value}\n\`\`\``;
+}
+
 function displayAnswerText(question: Question): string {
   if (isChoice(question.type)) {
     const correct = question.correct || [];
@@ -76,7 +108,7 @@ function displayAnswerText(question: Question): string {
       return optionText ? `${key}. ${optionText}` : key;
     }).join("\n");
   }
-  return answerText(question);
+  return formatReferenceAnswer(question, answerText(question));
 }
 
 const MASTERY_CLASS: Record<string, string> = {
