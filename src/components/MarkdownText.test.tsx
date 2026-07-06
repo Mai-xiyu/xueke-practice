@@ -9,4 +9,12 @@ describe("MarkdownText", () => {
     expect(container.querySelector(".katex")).not.toBeNull();
     expect(container.querySelector("script")).toBeNull();
   });
+  it("preserves shell redirection operators that start a line", () => {
+    const { container } = render(<MarkdownText value={">>\n> file\n2> err"} compact />);
+
+    expect(container.textContent).toContain(">>");
+    expect(container.textContent).toContain("> file");
+    expect(container.textContent).toContain("2> err");
+    expect(container.querySelector("blockquote")).toBeNull();
+  });
 });
