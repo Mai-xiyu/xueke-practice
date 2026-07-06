@@ -53,6 +53,26 @@ describe("QuestionCard answer rendering", () => {
     expect(container.querySelector(".analysis__answer-block .markdown-content--compact")).toBeNull();
   });
 
+  it("renders unfenced code-like subjective answers as code blocks", () => {
+    const question: Question = {
+      id: "shell-1",
+      source: "test",
+      chapter: "Shell",
+      type: "short",
+      stem: "Write a shell script.",
+      answer: "#!/usr/bin/env bash\nread -rp \"n: \" n\nfor ((i = 1; i <= n; i++)); do\n  printf \"*\"\ndone",
+      analysis: "Use a loop.",
+      tags: []
+    };
+
+    const { container } = renderCard(question);
+    const code = container.querySelector(".analysis__answer-block pre code");
+
+    expect(code?.textContent).toContain("#!/usr/bin/env bash");
+    expect(code?.textContent).toContain("read -rp");
+    expect(code?.textContent).toContain("for ((i = 1; i <= n; i++)); do");
+  });
+
   it("shows objective correct answers with option text", () => {
     const question: Question = {
       id: "single-1",
