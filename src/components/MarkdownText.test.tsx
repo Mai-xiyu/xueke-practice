@@ -17,4 +17,16 @@ describe("MarkdownText", () => {
     expect(container.textContent).toContain("2> err");
     expect(container.querySelector("blockquote")).toBeNull();
   });
+
+  it("preserves compact answer markers that look like markdown syntax", () => {
+    const { container } = render(<MarkdownText value={"#\n* item\n- item\n+ item\n1. item\n---"} compact />);
+
+    expect(container.textContent).toContain("#");
+    expect(container.textContent).toContain("* item");
+    expect(container.textContent).toContain("- item");
+    expect(container.textContent).toContain("+ item");
+    expect(container.textContent).toContain("1. item");
+    expect(container.textContent).toContain("---");
+    expect(container.querySelector("h1,h2,h3,ul,ol,hr")).toBeNull();
+  });
 });
