@@ -9,17 +9,27 @@ interface MarkdownTextProps {
   className?: string;
 }
 
-function preserveLeadingGreaterThan(text: string): string {
+function escapeMarker(marker: string): string {
+  return marker.split("").map((char) => `\\${char}`).join("");
+}
+
+function preserveLeadingMarkdownLiterals(text: string, compact: boolean): string {
   return text
     .split("\n")
-    .map((line) => line.replace(/^(\s*)(>+)(?=\s|$)/, (_, leading: string, signs: string) => {
-      return `${leading}${signs.split("").map(() => "\\>").join("")}`;
-    }))
+    .map((line) => {
+      let next = line.replace(/^(\s*)(>+)(?=\s|$)/, (_, leading: string, signs: string) => `${leading}${escapeMarker(signs)}`);
+      if (!compact) return next;
+      next = next.replace(/^(\s*)(#{1,6})(?=\s|$)/, (_, leading: string, signs: string) => `${leading}${escapeMarker(signs)}`);
+      next = next.replace(/^(\s*)([-+*])(?=\s|$)/, (_, leading: string, sign: string) => `${leading}\\${sign}`);
+      next = next.replace(/^(\s*)(\d+[.)])(?=\s|$)/, (_, leading: string, marker: string) => `${leading}${marker.replace(/[.)]/g, "\\$&")}`);
+      next = next.replace(/^(\s*)(-{3,}|\*{3,}|_{3,})\s*$/, (_, leading: string, marker: string) => `${leading}${escapeMarker(marker)}`);
+      return next;
+    })
     .join("\n");
 }
 
 export function MarkdownText({ value, compact = false, className = "" }: MarkdownTextProps) {
-  const text = preserveLeadingGreaterThan(String(value ?? ""));
+  const text = preserveLeadingMarkdownLiterals(String(value ?? ""), compact);
   const classes = ["markdown-content", compact ? "markdown-content--compact" : "", className].filter(Boolean).join(" ");
 
   return (
