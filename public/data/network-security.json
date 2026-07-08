@@ -4067,6 +4067,7 @@
       "身份认证"
     ],
     "answer": "标识解决“你是谁”的问题，例如输入用户名、学号、银行卡号；鉴别解决“你是否真的是这个身份”的问题，例如输入密码、短信验证码、智能卡签名或生物特征验证。标准登录流程通常先标识，再鉴别，鉴别通过后系统再根据权限策略进行授权。",
+    "memoryAnswer": "记法：标识是“你说你是谁”，鉴别是“证明你真是这个人”。登录时先输账号标识身份，再用密码、短信或证书完成鉴别。",
     "analysis": "答题要点：先区分概念，再说明顺序，最后举例。常见错误是把标识写成验证身份。"
   },
   {
@@ -4081,6 +4082,7 @@
       "Kerberos"
     ],
     "answer": "KDC 是可信第三方，通常包含 AS 和 TGS。AS 负责初始认证，验证用户身份后签发 TGT；TGS 根据 TGT 为用户签发访问具体服务的服务票据；服务票据只面向特定服务，客户端拿它向服务器证明自己已通过可信第三方认证。该机制减少了明文密码传输，并支持单点登录。",
+    "memoryAnswer": "记法：KDC 是票据中心，AS 先发 TGT，TGS 再换服务票据，用户拿票据去访问具体服务。",
     "analysis": "答题要点：KDC 是总角色，AS 发 TGT，TGS 发服务票据，服务票据限定到具体服务。"
   },
   {
@@ -4095,6 +4097,7 @@
       "PKI"
     ],
     "answer": "CA 负责签发和签名证书；RA 负责注册受理和身份审核；根证书是信任锚，预置在操作系统或浏览器信任库中；最终实体证书位于证书链末端，用于把服务器身份与公钥绑定。浏览器验证服务器证书时，会检查证书链是否能追溯到受信任根 CA，检查签名、有效期、域名匹配、密钥用途和吊销状态等。",
+    "memoryAnswer": "记法：CA 像发证机关，RA 负责审核，根证书是信任源，服务器证书证明网站身份；浏览器按证书链一路验到可信根。",
     "analysis": "答题要点：身份审核归 RA，签名归 CA，根证书是信任锚，服务器证书是叶子证书。"
   },
   {
@@ -4109,6 +4112,7 @@
       "访问控制"
     ],
     "answer": "ACL 以客体为中心，记录哪些主体可以对某个资源执行哪些操作，适合回答“谁能访问这个文件”。能力表以主体为中心，记录某个主体拥有哪些资源和操作能力，适合快速回答“这个用户能访问哪些资源”。ACL 便于按资源集中管理和审计，CL 便于按用户快速判权。",
+    "memoryAnswer": "记法：ACL 是“资源门口贴名单”，查某资源谁能访问方便；能力表是“用户手里拿通行证”，查某用户能访问什么方便。",
     "analysis": "答题要点：ACL 按资源组织，CL 按主体组织；不要把两者和 RBAC、MAC 混为一类。"
   },
   {
@@ -4123,6 +4127,7 @@
       "802.1X"
     ],
     "answer": "EAP 是可扩展认证协议，本质是支持多种认证方法的通用认证框架。IEEE 802.1X 是基于端口的网络接入控制机制，常由申请者、认证者和认证服务器组成。校园网部署 802.1X 的主要目的是在终端接入网络前完成身份认证，防止未授权设备直接接入内网。",
+    "memoryAnswer": "记法：EAP 是认证对话格式，802.1X 是把这套认证放到接入网络入口；校园网用它控制谁能接入、方便计费和审计。",
     "analysis": "答题要点：EAP 是认证框架，802.1X 是端口级接入控制，校园网重点是准入控制。"
   },
   {
@@ -4137,6 +4142,7 @@
       "综合安全设计"
     ],
     "answer": "可从四层展开：第一，用户先通过学号、账号等完成标识，再通过密码、短信验证码、统一身份认证或智能卡完成鉴别；第二，关键业务系统使用 HTTPS/TLS，服务器证书由可信 CA 签发，客户端校验证书链、域名、有效期和吊销状态；第三，登录成功后采用 RBAC 分配角色权限，并遵循最小权限原则，资源侧可用 ACL 做细粒度控制；第四，关键操作需要审计日志、会话超时、防重放、密码策略和异常登录检测。整体目标是先确认身份，再建立安全信道，最后按权限访问资源。",
+    "memoryAnswer": "背题框架：先认证，再发证书，再分权限，最后保护传输。校园系统就是“登录可信、证书可信、权限最小、通信加密、日志可追”。",
     "analysis": "论述题应有结构：身份认证、证书信任、传输加密、授权控制、审计与风险控制。"
   },
   {
@@ -4151,6 +4157,7 @@
       "分组密码"
     ],
     "answer": "ECB 将明文分成固定大小分组后分别独立加密，相同明文分组会得到相同密文分组，无法隐藏数据模式，因此不适合加密结构化或大文件敏感数据。CBC 在加密每个分组前先与前一个密文分组异或，第一个分组使用随机 IV，因此相同明文在不同位置或不同 IV 下通常得到不同密文，安全性优于 ECB。工程上 CBC 需要随机且不可预测的 IV、正确填充、完整性保护，并注意解密时的填充错误处理。大文件加密时还要考虑分块读取、块边界、异常恢复和认证标签，实际系统优先使用带认证的 AEAD 模式。",
+    "memoryAnswer": "记法：ECB 是“每块自己加密”，相同块会露图案；CBC 是“前一块带后一块”，要随机 IV，还要配完整性校验。",
     "analysis": "核心比较：ECB 独立加密、泄露模式；CBC 链式异或、依赖 IV；实际工程还要考虑完整性认证。"
   },
   {
@@ -4165,6 +4172,7 @@
       "古典密码"
     ],
     "answer": "Algorithm-only reference. No HTML, no route handler, no backend API.\n\n```python\nimport string\n\nALPH = string.ascii_uppercase\n\ndef clean(s):\n    return ''.join(c for c in s.upper() if c.isalpha())\n\n# Vigenere -------------------------------------------------\ndef vigenere_encrypt(text, key):\n    text, key = clean(text), clean(key)\n    out = []\n    for i, ch in enumerate(text):\n        out.append(chr((ord(ch) - 65 + ord(key[i % len(key)]) - 65) % 26 + 65))\n    return ''.join(out)\n\ndef vigenere_decrypt(text, key):\n    text, key = clean(text), clean(key)\n    out = []\n    for i, ch in enumerate(text):\n        out.append(chr((ord(ch) - 65 - (ord(key[i % len(key)]) - 65)) % 26 + 65))\n    return ''.join(out)\n\n# Playfair -------------------------------------------------\ndef playfair_square(key):\n    letters = []\n    for ch in clean(key).replace('J', 'I') + 'ABCDEFGHIKLMNOPQRSTUVWXYZ':\n        if ch not in letters:\n            letters.append(ch)\n    return [letters[i:i + 5] for i in range(0, 25, 5)]\n\ndef pf_pos(square, ch):\n    ch = 'I' if ch == 'J' else ch\n    for r in range(5):\n        for c in range(5):\n            if square[r][c] == ch:\n                return r, c\n    raise ValueError(ch)\n\ndef pf_pairs(text):\n    text = clean(text).replace('J', 'I')\n    pairs, i = [], 0\n    while i < len(text):\n        a = text[i]\n        b = text[i + 1] if i + 1 < len(text) else 'X'\n        if a == b:\n            pairs.append((a, 'X'))\n            i += 1\n        else:\n            pairs.append((a, b))\n            i += 2\n    return pairs\n\ndef playfair_encrypt(text, key):\n    sq = playfair_square(key)\n    out = []\n    for a, b in pf_pairs(text):\n        r1, c1 = pf_pos(sq, a); r2, c2 = pf_pos(sq, b)\n        if r1 == r2:\n            out += [sq[r1][(c1 + 1) % 5], sq[r2][(c2 + 1) % 5]]\n        elif c1 == c2:\n            out += [sq[(r1 + 1) % 5][c1], sq[(r2 + 1) % 5][c2]]\n        else:\n            out += [sq[r1][c2], sq[r2][c1]]\n    return ''.join(out)\n\ndef playfair_decrypt(text, key):\n    sq = playfair_square(key)\n    chars = clean(text)\n    out = []\n    for a, b in zip(chars[0::2], chars[1::2]):\n        r1, c1 = pf_pos(sq, a); r2, c2 = pf_pos(sq, b)\n        if r1 == r2:\n            out += [sq[r1][(c1 - 1) % 5], sq[r2][(c2 - 1) % 5]]\n        elif c1 == c2:\n            out += [sq[(r1 - 1) % 5][c1], sq[(r2 - 1) % 5][c2]]\n        else:\n            out += [sq[r1][c2], sq[r2][c1]]\n    return ''.join(out)\n\n# ADFGX ----------------------------------------------------\nADFGX = 'ADFGX'\nSQUARE25 = 'PHQGIUMEAYLNOFDXKRCVSTZWB'\n\ndef adfgx_sub_encrypt(text):\n    out = []\n    for ch in clean(text).replace('J', 'I'):\n        i = SQUARE25.index(ch)\n        out.append(ADFGX[i // 5] + ADFGX[i % 5])\n    return ''.join(out)\n\ndef adfgx_sub_decrypt(text):\n    out = []\n    for a, b in zip(text[0::2], text[1::2]):\n        out.append(SQUARE25[ADFGX.index(a) * 5 + ADFGX.index(b)])\n    return ''.join(out)\n\ndef col_order(key):\n    return sorted(range(len(key)), key=lambda i: (key[i], i))\n\ndef transpose_encrypt(text, key):\n    key = clean(key)\n    rows = [text[i:i + len(key)] for i in range(0, len(text), len(key))]\n    rows[-1] = rows[-1].ljust(len(key), 'X')\n    return ''.join(''.join(row[i] for row in rows) for i in col_order(key))\n\ndef transpose_decrypt(text, key):\n    key = clean(key)\n    rows = len(text) // len(key)\n    cols = [''] * len(key)\n    p = 0\n    for i in col_order(key):\n        cols[i] = text[p:p + rows]\n        p += rows\n    return ''.join(cols[c][r] for r in range(rows) for c in range(len(key))).rstrip('X')\n\ndef adfgx_encrypt(text, key):\n    return transpose_encrypt(adfgx_sub_encrypt(text), key)\n\ndef adfgx_decrypt(text, key):\n    return adfgx_sub_decrypt(transpose_decrypt(clean(text), key))\n```",
+    "memoryAnswer": "记法：三种古典密码抓三件事：Playfair 是 5x5 方阵两两替换，Vigenere 是密钥循环位移，ADFGX 是坐标替换后再列换位。",
     "analysis": "Core only: Playfair uses a 5x5 square and digraph rules; Vigenere uses mod-26 shifts; ADFGX uses coordinate substitution plus column transposition."
   },
   {
@@ -4179,6 +4187,7 @@
       "RC4"
     ],
     "answer": "Algorithm-only reference.\n\n```python\ndef rc4(data: bytes, key: bytes) -> bytes:\n    s = list(range(256))\n    j = 0\n\n    # KSA\n    for i in range(256):\n        j = (j + s[i] + key[i % len(key)]) % 256\n        s[i], s[j] = s[j], s[i]\n\n    # PRGA + XOR\n    i = j = 0\n    out = bytearray()\n    for b in data:\n        i = (i + 1) % 256\n        j = (j + s[i]) % 256\n        s[i], s[j] = s[j], s[i]\n        k = s[(s[i] + s[j]) % 256]\n        out.append(b ^ k)\n    return bytes(out)\n\ncipher = rc4(b'hello', b'key')\nplain = rc4(cipher, b'key')\nprint(cipher)\nprint(plain)\n```",
+    "memoryAnswer": "记法：RC4 先用密钥洗牌 S 盒，再不断吐出密钥流；每个明文字节和密钥流异或，解密仍然异或同一串密钥流。",
     "analysis": "Core only: KSA, PRGA, and byte-wise XOR. Encryption and decryption call the same function."
   },
   {
@@ -4193,6 +4202,7 @@
       "分组密码"
     ],
     "answer": "Algorithm-only reference. AES example requires pycryptodome.\n\n```python\nfrom Crypto.Cipher import AES\nfrom Crypto.Random import get_random_bytes\n\nBS = 16\n\ndef pad(data: bytes) -> bytes:\n    n = BS - len(data) % BS\n    return data + bytes([n]) * n\n\ndef unpad(data: bytes) -> bytes:\n    n = data[-1]\n    if n < 1 or n > BS or data[-n:] != bytes([n]) * n:\n        raise ValueError('bad padding')\n    return data[:-n]\n\ndef xor_block(a: bytes, b: bytes) -> bytes:\n    return bytes(x ^ y for x, y in zip(a, b))\n\n# ECB: blocks are independent.\ndef ecb_encrypt(data: bytes, key: bytes) -> bytes:\n    aes = AES.new(key, AES.MODE_ECB)\n    data = pad(data)\n    return b''.join(aes.encrypt(data[i:i + BS]) for i in range(0, len(data), BS))\n\ndef ecb_decrypt(data: bytes, key: bytes) -> bytes:\n    aes = AES.new(key, AES.MODE_ECB)\n    plain = b''.join(aes.decrypt(data[i:i + BS]) for i in range(0, len(data), BS))\n    return unpad(plain)\n\n# CBC: plaintext block XOR previous ciphertext block, then encrypt.\ndef cbc_encrypt(data: bytes, key: bytes, iv: bytes | None = None) -> tuple[bytes, bytes]:\n    iv = iv or get_random_bytes(BS)\n    aes = AES.new(key, AES.MODE_ECB)\n    prev = iv\n    out = []\n    data = pad(data)\n    for i in range(0, len(data), BS):\n        block = data[i:i + BS]\n        c = aes.encrypt(xor_block(block, prev))\n        out.append(c)\n        prev = c\n    return iv, b''.join(out)\n\ndef cbc_decrypt(cipher: bytes, key: bytes, iv: bytes) -> bytes:\n    aes = AES.new(key, AES.MODE_ECB)\n    prev = iv\n    out = []\n    for i in range(0, len(cipher), BS):\n        block = cipher[i:i + BS]\n        p = xor_block(aes.decrypt(block), prev)\n        out.append(p)\n        prev = block\n    return unpad(b''.join(out))\n```",
+    "memoryAnswer": "记法：ECB 分块各算各的，快但泄露模式；CBC 先和上一块密文异或再加密，第一块靠 IV 起步，安全性更好。",
     "analysis": "Core only: ECB encrypts blocks independently; CBC chains blocks with IV and previous ciphertext. File I/O and web/API code are intentionally omitted."
   },
   {
@@ -4208,6 +4218,7 @@
       "信息安全概述"
     ],
     "answer": "信息安全是指通过管理、技术和法律等手段，保护信息及信息系统免受未经授权的访问、泄露、篡改、破坏、中断和滥用。其基本目标通常包括保密性、完整性和可用性，即保证信息不被未授权主体获取，信息内容不被非法修改，授权用户在需要时能够正常使用信息和系统。在更完整的安全模型中，还会强调真实性、可控性、可审计性和不可否认性。",
+    "memoryAnswer": "背题框架：信息安全就是保护信息和系统不被偷、不被改、不宕机。核心先写 CIA：保密性、完整性、可用性，再补真实性、审计、不可否认。",
     "analysis": "答题时先给定义，再展开 CIA 三要素，最后补充认证、审计和不可否认等扩展目标。"
   },
   {
@@ -4223,6 +4234,7 @@
       "信息安全概述"
     ],
     "answer": "信息安全的内容不仅是单一的密码技术，而是覆盖信息生命周期和系统运行全过程。常见内容包括：物理安全，保证机房、设备和介质不被破坏；网络安全，防护通信链路、网络边界和网络服务；系统安全，保证操作系统、数据库和应用平台可靠运行；数据安全，关注数据存储、传输、备份和恢复；应用安全，防止业务系统漏洞被利用；身份认证与访问控制，确保只有合法用户按权限访问资源；安全管理与法律法规，建立制度、审计、应急响应和合规体系。",
+    "memoryAnswer": "记法：从外到内写六层：物理安全、网络安全、系统安全、数据安全、应用安全、管理和法律制度。",
     "analysis": "可按“物理、网络、系统、数据、应用、管理”分层组织答案。"
   },
   {
@@ -4238,6 +4250,7 @@
       "密码体制"
     ],
     "answer": "一个密码体制通常由明文空间、密文空间、密钥空间、加密算法和解密算法组成。发送方使用加密算法和加密密钥把明文转换为密文，接收方使用解密算法和解密密钥把密文还原为明文。按密钥使用方式可分为对称密码体制和非对称密码体制：对称密码加密解密使用相同或容易互推的密钥，效率高但密钥分发困难；非对称密码使用公钥和私钥，便于密钥分发和数字签名，但计算开销较大。安全设计原则是算法可以公开，安全性主要依赖密钥保密和密钥空间足够大。",
+    "memoryAnswer": "记法：密码体制五件套：明文、密文、密钥、加密算法、解密算法；再比较对称快但分发难，非对称慢但方便认证和分发。",
     "analysis": "核心结构是明文、密文、密钥、加密算法、解密算法，再比较对称与非对称。"
   },
   {
@@ -4253,6 +4266,7 @@
       "数字签名"
     ],
     "answer": "数字签名可以实现身份认证、完整性保护和不可否认性。发送方用私钥对消息摘要或摘要的编码结果进行签名，接收方用对应公钥验证签名，从而确认签名者确实持有私钥。由于签名通常绑定消息摘要，消息一旦被修改，验证结果就会失败，因此可以发现篡改。签名记录还可作为事后审计依据，使发送方难以否认其签署过该消息。需要注意的是，数字签名本身不提供保密性，如果要防止内容泄露，还需要配合加密技术。",
+    "memoryAnswer": "记法：数字签名不是保密，主要管三件事：证明是谁签的、内容没被改、签完不能抵赖。",
     "analysis": "数字签名的关键词是认证、完整性、不可否认；不要把它误写成单独提供保密。"
   },
   {
@@ -4268,6 +4282,7 @@
       "DES/RSA"
     ],
     "answer": "DES 是对称分组密码，明文按 64 位分组处理，传统 DES 使用 56 位有效密钥，采用多轮 Feistel 结构进行置换、扩展、异或、S 盒代换和置换运算。它的特点是速度快、适合批量数据加密，但 56 位密钥已经无法满足现代安全要求。RSA 是非对称密码算法，使用公钥和私钥，安全性基于大整数分解困难问题。RSA 可用于密钥交换、数字签名和少量数据加密，但计算速度明显慢于对称密码。实际系统通常用 RSA 或其他公钥算法解决密钥分发和身份认证，再用 AES 等对称密码加密大量数据。",
+    "memoryAnswer": "记法：DES 是对称分组，快但老、密钥短；RSA 是公私钥，慢但能做签名和密钥交换。实际系统常用 RSA 传密钥，再用对称算法加大量数据。",
     "analysis": "比较时抓住：DES 是对称分组、速度快但密钥短；RSA 是非对称、基于大整数分解、适合签名和密钥交换。"
   },
   {
@@ -4283,6 +4298,7 @@
       "网络攻击"
     ],
     "answer": "现代网络攻击通常呈现自动化、隐蔽化、组合化和持续化特点。攻击者往往先进行信息收集和网络探测，再利用漏洞、弱口令、钓鱼或恶意代码取得初始入口，随后进行权限提升、横向移动、数据窃取、持久化控制或破坏服务。防御上不能只依赖单点设备，应采用纵深防御：做好资产梳理、补丁管理、强认证、最小权限、网络分区、日志审计、入侵检测、终端防护、备份恢复和应急响应。重点是降低暴露面、及时发现异常、限制攻击扩散，并保证被攻击后能够恢复业务。",
+    "memoryAnswer": "记法：攻击越来越自动化、组织化、隐蔽化、复合化。防御不能只靠单点工具，要做分层防护、监测预警、补丁加固、应急响应。",
     "analysis": "答案可按攻击链展开，再给出纵深防御和应急恢复措施。"
   },
   {
@@ -4298,6 +4314,7 @@
       "网络监听"
     ],
     "answer": "网络监听通常指攻击者把网卡置于混杂模式或通过中间人、交换机欺骗等方式捕获网络流量。检测方法包括：检查主机网卡是否处于混杂模式；排查异常 ARP 表项、重复 MAC、网关欺骗和 DNS 异常；使用交换机端口安全、镜像口审计和流量基线分析发现异常流量；通过 IDS/NIDS 监测嗅探、ARP 欺骗和扫描行为；在主机侧检查可疑进程、抓包工具和异常驱动。防护上应使用交换式网络、端口隔离、ARP 防护、强制加密传输和最小权限管理。",
+    "memoryAnswer": "记法：抓监听就是看网卡、看流量、看异常、看 ARP。混杂模式、异常连接、异常广播和 ARP 欺骗都是重点。",
     "analysis": "检测网络监听可以从主机状态、ARP/DNS 异常、交换机审计和 IDS 监测四个方向回答。"
   },
   {
@@ -4313,6 +4330,7 @@
       "僵尸网络"
     ],
     "answer": "僵尸网络通常由攻击者、命令控制端、恶意程序和大量被控制主机组成。攻击者通过漏洞、木马、钓鱼邮件或弱口令感染主机，使其成为僵尸主机。僵尸主机连接到 C&C 服务器或采用 P2P 等方式接收命令，按攻击者指令执行 DDoS、垃圾邮件、撞库、挖矿、信息窃取等操作。其特点是规模大、隐蔽性强、控制链路可变。防御措施包括终端查杀、流量异常检测、域名/IP 封禁、漏洞修复、弱口令治理和切断命令控制通道。",
+    "memoryAnswer": "记法：僵尸网络就是“控制者 + 控制通道 + 一群被控主机”。先感染，再上线听命令，最后一起发垃圾邮件、DDoS 或挖矿。",
     "analysis": "组成写“攻击者、C&C、恶意程序、僵尸主机”，机制写“感染、连接、接收命令、执行攻击”。"
   },
   {
@@ -4328,6 +4346,7 @@
       "防火墙"
     ],
     "answer": "防火墙的基本功能是在不同网络区域之间执行访问控制，根据安全策略决定流量允许、拒绝或记录。它可以过滤源地址、目的地址、端口、协议、连接状态和应用层内容，也可承担 NAT、日志审计、区域隔离、VPN 接入和一定的攻击防护功能。常见类型包括包过滤防火墙、状态检测防火墙、应用层网关防火墙、代理防火墙、下一代防火墙和主机防火墙。包过滤速度快但粒度粗，状态检测能识别会话状态，应用层网关能理解具体应用协议，下一代防火墙通常整合应用识别、IPS、用户识别和威胁情报。",
+    "memoryAnswer": "记法：防火墙是网络边界门卫，管放行、阻断、记录、NAT、隔离。类型按包过滤、状态检测、代理、下一代防火墙来写。",
     "analysis": "先写功能：访问控制、隔离、日志、NAT；再按类型比较粒度、性能和适用场景。"
   },
   {
@@ -4343,6 +4362,7 @@
       "防火墙体系结构"
     ],
     "answer": "典型防火墙体系结构包括屏蔽路由器结构、双宿主主机结构、屏蔽主机结构和屏蔽子网结构。屏蔽路由器通过路由器包过滤规则控制进出流量，结构简单但控制粒度有限。双宿主主机使用两块网卡连接内外网，通常禁止直接转发，由代理服务完成访问。屏蔽主机结构由过滤路由器和堡垒主机配合，外部访问先到堡垒主机。屏蔽子网结构引入 DMZ，把对外服务器放在内外防火墙之间，既能对外提供服务，又能降低内网暴露风险。实际部署常结合默认拒绝、最小权限和日志审计原则。",
+    "memoryAnswer": "记法：防火墙结构按部署位置写：双宿主主机、屏蔽主机、屏蔽子网/DMZ。重点是把内网、外网和公开服务区隔开。",
     "analysis": "常见结构要能说明屏蔽路由器、双宿主主机、屏蔽主机、屏蔽子网/DMZ 的差别。"
   },
   {
@@ -4358,6 +4378,7 @@
       "入侵检测"
     ],
     "answer": "入侵检测系统用于发现违反安全策略或具有攻击特征的行为。按部署位置可分为网络型 IDS 和主机型 IDS；按检测方法可分为误用检测、异常检测和协议分析。误用检测依赖已知攻击特征，误报较低但难以发现未知攻击；异常检测基于正常行为模型，能发现未知异常但误报可能较高。典型 IDS 结构包括数据采集模块、预处理模块、检测分析引擎、知识库或规则库、报警响应模块和管理控制台。IDS 通常只能发现和报警，若要主动阻断，需要与 IPS、防火墙或联动响应系统配合。",
+    "memoryAnswer": "记法：入侵检测就是“收集数据、分析特征或异常、报警响应”。结构写传感器、分析引擎、规则库、管理控制台。",
     "analysis": "答题结构：分类、检测方法、系统模块、IDS 与 IPS 的边界。"
   },
   {
@@ -4373,6 +4394,7 @@
       "蜜罐技术"
     ],
     "answer": "蜜罐是一种故意暴露给攻击者的诱捕系统，用来吸引、记录和分析攻击行为。它的功能包括诱骗攻击者、收集攻击样本、观察攻击工具和攻击路径、延缓攻击者接近真实系统、辅助生成安全告警和威胁情报。按交互程度可分为低交互蜜罐和高交互蜜罐，低交互部署简单、风险较低，高交互能收集更完整行为但管理风险更高。蜜罐不能替代防火墙、IDS 或漏洞治理，必须与真实业务隔离，防止被攻击者利用为跳板。",
+    "memoryAnswer": "记法：蜜罐是故意放出来的诱饵系统，用来吸引攻击、拖住攻击者、记录行为、分析攻击手法。",
     "analysis": "重点写诱捕、记录、分析、预警和隔离风险，避免把蜜罐当成直接防护设备。"
   }
 ]

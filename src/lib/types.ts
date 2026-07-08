@@ -20,6 +20,7 @@ export interface Question {
   correct?: string[];
   answers?: string[];
   answer?: string;
+  memoryAnswer?: string;
   analysis?: string;
   tags?: string[];
   image?: string | null;
