@@ -96,6 +96,28 @@ describe("QuestionCard answer rendering", () => {
     expect(container.querySelector(".analysis")).toBeNull();
   });
 
+  it("renders memory answers separately from professional reference answers", () => {
+    const question: Question = {
+      id: "essay-memory-1",
+      source: "test",
+      chapter: "chapter",
+      type: "essay",
+      stem: "Explain the topic.",
+      answer: "专业答案：先定义概念，再说明作用，最后给出应用边界。",
+      memoryAnswer: "好记版：先说它是什么，再说它能干什么，最后说什么时候别乱用。",
+      analysis: "Full analysis body.",
+      tags: []
+    };
+
+    const { container } = renderCard(question);
+
+    expect(container.textContent).toContain("参考答案");
+    expect(container.textContent).toContain("专业答案");
+    expect(container.textContent).toContain("易记答案");
+    expect(container.textContent).toContain("好记版");
+    expect(container.querySelector(".analysis__memory-answer")).not.toBeNull();
+  });
+
   it("shows objective correct answers with option text", () => {
     const question: Question = {
       id: "single-1",

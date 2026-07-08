@@ -715,6 +715,14 @@ button.uncertain:hover {
   border-radius: var(--radius-sm);
   background: #fff;
 }
+.analysis__memory-answer {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  background: #eff6ff;
+}
 .analysis__block {
   padding-top: 12px;
   border-top: 1px solid rgba(148, 163, 184, .28);

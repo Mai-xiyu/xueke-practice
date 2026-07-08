@@ -23,6 +23,7 @@ interface Question {
   correct?: string[];
   answers?: string[];
   answer?: string;
+  memoryAnswer?: string;
   analysis?: string;
   tags: string[];
   image?: string | null;
@@ -35,6 +36,7 @@ interface Question {
 - `single | multiple | judge` 必须有 `options` 和 `correct`。
 - `fill` 必须有 `answers`。
 - `short | essay | code | comprehensive` 必须有 `answer`。
+- `memoryAnswer` 可选，用于给简答题、论述题、代码题补充口语化、便于背诵的“易记答案”；不能替代 `answer`。
 - `analysis` 写解析、来源说明或不确定性说明。
 - `image` 使用 `assets/...` 或 `data:image/...`。
 - 旧字段 `tf`、`true_false`、`subjective`、`explain`、`explanation`、`explanations` 不再新增。

@@ -146,6 +146,7 @@ export function QuestionCard(props: QuestionCardProps) {
   const reasons = showAnswer ? optionReasons(question) : {};
   const snippet = showAnswer && !showAnalysis ? analysisSnippet(question.analysis) : "";
   const correctAnswer = displayAnswerText(question) || "见解析";
+  const memoryAnswer = question.memoryAnswer?.trim();
 
   return (
     <article className="question-card">
@@ -283,6 +284,12 @@ export function QuestionCard(props: QuestionCardProps) {
               </div>
             )}
           </div>
+          {memoryAnswer ? (
+            <div className="analysis__block analysis__memory-answer">
+              <h3>易记答案</h3>
+              <MarkdownText value={memoryAnswer} />
+            </div>
+          ) : null}
           <div className="analysis__block">
             <h3>解析</h3>
             <MarkdownText value={question.analysis || "题库暂未提供详细解析，先记住正确答案，并在下次复习时主动回忆判断依据。"} />
