@@ -1162,17 +1162,24 @@ button.uncertain:hover {
   font-size: .92em;
 }
 .markdown-content pre {
+  box-sizing: border-box;
+  max-width: 100%;
   overflow: auto;
   padding: 12px;
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-sm);
   background: #0f172a;
   color: #e2e8f0;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 .markdown-content pre code {
+  display: block;
+  max-width: 100%;
   padding: 0;
   background: transparent;
   color: inherit;
+  white-space: inherit;
 }
 .markdown-content table {
   display: block;
