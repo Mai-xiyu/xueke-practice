@@ -3,11 +3,11 @@ import type { MockExamConfig, OptionMap, Question, QuestionType } from "./types"
 export const QUESTION_TYPES: QuestionType[] = [
   "single",
   "multiple",
-  "judge",
   "fill",
+  "judge",
   "short",
-  "essay",
   "code",
+  "essay",
   "comprehensive"
 ];
 
@@ -139,6 +139,21 @@ export function shuffle<T>(items: T[], seed = Date.now()): T[] {
     [out[i], out[j]] = [out[j], out[i]];
   }
   return out;
+}
+
+export function questionTypeRank(type: QuestionType): number {
+  const rank = QUESTION_TYPES.indexOf(type);
+  return rank === -1 ? QUESTION_TYPES.length : rank;
+}
+
+export function sortByQuestionType(questions: Question[]): Question[] {
+  return questions
+    .map((question, index) => ({ question, index }))
+    .sort((left, right) => {
+      const typeDiff = questionTypeRank(left.question.type) - questionTypeRank(right.question.type);
+      return typeDiff || left.index - right.index;
+    })
+    .map((entry) => entry.question);
 }
 
 // Interleaved practice: round-robin across type groups so consecutive questions
