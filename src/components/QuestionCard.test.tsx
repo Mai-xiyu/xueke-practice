@@ -73,6 +73,29 @@ describe("QuestionCard answer rendering", () => {
     expect(code?.textContent).toContain("for ((i = 1; i <= n; i++)); do");
   });
 
+  it("shows subjective reference answer preview when revealed before full analysis", () => {
+    const question: Question = {
+      id: "essay-1",
+      source: "test",
+      chapter: "chapter",
+      type: "essay",
+      stem: "Explain the topic.",
+      answer: "Reference answer body.",
+      analysis: "Full analysis body.",
+      tags: []
+    };
+
+    const { container } = renderCard(question, {
+      reveal: true,
+      showAnalysis: false,
+      value: "My draft answer."
+    });
+
+    expect(container.textContent).toContain("参考答案");
+    expect(container.textContent).toContain("Reference answer body.");
+    expect(container.querySelector(".analysis")).toBeNull();
+  });
+
   it("shows objective correct answers with option text", () => {
     const question: Question = {
       id: "single-1",

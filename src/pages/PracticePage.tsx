@@ -717,7 +717,7 @@ export function PracticePage({ subject }: PracticePageProps) {
       pending={Boolean(currentState?.pending)}
       wrong={Boolean(currentState?.wrong)}
       favorite={Boolean(progress.favorites[current.id])}
-      reveal={mode === "mock" ? mockSubmitted && mockReviewing : mode === "browse" || Boolean(revealed[current.id])}
+      reveal={mode === "mock" ? mockSubmitted && mockReviewing : mode === "browse" || Boolean(revealed[current.id]) || ((mode === "study" || mode === "favorite") && Boolean(currentState?.done))}
       showAnalysis={mode === "mock" ? mockSubmitted && mockReviewing : mode === "browse" || Boolean(analysisRevealed[current.id])}
       showAnalysisButton={mode !== "mock" && mode !== "browse" && !analysisRevealed[current.id]}
       locked={mode === "mock" && mockSubmitted}

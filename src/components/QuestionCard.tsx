@@ -239,6 +239,15 @@ export function QuestionCard(props: QuestionCardProps) {
         </section>
       ) : null}
 
+      {showAnswer && !showAnalysis && !isObjective(question.type) ? (
+        <section className="quick-feedback reference">
+          <strong>参考答案</strong>
+          <div className="quick-feedback__answer quick-feedback__answer--block">
+            <MarkdownText value={correctAnswer} />
+          </div>
+        </section>
+      ) : null}
+
       <div className="question-actions">
         {showSubmit ? <button type="button" className="primary" onClick={props.onSubmit}>提交答案</button> : null}
         {showUncertain && !showAnswer ? (

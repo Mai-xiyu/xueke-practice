@@ -649,6 +649,9 @@ button.uncertain:hover {
   border-color: var(--danger-border);
   background: var(--danger-soft);
 }
+.quick-feedback.reference {
+  align-items: stretch;
+}
 .quick-feedback strong {
   font-size: 16px;
 }
@@ -659,6 +662,12 @@ button.uncertain:hover {
   align-items: baseline;
   gap: 4px;
   font-weight: 600;
+}
+.quick-feedback__answer--block {
+  display: block;
+  flex-basis: 100%;
+  width: 100%;
+  font-weight: 500;
 }
 .quick-feedback__hint {
   flex-basis: 100%;
