@@ -68,6 +68,36 @@ function analysisClaimedLetters(analysis, optionKeys) {
   return null;
 }
 
+function compactText(value) {
+  return String(value ?? "").replace(/[\s,，、]/g, "");
+}
+
+function matchingOptionKeys(options, expected) {
+  const normalized = compactText(expected);
+  return Object.entries(options)
+    .filter(([, value]) => compactText(value) === normalized)
+    .map(([key]) => key);
+}
+
+function expectedBinarySearchTrace(stem) {
+  if (!stem.includes("有序表") || !stem.includes("折半查找")) return null;
+  const numbers = [...stem.matchAll(/\d+/g)].map((match) => Number(match[0]));
+  if (numbers.length < 2) return null;
+  const target = numbers[numbers.length - 1];
+  const values = numbers.slice(0, -1);
+  let left = 0;
+  let right = values.length - 1;
+  const compared = [];
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
+    compared.push(values[middle]);
+    if (values[middle] === target) break;
+    if (values[middle] < target) left = middle + 1;
+    else right = middle - 1;
+  }
+  return compared.join("、");
+}
+
 function auditQuestion(subject, question) {
   const subjectId = subject.id;
   const id = question.id || "(no id)";
@@ -111,6 +141,14 @@ function auditQuestion(subject, question) {
       const claimed = analysisClaimedLetters(question.analysis, optionKeys);
       if (claimed && claimed.length === 1 && claimed[0] !== correct[0]) {
         pushIssue("warn", "analysis-conflict", subjectId, id, `analysis claims ${claimed[0]}, but correct is ${correct[0]}`, true);
+      }
+
+      const binaryTrace = expectedBinarySearchTrace(stem);
+      if (binaryTrace) {
+        const expectedKeys = matchingOptionKeys(options, binaryTrace);
+        if (expectedKeys.length && !expectedKeys.includes(correct[0])) {
+          pushIssue("warn", "binary-search-trace-mismatch", subjectId, id, `binary search trace should be ${binaryTrace} (${expectedKeys.join("/")}), but correct is ${correct[0]}`, true);
+        }
       }
     }
     if (question.type === "multiple" && correct.length > 1) {

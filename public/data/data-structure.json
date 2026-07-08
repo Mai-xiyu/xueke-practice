@@ -16314,5 +16314,3394 @@
       "origin": "docx-final-exam",
       "year": "2024"
     }
+  },
+  {
+    "id": "ds-2026a-001",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "fill",
+    "stem": "顺序栈 top 指向栈顶元素下一个存储单元，最大容量为 MaxSize，则栈满条件是____。",
+    "answers": [
+      "top == MaxSize",
+      "top>=MaxSize",
+      "top = MaxSize"
+    ],
+    "answer": "top == MaxSize",
+    "analysis": "top 指向下一个可用位置时，已有元素个数等于 top。容量为 MaxSize 时，top == MaxSize 表示没有可用单元。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 1,
+      "originalNo": 1
+    }
+  },
+  {
+    "id": "ds-2026a-002",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "judge",
+    "stem": "直接插入排序在数据接近有序时，时间复杂度可以达到 O(n)。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "直接插入排序最好情况下只需进行线性扫描和少量移动，时间复杂度为 O(n)。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 2,
+      "originalNo": 2
+    }
+  },
+  {
+    "id": "ds-2026a-003",
+    "source": "押题",
+    "chapter": "算法复杂度",
+    "type": "judge",
+    "stem": "空间复杂度 O(1) 表示程序运行过程中不需要任何辅助变量。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "O(1) 表示辅助空间规模为常数，不随输入规模增长，并不等于完全不使用辅助变量。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 3,
+      "originalNo": 3
+    }
+  },
+  {
+    "id": "ds-2026a-004",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "已知二叉树的后序遍历序列为 xmfgye，中序遍历序列为 xfmegy，则该二叉树的前序遍历序列为（）。",
+    "options": {
+      "A": "exfmgy",
+      "B": "fxemgy",
+      "C": "efxmyg",
+      "D": "exfymg"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "后序最后一个结点 e 为根；中序中 e 左侧为 xfm，右侧为 gy。左子树根为 f，右子树根为 y，所以前序为 efxmyg。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 4,
+      "originalNo": 4
+    }
+  },
+  {
+    "id": "ds-2026a-005",
+    "source": "押题",
+    "chapter": "广义表",
+    "type": "single",
+    "stem": "广义表 ((x,y), m, (n,k)) 的表头是（）。",
+    "options": {
+      "A": "(m,(n,k))",
+      "B": "m",
+      "C": "((x,y),m,(n,k))",
+      "D": "(x,y)"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "广义表的表头是第一个元素。本题第一个元素是子表 (x,y)。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 5,
+      "originalNo": 5
+    }
+  },
+  {
+    "id": "ds-2026a-006",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "一棵二叉树有 14 个叶子结点，则度为 2 的结点数量为（）。",
+    "options": {
+      "A": "12",
+      "B": "13",
+      "C": "14",
+      "D": "15"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "二叉树中叶子结点数 n0 与度为 2 的结点数 n2 满足 n0 = n2 + 1，因此 n2 = 13。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 6,
+      "originalNo": 6
+    }
+  },
+  {
+    "id": "ds-2026a-007",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "short",
+    "stem": "关键字序列 42, 21, 63, 10, 33, 74, 55, 28 依次插入一棵空二叉排序树。画出完整二叉排序树，写出中序遍历序列，并说明该序列的特点。",
+    "answer": "二叉排序树结构：根结点 42；42 的左孩子为 21、右孩子为 63；21 的左孩子为 10、右孩子为 33；33 的左孩子为 28；63 的左孩子为 55、右孩子为 74。中序遍历序列为 10,21,28,33,42,55,63,74。特点：二叉排序树的中序遍历结果为递增有序序列。",
+    "analysis": "按二叉排序树插入规则，小于当前结点走左子树，大于当前结点走右子树；中序遍历按“左、根、右”访问，因此得到升序序列。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 7,
+      "originalNo": 7
+    }
+  },
+  {
+    "id": "ds-2026a-008",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "哈夫曼树的 WPL（带权路径长度）定义是（）。",
+    "options": {
+      "A": "全部结点路径长度总和",
+      "B": "所有叶子结点权值相加",
+      "C": "所有结点权值相加",
+      "D": "每个叶子结点权值与根到该叶子路径长度乘积之和"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "WPL = Σ(叶子结点权值 × 该叶子到根的路径长度)。哈夫曼树是在给定权值下 WPL 最小的二叉树。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 8,
+      "originalNo": 8
+    }
+  },
+  {
+    "id": "ds-2026a-009",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "short",
+    "stem": "简述哈希冲突产生的原因，以及开放定址法解决冲突的核心思路。",
+    "answer": "哈希冲突是指不同关键字经过同一个哈希函数计算后得到相同哈希地址。开放定址法是在原哈希表内按探测序列继续查找下一个空地址并存放元素，常见方式有线性探测、二次探测和双散列。",
+    "analysis": "哈希表地址空间有限而关键字集合可能更大，即使哈希函数设计合理也可能出现多个关键字映射到同一地址。开放定址法不额外使用链表，而是在表内寻找替代位置。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 9,
+      "originalNo": 9
+    }
+  },
+  {
+    "id": "ds-2026a-010",
+    "source": "押题",
+    "chapter": "图",
+    "type": "judge",
+    "stem": "带有环路的有向图无法生成合法拓扑排序序列。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "拓扑排序只适用于有向无环图（DAG）。若图中存在环，则环上的顶点无法确定满足先后约束的线性序列。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 10,
+      "originalNo": 10
+    }
+  },
+  {
+    "id": "ds-2026a-011",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "fill",
+    "stem": "栈的操作规则是____。",
+    "answers": [
+      "后进先出",
+      "LIFO",
+      "先进后出"
+    ],
+    "answer": "后进先出",
+    "analysis": "栈只允许在栈顶进行插入和删除，因此最后入栈的元素最先出栈。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 11,
+      "originalNo": 11
+    }
+  },
+  {
+    "id": "ds-2026a-012",
+    "source": "押题",
+    "chapter": "图",
+    "type": "fill",
+    "stem": "n 个顶点的有向完全图总边数为____，无向完全图总边数为____。",
+    "answers": [
+      "n(n-1)；n(n-1)/2",
+      "n(n-1), n(n-1)/2",
+      "n*(n-1)；n*(n-1)/2"
+    ],
+    "answer": "n(n-1)；n(n-1)/2",
+    "analysis": "有向完全图中任意两个不同顶点之间有两个方向的弧，因此为 n(n-1)；无向完全图每对顶点只有一条边，因此为 n(n-1)/2。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 12,
+      "originalNo": 12
+    }
+  },
+  {
+    "id": "ds-2026a-013",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "fill",
+    "stem": "数据结构的三大组成通常包括逻辑结构、____和数据运算。",
+    "answers": [
+      "存储结构",
+      "物理结构"
+    ],
+    "answer": "存储结构",
+    "analysis": "数据结构研究数据元素之间的逻辑关系、在计算机中的存储表示，以及对数据的基本运算。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 13,
+      "originalNo": 13
+    }
+  },
+  {
+    "id": "ds-2026a-014",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "code",
+    "stem": "补全递归求二叉树深度的代码：空树深度为 0，非空树深度为左右子树深度最大值加 1。",
+    "answer": "```c\nint GetDepth(BiTree T) {\n    int ldep, rdep;\n    if (T == NULL) return 0;\n    ldep = GetDepth(T->lchild);\n    rdep = GetDepth(T->rchild);\n    return ldep > rdep ? ldep + 1 : rdep + 1;\n}\n```",
+    "analysis": "递归分别求左、右子树深度，当前树深度等于较大子树深度加 1。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 14,
+      "originalNo": 14
+    }
+  },
+  {
+    "id": "ds-2026a-015",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "数据元素在内存中的物理存储形式称为数据的（）。",
+    "options": {
+      "A": "线性结构",
+      "B": "逻辑结构",
+      "C": "树形结构",
+      "D": "存储结构"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "存储结构描述数据元素及其关系在计算机存储器中的表示方式。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 15,
+      "originalNo": 15
+    }
+  },
+  {
+    "id": "ds-2026a-016",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "fill",
+    "stem": "栈的基本操作通常包含初始化、入栈、出栈、____。",
+    "answers": [
+      "取栈顶元素",
+      "读栈顶元素",
+      "GetTop"
+    ],
+    "answer": "取栈顶元素",
+    "analysis": "栈的常用操作包括初始化、判空、入栈、出栈和取栈顶元素。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 16,
+      "originalNo": 16
+    }
+  },
+  {
+    "id": "ds-2026a-017",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "judge",
+    "stem": "静态链表借助数组存储，游标替代指针，逻辑相邻元素在物理位置上可以分散。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "静态链表用数组元素模拟结点，用游标表示下一个结点的位置，因此逻辑相邻不要求物理连续。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 17,
+      "originalNo": 17
+    }
+  },
+  {
+    "id": "ds-2026a-018",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "不带头结点的单链表头指针为 H，链表为空的判定条件是（）。",
+    "options": {
+      "A": "H->next == H",
+      "B": "H != NULL",
+      "C": "H->next == NULL",
+      "D": "H == NULL"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "不带头结点时，头指针直接指向第一个数据结点；空表没有数据结点，所以 H == NULL。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 18,
+      "originalNo": 18
+    }
+  },
+  {
+    "id": "ds-2026a-019",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "short",
+    "stem": "什么是线索二叉树？引入线索二叉树的核心目的与应用价值是什么？",
+    "answer": "线索二叉树是在二叉链表中利用空的左、右孩子指针存放某种遍历序列下结点的前驱或后继信息的二叉树。引入线索二叉树的目的是提高遍历效率，减少递归或辅助栈的使用，并便于快速查找结点在遍历序列中的前驱和后继。",
+    "analysis": "普通二叉链表中存在大量空指针域。线索化把这些空指针改造成有效的遍历线索，从而提升空间利用率和遍历便利性。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 19,
+      "originalNo": 19
+    }
+  },
+  {
+    "id": "ds-2026a-020",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "judge",
+    "stem": "循环队列能够解决顺序队列的假溢出问题。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "顺序队列出队后前端空间无法继续利用会导致假溢出；循环队列通过首尾相接复用这些空间。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 20,
+      "originalNo": 20
+    }
+  },
+  {
+    "id": "ds-2026a-021",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "single",
+    "stem": "下列排序算法属于稳定排序的是（）。",
+    "options": {
+      "A": "堆排序",
+      "B": "希尔排序",
+      "C": "快速排序",
+      "D": "冒泡排序"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "冒泡排序在相邻元素相等时不交换，能保持相等关键字的原有相对次序，因此是稳定排序。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 21,
+      "originalNo": 21
+    }
+  },
+  {
+    "id": "ds-2026a-022",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "Dijkstra 单源最短路径算法不能处理下面哪种图（）。",
+    "options": {
+      "A": "稀疏图",
+      "B": "稠密有向图",
+      "C": "含负权边的图",
+      "D": "无向图"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "Dijkstra 算法依赖贪心选择，一旦确定当前最短距离就不再回退；负权边可能破坏该性质。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 22,
+      "originalNo": 22
+    }
+  },
+  {
+    "id": "ds-2026a-023",
+    "source": "押题",
+    "chapter": "图",
+    "type": "short",
+    "stem": "无向图顶点集合 V={a,b,c,d,e,f}，边集合 E={(a,b),(a,c),(b,d),(b,e),(c,e),(d,f),(e,f)}。写出按 a,b,c,d,e,f 顺序的邻接矩阵；从顶点 a 出发，邻接点按字母升序访问，写出 DFS 和 BFS 序列。",
+    "answer": "邻接矩阵为：\n```text\n    a b c d e f\na [0 1 1 0 0 0]\nb [1 0 0 1 1 0]\nc [1 0 0 0 1 0]\nd [0 1 0 0 0 1]\ne [0 1 1 0 0 1]\nf [0 0 0 1 1 0]\n```\nDFS：a,b,d,f,e,c。BFS：a,b,c,d,e,f。",
+    "analysis": "无向图邻接矩阵关于主对角线对称。DFS 沿一个分支尽量深入，BFS 按层次逐层访问。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 23,
+      "originalNo": 23
+    }
+  },
+  {
+    "id": "ds-2026a-024",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "judge",
+    "stem": "任意二叉树的叶子结点个数等于度为 2 的结点个数加 1。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "二叉树中恒有 n0 = n2 + 1。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 24,
+      "originalNo": 24
+    }
+  },
+  {
+    "id": "ds-2026a-025",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "fill",
+    "stem": "排序按待排序记录是否全部放入内存，可分为____排序和____排序。",
+    "answers": [
+      "内部排序；外部排序",
+      "内部排序, 外部排序"
+    ],
+    "answer": "内部排序；外部排序",
+    "analysis": "内部排序在内存中完成；外部排序用于数据量过大、不能一次全部载入内存的场景。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 25,
+      "originalNo": 25
+    }
+  },
+  {
+    "id": "ds-2026a-026",
+    "source": "押题",
+    "chapter": "串",
+    "type": "fill",
+    "stem": "空串不包含任何字符，其长度等于____。",
+    "answers": [
+      "0",
+      "零"
+    ],
+    "answer": "0",
+    "analysis": "空串长度为 0；空格串不是空串。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 26,
+      "originalNo": 26
+    }
+  },
+  {
+    "id": "ds-2026a-027",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "fill",
+    "stem": "AVL 平衡二叉树中任意结点左右子树高度差的绝对值不超过____。",
+    "answers": [
+      "1"
+    ],
+    "answer": "1",
+    "analysis": "AVL 树要求每个结点的平衡因子只能为 -1、0 或 1。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 27,
+      "originalNo": 27
+    }
+  },
+  {
+    "id": "ds-2026a-028",
+    "source": "押题",
+    "chapter": "串",
+    "type": "judge",
+    "stem": "空格串由若干空格字符构成，长度大于 0，与空串不是同一概念。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "空串没有任何字符；空格串包含空格字符，因此长度不为 0。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 28,
+      "originalNo": 28
+    }
+  },
+  {
+    "id": "ds-2026a-029",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "fill",
+    "stem": "在二叉排序树中查找关键字失败时，新结点通常作为____结点插入。",
+    "answers": [
+      "叶子",
+      "叶子结点"
+    ],
+    "answer": "叶子",
+    "analysis": "查找失败时停在应插入位置的父结点处，新结点作为其左孩子或右孩子插入，因此是叶子结点。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 29,
+      "originalNo": 29
+    }
+  },
+  {
+    "id": "ds-2026a-030",
+    "source": "押题",
+    "chapter": "图",
+    "type": "judge",
+    "stem": "无向图的邻接矩阵一定是对称矩阵。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "无向边 (i,j) 同时对应矩阵中的 A[i][j] 和 A[j][i]。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 30,
+      "originalNo": 30
+    }
+  },
+  {
+    "id": "ds-2026a-031",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "fill",
+    "stem": "从十万条记录中筛选最小的前 12 个数据，较优选择____排序。",
+    "answers": [
+      "堆排序",
+      "小根堆",
+      "堆选择"
+    ],
+    "answer": "堆排序",
+    "analysis": "只需要前 k 个最小元素时，可维护规模为 k 的堆，避免对全部数据完整排序。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 31,
+      "originalNo": 31
+    }
+  },
+  {
+    "id": "ds-2026a-032",
+    "source": "押题",
+    "chapter": "算法复杂度",
+    "type": "single",
+    "stem": "算法时间复杂度的高低通常由什么共同决定（）。",
+    "options": {
+      "A": "仅输入数据初始排布",
+      "B": "输入规模与数据初始状态",
+      "C": "计算机硬件性能",
+      "D": "仅输入规模"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "算法时间复杂度主要与输入规模有关，但部分算法还受输入初始状态影响，例如直接插入排序。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 32,
+      "originalNo": 32
+    }
+  },
+  {
+    "id": "ds-2026a-033",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "fill",
+    "stem": "二叉排序树执行____遍历，可以输出递增有序序列。",
+    "answers": [
+      "中序",
+      "中序遍历"
+    ],
+    "answer": "中序",
+    "analysis": "二叉排序树左子树关键字小于根，右子树关键字大于根，中序遍历按左、根、右访问。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 33,
+      "originalNo": 33
+    }
+  },
+  {
+    "id": "ds-2026a-034",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "judge",
+    "stem": "单棵普通树转换为二叉树后，根结点不存在右子树。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "树转二叉树采用孩子兄弟表示。单棵树的根没有兄弟结点，因此转换后根结点没有右孩子。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 34,
+      "originalNo": 34
+    }
+  },
+  {
+    "id": "ds-2026a-035",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "fill",
+    "stem": "n 个结点的二叉树采用二叉链表存储时，空指针域总数为____。",
+    "answers": [
+      "n+1",
+      "n + 1"
+    ],
+    "answer": "n+1",
+    "analysis": "二叉链表共有 2n 个指针域，实际边数为 n-1，因此空指针域数为 2n-(n-1)=n+1。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 35,
+      "originalNo": 35
+    }
+  },
+  {
+    "id": "ds-2026a-036",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "single",
+    "stem": "有序表 {13,26,39,52,65,78,91} 中折半查找 78，依次对比的元素为（）。",
+    "options": {
+      "A": "39、65、78",
+      "B": "52、78",
+      "C": "52、39、65、78",
+      "D": "52、65、78"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "有 7 个元素，第一次取中间位置第 4 个元素 52；78 大于 52，继续在右半区 {65,78,91} 查找，第二次取中间元素 78 并命中。因此比较序列为 52、78。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 36,
+      "originalNo": 36
+    }
+  },
+  {
+    "id": "ds-2026a-037",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "森林包含 3 棵树，结点数分别为 T1、T2、T3。转换为对应二叉树后，第一棵树根结点的右子树包含结点总数为（）。",
+    "options": {
+      "A": "T2+T3",
+      "B": "T1-1",
+      "C": "T1",
+      "D": "T1+T2"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "森林转二叉树后，各棵树的根按右孩子链连接。第一棵树根的右子树对应第二、第三棵树的全部结点。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 37,
+      "originalNo": 37
+    }
+  },
+  {
+    "id": "ds-2026a-038",
+    "source": "押题",
+    "chapter": "图",
+    "type": "short",
+    "stem": "简述拓扑排序适用的图类型、核心执行步骤，并说明一个实际工程应用场景。",
+    "answer": "拓扑排序适用于有向无环图。基本步骤是：不断选择入度为 0 的顶点输出，删除该顶点及其出边，更新相关顶点入度；若最终输出顶点数少于图中顶点数，说明图中存在环。典型应用包括课程先修关系安排、工程任务调度、编译依赖或构建顺序分析。",
+    "analysis": "拓扑排序本质上是在满足全部偏序约束的前提下生成一个线性序列。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 38,
+      "originalNo": 38
+    }
+  },
+  {
+    "id": "ds-2026a-039",
+    "source": "押题",
+    "chapter": "数组与矩阵",
+    "type": "fill",
+    "stem": "二维数组 B[7][9] 按行优先存储，若每个元素占 3 个存储单元，则行优先地址计算中每行的列数因子为____。",
+    "answers": [
+      "9"
+    ],
+    "answer": "9",
+    "analysis": "行优先存储时，跨过完整的若干行需要乘以列数。本题 B[7][9] 的列数为 9。截图中的地址等式疑似存在笔误，按 0 基下标计算 B[3][4] 的偏移为 (3×9+4)×3。",
+    "tags": [
+      "2026A押题",
+      "需复核",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 39,
+      "originalNo": 39,
+      "needsReview": true,
+      "reviewNote": "截图地址等式末尾疑似把 93 写成 99，题目按行优先列数因子处理。"
+    }
+  },
+  {
+    "id": "ds-2026a-040",
+    "source": "押题",
+    "chapter": "图",
+    "type": "fill",
+    "stem": "图的广度优先遍历对应树的____遍历。",
+    "answers": [
+      "层次",
+      "层次遍历"
+    ],
+    "answer": "层次",
+    "analysis": "广度优先遍历按距离起点由近到远访问，与树的层次遍历思想一致。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 40,
+      "originalNo": 40
+    }
+  },
+  {
+    "id": "ds-2026a-041",
+    "source": "押题",
+    "chapter": "数组与矩阵",
+    "type": "fill",
+    "stem": "数组 B[6][5] 按列优先存储，首元素地址为 120，每个元素占 4 个存储单元，则 B[2][3] 的地址为____。",
+    "answers": [
+      "200",
+      "172"
+    ],
+    "answer": "200",
+    "analysis": "若采用 C 风格 0 基下标，列优先偏移为 (3×6+2)×4，地址为 200。若教材按 1 基下标理解，则偏移为 ((3-1)×6+(2-1))×4，地址为 172。截图未给出下标下界，需按课堂约定复核。",
+    "tags": [
+      "2026A押题",
+      "需复核",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 41,
+      "originalNo": 41,
+      "needsReview": true,
+      "reviewNote": "截图未标明数组下标下界，0 基和 1 基会得到不同地址。"
+    }
+  },
+  {
+    "id": "ds-2026a-042",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "short",
+    "stem": "简述栈的操作特性、基础操作，并列举两个计算机领域的典型应用场景。",
+    "answer": "栈是一种只允许在栈顶进行插入和删除的线性结构，具有后进先出（LIFO）的特性。基础操作包括初始化、判空、入栈、出栈、取栈顶元素等。典型应用包括函数调用与递归执行栈、表达式求值、括号匹配、深度优先搜索和回溯算法。",
+    "analysis": "栈的核心价值是保存最近发生但尚未完成的状态，因此适合处理嵌套、回退和递归场景。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 42,
+      "originalNo": 42
+    }
+  },
+  {
+    "id": "ds-2026a-043",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "中序线索二叉树中，结点的左线索指向该结点的（）。",
+    "options": {
+      "A": "中序前驱",
+      "B": "中序后继",
+      "C": "右孩子",
+      "D": "左孩子"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "中序线索二叉树中，左线索通常指向中序前驱，右线索通常指向中序后继。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 43,
+      "originalNo": 43
+    }
+  },
+  {
+    "id": "ds-2026a-044",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "fill",
+    "stem": "哈夫曼树是在相同叶子权值条件下，____最小的二叉树。",
+    "answers": [
+      "带权路径长度",
+      "WPL",
+      "带权路径长度WPL"
+    ],
+    "answer": "带权路径长度",
+    "analysis": "哈夫曼树又称最优二叉树，其最优性体现在带权路径长度 WPL 最小。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 44,
+      "originalNo": 44
+    }
+  },
+  {
+    "id": "ds-2026a-045",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "code",
+    "stem": "补全顺序表删除算法：删除顺序表中所有大于 target 的元素，保留小于等于 target 的元素并更新表长。",
+    "answer": "```c\nvoid DelOver(SeqList *L, int target) {\n    int i, cnt = 0;\n    for (i = 0; i < L->length; i++) {\n        if (L->data[i] <= target) {\n            L->data[cnt] = L->data[i];\n            cnt++;\n        }\n    }\n    L->length = cnt;\n}\n```",
+    "analysis": "使用 cnt 记录保留元素的新下标。扫描原表时，凡是 L->data[i] <= target 就复制到 data[cnt]，随后 cnt 自增。循环结束后 cnt 即新表长。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 45,
+      "originalNo": 45
+    }
+  },
+  {
+    "id": "ds-2026a-046",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "fill",
+    "stem": "带头结点的单链表头指针为 L，空链表的判定条件是____。",
+    "answers": [
+      "L->next == NULL",
+      "L->next==NULL"
+    ],
+    "answer": "L->next == NULL",
+    "analysis": "带头结点时头指针 L 指向头结点，空表表示头结点后面没有数据结点。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 46,
+      "originalNo": 46
+    }
+  },
+  {
+    "id": "ds-2026a-047",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "循环队列设计主要解决顺序队列的哪一问题（）。",
+    "options": {
+      "A": "队列出错",
+      "B": "下溢出",
+      "C": "假溢出",
+      "D": "内存溢出"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "顺序队列中前端删除后的空间可能无法复用，循环队列通过取模让队尾回绕，从而解决假溢出。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 47,
+      "originalNo": 47
+    }
+  },
+  {
+    "id": "ds-2026a-048",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "n 个顶点的无向连通图，构成生成树的最少边数为（）。",
+    "options": {
+      "A": "n-1",
+      "B": "n(n-1)/2",
+      "C": "n+1",
+      "D": "n"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "n 个顶点的生成树必须连通且无环，边数固定为 n-1。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 48,
+      "originalNo": 48
+    }
+  },
+  {
+    "id": "ds-2026a-049",
+    "source": "押题",
+    "chapter": "数组与矩阵",
+    "type": "single",
+    "stem": "存储大量零元素的稀疏矩阵，标准压缩存储方式是（）。",
+    "options": {
+      "A": "双向链表",
+      "B": "三元组顺序表",
+      "C": "哈希表",
+      "D": "二维数组"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "稀疏矩阵常用三元组表存储非零元素的行号、列号和值，从而节省大量零元素空间。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 49,
+      "originalNo": 49
+    }
+  },
+  {
+    "id": "ds-2026a-050",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "fill",
+    "stem": "单链表删除指定中间结点时，需要先找到该结点的____。",
+    "answers": [
+      "前驱结点",
+      "前驱"
+    ],
+    "answer": "前驱结点",
+    "analysis": "单链表无法直接由当前结点找到前驱，删除中间结点需要修改其前驱结点的 next 指针。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 50,
+      "originalNo": 50
+    }
+  },
+  {
+    "id": "ds-2026a-051",
+    "source": "押题",
+    "chapter": "广义表",
+    "type": "fill",
+    "stem": "广义表 (a,(b,d),e,f) 的长度为____，深度为____。",
+    "answers": [
+      "4；2",
+      "4,2",
+      "长度4，深度2"
+    ],
+    "answer": "4；2",
+    "analysis": "最外层有 a、(b,d)、e、f 四个元素，因此长度为 4。该广义表包含一层子表 (b,d)，最大括号嵌套层数为 2。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 51,
+      "originalNo": 51
+    }
+  },
+  {
+    "id": "ds-2026a-052",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "judge",
+    "stem": "哈希表查找效率仅由哈希函数决定，冲突处理方式不产生影响。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "哈希表查找效率同时受哈希函数、装填因子和冲突处理方式影响。冲突越多、处理策略越差，平均查找长度越大。",
+    "tags": [
+      "2026A押题",
+      "2026押题"
+    ],
+    "meta": {
+      "paper": "2026 A卷押题",
+      "paperOrder": 52,
+      "originalNo": 52
+    }
+  },
+  {
+    "id": "ds-pred-supp-001",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "在数据结构中，从逻辑上可以将数据结构分为（）。",
+    "options": {
+      "A": "动态结构和静态结构",
+      "B": "紧凑结构和非紧凑结构",
+      "C": "线性结构和非线性结构",
+      "D": "内部结构和外部结构"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "逻辑结构按数据元素关系可分为线性结构和非线性结构。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 1,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-002",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "与数据元素本身的形式、内容、相对位置、个数无关的是数据的（）。",
+    "options": {
+      "A": "存储结构",
+      "B": "存储实现",
+      "C": "逻辑结构",
+      "D": "运算实现"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "逻辑结构只抽象描述数据元素之间的逻辑关系，不依赖元素的具体内容和物理存放。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 2,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "ds-docx-202607-016",
+      "duplicateSource": "数据结构.docx"
+    }
+  },
+  {
+    "id": "ds-pred-supp-003",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "以下数据结构中，（）是非线性数据结构。",
+    "options": {
+      "A": "树",
+      "B": "字符串",
+      "C": "队列",
+      "D": "栈"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "树中一个结点可以有多个后继，属于非线性结构；字符串、队列、栈都属于线性结构。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 3,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "ds-docx-202607-032",
+      "duplicateSource": "数据结构.docx"
+    }
+  },
+  {
+    "id": "ds-pred-supp-004",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "以下属于逻辑结构的是（）。",
+    "options": {
+      "A": "顺序表",
+      "B": "哈希表",
+      "C": "有序表",
+      "D": "单链表"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "顺序表、单链表偏向存储表示，哈希表偏向查找存储组织；有序表强调元素间的逻辑次序。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 4,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-005",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "以下与数据的存储结构无关的术语是（）。",
+    "options": {
+      "A": "循环队列",
+      "B": "链表",
+      "C": "哈希表",
+      "D": "栈"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "栈描述受限线性表的逻辑与运算特性，链表、哈希表、循环队列都涉及具体存储组织。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 5,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-006",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "以下关于数据结构的说法中，正确的是（）。",
+    "options": {
+      "A": "数据的逻辑结构独立于其存储结构",
+      "B": "数据的存储结构独立于其逻辑结构",
+      "C": "数据的逻辑结构唯一决定其存储结构",
+      "D": "数据结构仅由其逻辑结构和存储结构决定"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "同一种逻辑结构可以采用不同存储结构实现，逻辑结构不依赖具体存储方式。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 6,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "ds-docx-202607-034",
+      "duplicateSource": "数据结构.docx"
+    }
+  },
+  {
+    "id": "ds-pred-supp-007",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "在存储数据时，通常不仅要存储各数据元素的值，而且要存储（）。",
+    "options": {
+      "A": "数据的操作方法",
+      "B": "数据元素的类型",
+      "C": "数据元素之间的关系",
+      "D": "数据的存取方法"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "数据结构不仅包含数据元素，还要表达元素之间的关系。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 7,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-008",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "链式存储设计时，结点内的存储单元地址（）。",
+    "options": {
+      "A": "一定连续",
+      "B": "一定不连续",
+      "C": "不一定连续",
+      "D": "部分连续，部分不连续"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "链式存储通过指针连接结点，结点在内存中的位置不要求连续。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 8,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-009",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "数据在计算机内有链式和顺序两种存储方式，在存储空间使用的灵活性上，链式存储比顺序存储要（）。",
+    "options": {
+      "A": "低",
+      "B": "高",
+      "C": "相同",
+      "D": "不确定"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "链式存储按需分配结点，不要求预先申请连续空间，空间使用更灵活。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第一章 绪论 测试题1.docx",
+      "paperOrder": 9,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-010",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "顺序表中第一个元素的存储地址是 100，每个元素的长度为 2，则第 5 个元素的地址是（）。",
+    "options": {
+      "A": "108",
+      "B": "100",
+      "C": "120",
+      "D": "110"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "第 5 个元素相对第 1 个元素偏移 4 个元素长度，地址为 100 + 4×2 = 108。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 10,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "ds-docx-202607-054",
+      "duplicateSource": "数据结构.docx"
+    }
+  },
+  {
+    "id": "ds-pred-supp-011",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "在 n 个结点的顺序表中，时间复杂度为 O(1) 的操作是（）。",
+    "options": {
+      "A": "将 n 个结点从小到大排列",
+      "B": "删除第 i 个结点",
+      "C": "在第 i 个结点后插入一个新结点",
+      "D": "访问第 i 个结点和求第 i 个结点的直接前驱"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "顺序表支持随机访问，访问第 i 个元素及其直接前驱都可由下标直接计算。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 11,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-012",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "向一个有 127 个元素的顺序表中插入一个新元素并保持原来顺序不变，平均要移动的元素个数为（）。",
+    "options": {
+      "A": "7",
+      "B": "63.5",
+      "C": "63",
+      "D": "8"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "顺序表在各位置等概率插入时，平均移动元素数约为 n/2，127/2=63.5。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 12,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "ds-docx-202607-071",
+      "duplicateSource": "数据结构.docx"
+    }
+  },
+  {
+    "id": "ds-pred-supp-013",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "将两个含有 n 个元素的有序表归并成一个有序表，其最少比较次数是（）。",
+    "options": {
+      "A": "n",
+      "B": "2n-1",
+      "C": "2n",
+      "D": "n-1"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "若一个表的所有元素都小于另一个表，只需比较 n 次即可先耗尽一个表。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 13,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-014",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "线性表 L=(a1,a2,...,an)，下列说法正确的是（）。",
+    "options": {
+      "A": "每个元素都有一个直接前驱和一个直接后继",
+      "B": "线性表中至少有一个元素",
+      "C": "表中诸元素必须有序",
+      "D": "除第一个和最后一个元素外，其余每个元素都有且仅有一个直接前驱和直接后继"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "线性表中首元素没有直接前驱，尾元素没有直接后继，中间元素各有唯一直接前驱和后继。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 14,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-015",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "在长度为 n 的顺序表中，在第 i 个元素之前插入一个新元素时需向后移动（）个元素。",
+    "options": {
+      "A": "n-i",
+      "B": "n-i+1",
+      "C": "n-i-1",
+      "D": "i"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "插入到第 i 个元素前，需要移动原第 i 到第 n 个元素，共 n-i+1 个。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 15,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-016",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "在线性表的下列运算中，不改变数据之间结构关系的运算是（）。",
+    "options": {
+      "A": "插入",
+      "B": "删除",
+      "C": "排序",
+      "D": "定位"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "定位只是查找元素位置，不改变线性表中元素之间的逻辑关系。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 16,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-017",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "下列各项中属于顺序存储结构优点的是（）。",
+    "options": {
+      "A": "插入运算方便",
+      "B": "删除运算方便",
+      "C": "存储密度大",
+      "D": "可方便地用于各种逻辑结构的存储表示"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "顺序存储不需要额外指针域，因此存储密度高。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 17,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-018",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "线性表是具有 n 个（）的有限序列。",
+    "options": {
+      "A": "表元素",
+      "B": "字符",
+      "C": "数据元素",
+      "D": "数据项"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "线性表由 n 个数据元素构成，是数据元素的有限序列。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 18,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-019",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "若某线性表最常用的操作是存取任一指定序号的元素和在最后进行删除运算，则最节省时间的存储方式是（）。",
+    "options": {
+      "A": "顺序表",
+      "B": "双链表",
+      "C": "双循环链表",
+      "D": "单链表"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "顺序表可 O(1) 随机访问指定序号元素，删除最后元素也可 O(1) 完成。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 19,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-020",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "对于顺序存储的线性表，时间复杂度为 O(1) 的运算是（）。",
+    "options": {
+      "A": "排序",
+      "B": "删除第 i 个元素",
+      "C": "改变第 i 个元素的值",
+      "D": "在第 i 个元素后插入新元素"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "顺序表能直接按下标定位第 i 个元素并修改，时间复杂度为 O(1)。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 20,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-021",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "在一个单链表中，已知 q 所指结点是 p 所指结点的前驱，若在 q 和 p 之间插入结点 s，则执行（）。",
+    "options": {
+      "A": "s->next=p->next; p->next=s;",
+      "B": "p->next=s->next; s->next=p;",
+      "C": "q->next=s; s->next=p;",
+      "D": "p->next=s; s->next=q;"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "将 s 插入 q 与 p 之间，应先令 q->next 指向 s，再令 s->next 指向 p。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 21,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-022",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "将长度为 n 的单链表链接在长度为 m 的单链表后面，若只有头指针，则时间复杂度为（）。",
+    "options": {
+      "A": "O(1)",
+      "B": "O(n)",
+      "C": "O(m)",
+      "D": "O(n+m)"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "需要先遍历长度为 m 的链表找到尾结点，再修改尾结点指针。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 22,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-023",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "单链表中，增加一个头结点的目的是（）。",
+    "options": {
+      "A": "使单链表至少有一个结点",
+      "B": "标识首结点位置",
+      "C": "方便运算的实现",
+      "D": "说明单链表是线性表的链式存储"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "头结点可统一空表和非空表、首元结点和其他结点的插入删除处理。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 23,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-024",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "带头结点的双循环链表 L 为空的条件是（）。",
+    "options": {
+      "A": "L->prior==L && L->next==NULL",
+      "B": "L->prior==NULL && L->next==NULL",
+      "C": "L->prior==NULL && L->next==L",
+      "D": "L->prior==L && L->next==L"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "双循环链表空表时，头结点的前驱和后继都指向自身。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 24,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-025",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "静态链表中指针表示的是（）。",
+    "options": {
+      "A": "下一元素的地址",
+      "B": "内存储器地址",
+      "C": "下一个元素在数组中的位置",
+      "D": "左链或右链指向元素的地址"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "静态链表使用数组模拟链表，指针域通常保存下一个结点在数组中的下标。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 25,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "第二章 线性表-3",
+      "duplicateSource": "原题"
+    }
+  },
+  {
+    "id": "ds-pred-supp-026",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "需要分配较大空间，插入和删除不需要移动元素的线性表，其存储结构为（）。",
+    "options": {
+      "A": "单链表",
+      "B": "静态链表",
+      "C": "顺序表",
+      "D": "双链表"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "静态链表用数组预分配结点空间，插入删除通过修改游标完成，不移动元素。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 26,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-027",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "某线性表用带头结点的循环单链表存储，当 head->next->next=head 成立时，线性表长度可能是（）。",
+    "options": {
+      "A": "0",
+      "B": "1",
+      "C": "2",
+      "D": "可能为 0 或 1"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "空表时 head->next=head；长度为 1 时 head->next 指向唯一结点，唯一结点 next 指回 head，二者都满足该条件。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构第2章测试题1,3,4.docx",
+      "paperOrder": 27,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-028",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "栈和队列具有相同的（）。",
+    "options": {
+      "A": "抽象数据类型",
+      "B": "逻辑结构",
+      "C": "存储结构",
+      "D": "运算"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "栈和队列都是操作受限的线性表，逻辑结构相同，运算规则不同。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 28,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "ds-docx-202607-090",
+      "duplicateSource": "数据结构.docx"
+    }
+  },
+  {
+    "id": "ds-pred-supp-029",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "栈是（）。",
+    "options": {
+      "A": "顺序存储的线性结构",
+      "B": "链式存储的非线性结构",
+      "C": "限制存取点的线性结构",
+      "D": "限制存储点的非线性结构"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "栈是只允许在栈顶进行插入和删除的线性结构。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 29,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-030",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "（）不是栈的基本操作。",
+    "options": {
+      "A": "删除栈顶元素",
+      "B": "删除栈底元素",
+      "C": "判断栈是否为空",
+      "D": "将栈置为空栈"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "栈的删除操作只能在栈顶进行，不能直接删除栈底元素。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 30,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-031",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "顺序栈用 top==-1 表示栈空，且栈未满。元素 x 进栈时应执行（）。",
+    "options": {
+      "A": "a[--top]=x",
+      "B": "a[top--]=x",
+      "C": "a[++top]=x",
+      "D": "a[top++]=x"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "top 指向当前栈顶位置，入栈应先让 top 加 1，再写入新元素。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 31,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-032",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "和顺序栈相比，链栈比较明显的优势是（）。",
+    "options": {
+      "A": "通常不会出现栈满的情况",
+      "B": "通常不会出现栈空的情况",
+      "C": "插入操作更容易实现",
+      "D": "删除操作更容易实现"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "链栈按需分配结点，只要内存可用，一般不存在固定容量导致的栈满。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 32,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-033",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "向不带头结点、栈顶指针为 top 的链栈中插入结点 x，应执行（）。",
+    "options": {
+      "A": "top->next=x",
+      "B": "x->next=top->next; top->next=x",
+      "C": "x->next=top; top=x",
+      "D": "x->next=top; top=top->next"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "链栈入栈需要让新结点指向原栈顶，再把 top 更新为新结点。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 33,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-034",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "不带头结点链栈执行 Pop 操作，并将出栈元素存在 x 中，正确操作是（）。",
+    "options": {
+      "A": "x=top; top=top->next",
+      "B": "x=top->data",
+      "C": "top=top->next; x=top->data",
+      "D": "x=top->data; top=top->next"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "出栈要先保存当前栈顶数据，再将 top 后移到下一个结点。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 34,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-035",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "执行 InitStack(); Push(st,a); Push(st,b); Pop(st,x); Top(st,x); 后，变量 x 的值为（）。",
+    "options": {
+      "A": "a",
+      "B": "b",
+      "C": "NULL",
+      "D": "FALSE"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "先弹出 b 后栈顶变为 a，再取栈顶会把 x 置为 a。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 35,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-036",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "3 个不同元素依次进栈，能得到（）种不同的出栈序列。",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "n 个元素的合法出栈序列数为 Catalan 数 Cn，n=3 时为 5。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 36,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-037",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "a,b,c,d,e,f 依次进栈且允许中途出栈，下面得不到的出栈序列是（）。",
+    "options": {
+      "A": "fedcba",
+      "B": "bcafed",
+      "C": "dcefba",
+      "D": "cabdef"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "输出 c 后栈内 b 在 a 之上，无法先输出 a 再输出 b，因此 cabdef 不可能。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 37,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-038",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "进栈顺序为 1,2,3,4，为得到出栈顺序 1,3,4,2，对应的 S/X 操作序列是（）。",
+    "options": {
+      "A": "SXSSXXSX",
+      "B": "SSSXXSXX",
+      "C": "SSXSXXSX",
+      "D": "SXSSXSXX"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "操作过程为 push1 pop1，push2 push3 pop3，push4 pop4，pop2，即 SXSSXSXX。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 38,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "repairNote": "Source options A and C were duplicated; option C was replaced with a same-type wrong sequence. Correct answer remains D."
+    }
+  },
+  {
+    "id": "ds-pred-supp-039",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "若栈 S1 保存操作数 5,8,3,2（2 在栈顶），S2 保存运算符 *、-、+（+ 在栈顶），按规则 b op a 调用 3 次 F 后，S1 栈顶为（）。",
+    "options": {
+      "A": "-15",
+      "B": "15",
+      "C": "-20",
+      "D": "20"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "第一次 3+2=5；第二次 8-5=3；第三次 5*3=15。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 39,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-040",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "若一个栈的输入序列是 1,2,3,...,n，输出序列的第一个元素是 n，则第 i 个输出元素是（）。",
+    "options": {
+      "A": "不确定",
+      "B": "n-i",
+      "C": "n-i-1",
+      "D": "n-i+1"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "第一个输出为 n 表示 1 到 n 已全部入栈，之后只能按 n,n-1,...,1 的顺序出栈。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 40,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-041",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "某栈的输入序列为 a,b,c,d，下面不可能为其输出序列的是（）。",
+    "options": {
+      "A": "a,b,c,d",
+      "B": "c,b,d,a",
+      "C": "d,c,a,b",
+      "D": "a,c,b,d"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "输出 d,c 后，栈中 b 在 a 上方，不能先输出 a 再输出 b。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 41,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-042",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "栈的输入为 n,l,_，输出长度为 3 且可作为 C 语言标识符的序列有（）个。",
+    "options": {
+      "A": "4",
+      "B": "5",
+      "C": "3",
+      "D": "6"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "三个不同元素的合法栈输出序列为 5 种，且 n、l、_ 组成的序列均可作为标识符开头字符序列。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 42,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-043",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "采用共享栈的好处是（）。",
+    "options": {
+      "A": "减少存取时间，降低上溢可能",
+      "B": "节省存储空间，降低上溢可能",
+      "C": "减少存取时间，降低下溢可能",
+      "D": "节省存储空间，降低下溢可能"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "共享栈让两个栈从同一数组两端向中间增长，提高空间利用率并降低上溢概率。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第3章 栈和队列测试题.docx",
+      "paperOrder": 43,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-044",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "由 3 个结点可以构造出多少种不同的二叉树？",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "4",
+      "D": "5"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "n 个结点的不同二叉树数量为 Catalan 数 Cn，C3=5。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第6章 树和二叉树.docx",
+      "paperOrder": 44,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-045",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "一棵完全二叉树有 1001 个结点，其中叶子结点个数是（）。",
+    "options": {
+      "A": "250",
+      "B": "500",
+      "C": "254",
+      "D": "501"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "完全二叉树中叶子结点个数为 ceil(n/2)，ceil(1001/2)=501。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第6章 树和二叉树.docx",
+      "paperOrder": 45,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-046",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "一个具有 1025 个结点的二叉树的高度 h 可能为（）。",
+    "options": {
+      "A": "11",
+      "B": "10",
+      "C": "11 至 1025 之间",
+      "D": "10 至 1024 之间"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "1025 个结点的二叉树最小高度为 11，最大高度为 1025。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第6章 树和二叉树.docx",
+      "paperOrder": 46,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-047",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "树最适合用来表示（）的数据。",
+    "options": {
+      "A": "有序",
+      "B": "任意元素之间具有多种联系",
+      "C": "元素之间具有分支层次关系",
+      "D": "无序"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "树结构适合描述一对多的层次关系。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第6章 树和二叉树.docx",
+      "paperOrder": 47,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-048",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "一棵有 n 个结点的树的所有结点度数之和为（）。",
+    "options": {
+      "A": "n-1",
+      "B": "n",
+      "C": "n+1",
+      "D": "2n"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "树中边数为 n-1，所有结点的度数之和等于边数。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第6章 树和二叉树.docx",
+      "paperOrder": 48,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-049",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "假定一棵度为 3 的树中结点数为 50，则其最小高度为（）。",
+    "options": {
+      "A": "3",
+      "B": "4",
+      "C": "5",
+      "D": "6"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "度为 3 的树高度为 4 时最多 1+3+9+27=40 个结点，不足 50；高度为 5 时可容纳 121 个结点。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第6章 树和二叉树.docx",
+      "paperOrder": 49,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-050",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "一棵度为 4 的树中，若有 20 个度为 4 的结点、10 个度为 3 的结点、1 个度为 2 的结点、10 个度为 1 的结点，则叶子结点个数是（）。",
+    "options": {
+      "A": "41",
+      "B": "82",
+      "C": "113",
+      "D": "122"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "树中叶子数 n0 = 1 + Σ(i-1)ni = 1+3×20+2×10+1×1=82。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "第6章 树和二叉树.docx",
+      "paperOrder": 50,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-051",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "single",
+    "stem": "下列排序算法中，不稳定的是（）。",
+    "options": {
+      "A": "归并排序",
+      "B": "插入排序",
+      "C": "选择排序",
+      "D": "冒泡排序"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "简单选择排序会跨位置交换元素，可能改变相等关键字的相对次序，因此不稳定。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 51,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-052",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "循环链表的主要优点是（）。",
+    "options": {
+      "A": "无需头指针",
+      "B": "便于首尾节点操作",
+      "C": "存储密度高",
+      "D": "插入删除速度快"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "循环链表首尾相连，便于从尾结点访问首结点，适合首尾操作。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 52,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-053",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "若栈的输入序列为 a,b,c,d，则以下输出序列合理的是（）。",
+    "options": {
+      "A": "c,a,b,d",
+      "B": "a,c,b,d",
+      "C": "b,d,a,c",
+      "D": "d,a,b,c"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "a,c,b,d 可通过 a 入栈出栈，b 入栈，c 入栈出栈，b 出栈，d 入栈出栈得到。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 53,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-054",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "关键路径的求解主要用于（）。",
+    "options": {
+      "A": "工程进度安排",
+      "B": "查找效率提升",
+      "C": "最短路径规划",
+      "D": "排序算法优化"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "关键路径用于分析工程活动网络中决定总工期的关键活动。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 54,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-055",
+    "source": "押题",
+    "chapter": "广义表",
+    "type": "single",
+    "stem": "广义表 (a,b,(c,d),e) 的深度是（）。",
+    "options": {
+      "A": "4",
+      "B": "2",
+      "C": "5",
+      "D": "3"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "最外层深度为 1，内部子表 (c,d) 使最大嵌套层数为 2。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 55,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-056",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "栈在实现函数调用时的作用是（）。",
+    "options": {
+      "A": "以上都是",
+      "B": "存储返回地址",
+      "C": "存储函数参数",
+      "D": "存储局部变量"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "函数调用栈会保存返回地址、参数、局部变量和现场信息。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 56,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-057",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "single",
+    "stem": "线性表的链式存储结构的核心优势是（）。",
+    "options": {
+      "A": "存储空间连续",
+      "B": "随机存取速度快",
+      "C": "便于查找元素",
+      "D": "插入删除无需移动元素"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "链式存储通过修改指针完成插入删除，不需要像顺序表那样移动大量元素。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 57,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-058",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "数据结构中，“运算”的设计不依赖于（）。",
+    "options": {
+      "A": "数据类型",
+      "B": "算法语言",
+      "C": "逻辑结构",
+      "D": "存储结构"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "运算设计与数据逻辑结构和存储结构相关，但不依赖某一种具体编程语言。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 58,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-059",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "single",
+    "stem": "完全二叉树中，编号为 k 的结点（k≥1）若存在右孩子，则右孩子编号为（）。",
+    "options": {
+      "A": "k/2",
+      "B": "2k",
+      "C": "k-1",
+      "D": "2k+1"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "按 1 开始编号的完全二叉树中，结点 k 的左孩子为 2k，右孩子为 2k+1。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 59,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-060",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "图的邻接矩阵表示法中，对于有 n 个顶点、e 条边的有向图，非零元素个数为（）。",
+    "options": {
+      "A": "n",
+      "B": "e",
+      "C": "n+e",
+      "D": "2e"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "有向图每条弧在邻接矩阵中对应一个非零元素，因此非零元素个数为 e。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 60,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-061",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "single",
+    "stem": "不适用于二分查找的存储结构是（）。",
+    "options": {
+      "A": "顺序表",
+      "B": "链表",
+      "C": "以上都适用",
+      "D": "数组"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "二分查找要求能随机访问中间元素，链表不能 O(1) 定位中间结点。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 61,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-062",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "循环队列数组容量为 m，队头指针 front，队尾指针 rear，队列空的条件是（）。",
+    "options": {
+      "A": "rear+1 == front",
+      "B": "(rear+1)%m == front",
+      "C": "rear == front",
+      "D": "(rear-1)%m == front"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "常见循环队列约定 front==rear 表示队空。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 62,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-063",
+    "source": "押题",
+    "chapter": "广义表",
+    "type": "single",
+    "stem": "广义表 ((a,(b,c)),d) 的表头是（）。",
+    "options": {
+      "A": "d",
+      "B": "a",
+      "C": "(b,c)",
+      "D": "(a,(b,c))"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "表头是广义表的第一个元素，本题第一个元素是子表 (a,(b,c))。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 63,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s",
+      "duplicateOf": "第四章 稀疏矩阵与广义表-2",
+      "duplicateSource": "原题"
+    }
+  },
+  {
+    "id": "ds-pred-supp-064",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "single",
+    "stem": "顺序查找成功时，n 个元素等概率情况下平均查找长度为（）。",
+    "options": {
+      "A": "(n-1)/2",
+      "B": "(n+1)/2",
+      "C": "n",
+      "D": "n/2"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "成功查找平均比较次数为 (1+2+...+n)/n=(n+1)/2。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 64,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-065",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "Kruskal 算法构建最小生成树的策略是（）。",
+    "options": {
+      "A": "优先选择与起点关联的边",
+      "B": "按边权值从小到大选择",
+      "C": "优先选择权值最大的边",
+      "D": "从顶点出发逐步扩展"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "Kruskal 每次选择当前权值最小且不会形成环的边。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 65,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-066",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "single",
+    "stem": "循环队列避免“假溢出”的关键设计是（）。",
+    "options": {
+      "A": "限制队列长度",
+      "B": "采用数组存储",
+      "C": "队头队尾指针循环移动",
+      "D": "标记队列空状态"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "循环移动指针可以复用顺序队列前端被删除后留下的空间。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 66,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-067",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "有向图中，顶点数 n=5，边数 e=6，则所有顶点的入度之和为（）。",
+    "options": {
+      "A": "6",
+      "B": "5",
+      "C": "12",
+      "D": "30"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "有向图每条边贡献 1 个入度，因此所有顶点入度之和等于边数 e。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 67,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-068",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "single",
+    "stem": "希尔排序的本质是（）。",
+    "options": {
+      "A": "选择排序的优化",
+      "B": "简单插入排序的优化",
+      "C": "冒泡排序的优化",
+      "D": "归并排序的优化"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "希尔排序也称缩小增量排序，是对直接插入排序的改进。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 68,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-069",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "single",
+    "stem": "下列排序算法中，最好情况下时间复杂度为 O(n) 的是（）。",
+    "options": {
+      "A": "堆排序",
+      "B": "快速排序",
+      "C": "希尔排序",
+      "D": "冒泡排序"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "带交换标志的冒泡排序在序列已有序时只需一趟扫描，最好时间复杂度为 O(n)。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 69,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-070",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "无向图的连通分量是指（）。",
+    "options": {
+      "A": "图中所有连通的顶点",
+      "B": "图中最大的连通子图",
+      "C": "图中所有连通的子图",
+      "D": "图中互不连通的子图集合"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "连通分量是无向图中的极大连通子图。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 70,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-071",
+    "source": "押题",
+    "chapter": "图",
+    "type": "single",
+    "stem": "图的邻接表表示法适用于（）。",
+    "options": {
+      "A": "完全图",
+      "B": "有向图",
+      "C": "稠密图",
+      "D": "稀疏图"
+    },
+    "correct": [
+      "D"
+    ],
+    "analysis": "邻接表只存实际存在的边，适合边数远小于顶点对数量的稀疏图。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 71,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-072",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "single",
+    "stem": "数据结构中，依赖计算机存储环境的是数据的（）。",
+    "options": {
+      "A": "树形结构",
+      "B": "逻辑结构",
+      "C": "物理结构",
+      "D": "线性结构"
+    },
+    "correct": [
+      "C"
+    ],
+    "analysis": "物理结构也称存储结构，描述数据在计算机中的实际存储表示。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 72,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-073",
+    "source": "押题",
+    "chapter": "树与二叉树",
+    "type": "judge",
+    "stem": "二叉树的前序遍历序列和后序遍历序列可以唯一确定一棵二叉树。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "一般情况下，仅凭前序和后序序列不能唯一确定一棵二叉树。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 73,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-074",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "judge",
+    "stem": "栈是一种操作受限的线性表，只允许在表尾进行操作。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "若把表尾视为栈顶，栈只允许在表尾插入和删除。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 74,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-075",
+    "source": "押题",
+    "chapter": "图",
+    "type": "judge",
+    "stem": "拓扑排序中，若图存在环，则无法进行拓扑排序。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "拓扑排序只适用于有向无环图。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 75,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-076",
+    "source": "押题",
+    "chapter": "串",
+    "type": "judge",
+    "stem": "串是一种特殊的线性表，其数据元素只能是字符。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "串是由零个或多个字符组成的有限序列。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 76,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-077",
+    "source": "押题",
+    "chapter": "排序",
+    "type": "judge",
+    "stem": "快速排序在所有情况下的时间复杂度都优于冒泡排序。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "快速排序最坏情况下为 O(n^2)，不能说所有情况下都优于冒泡排序。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 77,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-079",
+    "source": "押题",
+    "chapter": "栈和队列",
+    "type": "judge",
+    "stem": "循环队列的队满条件与队空条件可以通过牺牲一个存储单元区分。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "常用做法是少用一个单元，使 (rear+1)%m==front 表示队满，rear==front 表示队空。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 79,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-080",
+    "source": "押题",
+    "chapter": "查找",
+    "type": "judge",
+    "stem": "哈希表的查找成功平均查找长度与装填因子无关。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "装填因子越大，冲突概率通常越高，平均查找长度会受到影响。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 80,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-081",
+    "source": "押题",
+    "chapter": "数据结构基础",
+    "type": "judge",
+    "stem": "数据的逻辑结构与存储结构一定是一一对应的。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "B"
+    ],
+    "analysis": "同一逻辑结构可以采用多种存储结构，同一存储结构也可表示不同逻辑关系。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 81,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
+  },
+  {
+    "id": "ds-pred-supp-082",
+    "source": "押题",
+    "chapter": "线性表",
+    "type": "judge",
+    "stem": "线性表的链式存储结构中，元素的存储地址不一定连续。",
+    "options": {
+      "A": "对",
+      "B": "错"
+    },
+    "correct": [
+      "A"
+    ],
+    "analysis": "链式存储通过指针连接结点，结点地址不要求连续。",
+    "tags": [
+      "2026押题",
+      "押题补充"
+    ],
+    "meta": {
+      "paper": "2026押题补充",
+      "file": "数据结构期末模拟测试6.6版.docx",
+      "paperOrder": 82,
+      "origin": "C:/Users/25463/Downloads/新建文件夹/s"
+    }
   }
 ]

@@ -63,6 +63,21 @@
             "type": "judge",
             "count": 10,
             "score": 1
+          },
+          {
+            "type": "short",
+            "count": 4,
+            "score": 5
+          },
+          {
+            "type": "essay",
+            "count": 2,
+            "score": 10
+          },
+          {
+            "type": "code",
+            "count": 1,
+            "score": 20
           }
         ]
       }

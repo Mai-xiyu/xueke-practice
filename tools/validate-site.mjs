@@ -13,10 +13,10 @@ const colleges = directory.colleges;
 const validTypes = new Set(["single", "multiple", "judge", "fill", "short", "essay", "code", "comprehensive"]);
 const expectedCounts = new Map([
   ["route-switching", 550],
-  ["network-security", 215],
+  ["network-security", 238],
   ["data-collection", 282],
   ["data-visualization", 100],
-  ["data-structure", 663],
+  ["data-structure", 796],
   ["java-programming", 137],
   ["linux-course", 335],
   ["modern-history", 390],

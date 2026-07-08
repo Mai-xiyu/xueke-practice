@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildMockExam, interleaveByType, isAnswerCorrect, normalizeOptions, normalizeType, scoreMockExam } from "./questions";
+import { buildMockExam, interleaveByType, isAnswerCorrect, normalizeOptions, normalizeType, scoreMockExam, sortByQuestionType } from "./questions";
 import type { Question } from "./types";
 
 function makeQuestion(id: string, type: Question["type"]): Question {
@@ -45,6 +45,25 @@ describe("question helpers", () => {
     const mixed = interleaveByType(questions);
     expect(mixed.map((question) => question.id)).toEqual(["s1", "j1", "s2", "j2", "s3"]);
     expect(interleaveByType(questions.slice(0, 2)).map((question) => question.id)).toEqual(["s1", "s2"]);
+  });
+
+  it("sorts practice questions by exam-like type order", () => {
+    const questions = [
+      makeQuestion("short1", "short"),
+      makeQuestion("fill1", "fill"),
+      makeQuestion("judge1", "judge"),
+      makeQuestion("single1", "single"),
+      makeQuestion("code1", "code"),
+      makeQuestion("single2", "single")
+    ];
+    expect(sortByQuestionType(questions).map((question) => question.id)).toEqual([
+      "single1",
+      "single2",
+      "fill1",
+      "judge1",
+      "short1",
+      "code1"
+    ]);
   });
 
   it("reports per-type scores for mock exams", () => {

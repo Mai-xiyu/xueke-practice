@@ -18,8 +18,10 @@ import {
   isObjective,
   isAnswerCorrect,
   questionMatches,
+  questionTypeRank,
   scoreMockExam,
   shuffle,
+  sortByQuestionType,
   TYPE_LABEL,
   uniqueSorted,
   type MockTypeScore
@@ -42,7 +44,7 @@ import type { FloatingPanelConfig } from "../lib/floatingLayout";
 import type { AnswerCardItem, ProgressState, Question, QuestionType, Subject, SubjectDirectory } from "../lib/types";
 
 type Mode = "study" | "browse" | "wrong" | "favorite" | "review" | "mock";
-type QuestionOrder = "default" | "interleave" | "random";
+type QuestionOrder = "default" | "raw" | "interleave" | "random";
 
 interface PracticePageProps {
   directory: SubjectDirectory;
@@ -52,7 +54,6 @@ interface PracticePageProps {
 const EMPTY_PROGRESS: ProgressState = { answers: {}, wrong: {}, favorites: {}, review: {}, details: {}, mockRuns: [] };
 const FLOATING_BREAKPOINT = 900;
 const FLOATING_MIN_HEIGHT = 820;
-const MOCK_TYPE_ORDER: QuestionType[] = ["single", "multiple", "fill", "judge", "short", "code", "essay", "comprehensive"];
 
 interface MockResult {
   title: string;
@@ -116,11 +117,7 @@ function normalizeIndex(index: number, total: number) {
 
 function orderMockQuestions(questions: Question[]) {
   return [...questions].sort((left, right) => {
-    const leftType = MOCK_TYPE_ORDER.indexOf(left.type);
-    const rightType = MOCK_TYPE_ORDER.indexOf(right.type);
-    const leftRank = leftType === -1 ? MOCK_TYPE_ORDER.length : leftType;
-    const rightRank = rightType === -1 ? MOCK_TYPE_ORDER.length : rightType;
-    return leftRank - rightRank;
+    return questionTypeRank(left.type) - questionTypeRank(right.type);
   });
 }
 
@@ -273,6 +270,7 @@ export function PracticePage({ subject }: PracticePageProps) {
       return matchesFilters(question);
     });
     if (mode === "study" || mode === "browse") {
+      if (order === "default") return sortByQuestionType(filtered);
       if (order === "interleave") return interleaveByType(filtered);
       if (order === "random") return shuffle(filtered, orderSeed);
     }
@@ -604,7 +602,8 @@ export function PracticePage({ subject }: PracticePageProps) {
         setIndex(0);
       }}
     >
-      <option value="default">顺序：题库顺序</option>
+      <option value="default">顺序：题型顺序</option>
+      <option value="raw">顺序：题库原序</option>
       <option value="interleave">顺序：题型交错</option>
       <option value="random">顺序：随机打乱</option>
     </select>
